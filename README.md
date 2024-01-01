@@ -1,3 +1,1 @@
-# truth
-
-![try relative link](truth.jpg)
+![truth](truth.jpg)
