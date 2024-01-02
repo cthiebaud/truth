@@ -27,8 +27,6 @@
             background-color: #f1efe0;
             color: #173F35;
             border-radius: 0.375rem;
-            /* 1%; */
-            /* PANTONE 567 C (closest to Sherwood Green) */
         }
 
         #tables>div:not(.separator-container) {
@@ -42,12 +40,37 @@
             border: transparent 1px solid;
         }
 
-        table.inline {
+        #tables>div.separator-container {
+            display: flex;
+            align-items: center;
+        }
+
+        #tables>div.separator-container .separator-line {
+            border-bottom: 1px dotted lightgray;
+        }
+
+        #tables>div.separator-container .separator-line-right {
+            flex-grow: 1;
+            margin: 0 .375rem 0 0;
+        }
+
+        #tables>div.separator-container .separator-line-left {
+            margin: 0 0 0 .375rem;
+            min-width: .75rem;
+        }
+
+        #tables>div.separator-container .separator-text {
+            white-space: nowrap;
+            padding: 0 .375rem;
+            background-color: transparent;
+        }
+
+        #tables table.inline {
             display: inline-block;
             margin: 0;
         }
 
-        table caption {
+        #tables table caption {
             white-space: nowrap;
             font-weight: bold;
             font-size: 18px;
@@ -56,7 +79,7 @@
             padding: .375rem 0;
         }
 
-        table th {
+        #tables table th {
             display: none;
             text-align: center;
             vertical-align: middle;
@@ -66,7 +89,7 @@
             background-color: transparent !important;
         }
 
-        table td {
+        #tables table td {
             width: var(--cell-width);
             height: var(--cell-width);
             text-align: center;
@@ -97,37 +120,11 @@
         }
     </style>
     <style>
-        .separator-container {
-            display: flex;
-            align-items: center;
-        }
-
-        .separator-line {
-            border-bottom: 1px dotted lightgray;
-        }
-
-        .separator-line-right {
-            flex-grow: 1;
-            margin: 0 .375rem 0 0;
-        }
-
-        .separator-line-left {
-            margin: 0 0 0 .375rem;
-            min-width: .75rem;
-        }
-
-        .separator-text {
-            white-space: nowrap;
-            padding: 0 .375rem;
-            background-color: transparent;
-        }
-    </style>
-    <style>
         @import url('https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap');
     </style>
     <!-- 
+        <script type="text/javascript" src="https://livejs.com/live.js"></script>
     -->
-    <script type="text/javascript" src="https://livejs.com/live.js"></script>
 </head>
 
 <body class="font-monospace">
@@ -203,7 +200,7 @@
                 this.visible = false
                 setCellWidth(!this.visible)
             }
-            setVisibility() {
+            applyVisibility() {
                 ((ths) => {
                     for (let th of ths) {
                         th.style.display = this.visible ? "table-cell" : "none"
@@ -226,7 +223,6 @@
             // console.log("shuffled!")
         }
 
-        // document.getElementById("con").style.backgroundColor = '#fedcba'
         class Colors {
             constructor() {
                 shuffleArray(this.colors)
@@ -255,7 +251,6 @@
                 return currentColor
             }
         }
-
         const colors = new Colors()
 
         const functions = [
@@ -281,9 +276,6 @@
             4,
             'true',
         ]
-        if (!lineBreaks) {
-            // shuffleArray(functions)
-        }
 
         function doIt() {
 
@@ -295,7 +287,8 @@
     <span class="separator-line separator-line-left"></span>
     <span class="separator-text">${func}</span>
     <span class="separator-line separator-line-right"></span>
-  </div>`
+</div>
+`
 
                     if (previousElement === null) {
                         document.getElementById('tables').innerHTML = html
@@ -331,7 +324,6 @@
                     axes._.forEach((rowElem, indexRow) => {
                         const row = document.createElement("tr")
                         axes._.forEach(colElem => {
-                            // console.log(index, func, rowElem, colElem)
                             const col = document.createElement(rowElem === null || colElem === null ? "th" : "td")
                             row.appendChild(col)
                             if (colElem === null) {
@@ -348,7 +340,7 @@
                                     const b = colElem
                                     const result = eval(func)
                                     if (result) {
-                                        col.style.backgroundColor = result ? backgroundcolor : colors.colorFalse
+                                        col.style.backgroundColor = backgroundcolor
                                         col.style.color = tinycolor(col.style.backgroundColor).darken(3).toString("hex6")
                                         if ((func === "a == b" || func === "a != b") && indexRow !== 2) {
                                             backgroundcolor = colors.nextColor()
@@ -362,7 +354,7 @@
                         })
                         document.getElementById(rowElem === null ? theadID : tbodyID).appendChild(row)
                     });
-                    axes.setVisibility()
+                    axes.applyVisibility()
                     previousElement = document.getElementById(elementID)
                 }
             });
@@ -370,22 +362,19 @@
 
         window.addEventListener("load", loadEvent => {
             doIt();
-            (conElement => {
-                conElement.style.visibility = 'visible'
-            })(document.getElementById("con"));
 
-            (tablesElement => {
-                tablesElement.addEventListener('click', clickEvent => {
-                    shuffleArray(colors)
+            document.getElementById("con").style.visibility = 'visible'
+            
+            const theTables = document.getElementById("tables")
+            theTables.addEventListener('click', clickEvent => {
+                shuffleArray(colors)
+                doIt()
+                /*
+                setInterval(() => {
                     doIt()
-                    /*
-                    setInterval(() => {
-                        doIt()
-                    }, 1000);
-                    */
-                })
-            })(document.getElementById("tables"));
-
+                }, 1000);
+                */
+            })
             document.getElementById("AB").addEventListener('click', clickEvent => {
                 clickEvent.stopPropagation()
                 axes.toggleVisibility()
@@ -395,20 +384,18 @@
                 lineBreaks = !lineBreaks
                 toggleElementsVisibility(document.querySelectorAll('div.separator-container'), 'flex')
                 if (lineBreaks) {
-                    document.getElementById("tables").classList.remove("center-children")
+                    theTables.classList.remove("center-children")
                 } else {
-                    document.getElementById("tables").classList.add("center-children")
+                    theTables.classList.add("center-children")
                 }
             })
             document.getElementById("borders").addEventListener('click', clickEvent => {
                 clickEvent.stopPropagation();
-                (t => {
-                    if (t.classList.contains("transparent-border")) {
-                        t.classList.remove("transparent-border")
-                    } else {
-                        t.classList.add("transparent-border")
-                    }
-                })(document.getElementById("tables"))
+                if (theTables.classList.contains("transparent-border")) {
+                    theTables.classList.remove("transparent-border")
+                } else {
+                    theTables.classList.add("transparent-border")
+                }
             })
             document.getElementById("github").addEventListener('click', clickEvent => {
                 clickEvent.preventDefault()
