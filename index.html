@@ -46,7 +46,7 @@
         }
 
         #tables>div.separator-container .separator-line {
-            border-bottom: 1px dotted lightgray;
+            border-bottom: 1px dashed rgba(150, 150, 150, 0.5);
         }
 
         #tables>div.separator-container .separator-line-right {
@@ -123,16 +123,16 @@
         @import url('https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap');
     </style>
     <!-- 
-        <script type="text/javascript" src="https://livejs.com/live.js"></script>
     -->
+    <script type="text/javascript" src="https://livejs.com/live.js"></script>
 </head>
 
 <body class="font-monospace">
     <div id="con" class="container" style="visibility: hidden; max-width: 580px; padding:0;">
         <div class="p-2">
             <div class="btn-group btn-group-sm float-end" role="group" style="">
-                <input type="checkbox" class="btn-check" id="borders" autocomplete="off">
-                <label class="btn btn-outline-light" for="borders">
+                <input type="checkbox" class="btn-check" id="table-borders" autocomplete="off">
+                <label class="btn btn-outline-light" for="table-borders">
                     <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="16" height="16" viewBox="0 0 16 16">
                         <g fill="#434343" fill-rule="evenodd">
                             <path
@@ -140,15 +140,15 @@
                         </g>
                     </svg>
                 </label>
-                <input type="checkbox" class="btn-check" id="AB" autocomplete="off">
-                <label class="btn btn-outline-light" for="AB">
+                <input type="checkbox" class="btn-check" id="ab-axes" autocomplete="off">
+                <label class="btn btn-outline-light" for="ab-axes">
                     <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="16" height="16" viewBox="0 0 488 488">
                         <path
                             d="M487.9 40.927c-2.35 9.897-13.446 14.868-19.292 22.693-8.157 6.418-16.073 22.787-28.015 13.913-11.227-11.134 11.485-21.639 12.022-27.506H50.433v403.485c7.839-7.427 20.099-25.259 29.798-10.102 2.235 12.49-12.18 18.605-18.785 27.395-7.671 5.32-12.84 18.958-23.914 16.414-11.894-7.987-20.681-20.27-31.428-29.828-17.476-14.372 9.54-28.283 17.755-10.45 8.926 12.934 6.328-1.958 6.57-9.992V40.027c2.392-14.958 20.102-8.657 30.706-10.002h392.76C446.513 22.197 428.589 9.94 443.819.32c12.549-2.226 18.67 12.156 27.468 18.793 5.017 7.223 17.043 11.935 16.613 21.815z" />
                     </svg>
                 </label>
-                <input type="checkbox" class="btn-check" id="LF" autocomplete="off">
-                <label class="btn btn-outline-light" for="LF">
+                <input type="checkbox" class="btn-check" id="paragraph-breaks" autocomplete="off">
+                <label class="btn btn-outline-light" for="paragraph-breaks">
                     <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="16" height="16" viewBox="0 0 14.963 14.974">
                         <path
                             d="M14.963 0H3.955A3.96 3.96 0 0 0 0 3.955a3.958 3.958 0 0 0 3.955 3.954h3.008v7.065h1V1h2.015v13.974h1V1h3.985zm-8 6.91H3.955A2.957 2.957 0 0 1 1 3.956a2.958 2.958 0 0 1 2.955-2.955h3.008z" />
@@ -173,7 +173,14 @@
     <script type="module">
         import tinycolor from 'https://cdn.jsdelivr.net/npm/tinycolor2@latest/+esm'
 
-        let lineBreaks = false // true // 
+        let paragraphBreaks = false // true // 
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]]
+            }
+        }
 
         function setCellWidth(larger) {
             let cellWidth = '60px'
@@ -183,11 +190,11 @@
             document.documentElement.style.setProperty('--cell-width', cellWidth);
         }
 
-        function toggleElementsVisibility(elements, displayValue) {
+        function toggleElementsVisibility(elements, displayValueWhenVisible) {
             let display = null;
             for (let tag of elements) {
                 if (display == null) {
-                    display = tag.style.display !== displayValue ? displayValue : 'none'
+                    display = tag.style.display !== displayValueWhenVisible ? displayValueWhenVisible : 'none'
                 }
                 tag.style.display = display
             }
@@ -200,12 +207,15 @@
                 this.visible = false
                 setCellWidth(!this.visible)
             }
+            iterate(iterator) {
+                this._.forEach(iterator)
+            }
             applyVisibility() {
-                ((ths) => {
-                    for (let th of ths) {
-                        th.style.display = this.visible ? "table-cell" : "none"
+                ((thElements) => {
+                    for (let thElement of thElements) {
+                        thElement.style.display = this.visible ? "table-cell" : "none"
                     }
-                })(document.getElementsByTagName('th'));
+                })(document.getElementsByTagName('th'))
             }
             toggleVisibility() {
                 const display = toggleElementsVisibility(document.getElementsByTagName('th'), 'table-cell')
@@ -214,14 +224,6 @@
             }
         }
         let axes = new Axes()
-
-        function shuffleArray(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]]
-            }
-            // console.log("shuffled!")
-        }
 
         class Colors {
             constructor() {
@@ -241,10 +243,9 @@
                 '#91501C',
             ]
             currentColorIndex = 0
-            nextColor = function () {
+            nextColor() {
                 const currentColor = this.colors[this.currentColorIndex++]
                 this.currentColorIndex %= this.colors.length
-                // console.log(index, currentColorIndex)
                 if (this.currentColorIndex === 0) {
                     shuffleArray(this.colors)
                 }
@@ -253,50 +254,98 @@
         }
         const colors = new Colors()
 
-        const functions = [
-            0,
-            'false',
-            1,
-            'a & b',
-            'a & !b',
-            '!a & !b',
-            '!a & b',
-            2,
-            'a',
-            'b',
-            '!a',
-            '!b',
-            'a == b',
-            'a != b',
-            3,
-            'a | b',
-            'a | !b',
-            '!a | !b',
-            '!a | b',
-            4,
-            'true',
-        ]
+        class OneOrTwoColors {
+            constructor(color1, color2) {
+                this.c = 0
+                this.colors = [color1]
+                if (color2) {
+                    this.colors.push(color2)
+                }
+            }
+            next() {
+                const color = this.colors[this.c]
+                this.c = (this.c + 1) % this.colors.length
+                return color
+            }
+        }
+
+        class Functions {
+            constructor() {
+                this._ = [
+                    0,
+                    'false',
+                    1,
+                    'a & b',
+                    'a & !b',
+                    '!a & !b',
+                    '!a & b',
+                    2,
+                    'a',
+                    'b',
+                    '!a',
+                    '!b',
+                    'a == b',
+                    'a != b',
+                    3,
+                    'a | b',
+                    'a | !b',
+                    '!a | !b',
+                    '!a | b',
+                    4,
+                    'true',
+                ]
+            }
+
+            iterate(iterator) {
+                this._.forEach(iterator)
+            }
+
+            color(f) {
+                if (f === 'false') {
+                    return new OneOrTwoColors(colors.colorFalse)
+                }
+                if (f === 'true') {
+                    return new OneOrTwoColors(colors.colorTrue)
+                }
+                if (f === "a == b" || f === "a != b") {
+                    return new OneOrTwoColors(colors.nextColor(), colors.nextColor())
+                }
+                return new OneOrTwoColors(colors.nextColor())
+            }
+        }
+        const functions = new Functions()
+
+        class Blender {
+            constructor() {
+                this.previousElement = null
+            }
+
+            blend(html, elementID) {
+                if (this.previousElement === null) {
+                    document.getElementById('tables').innerHTML = html
+                } else {
+                    this.previousElement.insertAdjacentHTML("afterend", html)
+                }
+                this.previousElement = document.getElementById(elementID)
+            }
+        }
 
         function doIt() {
 
-            let previousElement = null
-            functions.forEach((func, index) => {
+            const blender = new Blender()
+
+            functions.iterate((func, index) => {
+
                 const elementID = `element${index}`
                 if (typeof func === 'number') {
-                    const html = `<div id="${elementID}" class="separator-container" style="display: ${lineBreaks ? 'flex' : 'none'};">
+                    const html = `<div id="${elementID}" class="separator-container" style="display: ${paragraphBreaks ? 'flex' : 'none'};">
     <span class="separator-line separator-line-left"></span>
     <span class="separator-text">${func}</span>
     <span class="separator-line separator-line-right"></span>
 </div>
 `
+                    blender.blend(html, elementID)
 
-                    if (previousElement === null) {
-                        document.getElementById('tables').innerHTML = html
-                    } else {
-                        previousElement.insertAdjacentHTML("afterend", html)
-
-                    }
-                    previousElement = document.getElementById(elementID)
                 } else {
                     const theadID = `thead${index}`
                     const tbodyID = `tbody${index}`
@@ -308,24 +357,14 @@
     </table>
 </div>
 `
-                    if (previousElement === null) {
-                        document.getElementById('tables').innerHTML = template
-                    } else {
-                        previousElement.insertAdjacentHTML("afterend", template)
-                    }
-                    let backgroundcolor
-                    if (func === 'false') {
-                        backgroundcolor = colors.colorFalse
-                    } else if (func === 'true') {
-                        backgroundcolor = colors.colorTrue
-                    } else {
-                        backgroundcolor = colors.nextColor()
-                    }
-                    axes._.forEach((rowElem, indexRow) => {
+                    blender.blend(template, elementID)
+
+                    let backgroundcolors = functions.color(func)
+
+                    axes.iterate(rowElem => {
                         const row = document.createElement("tr")
-                        axes._.forEach(colElem => {
+                        axes.iterate(colElem => {
                             const col = document.createElement(rowElem === null || colElem === null ? "th" : "td")
-                            row.appendChild(col)
                             if (colElem === null) {
                                 if (rowElem === null) {
                                     col.innerHTML = '&nbsp;'
@@ -340,56 +379,54 @@
                                     const b = colElem
                                     const result = eval(func)
                                     if (result) {
-                                        col.style.backgroundColor = backgroundcolor
+                                        col.style.backgroundColor = backgroundcolors.next()
                                         col.style.color = tinycolor(col.style.backgroundColor).darken(3).toString("hex6")
-                                        if ((func === "a == b" || func === "a != b") && indexRow !== 2) {
-                                            backgroundcolor = colors.nextColor()
-                                        }
+                                        col.innerHTML = '●' // '○' // 
                                     } else {
                                         col.style.color = col.style.backgroundColor = colors.colorFalse
+                                        col.innerHTML = '&nbsp;'
                                     }
-                                    col.innerHTML = result ? '●' /* '○' */ : '&nbsp;'
                                 }
                             }
+                            row.appendChild(col)
                         })
                         document.getElementById(rowElem === null ? theadID : tbodyID).appendChild(row)
-                    });
+                    })
                     axes.applyVisibility()
-                    previousElement = document.getElementById(elementID)
                 }
             });
         }
 
         window.addEventListener("load", loadEvent => {
+
             doIt();
 
             document.getElementById("con").style.visibility = 'visible'
-            
+
             const theTables = document.getElementById("tables")
+
             theTables.addEventListener('click', clickEvent => {
                 shuffleArray(colors)
                 doIt()
-                /*
-                setInterval(() => {
-                    doIt()
-                }, 1000);
-                */
             })
-            document.getElementById("AB").addEventListener('click', clickEvent => {
+
+            document.getElementById("ab-axes").addEventListener('click', clickEvent => {
                 clickEvent.stopPropagation()
                 axes.toggleVisibility()
             })
-            document.getElementById("LF").addEventListener('click', clickEvent => {
+
+            document.getElementById("paragraph-breaks").addEventListener('click', clickEvent => {
                 clickEvent.stopPropagation()
-                lineBreaks = !lineBreaks
+                paragraphBreaks = !paragraphBreaks
                 toggleElementsVisibility(document.querySelectorAll('div.separator-container'), 'flex')
-                if (lineBreaks) {
+                if (paragraphBreaks) {
                     theTables.classList.remove("center-children")
                 } else {
                     theTables.classList.add("center-children")
                 }
             })
-            document.getElementById("borders").addEventListener('click', clickEvent => {
+
+            document.getElementById("table-borders").addEventListener('click', clickEvent => {
                 clickEvent.stopPropagation();
                 if (theTables.classList.contains("transparent-border")) {
                     theTables.classList.remove("transparent-border")
@@ -397,12 +434,12 @@
                     theTables.classList.add("transparent-border")
                 }
             })
+
             document.getElementById("github").addEventListener('click', clickEvent => {
                 clickEvent.preventDefault()
                 clickEvent.stopPropagation();
                 window.open("https://github.com/cthiebaud/truth", "_github");
             })
-
 
         });
 
