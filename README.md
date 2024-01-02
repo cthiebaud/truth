@@ -1,1 +1,1 @@
-![truth](truth2.jpg)
+![truth](truth3.jpg)
