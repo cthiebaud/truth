@@ -72,8 +72,8 @@
 
         #tables table caption {
             white-space: nowrap;
-            font-weight: bold;
-            font-size: 18px;
+            /* font-weight: bold; */
+            font-size: 20px;
             background-color: #FFFFFFa0;
             margin-bottom: .375rem;
             padding: .375rem 0;
@@ -127,7 +127,7 @@
     <script type="text/javascript" src="https://livejs.com/live.js"></script>
 </head>
 
-<body class="font-monospace">
+<body class="_font-monospace">
     <div id="con" class="container" style="visibility: hidden; max-width: 580px; padding:0;">
         <div class="p-2">
             <div class="btn-group btn-group-sm float-end" role="group" style="">
@@ -165,10 +165,13 @@
                     </svg>
                 </button>
             </div>
-            <h2>(a,b) =></h2>
+            <h1 style="font-weight: normal;">(α,β) ⟹</h1>
         </div>
-        <div id="tables" class="font-monospace transparent-border center-children"></div>
-        <h1 class="text-center py-2" style="font-family: 'UnifrakturCook', cursive; font-size: 72px;">Truth</h1>
+        <div id="tables" class="_font-monospace transparent-border center-children"></div>
+        <h1 class="text-center py-2" style="font-family: 'UnifrakturCook', cursive; font-size: 72px;">
+            <a href="https://en.wikipedia.org/wiki/Aletheia" target="_wikipedia" style="text-decoration: none; color:#173F35;">Ἀλήθεια</a>
+            <!--Truth-->
+        </h1>
     </div>
     <script type="module">
         import tinycolor from 'https://cdn.jsdelivr.net/npm/tinycolor2@latest/+esm'
@@ -201,14 +204,16 @@
             return display
         }
 
+        const 𝛗 = Symbol('private');
+
         class Axes {
             constructor() {
-                this._ = [null, true, false]
+                this[𝛗] = [null, true, false]
                 this.visible = false
                 setCellWidth(!this.visible)
             }
             iterate(iterator) {
-                this._.forEach(iterator)
+                this[𝛗].forEach(iterator)
             }
             applyVisibility() {
                 ((thElements) => {
@@ -271,33 +276,33 @@
 
         class Functions {
             constructor() {
-                this._ = [
+                this[𝛗] = [
                     0,
                     'false',
                     1,
-                    'a & b',
-                    'a & !b',
-                    '!a & !b',
-                    '!a & b',
+                    'α & β',
+                    'α & !β',
+                    '!α & !β',
+                    '!α & β',
                     2,
-                    'a',
-                    'b',
-                    '!a',
-                    '!b',
-                    'a == b',
-                    'a != b',
+                    'α',
+                    'β',
+                    '!α',
+                    '!β',
+                    'α == β',
+                    'α != β',
                     3,
-                    'a | b',
-                    'a | !b',
-                    '!a | !b',
-                    '!a | b',
+                    'α | β',
+                    'α | !β',
+                    '!α | !β',
+                    '!α | β',
                     4,
                     'true',
                 ]
             }
 
             iterate(iterator) {
-                this._.forEach(iterator)
+                this[𝛗].forEach(iterator)
             }
 
             color(f) {
@@ -375,8 +380,8 @@
                                 if (rowElem === null) {
                                     col.innerHTML = colElem
                                 } else {
-                                    const a = rowElem
-                                    const b = colElem
+                                    const α = rowElem
+                                    const β = colElem
                                     const result = eval(func)
                                     if (result) {
                                         col.style.backgroundColor = backgroundcolors.next()
