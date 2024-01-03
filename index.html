@@ -86,26 +86,24 @@
         }
 
         #tables table thead th:nth-child(2):after {
-            content: '---- β ----';
+            content: 'β';
             width: 100%;
             overflow: visible;
             position: absolute;
-            top: -0.3rem;
+            top: -3px;
             left: 0;
             transform: translateX(50%);
-            font-size: 8px;
             white-space: nowrap;
             text-align: center;
         }
 
         #tables table tbody tr:nth-child(1) th:after {
-            content: '---- α ----';
+            content: 'α';
             height: 100%;
             overflow: visible;
             position: absolute;
-            left: -.3rem;
+            left: -3px;
             bottom: 0;
-            font-size: 8px;
             white-space: nowrap;
             writing-mode: vertical-rl;
             /* Vertical writing mode, right to left */
@@ -127,6 +125,13 @@
             min-height: var(--header-width_and_height);
             /* https://stackoverflow.com/a/11275916/1070215 !!! */
             height: var(--header-width_and_height);
+        }
+
+        #tables table thead tr th:not(:first-child) {
+            border-bottom: 1px solid lightgray;
+        }
+        #tables table tbody tr th:first-child {
+            border-right: 1px solid lightgray;
         }
 
         #tables table td {
@@ -158,10 +163,26 @@
         .btn-group>button {
             border-color: transparent;
         }
+
+        .diagonal-line::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            border-bottom: 1px solid lightgray;
+            /* Same as line color */
+            transform: skewY(45deg);
+            /* Adjust the angle of the second diagonal line */
+            transform-origin: 100%;
+            /* Set the origin of the transformation to the top-right corner */
+
+        }
     </style>
     <!-- 
     -->
-        <script type="text/javascript" src="https://livejs.com/live.js"></script>
+    <script type="text/javascript" src="https://livejs.com/live.js"></script>
 </head>
 
 <body class="">
@@ -285,7 +306,7 @@
 
         function setCellWidth(larger) {
             /* 2*52 + 18 == 2*61 == 122 */
-            let cellWidth = '61px' 
+            let cellWidth = '61px'
             if (!larger) {
                 cellWidth = '52px'
             }
@@ -476,7 +497,7 @@
                             const col = document.createElement(rowElem === null || colElem === null ? "th" : "td")
                             if (colElem === null) {
                                 if (rowElem === null) {
-                                    col.innerHTML = '&nbsp;'
+                                    col.innerHTML = '<div class="diagonal-line">&nbsp;</div>'
                                 } else {
                                     col.innerHTML = `<div class="vertical-text">${rowElem}</div>`
                                 }
