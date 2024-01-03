@@ -194,6 +194,61 @@
             }
         }
 
+        function rotateArray(arr, offset) {
+            if (offset == 0) return arr
+            const n = arr.length;
+            const rotated = arr.slice();
+
+            for (let i = 0; i < n; i++) {
+                const newPosition = (i + offset) % n;
+                rotated[newPosition] = arr[i];
+            }
+
+            return rotated;
+        }
+
+        function shuffleNoAdjacentDuplicates(array) {
+            const n = array.length;
+            const shuffledArray = array.slice()
+
+            let previousValue = null
+            for (let i = n - 1; i > 0; i--) {
+                const possibles = Array.from({ length: i + 1 }, (_, index) => index);
+                let world = possibles;
+                if (previousValue !== null) {
+                    world = possibles.filter(index => shuffledArray[index] !== previousValue);
+                }
+
+                let pos
+                if (world.length !== 0) {
+                    // Pick a random element in the world of possibles
+                    const p = Math.floor(Math.random() * world.length);
+                    pos = world[p]
+                } else {
+                    // Pick a random element in the array
+                    pos = Math.floor(Math.random() * i);
+                }
+
+                previousValue = shuffledArray[pos];
+
+                // Swap element at position pos with element at position i
+                [shuffledArray[i], shuffledArray[pos]] = [shuffledArray[pos], shuffledArray[i]];
+            }
+
+            /*
+            const countMap = array.reduce((acc, currentValue) => {
+                acc[currentValue] = (acc[currentValue] || 0) + 1;
+                return acc;
+            }, {});
+
+            console.log(countMap)
+            
+            const randomPosition = Math.floor(Math.random() * n);
+            return rotateArray(shuffledArray, randomPosition);
+            */
+            return shuffledArray
+        }
+
         function setCellWidth(larger) {
             let cellWidth = '60px'
             if (!larger) {
@@ -241,29 +296,33 @@
 
         class Colors {
             constructor() {
-                shuffleArray(this.colors)
+                let colors = [
+                    '#F4F4F4',
+                    '#FAC80A',
+                    '#B40000',
+                    '#00852B',
+                    '#1E5AA8',
+                    '#8A928D',
+                    '#ABD9FF',
+                    '#91501C',
+                ]
+                this.colors = colors.concat(colors)
+                this.shuffle()
             }
 
             colorFalse = 'transparent'
             colorTrue = '#545955'
-            colors = [
-                '#F4F4F4',
-                '#FAC80A',
-                '#B40000',
-                '#00852B',
-                '#1E5AA8',
-                '#8A928D',
-                '#ABD9FF',
-                '#91501C',
-            ]
             currentColorIndex = 0
             nextColor() {
                 const currentColor = this.colors[this.currentColorIndex++]
                 this.currentColorIndex %= this.colors.length
                 if (this.currentColorIndex === 0) {
-                    shuffleArray(this.colors)
+                    this.shuffle()
                 }
                 return currentColor
+            }
+            shuffle() {
+                this.colors = shuffleNoAdjacentDuplicates(this.colors)
             }
         }
         const colors = new Colors()
@@ -420,7 +479,7 @@
             const theTables = document.getElementById("tables")
 
             theTables.addEventListener('click', clickEvent => {
-                shuffleArray(colors)
+                colors.shuffle()
                 doIt()
             })
 
