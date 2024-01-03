@@ -85,14 +85,45 @@
             color: #173F35;
         }
 
+        #tables table thead th:nth-child(2):after {
+            content: '---- β ----';
+            width: 100%;
+            overflow: visible;
+            position: absolute;
+            top: -0.3rem;
+            left: 0;
+            transform: translateX(50%);
+            font-size: 8px;
+            white-space: nowrap;
+            text-align: center;
+        }
+
+        #tables table tbody tr:nth-child(1) th:after {
+            content: '---- α ----';
+            height: 100%;
+            overflow: visible;
+            position: absolute;
+            left: -.3rem;
+            bottom: 0;
+            font-size: 8px;
+            white-space: nowrap;
+            writing-mode: vertical-rl;
+            /* Vertical writing mode, right to left */
+            transform: rotate(180deg) translateY(-50%);
+            /* Rotate the text 180 degrees */
+        }
+
         #tables table th {
             display: none;
             text-align: center;
             vertical-align: middle;
             font-weight: normal;
-            font-size: 12px;
+            font-size: 10px;
             padding: 1px !important;
             background-color: transparent !important;
+            font-family: 'Courier New', Courier, monospace;
+            position: relative;
+            min-width: 18px;
         }
 
         #tables table td {
@@ -250,9 +281,9 @@
         }
 
         function setCellWidth(larger) {
-            let cellWidth = '60px'
+            let cellWidth = '61px'
             if (!larger) {
-                cellWidth = '50px'
+                cellWidth = '52px'
             }
             document.documentElement.style.setProperty('--cell-width', cellWidth);
         }
@@ -446,7 +477,7 @@
                                 }
                             } else {
                                 if (rowElem === null) {
-                                    col.innerHTML = colElem
+                                    col.innerHTML = `${colElem}`
                                 } else {
                                     const α = rowElem
                                     const β = colElem
