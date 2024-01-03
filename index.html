@@ -124,6 +124,9 @@
             font-family: 'Courier New', Courier, monospace;
             position: relative;
             min-width: 18px;
+            min-height: 18px;
+            /* https://stackoverflow.com/a/11275916/1070215 !!! */
+            height: 18px;
         }
 
         #tables table td {
@@ -157,8 +160,8 @@
         }
     </style>
     <!-- 
-        <script type="text/javascript" src="https://livejs.com/live.js"></script>
     -->
+        <script type="text/javascript" src="https://livejs.com/live.js"></script>
 </head>
 
 <body class="">
@@ -281,7 +284,8 @@
         }
 
         function setCellWidth(larger) {
-            let cellWidth = '61px'
+            /* 2*52 + 18 == 2*61 == 122 */
+            let cellWidth = '61px' 
             if (!larger) {
                 cellWidth = '52px'
             }
