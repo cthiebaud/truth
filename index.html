@@ -163,6 +163,7 @@
             text-align: center;
         }
 
+        #github,
         #buttons {
             border: .75px solid var(--border-color);
         }
@@ -273,21 +274,38 @@
                             d="M14.963 0H3.955A3.96 3.96 0 0 0 0 3.955a3.958 3.958 0 0 0 3.955 3.954h3.008v7.065h1V1h2.015v13.974h1V1h3.985zm-8 6.91H3.955A2.957 2.957 0 0 1 1 3.956a2.958 2.958 0 0 1 2.955-2.955h3.008z" />
                     </svg>
                 </label>
-                <!-- https://stackoverflow.com/a/72784674/1070215 -->
+                <!-- https://stackoverflow.com/a/72784674/1070215 
+                -->
                 <div class="m-0 p-0" style="background-color: lightgray; width: 1px;"></div>
-                <button id="github" type="button" class="btn btn-outline-light">
-                    <svg width="16" height="16" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" stroke="none" clip-rule="evenodd"
-                            d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z"
-                            transform="scale(64)" /><!-- fill="#1B1F23" -->
+                <button id="shuffle-colors" type="button" class="btn btn-outline-light float-end">
+                    <svg width="16" height="16" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 49.7 49.7"
+                        xml:space="preserve">
+                        <g>
+                            <path d="M27,13.85h9v8.964l13.7-9.964L36,2.886v8.964h-9c-7.168,0-13,5.832-13,13c0,6.065-4.935,11-11,11H1c-0.553,0-1,0.447-1,1
+                       s0.447,1,1,1h2c7.168,0,13-5.832,13-13C16,18.785,20.935,13.85,27,13.85z M38,6.814l8.3,6.036L38,18.886V6.814z" />
+                            <path d="M1,13.85h2c2.713,0,5.318,0.994,7.336,2.799c0.191,0.171,0.43,0.255,0.667,0.255c0.274,0,0.548-0.112,0.745-0.333
+                       c0.368-0.412,0.333-1.044-0.078-1.412C9.285,13.025,6.206,11.85,3,11.85H1c-0.553,0-1,0.447-1,1S0.447,13.85,1,13.85z" />
+                            <path d="M36,35.85h-9c-2.685,0-5.27-0.976-7.278-2.748c-0.411-0.365-1.044-0.327-1.411,0.089c-0.365,0.414-0.326,1.046,0.089,1.411
+                       c2.374,2.095,5.429,3.248,8.601,3.248h9v8.964l13.7-9.964L36,26.886V35.85z M38,30.814l8.3,6.036L38,42.886V30.814z" />
+                        </g>
                     </svg>
                 </button>
             </div>
         </div>
         <div id="tables" class="transparent-border center-children"></div>
-        <h1 id="aletheia" class="text-center py-2 mb-0">
+        <h1 id="aletheia" class="text-center p-2 mb-0 d-flex justify-content-between align-items-end">
+            <div id="github0" class="text-body-tertiary float-start" style="visibility: hidden; overflow:hidden; width: 33px; font-size: 10px;">
+                ©&nbsp;CT
+            </div>
             <a href="https://en.wikipedia.org/wiki/Aletheia" target="_wikipedia">ἀλήθεια</a>
             <!--Truth-->
+            <button id="github" type="button" class="btn btn-sm btn-outline-light float-end">
+                <svg width="16" height="16" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" stroke="none" clip-rule="evenodd"
+                        d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z"
+                        transform="scale(64)" /><!-- fill="#1B1F23" -->
+                </svg>
+            </button>
         </h1>
     </div>
     <script type="module">
@@ -349,9 +367,11 @@
                     document.querySelectorAll('#tables td').forEach(elem => {
                         elem.classList.add('translucent')
                     })
+                    document.getElementById("shuffle-colors").disabled = true
                 })
             }
             onStop() {
+                document.getElementById("shuffle-colors").disabled = false
                 document.getElementById('play').classList.remove('playing')
                 document.querySelectorAll('#tables td.false').forEach(elem => { elem.classList.add('translucent') })
                 document.querySelectorAll('#tables td.true').forEach(elem => { elem.classList.remove('translucent') })
@@ -647,14 +667,35 @@
                     axes.applyVisibility()
                 }
             });
-            /*
-            document.querySelectorAll('#tables td.true').forEach(elem => {
+
+            document.querySelectorAll('#tables td').forEach(elem => {
+                // console.log(elem)
                 elem.addEventListener('click', clickEvent => {
-                    colors.shuffle()
-                    doIt()
+                    clickEvent.preventDefault()
+                    clickEvent.stopPropagation();
+                    if (!player.playing) return
+                    if (player.playing) {
+                        if (elem.classList.contains('translucent')) {
+                            if (elem.classList.contains('true')) {
+                                player.coin()
+                            } else {
+                                player.laughs()
+                            }
+                            elem.classList.remove('translucent')
+                        }
+                    }
+                    if (document.querySelectorAll('#tables td.true.translucent').length === 0) {
+                        setTimeout(() => {
+                            player._timer.ticking.stop();
+                            player.tada()
+                            alert("you won!")
+                            player.stop()
+                        }, 100)
+                    }
                 })
             })
-            */
+
+
         }
 
         window.addEventListener("load", loadEvent => {
@@ -690,6 +731,14 @@
                 }
             })
 
+            document.getElementById("shuffle-colors").addEventListener('click', clickEvent => {
+                clickEvent.preventDefault()
+                clickEvent.stopPropagation();
+                if (player.playing) return
+                colors.shuffle()
+                doIt()
+            })
+
             document.getElementById("github").addEventListener('click', clickEvent => {
                 clickEvent.preventDefault()
                 clickEvent.stopPropagation();
@@ -705,34 +754,6 @@
                     player.start()
                 }
             })
-
-            document.querySelectorAll('#tables td').forEach(elem => {
-                // console.log(elem)
-                elem.addEventListener('click', clickEvent => {
-                    clickEvent.preventDefault()
-                    clickEvent.stopPropagation();
-                    if (!player.playing) return
-                    if (player.playing) {
-                        if (elem.classList.contains('translucent')) {
-                            if (elem.classList.contains('true')) {
-                                player.coin()
-                            } else {
-                                player.laughs()
-                            }
-                            elem.classList.remove('translucent')
-                        }
-                    }
-                    if (document.querySelectorAll('#tables td.true.translucent').length === 0) {
-                        setTimeout(() => {
-                            player._timer.ticking.stop();
-                            player.tada()
-                            alert("you won!")
-                            player.stop()
-                        }, 100)
-                    }
-                })
-            })
-
 
         });
 
