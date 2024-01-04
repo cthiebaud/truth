@@ -293,42 +293,71 @@
     <script type="module">
         import tinycolor from 'https://cdn.jsdelivr.net/npm/tinycolor2@latest/+esm'
 
-        import { startTimer } from './timerModule.js';
+        import { Timer } from './TimerClass.js';
 
         let paragraphBreaks = false // true // 
 
         class Player {
             constructor() {
-                this._timer = null;
+                const player = this
+                const onTimerExpire = () => {
+                    player.fail()
+                    alert('Raté!')
+                    setTimeout(() => {
+                    }, 100)
+                };
+                const onTimerKilled = () => {
+                    console.log("timer closed")
+                    player.onStop()
+                };
+
+                this._timer = new Timer(25, 'timer-canvas', onTimerExpire, onTimerKilled);
+                this._timer.loadResources()
             }
 
             get playing() {
-                return this._timer != null;
+                return this._timer.timerId != null;
             }
 
             set playing(value) {
             }
 
+            coin() {
+                this._timer.coin.play()
+            }
+
+            tada() {
+                this._timer.tada.play()
+            }
+
+            laughs() {
+                this._timer.laughs.play()
+            }
+
+            fail() {
+                this._timer.fail.play()
+            }
+
             start() {
                 if (this.playing) return
-                document.getElementById('play').classList.add('playing')
-                const onTimerEnd = () => {
-                    alert('Timer has ended!');
-                    this.stop()
-                };
-                const onTimerKilled = () => {
-                    console.log("timer killed")
-                };
-                this._timer = startTimer(30, 'timer-canvas', onTimerEnd, onTimerKilled);
-                this._timer.start();
+                this._timer.initializeAudio().then(() => {
+                    this._timer.start();
+                }).catch((error) => {
+                    console.error('Error initializing audio context:', error);
+                }).finally(() => {
+                    document.getElementById('play').classList.add('playing')
+                    document.querySelectorAll('#tables td').forEach(elem => {
+                        elem.classList.add('translucent')
+                    })
+                })
             }
-            stop() {
-                if (!this.playing) return
+            onStop() {
                 document.getElementById('play').classList.remove('playing')
-                this._timer.stop()
-                this._timer = null
                 document.querySelectorAll('#tables td.false').forEach(elem => { elem.classList.add('translucent') })
                 document.querySelectorAll('#tables td.true').forEach(elem => { elem.classList.remove('translucent') })
+            }
+            stop() {
+                this._timer.stop()
             }
         }
         const player = new Player()
@@ -670,38 +699,36 @@
             document.getElementById("play").addEventListener('click', clickEvent => {
                 clickEvent.preventDefault()
                 clickEvent.stopPropagation();
-                console.log(`playing: ${player.playing}`)
                 if (player.playing) {
                     player.stop()
                 } else {
                     player.start()
                 }
-                document.querySelectorAll('#tables td.true').forEach(elem => {
-                    if (player.playing) {
-                        elem.classList.add('translucent')
-                    } else {
-                        elem.classList.remove('translucent')
-                    }
-                })
-                document.querySelectorAll('#tables td.false').forEach(elem => {
-                    elem.classList.add('translucent')
-                })
             })
 
             document.querySelectorAll('#tables td').forEach(elem => {
-                console.log(elem)
+                // console.log(elem)
                 elem.addEventListener('click', clickEvent => {
                     clickEvent.preventDefault()
                     clickEvent.stopPropagation();
                     if (!player.playing) return
                     if (player.playing) {
-                        elem.classList.remove('translucent')
+                        if (elem.classList.contains('translucent')) {
+                            if (elem.classList.contains('true')) {
+                                player.coin()
+                            } else {
+                                player.laughs()
+                            }
+                            elem.classList.remove('translucent')
+                        }
                     }
                     if (document.querySelectorAll('#tables td.true.translucent').length === 0) {
                         setTimeout(() => {
-                            alert("you win!")
+                            player._timer.ticking.stop();
+                            player.tada()
+                            alert("you won!")
                             player.stop()
-                        }, 250)
+                        }, 100)
                     }
                 })
             })
