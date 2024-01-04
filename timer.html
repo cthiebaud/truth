@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Timer with Module</title>
+  <link rel="stylesheet" href="timer.css">
+</head>
+<body>
+
+<div id="timer-container">
+  <canvas id="timer-canvas" width="200" height="200"></canvas>
+</div>
+
+<script type="module">
+  import { startTimer } from './timerModule.js';
+
+  const onTimerEnd = () => {
+    alert('Timer has ended!');
+    // You can replace the alert with any other action you want to take when the timer ends
+  };
+
+  const timer = startTimer(10, 'timer-canvas', onTimerEnd);
+  timer.start();
+</script>
+
+</body>
+</html>

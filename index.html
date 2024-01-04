@@ -22,6 +22,7 @@
 
     <link href="./favicon.ico" rel="icon" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="timer.css">
     <style>
         body {
             background-color: #f8f7ef;
@@ -196,6 +197,36 @@
         .translucent {
             opacity: 0;
         }
+
+        #play {
+            position: relative;
+            overflow: hidden;
+            height: 38px;
+            width: 40px;
+        }
+
+        #play.playing #not_playing {
+            display: none;
+        }
+
+        #play #timer-container {
+            display: none;
+        }
+
+        #play.playing #timer-container {
+            display: block;
+        }
+
+        #timer-container {
+            width: 24px;
+            /* Set the width to fit within the button */
+            height: 24px;
+            /* Set the height to fit within the button */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
     </style>
     <!-- 
     -->
@@ -212,7 +243,12 @@
                     <path d="M16 18.6L20 15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
             </h1>
-            <button id="play" type="button" class="btn btn-light">▶</button>
+            <button id="play" type="button" class="btn btn-light">
+                <div id="not_playing">▶</div>
+                <div id="timer-container">
+                    <canvas id="timer-canvas" width="24" height="24"></canvas>
+                </div>
+            </button>
             <div id="buttons" class="btn-group btn-group-sm" role="group" style="">
                 <input type="checkbox" class="btn-check" id="table-borders" autocomplete="off">
                 <label class="btn btn-outline-light" for="table-borders">
@@ -257,8 +293,45 @@
     <script type="module">
         import tinycolor from 'https://cdn.jsdelivr.net/npm/tinycolor2@latest/+esm'
 
+        import { startTimer } from './timerModule.js';
+
         let paragraphBreaks = false // true // 
-        let playing = false;
+
+        class Player {
+            constructor() {
+                this._timer = null;
+            }
+
+            get playing() {
+                return this._timer != null;
+            }
+
+            set playing(value) {
+            }
+
+            start() {
+                if (this.playing) return
+                document.getElementById('play').classList.add('playing')
+                const onTimerEnd = () => {
+                    alert('Timer has ended!');
+                    this.stop()
+                };
+                const onTimerKilled = () => {
+                    console.log("timer killed")
+                };
+                this._timer = startTimer(20, 'timer-canvas', onTimerEnd, onTimerKilled);
+                this._timer.start();
+            }
+            stop() {
+                if (!this.playing) return
+                document.getElementById('play').classList.remove('playing')
+                this._timer.stop()
+                this._timer = null
+                document.querySelectorAll('#tables td.false').forEach(elem => { elem.classList.add('translucent') })
+                document.querySelectorAll('#tables td.true').forEach(elem => { elem.classList.remove('translucent') })
+            }
+        }
+        const player = new Player()
 
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
@@ -597,11 +670,14 @@
             document.getElementById("play").addEventListener('click', clickEvent => {
                 clickEvent.preventDefault()
                 clickEvent.stopPropagation();
-                console.log(`playing: ${playing}`)
-                playing = !playing
-                document.getElementById('play').innerHTML = playing ? '⏹' : '▶'
+                console.log(`playing: ${player.playing}`)
+                if (player.playing) {
+                    player.stop()
+                } else {
+                    player.start()
+                }
                 document.querySelectorAll('#tables td.true').forEach(elem => {
-                    if (playing) {
+                    if (player.playing) {
                         elem.classList.add('translucent')
                     } else {
                         elem.classList.remove('translucent')
@@ -617,16 +693,14 @@
                 elem.addEventListener('click', clickEvent => {
                     clickEvent.preventDefault()
                     clickEvent.stopPropagation();
-                    if (!playing) return
-                    if (playing) {
+                    if (!player.playing) return
+                    if (player.playing) {
                         elem.classList.remove('translucent')
                     }
                     if (document.querySelectorAll('#tables td.true.translucent').length === 0) {
                         setTimeout(() => {
                             alert("you win!")
-                            playing = false
-                            document.getElementById('play').innerHTML = '▶'
-                            document.querySelectorAll('#tables td.false').forEach(elem => {elem.classList.add('translucent')})
+                            player.stop()
                         }, 250)
                     }
                 })
