@@ -158,12 +158,12 @@
             text-align: center;
         }
 
-        .btn-group {
+        #buttons {
             border: lightgray 1px solid;
         }
 
-        .btn-group>label.btn,
-        .btn-group>button {
+        #buttons>label.btn,
+        #buttons>button {
             border-color: transparent;
         }
 
@@ -196,8 +196,8 @@
 
 <body class="">
     <div id="con" class="container" style="visibility: hidden; max-width: 580px; padding:0;">
-        <div class="p-2">
-            <div class="btn-group btn-group-sm float-end" role="group" style="">
+        <div id="alpha-beta" class="p-2">
+            <div id="buttons" class="btn-group btn-group-sm float-end" role="group" style="">
                 <input type="checkbox" class="btn-check" id="table-borders" autocomplete="off">
                 <label class="btn btn-outline-light" for="table-borders">
                     <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="16" height="16" viewBox="0 0 16 16">
@@ -516,6 +516,7 @@
                                     const α = rowElem
                                     const β = colElem
                                     const result = eval(func)
+                                    col.classList.add(result ? 'true' : 'false')
                                     if (result) {
                                         col.style.backgroundColor = backgroundcolors.next()
                                         col.style.color = tinycolor(col.style.backgroundColor).darken(3).toString("hex6")
@@ -533,6 +534,13 @@
                     axes.applyVisibility()
                 }
             });
+            
+            document.querySelectorAll('#tables td.true').forEach(elem => {
+                elem.addEventListener('click', clickEvent => {
+                    colors.shuffle()
+                    doIt()
+                })
+            })
         }
 
         window.addEventListener("load", loadEvent => {
@@ -542,11 +550,6 @@
             document.getElementById("con").style.visibility = 'visible'
 
             const theTables = document.getElementById("tables")
-
-            theTables.addEventListener('click', clickEvent => {
-                colors.shuffle()
-                doIt()
-            })
 
             document.getElementById("ab-axes").addEventListener('click', clickEvent => {
                 clickEvent.stopPropagation()
