@@ -40,11 +40,11 @@
             display: inline-block;
             margin: .25rem;
             padding: 0;
-            border: lightgray 1px solid;
+            border: .75px solid var(--border-color);
         }
 
         #tables.transparent-border>div:not(.separator-container) {
-            border: transparent 1px solid;
+            border: .75px solid transparent;
         }
 
         #tables>div.separator-container {
@@ -130,11 +130,11 @@
         }
 
         #tables table thead tr th:not(:first-child) {
-            border-bottom: 1px solid lightgray;
+            border-bottom: .75px solid var(--border-color);
         }
 
         #tables table tbody tr th:first-child {
-            border-right: 1px solid lightgray;
+            border-right: .75px solid var(--border-color);
         }
 
         #tables table td {
@@ -163,7 +163,7 @@
         }
 
         #buttons {
-            border: lightgray 1px solid;
+            border: .75px solid var(--border-color);
         }
 
         #buttons>label.btn,
@@ -178,7 +178,7 @@
             right: 0;
             width: 100%;
             height: 100%;
-            border-bottom: 1px solid lightgray;
+            border-bottom: .75px solid var(--border-color);
             /* Same as line color */
             transform: skewY(45deg);
             /* Adjust the angle of the second diagonal line */
@@ -324,6 +324,7 @@
             }
             document.documentElement.style.setProperty('--cell-width_and_height', cellWidth);
             document.documentElement.style.setProperty('--header-width_and_height', '18px');
+            document.documentElement.style.setProperty('--border-color', '#215c4d40');
         }
 
         function toggleElementsVisibility(elements, displayValueWhenVisible) {
