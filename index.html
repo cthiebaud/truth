@@ -25,13 +25,17 @@
     <style>
         body {
             background-color: #f8f7ef;
-            color: #173F35;
+            color: red; /* #173F35; */
+            stroke: red; /* #173F35; */
+            /*  
+            fill: #173F35;
+            */
             font-family: Georgia, 'Times New Roman', Times, serif;
         }
 
         .container {
             background-color: #f1efe0;
-            color: #173F35;
+            /* color: #173F35; */
             border-radius: 0.375rem;
         }
 
@@ -82,7 +86,8 @@
             background-color: #FFFFFFa0;
             margin-bottom: .375rem;
             padding: .375rem 0;
-            color: #173F35;
+            color: inherit;
+            /* #173F35; */
         }
 
         #tables table thead th:nth-child(2):after {
@@ -179,6 +184,12 @@
             /* Set the origin of the transformation to the top-right corner */
 
         }
+        #aletheia a {
+            font-size: 72px;
+            text-decoration: none;
+            color: inherit;
+            /* #173F35; */
+        }
     </style>
     <!-- 
     -->
@@ -192,7 +203,7 @@
                 <input type="checkbox" class="btn-check" id="table-borders" autocomplete="off">
                 <label class="btn btn-outline-light" for="table-borders">
                     <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="16" height="16" viewBox="0 0 16 16">
-                        <g fill="#434343" fill-rule="evenodd">
+                        <g fill="#434343" stroke="none" fill-rule="evenodd">
                             <path
                                 d="M13.048.99h1.993v1.987h.907V.057h-2.9V.99zM.923 3.008V.99h2.028V0H.027v3.008h.896zM2.951 15.03H.964v-1.95H.027v2.928h2.924v-.977zM15 5.013v2.01h.989v-2.01H15ZM15 9.013v1.961h.982v-1.96H15ZM9 .013V.98h1.984V.013H9ZM5 .013v.973h1.995V.013H5ZM9 15.013v.973h1.958v-.973H9ZM5 15.013v.993h1.987v-.993H5ZM0 5.013v1.99h.98v-1.99H0ZM0 9.013v1.962h.954V9.013H0ZM15.006 13.013v2.073H13v.946h3.003v-3.019h-.997z" />
                         </g>
@@ -201,14 +212,14 @@
                 <input type="checkbox" class="btn-check" id="ab-axes" autocomplete="off">
                 <label class="btn btn-outline-light" for="ab-axes">
                     <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="16" height="16" viewBox="0 0 488 488">
-                        <path
+                        <path stroke="none"
                             d="M487.9 40.927c-2.35 9.897-13.446 14.868-19.292 22.693-8.157 6.418-16.073 22.787-28.015 13.913-11.227-11.134 11.485-21.639 12.022-27.506H50.433v403.485c7.839-7.427 20.099-25.259 29.798-10.102 2.235 12.49-12.18 18.605-18.785 27.395-7.671 5.32-12.84 18.958-23.914 16.414-11.894-7.987-20.681-20.27-31.428-29.828-17.476-14.372 9.54-28.283 17.755-10.45 8.926 12.934 6.328-1.958 6.57-9.992V40.027c2.392-14.958 20.102-8.657 30.706-10.002h392.76C446.513 22.197 428.589 9.94 443.819.32c12.549-2.226 18.67 12.156 27.468 18.793 5.017 7.223 17.043 11.935 16.613 21.815z" />
                     </svg>
                 </label>
                 <input type="checkbox" class="btn-check" id="paragraph-breaks" autocomplete="off">
                 <label class="btn btn-outline-light" for="paragraph-breaks">
                     <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="16" height="16" viewBox="0 0 14.963 14.974">
-                        <path
+                        <path stroke="none"
                             d="M14.963 0H3.955A3.96 3.96 0 0 0 0 3.955a3.958 3.958 0 0 0 3.955 3.954h3.008v7.065h1V1h2.015v13.974h1V1h3.985zm-8 6.91H3.955A2.957 2.957 0 0 1 1 3.956a2.958 2.958 0 0 1 2.955-2.955h3.008z" />
                     </svg>
                 </label>
@@ -217,7 +228,7 @@
                 <div class="m-0 p-0" style="background-color: lightgray; width: 1px;"></div>
                 <button id="github" type="button" class="btn btn-outline-light">
                     <svg width="16" height="16" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd"
+                        <path fill-rule="evenodd" stroke="none" clip-rule="evenodd"
                             d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z"
                             transform="scale(64)" fill="#1B1F23" />
                     </svg>
@@ -225,15 +236,15 @@
             </div>
             <h1 style="font-weight: normal; letter-spacing: 0.375rem;">(α,β)<!-- ↴ ⇘ ⟹ --><svg width="32" height="32" preserveAspectRatio="none" viewBox="0 -2 24 22" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
-                    <path d="M4 6L10.4 6C13.4928 6 16 8.50721 16 11.6L16 18" stroke="#173F35" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M16 18.6L12 15" stroke="#173F35" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M16 18.6L20 15" stroke="#173F35" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M4 6L10.4 6C13.4928 6 16 8.50721 16 11.6L16 18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M16 18.6L12 15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M16 18.6L20 15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
             </h1>
         </div>
         <div id="tables" class="transparent-border center-children"></div>
-        <h1 class="text-center py-2" style="font-size: 72px;">
-            <a href="https://en.wikipedia.org/wiki/Aletheia" target="_wikipedia" style="text-decoration: none; color:#173F35;">ἀλήθεια</a>
+        <h1 id="aletheia" class="text-center py-2">
+            <a href="https://en.wikipedia.org/wiki/Aletheia" target="_wikipedia">ἀλήθεια</a>
             <!--Truth-->
         </h1>
     </div>
