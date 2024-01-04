@@ -46,7 +46,7 @@ export class Timer {
         this.centerY = this.canvas.height / 2;
         this.timerId = null;
         this.audioContext = null;
-        this.ticking = new Sound('./old-fashioned-clock-sound-37729-2.mp3');
+        this.ticking = new Sound('./old-fashioned-clock-sound-37729-4.mp3');
         this.coin = new Sound('./coin.mp3');
         this.laughs = new Sound('./laughs.mp3');
         this.tada = new Sound('./harp-glissando-with-chimes-sound-effect-128349.mp3');
