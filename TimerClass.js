@@ -41,7 +41,14 @@ export class Timer {
     constructor(totalTime, canvasId, onTimerExpiredCallback, onTimerClosedCallback) {
         this.canvas = document.getElementById(canvasId);
         this.ctx = this.canvas.getContext('2d');
-        this.radius = this.canvas.width / 2;
+        /* 
+        this.ctx.translate(0.5, 0.5)
+        this.ctx.lineJoin = 'bevel';
+        this.ctx.lineWidth = 0.001;
+        this.ctx.imageSmoothingEnabled = false;
+        */
+
+        this.radius = this.canvas.width / 4;
         this.centerX = this.canvas.width / 2;
         this.centerY = this.canvas.height / 2;
         this.timerId = null;
@@ -95,23 +102,19 @@ export class Timer {
         });
     }
 
+    clearTimer() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    }
+
     drawTimer(timeRemaining) {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-        this.ctx.beginPath();
-        this.ctx.arc(this.centerX, this.centerY, this.radius, 0, 2 * Math.PI);
-        this.ctx.fillStyle = 'black';
-        this.ctx.fill();
-
-        this.ctx.lineJoin = 'round';
-        this.ctx.lineWidth = 0.001;
         const angle = ((this.totalTime - timeRemaining) / this.totalTime) * 2 * Math.PI;
-        const whiteRadius = this.radius + 1;
-
+        
         this.ctx.beginPath();
         this.ctx.moveTo(this.centerX, this.centerY);
-        this.ctx.arc(this.centerX, this.centerY, whiteRadius, -Math.PI / 2, -Math.PI / 2 + angle);
-        this.ctx.fillStyle = 'white';
+        this.ctx.arc(this.centerX, this.centerY, this.radius, -Math.PI / 2 + angle, -Math.PI / 2);
+        this.ctx.fillStyle = 'rgba(23, 63, 53, .25)'
         this.ctx.fill();
     }
 
@@ -139,6 +142,7 @@ export class Timer {
     }
 
     stop() {
+        this.clearTimer()
         cancelAnimationFrame(this.timerId);
         this.timerId = null
         if (this.ticking) {

@@ -25,7 +25,8 @@
     <link rel="stylesheet" href="timer.css">
     <style>
         body {
-            background-color:  #f8f7ef; /* #f1efe0; */ 
+            background-color: #f8f7ef;
+            /* #f1efe0; */
             color: #173F35;
             stroke: #173F35;
             fill: #0d221d;
@@ -206,32 +207,29 @@
             width: 40px;
         }
 
-        #play.playing #not_playing {
-            display: none;
+        button#play {
+            position: relative;
         }
 
-        #play #timer-container {
-            display: none;
-        }
-
-        #play.playing #timer-container {
-            display: block;
-        }
-
-        #timer-container {
-            width: 24px;
-            /* Set the width to fit within the button */
-            height: 24px;
-            /* Set the height to fit within the button */
+        button#play>* {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+            image-rendering: pixelated;
+            color: #173F35;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 24px;
+        }
+
+        button#play>#timer-canvas {
+            width: 48px;
+            height: 48px;
         }
     </style>
     <!-- 
-        <script type="text/javascript" src="https://livejs.com/live.js"></script>
     -->
+    <script type="text/javascript" src="https://livejs.com/live.js"></script>
 </head>
 
 <body class="">
@@ -246,9 +244,7 @@
             </h1>
             <button id="play" type="button" class="btn btn-light">
                 <div id="not_playing">▶</div>
-                <div id="timer-container">
-                    <canvas id="timer-canvas" width="24" height="24"></canvas>
-                </div>
+                <canvas id="timer-canvas" width="192" height="192"></canvas>
             </button>
             <div id="buttons" class="btn-group btn-group-sm" role="group" style="">
                 <input type="checkbox" class="btn-check" id="table-borders" autocomplete="off">
@@ -331,6 +327,17 @@
 
                 this._timer = new Timer(40, 'timer-canvas', onTimerExpire, onTimerKilled);
                 this._timer.loadResources()
+                this.count = 0
+            }
+
+            youWon() {
+                setTimeout(() => {
+                    this._timer.ticking.stop();
+                    this.tada()
+                    alert(`You won! In ~${this.count-1} seconds.`)
+                    this.stop()
+                }, 100)
+
             }
 
             get playing() {
@@ -369,8 +376,15 @@
                     })
                     document.getElementById("shuffle-colors").disabled = true
                 })
+                this.count = 1
+                document.getElementById('not_playing').innerHTML = 40
+                this.showNumber = setInterval(() => {
+                    document.getElementById('not_playing').innerHTML = 40 - this.count++
+                }, 1000)
             }
             onStop() {
+                clearInterval(this.showNumber)
+                document.getElementById('not_playing').innerHTML = '▶'
                 document.getElementById("shuffle-colors").disabled = false
                 document.getElementById('play').classList.remove('playing')
                 document.querySelectorAll('#tables td.false').forEach(elem => { elem.classList.add('translucent') })
@@ -685,12 +699,7 @@
                         }
                     }
                     if (document.querySelectorAll('#tables td.true.translucent').length === 0) {
-                        setTimeout(() => {
-                            player._timer.ticking.stop();
-                            player.tada()
-                            alert("you won!")
-                            player.stop()
-                        }, 100)
+                        player.youWon()
                     }
                 })
             })
