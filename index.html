@@ -316,7 +316,7 @@
                 const player = this
                 const onTimerExpire = () => {
                     player.fail()
-                    alert('Raté!')
+                    alert(`Raté! Revealed ${this.revealed} out of 32 bricks, with ${this.errors} errors.`)
                     setTimeout(() => {
                     }, 100)
                 };
@@ -328,13 +328,25 @@
                 this._timer = new Timer(40, 'timer-canvas', onTimerExpire, onTimerKilled);
                 this._timer.loadResources()
                 this.count = 0
+                this.errors = 0
+                this.revealed = 0
             }
 
             youWon() {
                 setTimeout(() => {
                     this._timer.ticking.stop();
-                    this.tada()
-                    alert(`You won! In ~${this.count-1} seconds.`)
+                    let msg
+                    if (this.errors == 0) {
+                        this.tada()
+                        msg = `You won! In ~${this.count - 1} seconds.`
+                    } else if (this.errors == 32) {
+                        this.boo()
+                        msg = `You cheated.`
+                    } else {
+                        this.completed_with_errors()
+                        msg = `Pas mal. All of the 32 bricks have been revealed in ~${this.count - 1} seconds, though with ${this.errors} errors.`
+                    }
+                    alert(msg)
                     this.stop()
                 }, 100)
 
@@ -349,6 +361,7 @@
 
             coin() {
                 this._timer.coin.play()
+                this.revealed++
             }
 
             tada() {
@@ -357,10 +370,19 @@
 
             laughs() {
                 this._timer.laughs.play()
+                this.errors++
             }
 
             fail() {
                 this._timer.fail.play()
+            }
+
+            completed_with_errors() {
+                this._timer.completed_with_errors.play()
+            }
+
+            boo() {
+                this._timer.boo.play()
             }
 
             start() {
@@ -377,6 +399,8 @@
                     document.getElementById("shuffle-colors").disabled = true
                 })
                 this.count = 1
+                this.errors = 0
+                this.revealed = 0
                 document.getElementById('not_playing').innerHTML = 40
                 this.showNumber = setInterval(() => {
                     document.getElementById('not_playing').innerHTML = 40 - this.count++

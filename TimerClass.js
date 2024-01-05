@@ -58,6 +58,8 @@ export class Timer {
         this.laughs = new Sound('audio/laughs.mp3');
         this.tada = new Sound('audio/tada.mp3');
         this.fail = new Sound('audio/fail.mp3');
+        this.completed_with_errors = new Sound('audio/completed_with_errors.mp3')
+        this.boo = new Sound('audio/boo.mp3');
         this.totalTime = totalTime;
         this.onTimerExpiredCallback = onTimerExpiredCallback;
         this.onTimerClosedCallback = onTimerClosedCallback;
@@ -69,6 +71,8 @@ export class Timer {
         await this.laughs.load()
         await this.tada.load()
         await this.fail.load()
+        await this.completed_with_errors.load()
+        await this.boo.load()
         console.log('Sound sources loaded');
     }
 
@@ -91,6 +95,8 @@ export class Timer {
                 await this.laughs.decode(this.audioContext)
                 await this.tada.decode(this.audioContext)
                 await this.fail.decode(this.audioContext)
+                await this.completed_with_errors.decode(this.audioContext)
+                await this.boo.decode(this.audioContext)
 
                 console.log('Audio context initialized successfully, sound sources connected');
                 resolve(); // Resolve the promise on success
