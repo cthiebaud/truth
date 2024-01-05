@@ -596,6 +596,9 @@
                 }
                 return new OneOrTwoColors(colors.nextColor())
             }
+            shuffle() {
+                shuffleArray(this[𝛗])
+            }
         }
         const functions = new Functions()
 
@@ -744,6 +747,7 @@
                 clickEvent.preventDefault()
                 clickEvent.stopPropagation();
                 if (player.playing) return
+                functions.shuffle()
                 colors.shuffle()
                 doIt()
             })
