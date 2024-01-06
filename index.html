@@ -33,9 +33,28 @@
             font-family: Georgia, 'Times New Roman', Times, serif;
         }
 
-        .container {
+        #copyright {
+            visibility: hidden;
+            overflow: hidden;
+            width: 33px;
+            font-size: 10px;
+        }
+
+        .modal {
+            font-family: var(--bs-body-font-family);
+        }
+
+        #con.container {
             background-color: #f1efe0;
             border-radius: 0.375rem;
+            visibility: hidden;
+            max-width: 580px;
+            padding: 0;
+        }
+
+        #αβ {
+            font-weight: normal;
+            letter-spacing: 0.375rem;
         }
 
         #tables>div:not(.separator-container) {
@@ -174,6 +193,11 @@
             border-color: transparent;
         }
 
+        #button-separator {
+            background-color: lightgray;
+            width: 1px;
+        }
+
         .diagonal-line::before {
             content: '';
             position: absolute;
@@ -232,11 +256,29 @@
     <script type="text/javascript" src="https://livejs.com/live.js"></script>
 </head>
 
-<body class="">
-    <div id="con" class="container" style="visibility: hidden; max-width: 580px; padding:0;">
+<body class="py-4">
+
+    <!-- Modal -->
+    <div id="resultsModal" class="modal fade" tabindex="-1" aria-labelledby="resultsModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="resultsModalLabel">Results</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div id="modal-body" class="modal-body">
+                    <h1 id="results-msg"></h1>
+                    <div>Elapsed: <span id="results-elapsed"></span> seconds.</div>
+                    <div>Revealed: <span id="results-revealed"></span> out of 32.</div>
+                    <div>Errors: <span id="results-errors"></span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="con" class="container">
         <div id="alpha-beta" class="p-2 d-flex justify-content-between align-items-start">
-            <h1 style="font-weight: normal; letter-spacing: 0.375rem;">(α,β)<!-- ↴ ⇘ ⟹ --><svg width="32" height="32" preserveAspectRatio="none" viewBox="0 -2 24 22" fill="none"
-                    xmlns="http://www.w3.org/2000/svg">
+            <h1 id="αβ">(α,β)<svg width="32" height="32" preserveAspectRatio="none" viewBox="0 -2 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M4 6L10.4 6C13.4928 6 16 8.50721 16 11.6L16 18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                     <path d="M16 18.6L12 15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                     <path d="M16 18.6L20 15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -246,7 +288,13 @@
                 <div id="not_playing">▶</div>
                 <canvas id="timer-canvas" width="192" height="192"></canvas>
             </button>
-            <div id="buttons" class="btn-group btn-group-sm" role="group" style="">
+            <div id="buttons" class="btn-group btn-group-sm" role="group">
+
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#resultsModal">
+                    *
+                </button>
+
                 <input type="checkbox" class="btn-check" id="table-borders" autocomplete="off">
                 <label class="btn btn-outline-light" for="table-borders">
                     <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="16" height="16" viewBox="0 0 16 16">
@@ -272,7 +320,7 @@
                 </label>
                 <!-- https://stackoverflow.com/a/72784674/1070215 
                 -->
-                <div class="m-0 p-0" style="background-color: lightgray; width: 1px;"></div>
+                <div class="m-0 p-0 button-separator"></div>
                 <button id="shuffle-colors" type="button" class="btn btn-outline-light float-end">
                     <svg width="16" height="16" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 49.7 49.7"
                         xml:space="preserve">
@@ -290,7 +338,7 @@
         </div>
         <div id="tables" class="transparent-border center-children"></div>
         <h1 id="aletheia" class="text-center p-2 mb-0 d-flex justify-content-between align-items-end">
-            <div id="github0" class="text-body-tertiary float-start" style="visibility: hidden; overflow:hidden; width: 33px; font-size: 10px;">
+            <div id="copyright" class="text-body-tertiary float-start">
                 ©&nbsp;CT
             </div>
             <a href="https://en.wikipedia.org/wiki/Aletheia" target="_wikipedia">ἀλήθεια</a>
@@ -304,6 +352,7 @@
             </button>
         </h1>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
     <script type="module">
         import tinycolor from 'https://cdn.jsdelivr.net/npm/tinycolor2@latest/+esm'
 
@@ -311,43 +360,96 @@
 
         let paragraphBreaks = false // true // 
 
+        class ResultProperty {
+            constructor(value) {
+                this._value = value;
+            }
+
+            // Getter for value
+            get value() {
+                return this._value;
+            }
+
+            // Setter for value
+            set value(newValue) {
+                if (typeof newValue === 'number') {
+                    this._value = newValue;
+                } else {
+                    console.error('Value must be a number');
+                }
+            }
+
+            // Method to increment value
+            increment() {
+                const previous = this._value
+                this._value += 1;
+                return previous
+            }
+        }
+
+        class Results {
+            constructor() {
+                this.reset()
+            }
+
+            reset() {
+                this._elapsed = new ResultProperty(1);
+                this._errors = new ResultProperty(0);
+                this._revealed = new ResultProperty(0);
+            }
+
+            // Getter for elapsed
+            get elapsed() {
+                return this._elapsed;
+            }
+
+            // Getter for errors
+            get errors() {
+                return this._errors;
+            }
+
+            // Getter for revealed
+            get revealed() {
+                return this._revealed;
+            }
+        }
+
         class Player {
             constructor() {
                 const player = this
+                const resultsModal = document.getElementById('resultsModal')
+                resultsModal.addEventListener('hidden.bs.modal', event => {
+                    this._timer.stop()
+                    player.onStop()
+                })
                 const onTimerExpire = () => {
                     player.fail()
-                    alert(`Raté! Revealed ${this.revealed} out of 32 bricks, with ${this.errors} errors.`)
-                    setTimeout(() => {
-                    }, 100)
+                    player.showResultsThenStopPlayer(`Raté!`, player.results)
                 };
-                const onTimerKilled = () => {
+                const onTimerClosed = () => {
                     console.log("timer closed")
                     player.onStop()
                 };
-
-                this._timer = new Timer(40, 'timer-canvas', onTimerExpire, onTimerKilled);
+                this.results = new Results()
+                this._timer = new Timer(40, 'timer-canvas', onTimerExpire, onTimerClosed);
                 this._timer.loadResources()
-                this.count = 0
-                this.errors = 0
-                this.revealed = 0
             }
 
             youWon() {
                 setTimeout(() => {
                     this._timer.ticking.stop();
                     let msg
-                    if (this.errors == 0) {
+                    if (this.results.errors.value === 0) {
                         this.tada()
-                        msg = `You won! In ~${this.count - 1} seconds.`
-                    } else if (this.errors == 32) {
+                        msg = `You won!`
+                    } else if (this.results.errors.value === 32) {
                         this.boo()
-                        msg = `You cheated.`
+                        msg = `You cheated?!`
                     } else {
                         this.completed_with_errors()
-                        msg = `Pas mal. All of the 32 bricks have been revealed in ~${this.count - 1} seconds, though with ${this.errors} errors.`
+                        msg = `Pas mal, mais peut mieux faire.`
                     }
-                    alert(msg)
-                    this.stop()
+                    player.showResultsThenStopPlayer(msg, player.results)
                 }, 100)
 
             }
@@ -361,7 +463,7 @@
 
             coin() {
                 this._timer.coin.play()
-                this.revealed++
+
             }
 
             tada() {
@@ -370,7 +472,7 @@
 
             laughs() {
                 this._timer.laughs.play()
-                this.errors++
+                this.results.errors.increment()
             }
 
             fail() {
@@ -398,12 +500,10 @@
                     })
                     document.getElementById("shuffle-colors").disabled = true
                 })
-                this.count = 1
-                this.errors = 0
-                this.revealed = 0
+                this.results.reset()
                 document.getElementById('not_playing').innerHTML = 40
                 this.showNumber = setInterval(() => {
-                    document.getElementById('not_playing').innerHTML = 40 - this.count++
+                    document.getElementById('not_playing').innerHTML = 40 - this.results.elapsed.increment()
                 }, 1000)
             }
             onStop() {
@@ -416,6 +516,14 @@
             }
             stop() {
                 this._timer.stop()
+            }
+            showResultsThenStopPlayer(msg, results) {
+                document.getElementById('results-msg').innerHTML = msg
+                document.getElementById('results-elapsed').innerHTML = results.elapsed.value
+                document.getElementById('results-revealed').innerHTML = results.revealed.value
+                document.getElementById('results-errors').innerHTML = results.errors.value
+                let resultsModal = new bootstrap.Modal(document.getElementById('resultsModal'));
+                resultsModal.show();
             }
         }
         const player = new Player()
@@ -717,12 +825,49 @@
                     if (!player.playing) return
                     if (player.playing) {
                         if (elem.classList.contains('translucent')) {
+                            elem.classList.remove('translucent')
                             if (elem.classList.contains('true')) {
-                                player.coin()
+                                player.results.revealed.increment()
+
+                                function checkDescendantsClasses(element, classA, classX, classY) {
+                                    // Find the nearest ancestor with class A
+                                    var ancestorWithClassA = findAncestor(element, classA);
+
+                                    if (!ancestorWithClassA) {
+                                        console.log('Ancestor with class A not found.');
+                                        return false;
+                                    }
+
+                                    // Find all descendants of the ancestor with class X
+                                    var elementsWithClassX = ancestorWithClassA.getElementsByClassName(classX);
+
+                                    // Convert the HTMLCollection to an array for easier iteration
+                                    var elementsArray = Array.from(elementsWithClassX);
+
+                                    // Check if all descendants with class X also have class Y
+                                    var allDescendantsHaveClassY = elementsArray.every(function (descendant) {
+                                        return !descendant.classList.contains(classY);
+                                    });
+
+                                    return allDescendantsHaveClassY;
+                                }
+
+                                // Helper function to find the nearest ancestor with a specific class
+                                function findAncestor(element, className) {
+                                    while ((element = element.parentElement)) {
+                                        if (element.classList.contains(className)) {
+                                            return element;
+                                        }
+                                    }
+                                    return null;
+                                }
+
+                                if (checkDescendantsClasses(elem, 'table', 'true', 'translucent')) {
+                                    player.coin()
+                                }
                             } else {
                                 player.laughs()
                             }
-                            elem.classList.remove('translucent')
                         }
                     }
                     if (document.querySelectorAll('#tables td.true.translucent').length === 0) {

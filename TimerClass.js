@@ -41,6 +41,7 @@ export class Timer {
     constructor(totalTime, canvasId, onTimerExpiredCallback, onTimerClosedCallback) {
         this.canvas = document.getElementById(canvasId);
         this.ctx = this.canvas.getContext('2d');
+        
         /* 
         this.ctx.translate(0.5, 0.5)
         this.ctx.lineJoin = 'bevel';
