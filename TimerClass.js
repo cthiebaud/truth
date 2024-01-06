@@ -119,19 +119,19 @@ export class Timer {
         const angle = ((this.totalTime - timeRemaining) / this.totalTime) * 2 * Math.PI;
 
         this.ctx.beginPath();
-        this.ctx.moveTo(this.centerX, this.centerY);
-        this.ctx.arc(this.centerX, this.centerY, this.radius, -Math.PI / 2 + angle, -Math.PI / 2);
-        this.ctx.fillStyle = 'rgba(23, 63, 53, .25)'
-        this.ctx.fill();
+        this.ctx.lineWidth = 50;
+        this.ctx.strokeStyle = 'rgba(23, 63, 53, .5)'
+        this.ctx.arc(this.centerX, this.centerY, this.radius+35, -Math.PI / 2 + angle, -Math.PI / 2);
+        this.ctx.stroke();
     }
 
     updateTimer(timestamp, startTime) {
         const progress = (timestamp - startTime) / 1000;
         const timeRemaining = Math.max(this.totalTime - progress, 0);
 
-        this.drawTimer(timeRemaining);
-
+        
         if (timeRemaining > 0) {
+            this.drawTimer(timeRemaining);
             this.timerId = requestAnimationFrame((timestamp) => this.updateTimer(timestamp, startTime));
         } else {
             this.ticking.stop();

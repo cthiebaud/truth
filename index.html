@@ -233,6 +233,8 @@
 
         button#play {
             position: relative;
+            border-radius: 0;
+            border: 1px solid #173F35;
         }
 
         button#play>* {
@@ -243,7 +245,7 @@
             image-rendering: pixelated;
             color: #173F35;
             font-family: 'Courier New', Courier, monospace;
-            font-size: 24px;
+            font-size: 20px;
         }
 
         button#play>#timer-canvas {
@@ -428,6 +430,8 @@
             }
 
             stopTimerShowResultsThenCloseTimer(msg, results) {
+                // stop number drawing
+                clearInterval(player.showNumber)
                 // stop timer
                 player._timer.stop();
                 document.getElementById('results-msg').innerHTML = msg
@@ -448,7 +452,6 @@
 
             victory() {
                 setTimeout(() => {
-                    this._timer.ticking.stop();
                     let msg
                     if (this.results.errors.value === 0) {
                         this.tada()
@@ -517,7 +520,6 @@
                 }, 1000)
             }
             afterTimerClosed() {
-                clearInterval(player.showNumber)
                 document.getElementById('not_playing').innerHTML = '▶'
                 document.getElementById("shuffle-colors").disabled = false
                 document.getElementById('play').classList.remove('playing')
@@ -525,6 +527,7 @@
                 document.querySelectorAll('#tables td.true').forEach(elem => { elem.classList.remove('translucent') })
             }
             stop() {
+                clearInterval(player.showNumber)
                 this._timer.stop()
                 this._timer.close()
             }
