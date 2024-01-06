@@ -40,14 +40,22 @@ class Sound {
 export class Timer {
     constructor(totalTime, canvasId, onTimerExpiredCallback, onTimerClosedCallback) {
         this.canvas = document.getElementById(canvasId);
-        this.ctx = this.canvas.getContext('2d');
 
         /* 
+        this.ctx = this.canvas.getContext('2d');
         this.ctx.translate(0.5, 0.5)
         this.ctx.lineJoin = 'bevel';
         this.ctx.lineWidth = 0.001;
         this.ctx.imageSmoothingEnabled = false;
         */
+
+        const innerCircle1 = document.getElementById('innerCircle1');
+        const innerCircle2 = document.getElementById('innerCircle2');
+        this.radius1 = innerCircle1.getAttribute('r');
+        this.radius2 = innerCircle2.getAttribute('r');
+        this.circonf1 = this.radius1 * 2 * Math.PI;
+        this.circonf2 = this.radius2 * 2 * Math.PI;
+
 
         this.radius = this.canvas.width / 4;
         this.centerX = this.canvas.width / 2;
@@ -110,26 +118,54 @@ export class Timer {
     }
 
     clearTimer() {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.canvas.style.display = 'none';
+        if (this.ctx) {
+            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        }
+    }
+
+    drawTimerCanvas(timeRemaining) {
+        if (this.ctx) {
+            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+            const angle = ((this.totalTime - timeRemaining) / this.totalTime) * 2 * Math.PI;
+
+            this.ctx.beginPath();
+            this.ctx.strokeStyle = 'rgba(23, 63, 53, .5)'
+            this.ctx.lineWidth = 52;
+            this.ctx.arc(this.centerX, this.centerY, this.radius + 30, -Math.PI / 2 + angle, -Math.PI / 2);
+            this.ctx.stroke();
+
+            this.ctx.beginPath();
+            this.ctx.strokeStyle = 'rgba(23, 63, 53, 1)'
+            this.ctx.lineWidth = 4;
+            this.ctx.arc(this.centerX, this.centerY, this.radius + 16, -Math.PI / 2, -Math.PI / 2 + angle, false);
+            this.ctx.stroke();
+        }
     }
 
     drawTimer(timeRemaining) {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        let percentElapsed = ((this.totalTime - timeRemaining) / this.totalTime)
+        let angleInRadian = percentElapsed * 2 * Math.PI;
 
-        const angle = ((this.totalTime - timeRemaining) / this.totalTime) * 2 * Math.PI;
+        let hidden1 = percentElapsed * this.circonf1
+        let visible1 = this.circonf1 - hidden1
 
-        this.ctx.beginPath();
-        this.ctx.lineWidth = 50;
-        this.ctx.strokeStyle = 'rgba(23, 63, 53, .5)'
-        this.ctx.arc(this.centerX, this.centerY, this.radius+35, -Math.PI / 2 + angle, -Math.PI / 2);
-        this.ctx.stroke();
+        let visible2 = percentElapsed * this.circonf2
+        let hidden2 = this.circonf2 - visible2
+
+        console.log(percentElapsed + '%', angleInRadian, hidden1, visible1, hidden2, visible2)
+        innerCircle1.setAttribute('stroke-dasharray', `0 ${hidden1} ${visible1}`);
+        if (visible2 - 2 >= 0) {
+            innerCircle2.setAttribute('stroke-dasharray', `0 1 ${visible2 - 2} ${hidden2 + 1}`);
+            innerCircle2.setAttribute('stroke-width', 2);
+        }
     }
 
     updateTimer(timestamp, startTime) {
         const progress = (timestamp - startTime) / 1000;
         const timeRemaining = Math.max(this.totalTime - progress, 0);
 
-        
         if (timeRemaining > 0) {
             this.drawTimer(timeRemaining);
             this.timerId = requestAnimationFrame((timestamp) => this.updateTimer(timestamp, startTime));
@@ -145,6 +181,7 @@ export class Timer {
     }
 
     start() {
+        this.canvas.style.display = 'block';
         this.ticking.play();
         const startTime = performance.now();
         this.timerId = requestAnimationFrame((timestamp) => this.updateTimer(timestamp, startTime));

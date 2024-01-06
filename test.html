@@ -1,0 +1,57 @@
+
+
+
+
+<div style="width: 320px; height: auto;">
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <g transform="rotate(-90 50 50)">
+            <circle id="innerCircle1" cx="50" cy="50" r="56" stroke="rgba(23, 63, 53, .5)" stroke-width="46" fill="none" /> <!-- rgba(23, 63, 53, .5) -->
+            <circle id="innerCircle2" cx="50" cy="50" r="37" stroke="rgba(255, 0, 0, 1)" stroke-width="0" fill="none" />
+        </g>
+    </svg>
+</div>
+
+<script>
+    const innerCircle1 = document.getElementById('innerCircle1');
+    const innerCircle2 = document.getElementById('innerCircle2');
+    let radius1 = innerCircle1.getAttribute('r')
+    let radius2 = innerCircle2.getAttribute('r')
+    let circonf1 = radius1 * 2 * Math.PI
+    let circonf2 = radius2 * 2 * Math.PI
+
+    function drawTimer(timeRemaining) {
+        let percentElapsed = ((10 - timeRemaining) / 10)
+        let angleInRadian = percentElapsed * 2 * Math.PI;
+
+        let hidden1 = percentElapsed * circonf1
+        let visible1 = circonf1 - hidden1
+
+        let visible2 = percentElapsed * circonf2
+        let hidden2 = circonf2 - visible2
+
+        console.log(percentElapsed + '%', angleInRadian, hidden1, visible1, hidden2, visible2)
+        innerCircle1.setAttribute('stroke-dasharray', `0 ${hidden1} ${visible1}`);
+        if (visible2 - 2 >= 0) {
+            innerCircle2.setAttribute('stroke-dasharray', `0 1 ${visible2 - 2} ${hidden2 + 1}`);
+            innerCircle2.setAttribute('stroke-width', 2);
+        }
+    }
+
+    function updateTimer(timestamp, startTime) {
+        const progress = (timestamp - startTime) / 1000;
+        const timeRemaining = Math.max(10 - progress, 0);
+
+        console.log(timeRemaining)
+        drawTimer(timeRemaining);
+
+        if (timeRemaining > 0) {
+            requestAnimationFrame((timestamp) => updateTimer(timestamp, startTime));
+        } else {
+            // Timer expired, handle accordingly
+        }
+    }
+
+    // Start the animation
+    const startTime = performance.now();
+    requestAnimationFrame((timestamp) => updateTimer(timestamp, startTime));
+</script>

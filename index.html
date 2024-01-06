@@ -248,9 +248,10 @@
             font-size: 20px;
         }
 
+        button#play>#timer-svg,
         button#play>#timer-canvas {
-            width: 48px;
-            height: 48px;
+            width: 40px;
+            height: 40px;
         }
     </style>
     <!-- 
@@ -271,8 +272,8 @@
                 <div id="modal-body" class="modal-body">
                     <h1 id="results-msg"></h1>
                     <div>Elapsed: <span id="results-elapsed"></span> seconds.</div>
-                    <div>Revealed: <span id="results-revealed"></span> out of 32.</div>
-                    <div>Errors: <span id="results-errors"></span></div>
+                    <div>Unconcealed: <span id="results-unconcealed"></span> out of 32.</div>
+                    <div>Erred: <span id="results-erred"></span></div>
                 </div>
                 <div id="modal-footer" class="modal-footer">
                     &nbsp;
@@ -291,7 +292,17 @@
             </h1>
             <button id="play" type="button" class="btn btn-light">
                 <div id="not_playing">▶</div>
-                <canvas id="timer-canvas" width="192" height="192"></canvas>
+                <div id="timer-svg" style="display: none;">
+                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <g transform="rotate(-90 50 50)">
+                            <circle id="innerCircle1" cx="50" cy="50" r="55" stroke="rgba(23, 63, 53, .4)" stroke-width="46" fill="none" />
+                            <circle id="innerCircle2" cx="50" cy="50" r="40" stroke="rgba(23, 63, 53, 1)" stroke-width="0" fill="none" />
+                        </g>
+                    </svg>
+                </div>
+                <!-- 
+                    <canvas id="timer-canvas" width="192" height="192"></canvas>
+                -->
             </button>
             <div id="buttons" class="btn-group btn-group-sm" role="group">
 
@@ -399,7 +410,7 @@
 
             reset() {
                 this._elapsed = new ResultProperty(1);
-                this._errors = new ResultProperty(0);
+                this._erred = new ResultProperty(0);
                 this._revealed = new ResultProperty(0);
             }
 
@@ -408,13 +419,13 @@
                 return this._elapsed;
             }
 
-            // Getter for errors
-            get errors() {
-                return this._errors;
+            // Getter for erred
+            get erred() {
+                return this._erred;
             }
 
-            // Getter for revealed
-            get revealed() {
+            // Getter for unconcealed
+            get unconcealed() {
                 return this._revealed;
             }
         }
@@ -427,7 +438,7 @@
                 resultsModal.addEventListener('hidden.bs.modal', event => {
                     player._timer.close()
                 })
-                this._timer = new Timer(40, 'timer-canvas', this.expired, this.afterTimerClosed);
+                this._timer = new Timer(40, 'timer-svg', this.expired, this.afterTimerClosed);
                 this._timer.loadResources()
             }
 
@@ -438,8 +449,8 @@
                 player._timer.stop();
                 document.getElementById('results-msg').innerHTML = msg
                 document.getElementById('results-elapsed').innerHTML = results.elapsed.value - 1
-                document.getElementById('results-revealed').innerHTML = results.revealed.value
-                document.getElementById('results-errors').innerHTML = results.errors.value
+                document.getElementById('results-unconcealed').innerHTML = results.unconcealed.value
+                document.getElementById('results-erred').innerHTML = results.erred.value
                 const currentDate = new Date();
                 const options = {
                     weekday: 'long',
@@ -468,10 +479,10 @@
             victory() {
                 setTimeout(() => {
                     let msg
-                    if (this.results.errors.value === 0) {
+                    if (this.results.erred.value === 0) {
                         this.tada()
                         msg = `You won!`
-                    } else if (this.results.errors.value === 32) {
+                    } else if (this.results.erred.value === 32) {
                         this.boo()
                         msg = `You cheated?!`
                     } else {
@@ -500,7 +511,7 @@
 
             laughs() {
                 this._timer.laughs.play()
-                this.results.errors.increment()
+                this.results.erred.increment()
             }
 
             fail() {
@@ -848,7 +859,7 @@
                         if (elem.classList.contains('translucent')) {
                             elem.classList.remove('translucent')
                             if (elem.classList.contains('true')) {
-                                player.results.revealed.increment()
+                                player.results.unconcealed.increment()
 
                                 function checkDescendantsClasses(element, classA, classX, classY) {
                                     // Find the nearest ancestor with class A
