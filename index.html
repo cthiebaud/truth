@@ -254,8 +254,8 @@
         }
     </style>
     <!-- 
+        <script type="text/javascript" src="https://livejs.com/live.js"></script>
     -->
-    <script type="text/javascript" src="https://livejs.com/live.js"></script>
 </head>
 
 <body class="py-4">
@@ -265,7 +265,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="resultsModalLabel">Results</h1>
+                    <h1 class="modal-title fs-5" id="resultsModalLabel">Result</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div id="modal-body" class="modal-body">
@@ -273,6 +273,9 @@
                     <div>Elapsed: <span id="results-elapsed"></span> seconds.</div>
                     <div>Revealed: <span id="results-revealed"></span> out of 32.</div>
                     <div>Errors: <span id="results-errors"></span></div>
+                </div>
+                <div id="modal-footer" class="modal-footer">
+                    &nbsp;
                 </div>
             </div>
         </div>
@@ -321,8 +324,7 @@
                             d="M14.963 0H3.955A3.96 3.96 0 0 0 0 3.955a3.958 3.958 0 0 0 3.955 3.954h3.008v7.065h1V1h2.015v13.974h1V1h3.985zm-8 6.91H3.955A2.957 2.957 0 0 1 1 3.956a2.958 2.958 0 0 1 2.955-2.955h3.008z" />
                     </svg>
                 </label>
-                <!-- https://stackoverflow.com/a/72784674/1070215 
-                -->
+                <!-- https://stackoverflow.com/a/72784674/1070215 -->
                 <div class="m-0 p-0 button-separator"></div>
                 <button id="shuffle-colors" type="button" class="btn btn-outline-light float-end">
                     <svg width="16" height="16" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 49.7 49.7"
@@ -438,6 +440,19 @@
                 document.getElementById('results-elapsed').innerHTML = results.elapsed.value - 1
                 document.getElementById('results-revealed').innerHTML = results.revealed.value
                 document.getElementById('results-errors').innerHTML = results.errors.value
+                const currentDate = new Date();
+                const options = {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    // second: 'numeric',
+                    // timeZoneName: 'short',
+                };
+                const formattedDate = currentDate.toLocaleString('en-US', options);
+                document.getElementById('modal-footer').innerHTML = formattedDate
                 // show results
                 let resultsModal = new bootstrap.Modal(document.getElementById('resultsModal'));
                 resultsModal.show(); // will close timer when dismissed
@@ -446,7 +461,7 @@
             expired() {
                 setTimeout(() => {
                     player.fail()
-                    player.stopTimerShowResultsThenCloseTimer(`Raté!`, player.results)
+                    player.stopTimerShowResultsThenCloseTimer(`Raté&nbsp;!`, player.results)
                 }, 100)
             }
 
