@@ -41,7 +41,7 @@ export class Timer {
     constructor(totalTime, canvasId, onTimerExpiredCallback, onTimerClosedCallback) {
         this.canvas = document.getElementById(canvasId);
         this.ctx = this.canvas.getContext('2d');
-        
+
         /* 
         this.ctx.translate(0.5, 0.5)
         this.ctx.lineJoin = 'bevel';
@@ -117,7 +117,7 @@ export class Timer {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
         const angle = ((this.totalTime - timeRemaining) / this.totalTime) * 2 * Math.PI;
-        
+
         this.ctx.beginPath();
         this.ctx.moveTo(this.centerX, this.centerY);
         this.ctx.arc(this.centerX, this.centerY, this.radius, -Math.PI / 2 + angle, -Math.PI / 2);
@@ -137,8 +137,10 @@ export class Timer {
             this.ticking.stop();
             if (this.onTimerExpiredCallback) {
                 this.onTimerExpiredCallback();
+            } else {
+                this.stop()
+                this.close()
             }
-            this.stop()
         }
     }
 
@@ -146,17 +148,16 @@ export class Timer {
         this.ticking.play();
         const startTime = performance.now();
         this.timerId = requestAnimationFrame((timestamp) => this.updateTimer(timestamp, startTime));
+        console.log('timer started');
     }
-
     stop() {
         this.clearTimer()
         cancelAnimationFrame(this.timerId);
         this.timerId = null
-        if (this.ticking) {
-            this.ticking.stop();
-            /* this.ticking = null */
-            console.log('Sound source stopped and disconnected /* and nullified */');
-        }
+        this.ticking.stop();
+        console.log('timer stopped');
+    }
+    close() {
         if (this.audioContext) {
             console.log("closing audioContext...")
             this.audioContext.close().then(() => {
@@ -171,5 +172,6 @@ export class Timer {
                 this.onTimerClosedCallback();
             }
         }
+        console.log('timer closed');
     }
 }

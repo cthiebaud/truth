@@ -290,10 +290,11 @@
             </button>
             <div id="buttons" class="btn-group btn-group-sm" role="group">
 
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#resultsModal">
-                    *
-                </button>
+                <!-- Button trigger modal for test
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#resultsModal">
+                        *
+                    </button>
+                -->
 
                 <input type="checkbox" class="btn-check" id="table-borders" autocomplete="off">
                 <label class="btn btn-outline-light" for="table-borders">
@@ -414,28 +415,38 @@
             }
         }
 
+        let player = null
         class Player {
             constructor() {
-                const player = this
+                this.results = new Results()
                 const resultsModal = document.getElementById('resultsModal')
                 resultsModal.addEventListener('hidden.bs.modal', event => {
-                    this._timer.stop()
-                    player.onStop()
+                    player._timer.close()
                 })
-                const onTimerExpire = () => {
-                    player.fail()
-                    player.showResultsThenStopPlayer(`Raté!`, player.results)
-                };
-                const onTimerClosed = () => {
-                    console.log("timer closed")
-                    player.onStop()
-                };
-                this.results = new Results()
-                this._timer = new Timer(40, 'timer-canvas', onTimerExpire, onTimerClosed);
+                this._timer = new Timer(40, 'timer-canvas', this.expired, this.afterTimerClosed);
                 this._timer.loadResources()
             }
 
-            youWon() {
+            stopTimerShowResultsThenCloseTimer(msg, results) {
+                // stop timer
+                player._timer.stop();
+                document.getElementById('results-msg').innerHTML = msg
+                document.getElementById('results-elapsed').innerHTML = results.elapsed.value - 1
+                document.getElementById('results-revealed').innerHTML = results.revealed.value
+                document.getElementById('results-errors').innerHTML = results.errors.value
+                // show results
+                let resultsModal = new bootstrap.Modal(document.getElementById('resultsModal'));
+                resultsModal.show(); // will close timer when dismissed
+            }
+
+            expired() {
+                setTimeout(() => {
+                    player.fail()
+                    player.stopTimerShowResultsThenCloseTimer(`Raté!`, player.results)
+                }, 100)
+            }
+
+            victory() {
                 setTimeout(() => {
                     this._timer.ticking.stop();
                     let msg
@@ -449,9 +460,8 @@
                         this.completed_with_errors()
                         msg = `Pas mal, mais peut mieux faire.`
                     }
-                    player.showResultsThenStopPlayer(msg, player.results)
+                    player.stopTimerShowResultsThenCloseTimer(msg, player.results)
                 }, 100)
-
             }
 
             get playing() {
@@ -506,8 +516,8 @@
                     document.getElementById('not_playing').innerHTML = 40 - this.results.elapsed.increment()
                 }, 1000)
             }
-            onStop() {
-                clearInterval(this.showNumber)
+            afterTimerClosed() {
+                clearInterval(player.showNumber)
                 document.getElementById('not_playing').innerHTML = '▶'
                 document.getElementById("shuffle-colors").disabled = false
                 document.getElementById('play').classList.remove('playing')
@@ -516,17 +526,10 @@
             }
             stop() {
                 this._timer.stop()
-            }
-            showResultsThenStopPlayer(msg, results) {
-                document.getElementById('results-msg').innerHTML = msg
-                document.getElementById('results-elapsed').innerHTML = results.elapsed.value
-                document.getElementById('results-revealed').innerHTML = results.revealed.value
-                document.getElementById('results-errors').innerHTML = results.errors.value
-                let resultsModal = new bootstrap.Modal(document.getElementById('resultsModal'));
-                resultsModal.show();
+                this._timer.close()
             }
         }
-        const player = new Player()
+        player = new Player()
 
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
@@ -871,7 +874,7 @@
                         }
                     }
                     if (document.querySelectorAll('#tables td.true.translucent').length === 0) {
-                        player.youWon()
+                        player.victory()
                     }
                 })
             })
