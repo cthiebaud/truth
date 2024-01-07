@@ -1,66 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Timer with Module</title>
-  </head>
 
-  <body>
-    <div id="timer-container" style="width: 200px; height: 200px">
-      <div id="timer-svg">
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-          <g transform="rotate(-90 50 50)">
-            <circle
-              id="innerCircle1"
-              cx="50"
-              cy="50"
-              r="55"
-              stroke="rgba(23, 63, 53, .25)"
-              stroke-width="46"
-              fill="none"
-            />
-            <circle
-              id="innerCircle2"
-              cx="50"
-              cy="50"
-              r="40"
-              stroke="rgba(23, 63, 53, .666)"
-              stroke-width="0"
-              fill="none"
-            />
-          </g>
-        </svg>
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Timer with Module</title>
+</head>
+
+<body>
+  <div id="timer-container" style="width: 200px; height: 200px">
+    <div id="timer-svg">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <g transform="rotate(-90 50 50)">
+          <circle id="innerCircle1" cx="50" cy="50" r="55" stroke="rgba(23, 63, 53, .25)" stroke-width="46" fill="none" />
+          <circle id="innerCircle2" cx="50" cy="50" r="40" stroke="rgba(23, 63, 53, .666)" stroke-width="0" fill="none" />
+        </g>
+      </svg>
     </div>
+  </div>
 
-    <script type="module">
-      import { Timer } from "./TimerClass.js";
+  <script type="module">
+    import { Timer } from "./TimerClass.js";
 
-      const onTimerExpire = () => {
-        console.log("Timer has expired!");
-        // You can replace the alert with any other action you want to take when the timer ends
-      };
-      const onTimerClose = () => {
-        console.log("Timer has ended!");
-        // You can replace the alert with any other action you want to take when the timer ends
-      };
+    const onTimerExpire = () => {
+      console.log("Timer has expired!");
+      // You can replace the alert with any other action you want to take when the timer ends
+    };
+    const onTimerClose = () => {
+      console.log("Timer has ended!");
+      // You can replace the alert with any other action you want to take when the timer ends
+    };
 
-      const timer = new Timer(10, "timer-svg", onTimerExpire, onTimerClose);
+    const timer = new Timer(10, "timer-svg", onTimerExpire, onTimerClose);
 
-      timer.loadResources().then(() =>
-        timer.initializeAudio().then(() => {
-          document.addEventListener("click", () => {
-            if (timer.timerId != null) {
-              timer.stop();
-            } else {
-              timer.initializeAudio().then(() => {
-                timer.start();
-              });
-            }
-          });
-        })
-      );
-    </script>
-  </body>
+    timer.loadResources().then(() =>
+      timer.initializeAudio().then(() => {
+        document.addEventListener("click", () => {
+          if (timer.timerId != null) {
+            timer.stop();
+          } else {
+            timer.initializeAudio().then(() => {
+              timer.start();
+            });
+          }
+        });
+      })
+    );
+  </script>
+</body>
+
 </html>
