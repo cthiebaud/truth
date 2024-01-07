@@ -38,33 +38,22 @@ class Sound {
 }
 
 export class Timer {
-    constructor(totalTime, canvasId, onTimerExpiredCallback, onTimerClosedCallback) {
-        this.canvas = document.getElementById(canvasId);
-
-        /* 
-        this.ctx = this.canvas.getContext('2d');
-        this.ctx.translate(0.5, 0.5)
-        this.ctx.lineJoin = 'bevel';
-        this.ctx.lineWidth = 0.001;
-        this.ctx.imageSmoothingEnabled = false;
-        */
-
-        const innerCircle1 = document.getElementById('innerCircle1');
-        const innerCircle2 = document.getElementById('innerCircle2');
-        this.radius1 = innerCircle1.getAttribute('r');
-        this.radius2 = innerCircle2.getAttribute('r');
+    constructor(totalTime, svgId, onTimerExpiredCallback, onTimerClosedCallback) {
+        this.svg = document.getElementById(svgId);
+        this.innerCircle1 = this.svg.querySelector('#innerCircle1');
+        this.innerCircle2 = this.svg.querySelector('#innerCircle2');
+        this.radius1 = this.innerCircle1.getAttribute('r');
+        this.radius2 = this.innerCircle2.getAttribute('r');
         this.circonf1 = this.radius1 * 2 * Math.PI;
         this.circonf2 = this.radius2 * 2 * Math.PI;
-
-
-        this.radius = this.canvas.width / 4;
-        this.centerX = this.canvas.width / 2;
-        this.centerY = this.canvas.height / 2;
+        this.radius = this.svg.width / 4;
+        this.centerX = this.svg.width / 2;
+        this.centerY = this.svg.height / 2;
         this.timerId = null;
         this.audioContext = null;
         this.ticking = new Sound('audio/ticking.mp3');
         this.coin = new Sound('audio/coin.mp3');
-        this.laughs = new Sound('audio/laughs.mp3');
+        this.laughs = new Sound('audio/laughs-lower.mp3');
         this.tada = new Sound('audio/tada.mp3');
         this.fail = new Sound('audio/fail.mp3');
         this.completed_with_errors = new Sound('audio/completed_with_errors.mp3')
@@ -118,35 +107,12 @@ export class Timer {
     }
 
     clearTimer() {
-        this.canvas.style.display = 'none';
-        if (this.ctx) {
-            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        }
-    }
-
-    drawTimerCanvas(timeRemaining) {
-        if (this.ctx) {
-            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
-            const angle = ((this.totalTime - timeRemaining) / this.totalTime) * 2 * Math.PI;
-
-            this.ctx.beginPath();
-            this.ctx.strokeStyle = 'rgba(23, 63, 53, .5)'
-            this.ctx.lineWidth = 52;
-            this.ctx.arc(this.centerX, this.centerY, this.radius + 30, -Math.PI / 2 + angle, -Math.PI / 2);
-            this.ctx.stroke();
-
-            this.ctx.beginPath();
-            this.ctx.strokeStyle = 'rgba(23, 63, 53, 1)'
-            this.ctx.lineWidth = 4;
-            this.ctx.arc(this.centerX, this.centerY, this.radius + 16, -Math.PI / 2, -Math.PI / 2 + angle, false);
-            this.ctx.stroke();
-        }
+        this.svg.style.display = 'none';
+        this.innerCircle2.setAttribute('stroke-width', 0);
     }
 
     drawTimer(timeRemaining) {
         let percentElapsed = ((this.totalTime - timeRemaining) / this.totalTime)
-        let angleInRadian = percentElapsed * 2 * Math.PI;
 
         let hidden1 = percentElapsed * this.circonf1
         let visible1 = this.circonf1 - hidden1
@@ -154,10 +120,9 @@ export class Timer {
         let visible2 = percentElapsed * this.circonf2
         let hidden2 = this.circonf2 - visible2
 
-        console.log(percentElapsed + '%', angleInRadian, hidden1, visible1, hidden2, visible2)
         innerCircle1.setAttribute('stroke-dasharray', `0 ${hidden1} ${visible1}`);
-        if (visible2 - 2 >= 0) {
-            innerCircle2.setAttribute('stroke-dasharray', `0 1 ${visible2 - 2} ${hidden2 + 1}`);
+        if (visible2 - 6 >= 0) {
+            innerCircle2.setAttribute('stroke-dasharray', `0 3 ${visible2 - 6} ${hidden2 + 3}`);
             innerCircle2.setAttribute('stroke-width', 2);
         }
     }
@@ -181,7 +146,7 @@ export class Timer {
     }
 
     start() {
-        this.canvas.style.display = 'block';
+        this.svg.style.display = 'block';
         this.ticking.play();
         const startTime = performance.now();
         this.timerId = requestAnimationFrame((timestamp) => this.updateTimer(timestamp, startTime));

@@ -235,6 +235,7 @@
             position: relative;
             border-radius: 0;
             border: 1px solid #173F35;
+            border-radius:50%;
         }
 
         button#play>* {
@@ -245,11 +246,11 @@
             image-rendering: pixelated;
             color: #173F35;
             font-family: 'Courier New', Courier, monospace;
-            font-size: 20px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: 18px;
         }
 
-        button#play>#timer-svg,
-        button#play>#timer-canvas {
+        button#play>#timer-svg {
             width: 40px;
             height: 40px;
         }
@@ -295,14 +296,11 @@
                 <div id="timer-svg" style="display: none;">
                     <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                         <g transform="rotate(-90 50 50)">
-                            <circle id="innerCircle1" cx="50" cy="50" r="55" stroke="rgba(23, 63, 53, .4)" stroke-width="46" fill="none" />
+                            <circle id="innerCircle1" cx="50" cy="50" r="55" stroke="rgba(23, 63, 53, .333)" stroke-width="46" fill="none" />
                             <circle id="innerCircle2" cx="50" cy="50" r="40" stroke="rgba(23, 63, 53, 1)" stroke-width="0" fill="none" />
                         </g>
                     </svg>
                 </div>
-                <!-- 
-                    <canvas id="timer-canvas" width="192" height="192"></canvas>
-                -->
             </button>
             <div id="buttons" class="btn-group btn-group-sm" role="group">
 
@@ -538,6 +536,7 @@
                         elem.classList.add('translucent')
                     })
                     document.getElementById("shuffle-colors").disabled = true
+                    document.getElementById("paragraph-breaks").disabled = true
                 })
                 this.results.reset()
                 document.getElementById('not_playing').innerHTML = 40
@@ -548,6 +547,7 @@
             afterTimerClosed() {
                 document.getElementById('not_playing').innerHTML = '▶'
                 document.getElementById("shuffle-colors").disabled = false
+                document.getElementById("paragraph-breaks").disabled = false
                 document.getElementById('play').classList.remove('playing')
                 document.querySelectorAll('#tables td.false').forEach(elem => { elem.classList.add('translucent') })
                 document.querySelectorAll('#tables td.true').forEach(elem => { elem.classList.remove('translucent') })
@@ -644,6 +644,7 @@
         }
 
         const 𝛗 = Symbol('private');
+        const 𝛗2 = Symbol('private2');
 
         class Axes {
             constructor() {
@@ -728,12 +729,12 @@
                     '!α & !β',
                     '!α & β',
                     2,
+                    'α == β',
+                    'α != β',
                     'α',
                     'β',
                     '!α',
                     '!β',
-                    'α == β',
-                    'α != β',
                     3,
                     'α | β',
                     'α | !β',
@@ -742,10 +743,11 @@
                     4,
                     'true',
                 ]
+                this[𝛗2] = this[𝛗].slice(0)
             }
 
             iterate(iterator) {
-                this[𝛗].forEach(iterator)
+                this[𝛗2].forEach(iterator)
             }
 
             color(f) {
@@ -761,7 +763,10 @@
                 return new OneOrTwoColors(colors.nextColor())
             }
             shuffle() {
-                shuffleArray(this[𝛗])
+                shuffleArray(this[𝛗2])
+            }
+            unshuffle() {
+                this[𝛗2] = this[𝛗].slice(0)
             }
         }
         const functions = new Functions()
@@ -782,6 +787,8 @@
         }
 
         function doIt() {
+
+            if (player.playing) return
 
             const blender = new Blender()
 
@@ -929,9 +936,13 @@
                 paragraphBreaks = !paragraphBreaks
                 toggleElementsVisibility(document.querySelectorAll('div.separator-container'), 'flex')
                 if (paragraphBreaks) {
+                    functions.unshuffle()
+                    document.getElementById("shuffle-colors").disabled = true
                     theTables.classList.remove("center-children")
+                    doIt()
                 } else {
                     theTables.classList.add("center-children")
+                    document.getElementById("shuffle-colors").disabled = false
                 }
             })
 
