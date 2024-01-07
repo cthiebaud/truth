@@ -6,4 +6,4 @@ Il s'agit donc de dévoiler les petits legos pour faire apparaître ce qu'on app
 
 ⁽¹⁾ https://fr.wikipedia.org/wiki/Al%C3%A8theia_dans_la_philosophie_de_Martin_Heidegger
 
-![truth](truth8-1800.jpg)
+![ἀλήθεια](truth8-1800.jpg)
