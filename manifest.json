@@ -5,12 +5,12 @@
       "url": "/newEmail?to=%s"
     }
   ],
-  "id": "/truth",
+  "id": "/ἀλήθεια",
   "scope": "/",
-  "name": "truth",
+  "name": "ἀλήθεια",
   "display": "standalone",
   "start_url": "/",
-  "short_name": "starter",
+  "short_name": "ἀλήθεια",
   "theme_color": "#f1efe0",
   "description": "LEGO™ meets Truth Tables",
   "orientation": "any",
@@ -475,24 +475,10 @@
   "screenshots": [
     {
       "src": "truth8-1800.jpg",
-      "sizes": "1617x1012",
+      "sizes": "1800x1800",
       "type": "image/jpeg"
     }
   ],
   "features": ["Cross Platform", "fast", "simple"],
-  "categories": ["game"],
-  "shortcuts": [
-    {
-      "name": "Open About",
-      "short_name": "About",
-      "description": "Open the about page",
-      "url": "/about",
-      "icons": [
-        {
-          "src": "assets/icons/192x192.png",
-          "sizes": "192x192"
-        }
-      ]
-    }
-  ]
+  "categories": ["game"]
 }
