@@ -5,6 +5,7 @@ La référence à l'ἀλήθεια de Martin Heidegger est flagrante, cf. « [�
 Il s'agit donc de dévoiler les petits legos pour faire apparaître ce qu'on appelle en jargon mathématique les tables de vérité ⁽²⁾.
 
 ⁽¹⁾ https://fr.wikipedia.org/wiki/Al%C3%A8theia_dans_la_philosophie_de_Martin_Heidegger
+
 ⁽²⁾ https://fr.wikipedia.org/wiki/Table_de_v%C3%A9rit%C3%A9
 
 ![ἀλήθεια](truth8-1800.jpg)
