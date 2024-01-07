@@ -26,8 +26,12 @@
     <meta name="theme-color" content="#f1efe0"/>
 
     <link href="./favicon.ico" rel="icon" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="timer.css">
+    <!-- 
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css">
+    -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/index.min.css">
+    <!--
     <style>
         body {
             background-color: #f8f7ef;
@@ -53,7 +57,7 @@
         #con.container {
             background-color: #f1efe0;
             border-radius: 0.375rem;
-            visibility: hidden;
+            /* visibility: hidden; */
             max-width: 580px;
             padding: 0;
         }
@@ -220,6 +224,10 @@
 
         }
 
+        #aletheia {
+            visibility: hidden;
+        }
+
         #aletheia a {
             font-size: 72px;
             text-decoration: none;
@@ -261,6 +269,7 @@
             height: 40px;
         }
     </style>
+    -->
     <!-- 
         <script type="text/javascript" src="https://livejs.com/live.js"></script>
     -->
@@ -869,6 +878,8 @@
                 }
             });
 
+            document.getElementById("aletheia").style.visibility = 'visible'
+
             document.querySelectorAll('#tables td').forEach(elem => {
                 // console.log(elem)
                 elem.addEventListener('click', clickEvent => {
@@ -935,7 +946,7 @@
 
             doIt();
 
-            document.getElementById("con").style.visibility = 'visible'
+            // document.getElementById("con").style.visibility = 'visible'
 
             const theTables = document.getElementById("tables")
 
