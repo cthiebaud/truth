@@ -27,15 +27,16 @@
 
     <link href="./favicon.ico" rel="icon" type="image/x-icon">
     <!-- PROD
-
-        <link rel="stylesheet" href="/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/css/index.min.css">
     -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/index.min.css">
+    <!-- end PROD -->
     <!-- DEV 
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/index.css">
+        <script type="text/javascript" src="https://livejs.com/live.js"></script>
     -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/index.css">
-    <script type="text/javascript" src="https://livejs.com/live.js"></script>
+    <!-- end DEV -->
 </head>
 
 <body class="">
@@ -156,11 +157,13 @@
     <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js"></script>
     <script type="module">
         /* PROD
+        */
         import { Timer } from './js/TimerClass.min.js';
-        */
+        /* end PROD */
         /* DEV 
-        */
         import { Timer } from './TimerClass.js';
+        */
+        /* end DEV */
 
         let paragraphBreaks = false // true // 
 

@@ -1,1 +1,1 @@
-purgecss --css bootstrap.min.css --content index.html --output purged
+purgecss --css bootstrap.min.css --content ../index.html --output ../css
