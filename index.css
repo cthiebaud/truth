@@ -1,0 +1,235 @@
+body {
+  background-color: #f8f7ef;
+  /* f1efe0 */
+  /* #f1efe0; */
+  color: #173f35;
+  stroke: #173f35;
+  fill: #0d221d;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+#copyright {
+  visibility: hidden;
+  overflow: hidden;
+  width: 33px;
+  font-size: 10px;
+}
+
+.modal {
+  font-family: var(--bs-body-font-family);
+}
+
+#con.container {
+  background-color: #f1efe0;
+  border-radius: 0.375rem;
+  /* visibility: hidden; */
+  max-width: 580px;
+  padding: 0;
+}
+
+#αβ {
+  font-weight: normal;
+  letter-spacing: 0.375rem;
+}
+
+#tables > div:not(.separator-container) {
+  display: inline-block;
+  margin: 0.25rem;
+  padding: 0;
+  border: 0.75px solid var(--border-color);
+}
+
+#tables.transparent-border > div:not(.separator-container) {
+  border: 0.75px solid transparent;
+}
+
+#tables > div.separator-container {
+  display: flex;
+  align-items: center;
+}
+
+#tables > div.separator-container .separator-line {
+  border-bottom: 1px dashed rgba(150, 150, 150, 0.5);
+}
+
+#tables > div.separator-container .separator-line-right {
+  flex-grow: 1;
+  margin: 0 0.375rem 0 0;
+}
+
+#tables > div.separator-container .separator-line-left {
+  margin: 0 0 0 0.375rem;
+  min-width: 0.75rem;
+}
+
+#tables > div.separator-container .separator-text {
+  white-space: nowrap;
+  padding: 0 0.375rem;
+  background-color: transparent;
+}
+
+#tables table.inline {
+  display: inline-block;
+  margin: 0;
+}
+
+#tables table caption {
+  white-space: nowrap;
+  font-size: 20px;
+  background-color: #ffffffa0;
+  margin-bottom: 0.375rem;
+  padding: 0.375rem 0;
+  color: inherit;
+}
+
+#tables table thead th:nth-child(2):after {
+  content: "β";
+  width: 100%;
+  overflow: visible;
+  position: absolute;
+  top: -3px;
+  left: 0;
+  transform: translateX(50%);
+  white-space: nowrap;
+  text-align: center;
+}
+
+#tables table tbody tr:nth-child(1) th:after {
+  content: "α";
+  height: 100%;
+  overflow: visible;
+  position: absolute;
+  left: -3px;
+  bottom: 0;
+  white-space: nowrap;
+  writing-mode: vertical-rl;
+  /* Vertical writing mode, right to left */
+  transform: rotate(180deg) translateY(-50%);
+  /* Rotate the text 180 degrees */
+}
+
+#tables table th {
+  display: none;
+  text-align: center;
+  vertical-align: middle;
+  font-weight: normal;
+  font-size: 10px;
+  padding: 1px !important;
+  background-color: transparent !important;
+  font-family: "Courier New", Courier, monospace;
+  position: relative;
+  min-width: var(--header-width_and_height);
+  min-height: var(--header-width_and_height);
+  /* https://stackoverflow.com/a/11275916/1070215 !!! */
+  height: var(--header-width_and_height);
+  color: inherit;
+}
+
+#tables table thead tr th:not(:first-child) {
+  border-bottom: 0.75px solid var(--border-color);
+}
+
+#tables table tbody tr th:first-child {
+  border-right: 0.75px solid var(--border-color);
+}
+
+#tables table td {
+  width: var(--cell-width_and_height);
+  height: var(--cell-width_and_height);
+  text-align: center;
+  vertical-align: middle;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-size: 25px;
+  padding: 0 1px 4px 0 !important;
+}
+
+#tables table td {
+  cursor: default;
+}
+
+.vertical-text {
+  writing-mode: vertical-rl;
+  /* Vertical writing mode, right to left */
+  transform: rotate(180deg);
+  /* Rotate the text 180 degrees */
+}
+
+.center-children {
+  text-align: center;
+}
+
+#github,
+#buttons {
+  border: 0.75px solid var(--border-color);
+}
+
+#buttons > label.btn,
+#buttons > button {
+  border-color: transparent;
+}
+
+#button-separator {
+  background-color: lightgray;
+  width: 1px;
+}
+
+.diagonal-line::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  border-bottom: 0.75px solid var(--border-color);
+  /* Same as line color */
+  transform: skewY(45deg);
+  /* Adjust the angle of the second diagonal line */
+  transform-origin: 100%;
+  /* Set the origin of the transformation to the top-right corner */
+}
+
+#aletheia {
+  visibility: hidden;
+}
+
+#aletheia a {
+  font-size: 72px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.translucent {
+  opacity: 0;
+}
+
+#play {
+  position: relative;
+  overflow: hidden;
+  height: 38px;
+  width: 40px;
+}
+
+button#play {
+  position: relative;
+  border-radius: 0;
+  border: 1px solid #173f35;
+  border-radius: 50%;
+}
+
+button#play > * {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  image-rendering: pixelated;
+  color: #173f35;
+  font-family: "Courier New", Courier, monospace;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-size: 18px;
+}
+
+button#play > #timer-svg {
+  width: 40px;
+  height: 40px;
+}
