@@ -655,7 +655,7 @@
                 // console.log(elem)
                 elem.addEventListener('click', clickEvent => {
                     clickEvent.preventDefault()
-                    clickEvent.stopPropagation();
+                    clickEvent.stopPropagation()
                     if (!player.playing) return
                     if (player.playing) {
                         if (elem.classList.contains('translucent')) {
@@ -717,11 +717,6 @@
 
             doIt();
 
-            // document.getElementById("con").style.visibility = 'visible'
-
-            const theTables = document.getElementById("tables")
-            const hammertime = new Hammer(theTables);
-
             function mega_shuffle() {
                 if (player.playing) return
                 if (paragraphBreaks) return
@@ -729,6 +724,10 @@
                 colors.shuffle()
                 doIt()
             }
+
+            const theTables = document.getElementById("tables")
+            const hammertime = new Hammer(theTables);
+
             hammertime.on('swiperight', function () {
                 mega_shuffle()
             });
@@ -747,17 +746,17 @@
                 toggleElementsVisibility(document.querySelectorAll('div.separator-container'), 'flex')
                 if (paragraphBreaks) {
                     functions.unshuffle()
-                    // document.getElementById("shuffle-colors").disabled = true
+                    document.getElementById("shuffle-colors").disabled = true
                     theTables.classList.remove("center-children")
                     doIt()
                 } else {
                     theTables.classList.add("center-children")
-                    // document.getElementById("shuffle-colors").disabled = false
+                    document.getElementById("shuffle-colors").disabled = false
                 }
             })
 
             document.getElementById("table-borders").addEventListener('click', clickEvent => {
-                clickEvent.stopPropagation();
+                clickEvent.stopPropagation()
                 if (theTables.classList.contains("transparent-border")) {
                     theTables.classList.remove("transparent-border")
                 } else {
@@ -767,21 +766,19 @@
 
             document.getElementById("shuffle-colors").addEventListener('click', clickEvent => {
                 clickEvent.preventDefault()
-                clickEvent.stopPropagation();
-                if (player.playing) return
-                colors.shuffle()
-                doIt()
+                clickEvent.stopPropagation()
+                mega_shuffle()
             })
 
             document.getElementById("github").addEventListener('click', clickEvent => {
                 clickEvent.preventDefault()
-                clickEvent.stopPropagation();
+                clickEvent.stopPropagation()
                 window.open("https://github.com/cthiebaud/truth", "_github");
             })
 
             document.getElementById("play").addEventListener('click', clickEvent => {
                 clickEvent.preventDefault()
-                clickEvent.stopPropagation();
+                clickEvent.stopPropagation()
                 if (player.playing) {
                     player.stop()
                 } else {
