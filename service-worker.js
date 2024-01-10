@@ -21,7 +21,7 @@ if (workbox) {
     { revision: '49185ae4ed1cace707f6bc3fa72840c0', url: 'dist/css/bootstrap.min.css' },
     { revision: '698806af8d2b9cbb382718bc75a7e34c', url: 'dist/css/index.min.css' },
     { revision: '6c5d735ac46c27126596d4feeb736525', url: 'dist/js/TimerClass.min.js' },
-    { revision: '86edbef1b48b318c50ac605bb00210f9', url: 'index.html' },
+    { revision: 'a394f5f6f67bc4e0c8d39c486f27c617', url: 'index.html' },
     { revision: '898fde52688367ffdecdb2a58bdb24f2', url: 'src/css/index.css' },
     { revision: '01b669072b1d08df0e0222e00a2c4c9c', url: 'src/js/debounce.js' },
     { revision: 'fdf2b55625a6afc2a979641c3e2c78be', url: 'src/js/TimerClass.js' },
