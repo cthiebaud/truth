@@ -1,0 +1,24 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    text-align: center;
+    border: 1px solid #ccc;
+    margin: 1rem;
+    padding: 1rem;
+}
+
+#swipeContent {
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

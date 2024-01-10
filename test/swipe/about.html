@@ -5,46 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Page</title>
-    <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-        }
-
-        #swipeContent {
-            display: flex;
-            width: 100vw;
-            height: 100vh;
-        }
-
-        .page {
-            flex: 1;
-            min-width: 100%;
-            box-sizing: border-box;
-            padding: 20px;
-            text-align: center;
-            border: 1px solid #ccc;
-        }
-    </style>
+    <link rel="stylesheet" href="swipe.css">
 </head>
 
-<body id="swipeContent">
+<body>
 
-    <div class="page">About Page</div>
+    <h1>About Page</h1>
+    <div id="swipeContent" data-direction="LEFT">Swipe me to the&nbsp;<p>right</p></div>
 
-    <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js"></script>
-    <script>
-        const swipeContent = document.getElementById('swipeContent');
-        const hammertime = new Hammer(swipeContent);
-
-        hammertime.on('swipeleft', function () {
-            navigate('index.html');
-        });
-
-        function navigate(url) {
-            window.location.href = url;
-        }
-    </script>
+    <script type="module" src="swipe.js"></script>
 
 </body>
 
