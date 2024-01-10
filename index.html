@@ -158,9 +158,13 @@
     </div>
     <script>
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register(
-                'sw.js'
-            );
+            navigator.serviceWorker.register('/service-worker.js')
+                .then((registration) => {
+                    console.log('Service Worker registered with scope:', registration.scope);
+                })
+                .catch((error) => {
+                    console.error('Service Worker registration failed:', error);
+                });
         }
     </script>
     <script type="module">
@@ -168,15 +172,15 @@
         import hammerjs from 'https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/+esm'
         import tinycolor2 from 'https://cdn.jsdelivr.net/npm/tinycolor2@1.6.0/+esm'
         /* PROD
-        import { Timer } from './dist/js/TimerClass.min.js';
-        */
+        import {Timer} from './dist/js/TimerClass.min.js';
+    */
         /* end PROD */
         /* DEV 
         */
         import { Timer } from './src/js/TimerClass.js';
         /* end DEV */
 
-        let paragraphBreaks = false // true // 
+        let paragraphBreaks = false // true //
 
         class ResultProperty {
             constructor(value) {
@@ -419,12 +423,12 @@
 
             /*
             const countMap = array.reduce((acc, currentValue) => {
-                acc[currentValue] = (acc[currentValue] || 0) + 1;
-                return acc;
-            }, {});
+        acc[currentValue] = (acc[currentValue] || 0) + 1;
+    return acc;
+            }, { });
 
-            console.log(countMap)
-            */
+    console.log(countMap)
+    */
 
             const randomPosition = Math.floor(Math.random() * n);
             return rotateArray(shuffledArray, randomPosition);
@@ -606,24 +610,24 @@
                 const elementID = `element${index}`
                 if (typeof func === 'number') {
                     const html = `<div id="${elementID}" class="separator-container" style="display: ${paragraphBreaks ? 'flex' : 'none'};">
-    <span class="separator-line separator-line-left"></span>
-    <span class="separator-text">${func}</span>
-    <span class="separator-line separator-line-right"></span>
-</div>
-`
+        <span class="separator-line separator-line-left"></span>
+        <span class="separator-text">${func}</span>
+        <span class="separator-line separator-line-right"></span>
+    </div>
+    `
                     blender.blend(html, elementID)
 
                 } else {
                     const theadID = `thead${index}`
                     const tbodyID = `tbody${index}`
                     const template = `<div id="${elementID}">
-    <table class="table inline table-sm caption-top table-borderless">
-        <caption class="text-center">${func}</caption>
-        <thead id="${theadID}"></thead>
-        <tbody id="${tbodyID}"></tbody>
-    </table>
-</div>
-`
+        <table class="table inline table-sm caption-top table-borderless">
+            <caption class="text-center">${func}</caption>
+            <thead id="${theadID}"></thead>
+            <tbody id="${tbodyID}"></tbody>
+        </table>
+    </div>
+    `
                     blender.blend(template, elementID)
 
                     let backgroundcolors = functions.color(func)

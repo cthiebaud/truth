@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "inject": "npx workbox injectManifest workbox-config.js && npx prettier --write service-worker.js "
+  },
+  "devDependencies": {
+    "prettier": "^3.1.1",
+    "workbox-cli": "^7.0.0"
+  }
+}
