@@ -341,9 +341,14 @@
                     document.getElementById("paragraph-breaks").disabled = true
                 })
                 this.results.reset()
-                document.getElementById('not_playing').innerHTML = 40
+                function showCountDown(elapsed) {
+                    const remaining = 40 - elapsed
+                    const darkenedRed = tinycolor2('#ff0000').darken(remaining).toString("hex6");
+                    document.getElementById('not_playing').innerHTML = `<span style="color: ${darkenedRed}">${remaining}</span>`
+                }
+                showCountDown(0)
                 this.showNumber = setInterval(() => {
-                    document.getElementById('not_playing').innerHTML = 40 - this.results.elapsed.increment()
+                    showCountDown(this.results.elapsed.increment())
                 }, 1000)
             }
             afterTimerClosed() {
