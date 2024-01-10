@@ -7,6 +7,6 @@ Il s'agit donc de dévoiler les petits legos pour faire apparaître ce que l'on 
 1. https://fr.wikipedia.org/wiki/Al%C3%A8theia_dans_la_philosophie_de_Martin_Heidegger
 1. https://fr.wikipedia.org/wiki/Table_de_v%C3%A9rit%C3%A9
 
-![ἀλήθεια](assets/jpg/truth8-1800.jpg)
+![ἀλήθεια](boh.jpg)
 
 
