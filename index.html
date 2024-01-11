@@ -35,16 +35,11 @@
     <meta name="theme-color" content="#f1efe0" />
 
     <link href="./favicon.ico" rel="icon" type="image/x-icon">
-    <!-- PROD
-    -->
-        <link rel="stylesheet" href="/dist/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/dist/css/index.min.css">
-    <!-- end PROD -->
-    <!-- DEV 
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/src/css/index.css">
-    -->
-    <!-- end DEV -->
+
+    <!-- changed by "NODE_ENV=<development|production> node my-build.js" -->
+    <link rel="stylesheet" href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css'>
+    <link rel="stylesheet" href='/src/css/index.css'>
+
     <!-- 
         <script type="text/javascript" src="https://livejs.com/live.js"></script>
     -->
@@ -171,15 +166,9 @@
         import { Modal as bsModal } from 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/+esm'
         import hammerjs from 'https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/+esm'
         import tinycolor2 from 'https://cdn.jsdelivr.net/npm/tinycolor2@1.6.0/+esm'
-        /* PROD
-        */
-        import {Timer} from './dist/js/TimerClass.min.js';
-        /* end PROD */
-        /* DEV 
-        import { Timer } from './src/js/TimerClass.js';
-        */
 
-        /* end DEV */
+        /* changed by "NODE_ENV=<development|production> node my-build.js" */
+        import { Timer } from './src/js/TimerClass.js';
 
         let paragraphBreaks = false // true //
 
