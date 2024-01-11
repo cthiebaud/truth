@@ -19,10 +19,10 @@ if (workbox) {
     { revision: '680e993dde5168775f0e7c0b5adf6d99', url: 'assets/audio/tada.mp3' },
     { revision: '607a87857f704bb0fab7447bc204e09e', url: 'assets/audio/ticking.mp3' },
     { revision: '49185ae4ed1cace707f6bc3fa72840c0', url: 'dist/css/bootstrap.min.css' },
-    { revision: '698806af8d2b9cbb382718bc75a7e34c', url: 'dist/css/index.min.css' },
+    { revision: 'f1588a6c19ef2feea7a8402692ce430f', url: 'dist/css/index.min.css' },
     { revision: '2168745c011f8892c32530f12e16c0ce', url: 'dist/js/TimerClass.min.js' },
-    { revision: '77f1ab74490996810fdd5ca1805e3847', url: 'index.html' },
-    { revision: '4d84ede38e2654cfb24463ece0f5c6f1', url: 'src/css/index.css' },
+    { revision: '8474f14a48839ead0433970011bc9d45', url: 'index.html' },
+    { revision: 'defb9bed3878e67b7556aca04bb6dab6', url: 'src/css/index.css' },
     { revision: 'ac2e2657dd636a469d49c3384f36d861', url: 'src/js/TimerClass.js' },
   ])
 

@@ -1,6 +1,8 @@
 {
   "scripts": {
-    "build": "npm-run-all -s build:*",
+    "build": "npm run prod && npm-run-all -s build:*",
+    "prod": "NODE_ENV=production node my-build.js",
+    "dev": "NODE_ENV=development node my-build.js",
     "build:minify-css": "postcss src/css/*.css --ext .min.css --dir dist/css",
     "build:terser": "npm-run-all -s build:terser:*",
     "build:terser:clean": "rimraf dist/js && mkdirp dist/js",

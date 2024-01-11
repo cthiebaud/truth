@@ -32,4 +32,4 @@ for (let i = 0; i < productionPaths.length; i++) {
 // Write the updated HTML content back to index.html
 fs.writeFileSync('index.html', originalHTMLContent);
 
-console.log(`Build successful for ${toProduction ? 'production' : 'development'} environment.`);
+console.log(`My build successful for ${toProduction ? 'production' : 'development'} environment.`);
