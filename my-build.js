@@ -14,17 +14,22 @@ const developmentPaths = [
     "'/src/css/index.css'",
 ];
 
+// Check if the arrays have the same length
+if (productionPaths.length !== developmentPaths.length) {
+    console.error('Error: ProductionPaths and developmentPaths arrays must have the same length.');
+    process.exit(1); // Exit with an error code
+}
+
 // Read the original HTML content from index.html
 let originalHTMLContent = fs.readFileSync('index.html', 'utf8');
 
 for (let i = 0; i < productionPaths.length; i++) {
     const productionPath = productionPaths[i]
     const developmentPath = developmentPaths[i]
-    if (toProduction) {
         // Replace the development file path with the production file path and vice versa
+        if (toProduction) {
         originalHTMLContent = originalHTMLContent.replace(developmentPath, productionPath);
     } else {
-        // Replace the development file path with the production file path and vice versa
         originalHTMLContent = originalHTMLContent.replace(productionPath, developmentPath);
     }
 }
