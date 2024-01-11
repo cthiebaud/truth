@@ -17,6 +17,9 @@ class Sound {
         this.soundBuffer = await this.audioContext.decodeAudioData(this.arrayBuffer.slice(0));
     }
     connect() {
+        if (this.soundBuffer == null) {
+            return { start: () => console.log("fake start") }
+        }
         const soundSource = this.audioContext.createBufferSource();
         soundSource.buffer = this.soundBuffer;
         soundSource.connect(this.audioContext.destination);
@@ -33,12 +36,14 @@ class Sound {
         }
     }
     stop() {
-        this.soundSource.stop()
+        if (this.soundSource != null) {
+            this.soundSource.stop()
+        }
     }
 }
 
 export class Timer {
-    constructor(totalTime, svgId, onTimerExpiredCallback, onTimerClosedCallback) {
+    constructor(totalTime, svgId, onTimerReady, onTimerExpiredCallback, onTimerClosedCallback) {
         this.svg = document.getElementById(svgId);
         this.innerCircle1 = this.svg.querySelector('#innerCircle1');
         this.innerCircle2 = this.svg.querySelector('#innerCircle2');
@@ -59,6 +64,7 @@ export class Timer {
         this.completed_with_errors = new Sound('/assets/audio/completed_with_errors.mp3')
         this.boo = new Sound('/assets/audio/boo.mp3');
         this.totalTime = totalTime;
+        this.onTimerReady = onTimerReady;
         this.onTimerExpiredCallback = onTimerExpiredCallback;
         this.onTimerClosedCallback = onTimerClosedCallback;
     }
@@ -72,6 +78,9 @@ export class Timer {
         await this.completed_with_errors.load()
         await this.boo.load()
         console.log('Sound sources loaded');
+        if (this.onTimerReady) {
+            this.onTimerReady()
+        }
     }
 
     initializeAudio() {

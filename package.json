@@ -1,9 +1,25 @@
 {
   "scripts": {
-    "inject": "npx workbox injectManifest workbox-config.js && npx prettier --write service-worker.js "
+    "build": "npm-run-all -s build:*",
+    "build:minify-css": "postcss src/css/*.css --ext .min.css --dir dist/css",
+    "build:terser": "npm-run-all -s build:terser:*",
+    "build:terser:clean": "rimraf dist/js && mkdirp dist/js",
+    "build:terser:terse": "foreach -g \"src/js/*.js\" --concurrent -x \"terser #{path} -o dist/js/#{name}.min#{ext} -c \"ecma=6,toplevel\" -m \"toplevel,eval\"\"",
+    "build:bootstrap": "echo 'is bootstrap in dist up to date?'",
+    "build:inject": "npx workbox injectManifest workbox-config.js && npx prettier --write service-worker.js "
   },
   "devDependencies": {
+    "cssnano": "^6.0.3",
+    "foreach-cli": "^1.8.1",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.4.33",
+    "postcss-cli": "^11.0.0",
     "prettier": "^3.1.1",
+    "terser": "^5.26.0",
     "workbox-cli": "^7.0.0"
+  },
+  "dependencies": {
+    "mkdirp": "^3.0.1",
+    "rimraf": "^5.0.5"
   }
 }

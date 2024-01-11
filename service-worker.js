@@ -20,11 +20,10 @@ if (workbox) {
     { revision: '607a87857f704bb0fab7447bc204e09e', url: 'assets/audio/ticking.mp3' },
     { revision: '49185ae4ed1cace707f6bc3fa72840c0', url: 'dist/css/bootstrap.min.css' },
     { revision: '698806af8d2b9cbb382718bc75a7e34c', url: 'dist/css/index.min.css' },
-    { revision: '6c5d735ac46c27126596d4feeb736525', url: 'dist/js/TimerClass.min.js' },
-    { revision: 'a394f5f6f67bc4e0c8d39c486f27c617', url: 'index.html' },
-    { revision: '898fde52688367ffdecdb2a58bdb24f2', url: 'src/css/index.css' },
-    { revision: '01b669072b1d08df0e0222e00a2c4c9c', url: 'src/js/debounce.js' },
-    { revision: 'fdf2b55625a6afc2a979641c3e2c78be', url: 'src/js/TimerClass.js' },
+    { revision: '2168745c011f8892c32530f12e16c0ce', url: 'dist/js/TimerClass.min.js' },
+    { revision: '77f1ab74490996810fdd5ca1805e3847', url: 'index.html' },
+    { revision: '4d84ede38e2654cfb24463ece0f5c6f1', url: 'src/css/index.css' },
+    { revision: 'ac2e2657dd636a469d49c3384f36d861', url: 'src/js/TimerClass.js' },
   ])
 
   // Cache Google Fonts with a stale-while-revalidate strategy
