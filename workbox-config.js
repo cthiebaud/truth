@@ -1,7 +1,7 @@
 module.exports = {
   globDirectory: './',
   globPatterns: [
-    '**/*.{html,css,js,ico}'
+    '**/*.{html,css,js,ico,png}'
   ],
   "globIgnores": [
     "**/node_modules/**/*",
