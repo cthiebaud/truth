@@ -31,7 +31,7 @@ if (workbox) {
     { revision: '2168745c011f8892c32530f12e16c0ce', url: 'dist/js/TimerClass.min.js' },
     { revision: '0bed2c3ec94b7e28b108df966750c091', url: 'favicon.ico' },
     { revision: '318f1210aabf904c588a8cbb2b30c571', url: 'icon.png' },
-    { revision: '7ccd2928cbd10c75a7ca6237c58e0015', url: 'index.html' },
+    { revision: '9104f6714b8b3ce21e7b8b3db53fe622', url: 'index.html' },
     { revision: '4628442658184696eb42308be406a20d', url: 'screenshots/1280x800-screenshot.png' },
     { revision: '66b8f7519d6deda505b0f18f90e5394b', url: 'screenshots/750x1334-screenshot.png' },
     { revision: 'deafd520f5db6b1bd1c7c3adb91a7c10', url: 'src/css/index.css' },
