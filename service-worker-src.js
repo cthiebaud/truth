@@ -4,8 +4,21 @@ importScripts('https://storage.googleapis.com/workbox-cdn/releases/6.1.5/workbox
 // Set Workbox log level
 workbox.setConfig({ debug: false });
 
+// Reusable plugin for fetchDidSucceed logic
+const logFileFetchPlugin = {
+  fetchDidSucceed: async ({ request, response, event, state }) => {
+    console.log(`File fetched: ${request.url}, Source: ${response.source}`);
+    return response;
+  }
+}
+
 if (workbox) {
   console.log('Workbox is loaded.');
+
+  self.addEventListener('fetch', (event) => {
+    // Log the URL of the fetch event
+    console.log(`Fetch: ${event.request.url}`);
+  });
 
   // Use __WB_MANIFEST for precaching with revision info
   workbox.precaching.cleanupOutdatedCaches();
@@ -33,6 +46,7 @@ if (workbox) {
     new workbox.strategies.CacheFirst({
       cacheName: 'cdn-assets',
       plugins: [
+        /* logFileFetchPlugin, */
         new workbox.cacheableResponse.CacheableResponsePlugin({
           statuses: [0, 200],
         }),
@@ -45,10 +59,15 @@ if (workbox) {
 
   // Cache local assets with a cache-first strategy
   workbox.routing.registerRoute(
-    ({ url }) => url.origin === self.location.origin && /\.(mp3|png)$/.test(url.pathname),
+    ({ url }) => {
+      const isOK = url.origin === self.location.origin && /\.(mp3|png)$/.test(url.pathname)
+      // console.log("local-assets?", isOK, url.pathname)
+      return isOK
+    },
     new workbox.strategies.CacheFirst({
       cacheName: 'local-assets',
       plugins: [
+        /* logFileFetchPlugin, */
         new workbox.expiration.ExpirationPlugin({
           maxAgeSeconds: 7 * 24 * 60 * 60, // 7 days
         }),

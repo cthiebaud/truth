@@ -4,23 +4,29 @@ importScripts('https://storage.googleapis.com/workbox-cdn/releases/6.1.5/workbox
 // Set Workbox log level
 workbox.setConfig({ debug: false })
 
+// Reusable plugin for fetchDidSucceed logic
+const logFileFetchPlugin = {
+  fetchDidSucceed: async ({ request, response, event, state }) => {
+    console.log(`File fetched: ${request.url}, Source: ${response.source}`)
+    return response
+  },
+}
+
 if (workbox) {
   console.log('Workbox is loaded.')
+
+  self.addEventListener('fetch', (event) => {
+    // Log the URL of the fetch event
+    console.log(`Fetch: ${event.request.url}`)
+  })
 
   // Use __WB_MANIFEST for precaching with revision info
   workbox.precaching.cleanupOutdatedCaches()
   workbox.precaching.precacheAndRoute([
-    { revision: '852654ffdad5aac86bfdfddf2a416aaa', url: 'assets/audio/boo.mp3' },
-    { revision: '20d2db44eeddc41588b5deff851261b3', url: 'assets/audio/coin.mp3' },
-    { revision: '25e069da6a41c04a049f213379e2cf75', url: 'assets/audio/completed_with_errors.mp3' },
-    { revision: '9a74a10be602e2c7e109d45ae11fd297', url: 'assets/audio/fail.mp3' },
-    { revision: '13c6f4581b6e10d4359e6956781a9f8d', url: 'assets/audio/laughs-lower.mp3' },
-    { revision: 'be4df086684af2e99a4e66b8066f25cd', url: 'assets/audio/laughs.mp3' },
-    { revision: '680e993dde5168775f0e7c0b5adf6d99', url: 'assets/audio/tada.mp3' },
-    { revision: '607a87857f704bb0fab7447bc204e09e', url: 'assets/audio/ticking.mp3' },
     { revision: '49185ae4ed1cace707f6bc3fa72840c0', url: 'dist/css/bootstrap.min.css' },
     { revision: 'f1588a6c19ef2feea7a8402692ce430f', url: 'dist/css/index.min.css' },
     { revision: '2168745c011f8892c32530f12e16c0ce', url: 'dist/js/TimerClass.min.js' },
+    { revision: '0bed2c3ec94b7e28b108df966750c091', url: 'favicon.ico' },
     { revision: '8474f14a48839ead0433970011bc9d45', url: 'index.html' },
     { revision: 'defb9bed3878e67b7556aca04bb6dab6', url: 'src/css/index.css' },
     { revision: 'ac2e2657dd636a469d49c3384f36d861', url: 'src/js/TimerClass.js' },
@@ -48,6 +54,7 @@ if (workbox) {
     new workbox.strategies.CacheFirst({
       cacheName: 'cdn-assets',
       plugins: [
+        /* logFileFetchPlugin, */
         new workbox.cacheableResponse.CacheableResponsePlugin({
           statuses: [0, 200],
         }),
@@ -60,10 +67,15 @@ if (workbox) {
 
   // Cache local assets with a cache-first strategy
   workbox.routing.registerRoute(
-    ({ url }) => url.origin === self.location.origin && /\.(mp3|png)$/.test(url.pathname),
+    ({ url }) => {
+      const isOK = url.origin === self.location.origin && /\.(mp3|png)$/.test(url.pathname)
+      // console.log("local-assets?", isOK, url.pathname)
+      return isOK
+    },
     new workbox.strategies.CacheFirst({
       cacheName: 'local-assets',
       plugins: [
+        /* logFileFetchPlugin, */
         new workbox.expiration.ExpirationPlugin({
           maxAgeSeconds: 7 * 24 * 60 * 60, // 7 days
         }),
