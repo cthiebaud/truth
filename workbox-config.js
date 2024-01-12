@@ -1,14 +1,16 @@
 module.exports = {
   globDirectory: './',
   globPatterns: [
-    '**/*.{html,css,js,ico,png}'
+    '**/*.{html,ico,png}',
+    'dist/**/*.{css,js}'
   ],
-  "globIgnores": [
+  globIgnores: [
     "**/node_modules/**/*",
     "service-worker-src.js",
     "service-worker.js",
     "assets/audio/sources/**",
     "test/**",
+    "packages/**",
     "*.js",
   ],
   swSrc: 'service-worker-src.js',
