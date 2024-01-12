@@ -27,14 +27,14 @@ if (workbox) {
     { revision: '87f79b3cc6bf9a7e5357be5270a4cb5e', url: 'assets/png/manifest-icon-192.maskable.png' },
     { revision: '7feeedb3b21958e682727c240324fe4c', url: 'assets/png/manifest-icon-512.maskable.png' },
     { revision: '49185ae4ed1cace707f6bc3fa72840c0', url: 'dist/css/bootstrap.min.css' },
-    { revision: '9517d6aba9bcaf1acbd660df6f540fbf', url: 'dist/css/index.min.css' },
+    { revision: '97d95ac1a689a6e2228cbbb26755bade', url: 'dist/css/index.min.css' },
     { revision: '2168745c011f8892c32530f12e16c0ce', url: 'dist/js/TimerClass.min.js' },
     { revision: '0bed2c3ec94b7e28b108df966750c091', url: 'favicon.ico' },
     { revision: '318f1210aabf904c588a8cbb2b30c571', url: 'icon.png' },
-    { revision: '3e2b8f89e77557e0c9827549721780d0', url: 'index.html' },
+    { revision: '7ccd2928cbd10c75a7ca6237c58e0015', url: 'index.html' },
     { revision: '4628442658184696eb42308be406a20d', url: 'screenshots/1280x800-screenshot.png' },
     { revision: '66b8f7519d6deda505b0f18f90e5394b', url: 'screenshots/750x1334-screenshot.png' },
-    { revision: '9af17370486ef12ca028f3651f6dee4a', url: 'src/css/index.css' },
+    { revision: 'deafd520f5db6b1bd1c7c3adb91a7c10', url: 'src/css/index.css' },
     { revision: 'ac2e2657dd636a469d49c3384f36d861', url: 'src/js/TimerClass.js' },
   ])
 
