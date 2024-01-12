@@ -17,7 +17,9 @@
   "background_color": "#f1efe0",
   "related_applications": [],
   "prefer_related_applications": false,
-  "display_override": ["window-controls-overlay"],
+  "display_override": [
+    "window-controls-overlay"
+  ],
   "launch_handler": {
     "client_mode": "focus-existing"
   },
@@ -474,11 +476,22 @@
   ],
   "screenshots": [
     {
-      "src": "screenshot.jpg",
-      "sizes": "1800x1800",
-      "type": "image/jpeg"
+      "src": "screenshots/1280x800-screenshot.png",
+      "sizes": "1280x800",
+      "type": "image/png"
+    },
+    {
+      "src": "screenshots/750x1334-screenshot.png",
+      "sizes": "750x1334",
+      "type": "image/png"
     }
   ],
-  "features": ["Cross Platform", "fast", "simple"],
-  "categories": ["game"]
+  "features": [
+    "Cross Platform",
+    "fast",
+    "simple"
+  ],
+  "categories": [
+    "game"
+  ]
 }
