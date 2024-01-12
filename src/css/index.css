@@ -5,7 +5,7 @@ body {
   color: #173f35;
   stroke: #173f35;
   fill: #0d221d;
-  font-family: Georgia, "Times New Roman", Times, serif;
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 #copyright {
@@ -83,7 +83,7 @@ body {
 }
 
 #tables table thead th:nth-child(2):after {
-  content: "β";
+  content: 'β';
   width: 100%;
   overflow: visible;
   position: absolute;
@@ -95,7 +95,7 @@ body {
 }
 
 #tables table tbody tr:nth-child(1) th:after {
-  content: "α";
+  content: 'α';
   height: 100%;
   overflow: visible;
   position: absolute;
@@ -116,7 +116,7 @@ body {
   font-size: 10px;
   padding: 1px !important;
   background-color: transparent !important;
-  font-family: "Courier New", Courier, monospace;
+  font-family: 'Courier New', Courier, monospace;
   position: relative;
   min-width: var(--header-width_and_height);
   min-height: var(--header-width_and_height);
@@ -174,7 +174,7 @@ body {
 }
 
 .diagonal-line::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   right: 0;
@@ -202,31 +202,38 @@ body {
   opacity: 0;
 }
 
-#play {
+/* #play {
   position: relative;
+}
+*/
+
+button#play-again {
+  width: 20px;
+}
+
+button#play {
+  visibility: hidden;
+}
+
+button.playbutton {
+  position: relative;
+  border-radius: 0;
+  border: 1px solid #173f35;
+  border-radius: 50%;
   overflow: hidden;
   height: 38px;
   width: 40px;
 }
 
-button#play {
-  visibility: hidden;
-  position: relative;
-  border-radius: 0;
-  border: 1px solid #173f35;
-  border-radius: 50%;
-}
-
-button#play > * {
+button.playbutton > * {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   image-rendering: pixelated;
   color: #173f35;
-  font-family: "Courier New", Courier, monospace;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-size: 18px;
 }
 
