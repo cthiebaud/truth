@@ -37,8 +37,8 @@
     <link href="./favicon.ico" rel="icon" type="image/x-icon">
 
     <!-- changed by "NODE_ENV=<development|production> node my-build.js" -->
-    <link rel="stylesheet" href='/dist/css/bootstrap.min.css'>
-    <link rel="stylesheet" href='/dist/css/index.min.css'>
+    <link rel="stylesheet" href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css'>
+    <link rel="stylesheet" href='/src/css/index.css'>
 
     <!-- 
         <script type="text/javascript" src="https://livejs.com/live.js"></script>
@@ -48,7 +48,7 @@
 <body class="">
 
     <!-- Define the SVG as a symbol -->
-    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <svg xmlns="http://www.w3.org/2000/svg" class="symbol">
         <symbol id="svg-play">
             <path
                 d="M21.4086 9.35258C23.5305 10.5065 23.5305 13.4935 21.4086 14.6474L8.59662 21.6145C6.53435 22.736 4 21.2763 4 18.9671L4 5.0329C4 2.72368 6.53435 1.26402 8.59661 2.38548L21.4086 9.35258Z"
@@ -72,7 +72,7 @@
                     <div id="play-again" class="float-end">
                         <label>Play again</label>
                         <button id="playAgainButton" type="button" class="btn btn-light playbutton " aria-label="play-again">
-                            <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg width="18px" height="18px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <use xlink:href="#svg-play"></use>
                             </svg>
                         </button>
@@ -95,13 +95,13 @@
             </h1>
             <button id="play" type="button" class="btn btn-light playbutton" aria-label="play" disabled>
                 <div id="not_playing">
-                    <svg width="20px" height="20px" viewBox="0 1 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="18px" height="18px" viewBox="0 1 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="#svg-play"></use>
                     </svg>
                 </div>
-                <div id="timer-svg" style="position: relative;">
-                    <div id="compteARebours" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"></div>
-                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="position: absolute; top:0; left:0;">
+                <div id="timer-svg">
+                    <div id="compteARebours"></div>
+                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                         <g transform="rotate(-90 50 50)">
                             <circle id="innerCircle1" cx="50" cy="50" r="55" stroke="rgba(23, 63, 53, .25)" stroke-width="46" fill="none" />
                             <circle id="innerCircle2" cx="50" cy="50" r="40" stroke="rgba(23, 63, 53, .666)" stroke-width="0" fill="none" />
@@ -177,11 +177,11 @@
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('/service-worker.js')
                 .then((registration) => {
-                    console.log('Service Worker registered with scope:', registration.scope);
+                    console.log('Service Worker registered with scope:', registration.scope)
                 })
                 .catch((error) => {
-                    console.error('Service Worker registration failed:', error);
-                });
+                    console.error('Service Worker registration failed:', error)
+                })
         }
     </script>
     <script type="module">
@@ -190,33 +190,33 @@
         import tinycolor2 from 'https://cdn.jsdelivr.net/npm/tinycolor2@1.6.0/+esm'
 
         /* changed by "NODE_ENV=<development|production> node my-build.js" */
-        import { Timer } from './dist/js/TimerClass.min.js';
+        import { Timer } from './src/js/TimerClass.js'
 
         let paragraphBreaks = false // true //
 
         class ResultProperty {
             constructor(value) {
-                this._value = value;
+                this._value = value
             }
 
             // Getter for value
             get value() {
-                return this._value;
+                return this._value
             }
 
             // Setter for value
             set value(newValue) {
                 if (typeof newValue === 'number') {
-                    this._value = newValue;
+                    this._value = newValue
                 } else {
-                    console.error('Value must be a number');
+                    console.error('Value must be a number')
                 }
             }
 
             // Method to increment value
             increment() {
                 const previous = this._value
-                this._value += 1;
+                this._value += 1
                 return previous
             }
         }
@@ -227,24 +227,24 @@
             }
 
             reset() {
-                this._elapsed = new ResultProperty(1);
-                this._erred = new ResultProperty(0);
-                this._revealed = new ResultProperty(0);
+                this._elapsed = new ResultProperty(1)
+                this._erred = new ResultProperty(0)
+                this._revealed = new ResultProperty(0)
             }
 
             // Getter for elapsed
             get elapsed() {
-                return this._elapsed;
+                return this._elapsed
             }
 
             // Getter for erred
             get erred() {
-                return this._erred;
+                return this._erred
             }
 
             // Getter for unconcealed
             get unconcealed() {
-                return this._revealed;
+                return this._revealed
             }
         }
 
@@ -256,8 +256,8 @@
                 resultsModal.addEventListener('hidden.bs.modal', event => {
                     player._timer.close()
                 })
-                this._playing = false;
-                this._timer = new Timer(40, 'timer-svg', this.ready, this.expired, this.afterTimerClosed);
+                this._playing = false
+                this._timer = new Timer(40, 'timer-svg', this.ready, this.expired, this.afterTimerClosed)
                 this._timer.loadResources()
             }
 
@@ -265,12 +265,12 @@
                 // stop number drawing
                 clearInterval(player.showNumber)
                 // stop timer
-                player._timer.stop();
+                player._timer.stop()
                 document.getElementById('results-msg').innerHTML = msg
                 document.getElementById('results-elapsed').innerHTML = results.elapsed.value - 1
                 document.getElementById('results-unconcealed').innerHTML = results.unconcealed.value
                 document.getElementById('results-erred').innerHTML = results.erred.value
-                const currentDate = new Date();
+                const currentDate = new Date()
                 const options = {
                     weekday: 'long',
                     year: 'numeric',
@@ -280,12 +280,12 @@
                     minute: 'numeric',
                     // second: 'numeric',
                     // timeZoneName: 'short',
-                };
-                const formattedDate = currentDate.toLocaleString('en-US', options);
+                }
+                const formattedDate = currentDate.toLocaleString('en-US', options)
                 document.getElementById('modal-footer').innerHTML = formattedDate
                 // show results
-                let resultsModal = new bsModal(document.getElementById('resultsModal'));
-                resultsModal.show(); // will close timer when dismissed
+                let resultsModal = new bsModal(document.getElementById('resultsModal'))
+                resultsModal.show() // will close timer when dismissed
             }
 
             ready() {
@@ -357,13 +357,17 @@
 
             start() {
                 if (this.playing) return
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth' // Use 'smooth' for smooth scrolling
+                })
                 document.querySelectorAll('#tables td').forEach(elem => {
                     elem.classList.add('translucent')
                 })
                 this._timer.initializeAudio().then(() => {
-                    this._timer.start();
+                    this._timer.start()
                 }).catch((error) => {
-                    console.log('Error initializing audio context');
+                    console.log('Error initializing audio context')
                     document.querySelectorAll('#tables td').forEach(elem => {
                         elem.classList.remove('translucent')
                     })
@@ -375,7 +379,7 @@
                 this.results.reset()
                 function showCountDown(elapsed) {
                     const remaining = 40 - elapsed
-                    const darkenedRed = tinycolor2('#ff0000').darken(remaining).toString("hex6");
+                    const darkenedRed = tinycolor2('#ff0000').darken(remaining).toString("hex6")
                     document.getElementById('compteARebours').innerHTML = `<span style="color: ${darkenedRed}">${remaining}</span>`
                 }
                 showCountDown(0)
@@ -404,63 +408,54 @@
 
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]]
+                const j = Math.floor(Math.random() * (i + 1))
+                ;[array[i], array[j]] = [array[j], array[i]]
             }
         }
 
         function rotateArray(arr, offset) {
             if (offset == 0) return arr
-            const n = arr.length;
-            const rotated = arr.slice();
+            const n = arr.length
+            const rotated = arr.slice()
 
             for (let i = 0; i < n; i++) {
-                const newPosition = (i + offset) % n;
-                rotated[newPosition] = arr[i];
+                const newPosition = (i + offset) % n
+                rotated[newPosition] = arr[i]
             }
 
-            return rotated;
+            return rotated
         }
 
         function shuffleNoAdjacentDuplicates(array) {
-            const n = array.length;
+            const n = array.length
             const shuffledArray = array.slice()
 
             let previousValue = null
             for (let i = n - 1; i > 0; i--) {
-                const possibles = Array.from({ length: i + 1 }, (_, index) => index);
-                let world = possibles;
+                const possibles = Array.from({ length: i + 1 }, (_, index) => index)
+                let world = possibles
                 if (previousValue !== null) {
-                    world = possibles.filter(index => shuffledArray[index] !== previousValue);
+                    world = possibles.filter(index => shuffledArray[index] !== previousValue)
                 }
 
                 let pos
                 if (world.length !== 0) {
                     // Pick a random element in the world of possibles
-                    const p = Math.floor(Math.random() * world.length);
+                    const p = Math.floor(Math.random() * world.length)
                     pos = world[p]
                 } else {
                     // Pick a random element in the array
-                    pos = Math.floor(Math.random() * i);
+                    pos = Math.floor(Math.random() * i)
                 }
 
-                previousValue = shuffledArray[pos];
-
+                previousValue = shuffledArray[pos]
+                
                 // Swap element at position pos with element at position i
-                [shuffledArray[i], shuffledArray[pos]] = [shuffledArray[pos], shuffledArray[i]];
+                ;[shuffledArray[i], shuffledArray[pos]] = [shuffledArray[pos], shuffledArray[i]]
             }
 
-            /*
-            const countMap = array.reduce((acc, currentValue) => {
-        acc[currentValue] = (acc[currentValue] || 0) + 1;
-    return acc;
-            }, { });
-
-    console.log(countMap)
-    */
-
-            const randomPosition = Math.floor(Math.random() * n);
-            return rotateArray(shuffledArray, randomPosition);
+            const randomPosition = Math.floor(Math.random() * n)
+            return rotateArray(shuffledArray, randomPosition)
         }
 
         function setCellWidth(larger) {
@@ -469,13 +464,13 @@
             if (!larger) {
                 cellWidth = '52px'
             }
-            document.documentElement.style.setProperty('--cell-width_and_height', cellWidth);
-            document.documentElement.style.setProperty('--header-width_and_height', '18px');
-            document.documentElement.style.setProperty('--border-color', '#215c4d40');
+            document.documentElement.style.setProperty('--cell-width_and_height', cellWidth)
+            document.documentElement.style.setProperty('--header-width_and_height', '18px')
+            document.documentElement.style.setProperty('--border-color', '#215c4d40')
         }
 
         function toggleElementsVisibility(elements, displayValueWhenVisible) {
-            let display = null;
+            let display = null
             for (let tag of elements) {
                 if (display == null) {
                     display = tag.style.display !== displayValueWhenVisible ? displayValueWhenVisible : 'none'
@@ -485,8 +480,8 @@
             return display
         }
 
-        const 𝛗 = Symbol('private');
-        const 𝛗2 = Symbol('private2');
+        const 𝛗 = Symbol('private')
+        const 𝛗2 = Symbol('private2')
 
         class Axes {
             constructor() {
@@ -696,7 +691,7 @@
                     })
                     axes.applyVisibility()
                 }
-            });
+            })
 
             document.getElementById("aletheia").style.visibility = 'visible'
 
@@ -714,34 +709,34 @@
 
                                 function checkDescendantsClasses(element, classA, classX, classY) {
                                     // Find the nearest ancestor with class A
-                                    let ancestorWithClassA = findAncestor(element, classA);
+                                    let ancestorWithClassA = findAncestor(element, classA)
 
                                     if (!ancestorWithClassA) {
-                                        return false;
+                                        return false
                                     }
 
                                     // Find all descendants of the ancestor with class X
-                                    let elementsWithClassX = ancestorWithClassA.getElementsByClassName(classX);
+                                    let elementsWithClassX = ancestorWithClassA.getElementsByClassName(classX)
 
                                     // Convert the HTMLCollection to an array for easier iteration
-                                    let elementsArray = Array.from(elementsWithClassX);
+                                    let elementsArray = Array.from(elementsWithClassX)
 
                                     // Check if all descendants with class X also have class Y
                                     let allDescendantsHaveClassY = elementsArray.every(function (descendant) {
-                                        return !descendant.classList.contains(classY);
-                                    });
+                                        return !descendant.classList.contains(classY)
+                                    })
 
-                                    return allDescendantsHaveClassY;
+                                    return allDescendantsHaveClassY
                                 }
 
                                 // Helper function to find the nearest ancestor with a specific class
                                 function findAncestor(element, className) {
                                     while ((element = element.parentElement)) {
                                         if (element.classList.contains(className)) {
-                                            return element;
+                                            return element
                                         }
                                     }
-                                    return null;
+                                    return null
                                 }
 
                                 if (checkDescendantsClasses(elem, 'table', 'true', 'translucent')) {
@@ -761,7 +756,7 @@
 
         window.addEventListener("load", loadEvent => {
 
-            doIt();
+            doIt()
 
             function mega_shuffle() {
                 if (player.playing) return
@@ -772,14 +767,14 @@
             }
 
             const theTables = document.getElementById("tables")
-            const hammertime = new hammerjs(theTables);
+            const hammertime = new hammerjs(theTables)
 
             hammertime.on('swiperight', function () {
                 mega_shuffle()
-            });
+            })
             hammertime.on('swipeleft', function () {
                 mega_shuffle()
-            });
+            })
 
             document.getElementById("ab-axes").addEventListener('click', clickEvent => {
                 clickEvent.stopPropagation()
@@ -819,34 +814,44 @@
             document.getElementById("github").addEventListener('click', clickEvent => {
                 clickEvent.preventDefault()
                 clickEvent.stopPropagation()
-                window.open("https://github.com/cthiebaud/truth", "_github");
+                window.open("https://github.com/cthiebaud/truth", "_github")
             })
-
-            document.getElementById("play").addEventListener('click', clickEvent => {
-                clickEvent.preventDefault()
-                clickEvent.stopPropagation()
-                if (player.playing) {
-                    player.stop()
-                } else {
-                    player.start()
+            {
+                function playToggle(event) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                    if (player.playing) {
+                        player.stop()
+                    } else {
+                        player.start()
+                    }
                 }
-            })
+                document.getElementById("play").addEventListener('click', clickEvent => {
+                    playToggle(clickEvent)
+                })
+                document.addEventListener('keydown', function (keyboardEvent) {
+                    if (event.code === 'Space') {
+                        playToggle(keyboardEvent)
+                    }
+                })
+            }
+
             document.getElementById("playAgainButton").addEventListener('click', clickEvent => {
                 clickEvent.preventDefault()
                 clickEvent.stopPropagation()
                 player.stop()
                 mega_shuffle()
-                let resultsModal = document.getElementById('resultsModal');
+                let resultsModal = document.getElementById('resultsModal')
                 resultsModal.addEventListener('hidden.bs.modal', event => {
                     setTimeout(() => {
                         player.start()
                     }, 100)
                 }, { once: true, })
                 let modal = bsModal.getInstance(resultsModal)
-                modal.hide();
+                modal.hide()
             })
 
-        });
+        })
 
     </script>
 </body>

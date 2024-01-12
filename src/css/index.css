@@ -232,13 +232,31 @@ button.playbutton > * {
   transform: translate(-50%, -50%);
   image-rendering: pixelated;
   color: #173f35;
+}
+
+button#play > #timer-svg {
+  display: none;
+  position: relative;
+  width: 40px;
+  height: 40px;
+}
+
+button#play > #timer-svg > svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+button#play > #timer-svg > #compteARebours {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-family: 'Courier New', Courier, monospace;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-size: 18px;
 }
 
-button#play > #timer-svg {
+.symbol {
   display: none;
-  width: 40px;
-  height: 40px;
 }
