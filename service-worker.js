@@ -27,11 +27,11 @@ if (workbox) {
     { revision: '87f79b3cc6bf9a7e5357be5270a4cb5e', url: 'assets/png/manifest-icon-192.maskable.png' },
     { revision: '7feeedb3b21958e682727c240324fe4c', url: 'assets/png/manifest-icon-512.maskable.png' },
     { revision: '36c92c4620b5bee743d1ba9db44e74a6', url: 'dist/css/bootstrap.min.css' },
-    { revision: '97d95ac1a689a6e2228cbbb26755bade', url: 'dist/css/index.min.css' },
+    { revision: 'cfccdcce0b5e6ae4c39cf79b84b65d86', url: 'dist/css/index.min.css' },
     { revision: '2168745c011f8892c32530f12e16c0ce', url: 'dist/js/TimerClass.min.js' },
     { revision: '0bed2c3ec94b7e28b108df966750c091', url: 'favicon.ico' },
     { revision: '318f1210aabf904c588a8cbb2b30c571', url: 'icon.png' },
-    { revision: 'f57da365a0e525d24e010a701fdc88bb', url: 'index.html' },
+    { revision: '2582b6e34a5f0f7a6b5e584fc232a9a2', url: 'index.html' },
     { revision: '9a78d4bc8a15af00bd80e0f5796d02e5', url: 'packages/ios/com.cthiebaud.truth/next-steps.html' },
     { revision: 'bc1957f8b925088b05c47e7450f0440a', url: 'packages/ios/com.cthiebaud.truth/src/Aletheia/Assets.xcassets/AppIcon.appiconset/100.png' },
     { revision: '7469d046fa6bae8287e508f56c91773f', url: 'packages/ios/com.cthiebaud.truth/src/Aletheia/Assets.xcassets/AppIcon.appiconset/1024.png' },
@@ -81,7 +81,7 @@ if (workbox) {
     { revision: '593c49dde5e832ca77fee89fd32dc4d5', url: 'packages/ios/com.cthiebaud.truth/src/launch-64.png' },
     { revision: '4628442658184696eb42308be406a20d', url: 'screenshots/1280x800-screenshot.png' },
     { revision: '66b8f7519d6deda505b0f18f90e5394b', url: 'screenshots/750x1334-screenshot.png' },
-    { revision: 'deafd520f5db6b1bd1c7c3adb91a7c10', url: 'src/css/index.css' },
+    { revision: 'b550e8f61c3fef22565ecdae0e6bf164', url: 'src/css/index.css' },
     { revision: 'ac2e2657dd636a469d49c3384f36d861', url: 'src/js/TimerClass.js' },
   ])
 
