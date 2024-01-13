@@ -9,6 +9,8 @@ const productionPaths = [
     "'/dist/css/index.min.css'",
     "/* BEGIN comment for dev */",
     "/* END comment for dev */",
+    "<!-- BEGIN Button trigger modal for test - - >",
+    "< ! - - END Button trigger modal for test -->",
 ];
 const developmentPaths = [
     "'./src/js/TimerClass.js'",
@@ -16,6 +18,8 @@ const developmentPaths = [
     "'/src/css/index.css'",
     "/* BEGIN comment for dev * /",
     "/ * END comment for dev */",
+    "<!-- BEGIN Button trigger modal for test -->",
+    "<!-- END Button trigger modal for test -->",
 ];
 
 // Check if the arrays have the same length

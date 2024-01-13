@@ -37,7 +37,7 @@ if (workbox) {
     { revision: 'e7e93808bde4ceead0f0bb8727c817fa', url: 'favicons/mstile-150x150.png' },
     { revision: '318f1210aabf904c588a8cbb2b30c571', url: 'icon.png' },
     { revision: '5ca35952e03f6b381dc92b93a4d1430a', url: 'icon2.png' },
-    { revision: 'd6bc8c88d0083a238f3e68694659a886', url: 'index.html' },
+    { revision: 'd32082fad33f4e5451f60ca52b3b8d90', url: 'index.html' },
     { revision: '4628442658184696eb42308be406a20d', url: 'screenshots/1280x800-screenshot.png' },
     { revision: '66b8f7519d6deda505b0f18f90e5394b', url: 'screenshots/750x1334-screenshot.png' },
     { revision: '41bb2eba0acba8024a642cbaa43580d9', url: 'screenshots/input.png' },
