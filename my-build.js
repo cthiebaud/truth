@@ -6,12 +6,16 @@ const toProduction = process.env.NODE_ENV === 'production';
 const productionPaths = [
     "'./dist/js/TimerClass.min.js'",
     "'/dist/css/bootstrap.min.css'",
-    "'/dist/css/index.min.css'"
+    "'/dist/css/index.min.css'",
+    "/* BEGIN comment for dev */",
+    "/* END comment for dev */",
 ];
 const developmentPaths = [
     "'./src/js/TimerClass.js'",
     "'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css'",
     "'/src/css/index.css'",
+    "/* BEGIN comment for dev * /",
+    "/ * END comment for dev */",
 ];
 
 // Check if the arrays have the same length

@@ -52,13 +52,13 @@
     <meta name="msapplication-config" content="/favicons/browserconfig.xml">
     <meta name="theme-color" content="#f8f7ef">
 
-    <!-- changed by "NODE_ENV=<development|production> node my-build.js" -->
+    <!-- /* changed by "NODE_ENV=<development|production> node my-build.js" or "npm run <dev\prod>" */ -->
     <link rel="stylesheet" href='/dist/css/bootstrap.min.css'>
     <link rel="stylesheet" href='/dist/css/index.min.css'>
 
     <!-- 
-    <script type="text/javascript" src="https://livejs.com/live.js"></script>
     -->
+    <script type="text/javascript" src="https://livejs.com/live.js"></script>
 </head>
 
 <body class="">
@@ -125,11 +125,11 @@
             </button>
             <div id="buttons" class="btn-group btn-group-sm" role="group">
 
-                <!-- Button trigger modal for test
+                <!-- BEGIN Button trigger modal for test - - >
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#resultsModal">
                         *
                     </button>
-                -->
+                < ! - - END Button trigger modal for test -->
 
                 <input type="checkbox" class="btn-check" id="table-borders" autocomplete="off" aria-label="table-borders toggle">
                 <label class="btn btn-outline-light" for="table-borders">
@@ -188,8 +188,7 @@
         </h1>
     </div>
     <script>
-        /*
-        */
+        /* BEGIN comment for dev */
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('/service-worker.js')
             .then((registration) => {
@@ -199,18 +198,14 @@
                 console.error('Service Worker registration failed:', error)
             })
         }
+        /* END comment for dev */
     </script>
-    <!-- 
-        Using Bootstrap as a module
-
-        cf. https://getbootstrap.com/docs/5.3/getting-started/javascript/
-    -->
     <script type="module">
         import { Modal as bsModal } from 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/+esm'
         import hammerjs from 'https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/+esm'
         import tinycolor2 from 'https://cdn.jsdelivr.net/npm/tinycolor2@1.6.0/+esm'
 
-        /* changed by "NODE_ENV=<development|production> node my-build.js" */
+        /* changed by "NODE_ENV=<development|production> node my-build.js" or "npm run <dev\prod>" */
         import { Timer } from './dist/js/TimerClass.min.js'
 
         let paragraphBreaks = false // true //
@@ -857,7 +852,7 @@
                 })
             }
 
-            document.getElementById("playAgainButton").addEventListener('click', clickEvent => {
+            document.getElementById("play-again").addEventListener('click', clickEvent => {
                 clickEvent.preventDefault()
                 clickEvent.stopPropagation()
                 player.stop()
