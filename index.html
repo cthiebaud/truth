@@ -13,19 +13,19 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Unconcealment of Truth</title>
+    <title>The Unconcealment of Truths</title>
     <meta name="description" content="Unconceal the colored bricks to reveal the truth tables.">
 
     <!-- Open Graph data -->
     <!-- https://yoast.com/help/fb-app-id-warnings/
         Facebook’s “default APP ID” : 966242223397117 
-        The Unconcealment of Truth : 1379446882965224
+        The Unconcealment of Truths : 1379446882965224
         https://developers.facebook.com/apps/1379446882965224/dashboard/
     -->
     <meta property="fb:app_id" content="1379446882965224" />
 
     <meta property="og:locale" content="en_US">
-    <meta property="og:title" content="The Unconcealment of Truth" />
+    <meta property="og:title" content="The Unconcealment of Truths" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://aletheia.cthiebaud.com" />
     <meta property="og:description" content="Unconceal the colored bricks to reveal the truth tables." />
@@ -63,28 +63,67 @@
 
 <body class="">
 
-    <!-- Define the SVG as a symbol -->
+    <!-- Define the play button svg as a symbol -->
     <svg xmlns="http://www.w3.org/2000/svg" class="symbol">
         <symbol id="svg-play" viewBox="0 0 24 24">
             <path
-                d="M21.4086 9.35258C23.5305 10.5065 23.5305 13.4935 21.4086 14.6474L8.59662 21.6145C6.53435 22.736 4 21.2763 4 18.9671L4 5.0329C4 2.72368 6.53435 1.26402 8.59661 2.38548L21.4086 9.35258Z"
-                fill="#1C274C" />
+                d="M21.4086 9.35258C23.5305 10.5065 23.5305 13.4935 21.4086 14.6474L8.59662 21.6145C6.53435 22.736 4 21.2763 4 18.9671L4 5.0329C4 2.72368 6.53435 1.26402 8.59661 2.38548L21.4086 9.35258Z" />
         </symbol>
     </svg>
 
     <!-- Modal -->
     <div id="resultsModal" class="modal fade" tabindex="-1" aria-labelledby="resultsModalLabel" aria-hidden="true">
+
+        <style>
+            #modal-body #results-display {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            #modal-body #results-display table {
+                /* max-width: 300px;
+                You can adjust the max-width based on your design */
+                margin: auto;
+                /* Center the table within the container */
+            }
+
+            #modal-body #results-display table td {
+                text-align: left;
+            }
+
+            #modal-body #results-display table td:first-child {
+                text-align: right;
+                padding-right: 10px;
+                /* Adjust the padding as needed */
+            }
+
+        </style>
+
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="resultsModalLabel">Result</h1>
+                    <h1 class="modal-title fs-5" id="resultsModalLabel">The Unconcealment of Truths</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div id="modal-body" class="modal-body">
                     <h1 id="results-msg"></h1>
-                    <div>Elapsed: <span id="results-elapsed"></span> seconds</div>
-                    <div>Unconcealed: <span id="results-unconcealed"></span> out of 32</div>
-                    <div>Erred: <span id="results-erred"></span></div>
+                    <div id="results-display">
+                        <table>
+                            <tr>
+                                <td>Elapsed</td>
+                                <td><span id="results-elapsed"></span> seconds</td>
+                            </tr>
+                            <tr>
+                                <td>Unconcealed</td>
+                                <td><span id="results-unconcealed"></span> out of 32</td>
+                            </tr>
+                            <tr>
+                                <td>Erred</td>
+                                <td><span id="results-erred"></span></td>
+                            </tr>
+                        </table>
+                    </div>
                     <div id="play-again" class="float-end">
                         <label>Play again</label>
                         <button id="playAgainButton" type="button" class="btn btn-light playbutton " aria-label="play-again">
@@ -94,7 +133,7 @@
                         </button>
                     </div>
                 </div>
-                <div id="modal-footer" class="modal-footer">
+                <div id="modal-footer" class="modal-footer" style="font-size: smaller;">
                     &nbsp;
                 </div>
             </div>
@@ -126,10 +165,10 @@
             <div id="buttons" class="btn-group btn-group-sm" role="group">
 
                 <!-- BEGIN Button trigger modal for test - - >
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#resultsModal">
-                        *
-                    </button>
-                < ! - - END Button trigger modal for test -->
+                    < ! - - END Button trigger modal for test -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#resultsModal">
+                    *
+                </button>
 
                 <input type="checkbox" class="btn-check" id="table-borders" autocomplete="off" aria-label="table-borders toggle">
                 <label class="btn btn-outline-light" for="table-borders">
@@ -285,7 +324,7 @@
                 document.getElementById('results-msg').innerHTML = msg
                 document.getElementById('results-elapsed').innerHTML = results.elapsed.value - 1
                 document.getElementById('results-unconcealed').innerHTML = results.unconcealed.value
-                document.getElementById('results-erred').innerHTML = results.erred.value
+                document.getElementById('results-erred').innerHTML = results.erred.value !== 0 ? results.erred.value : '∅'
                 const currentDate = new Date()
                 const options = {
                     weekday: 'long',
