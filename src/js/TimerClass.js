@@ -1,4 +1,5 @@
 // TimerClass.js
+import tinycolor2 from 'https://cdn.jsdelivr.net/npm/tinycolor2@1.6.0/+esm'
 
 class Sound {
     constructor(file) {
@@ -18,7 +19,7 @@ class Sound {
     }
     connect() {
         if (this.soundBuffer == null) {
-            return { start: () => console.log("fake start") }
+            return { start: () => {/* console.log("fake start") */} }
         }
         const soundSource = this.audioContext.createBufferSource();
         soundSource.buffer = this.soundBuffer;
@@ -43,18 +44,21 @@ class Sound {
 }
 
 export class Timer {
-    constructor(totalTime, svgId, onTimerReady, onTimerExpiredCallback, onTimerClosedCallback) {
+    constructor(totalTime, containerId, onTimerReady, onTimerTick, onTimerExpiredCallback, onTimerClosedCallback) {
         try {
-            this.svg = document.getElementById(svgId);
-            this.innerCircle1 = this.svg.querySelector('#innerCircle1');
-            this.innerCircle2 = this.svg.querySelector('#innerCircle2');
+            this.timerContainer = document.getElementById(containerId);
+            this.timerElementPlaying = this.timerContainer.querySelector("#timer-playing");
+            this.timerElementNotPlaying = this.timerContainer.querySelector("#timer-not-playing");
+            this.ticks = 0
+            this.innerCircle1 = this.timerElementPlaying.querySelector('#innerCircle1');
+            this.innerCircle2 = this.timerElementPlaying.querySelector('#innerCircle2');
             this.radius1 = this.innerCircle1.getAttribute('r');
             this.radius2 = this.innerCircle2.getAttribute('r');
             this.circonf1 = this.radius1 * 2 * Math.PI;
             this.circonf2 = this.radius2 * 2 * Math.PI;
-            this.radius = this.svg.width / 4;
-            this.centerX = this.svg.width / 2;
-            this.centerY = this.svg.height / 2;
+            this.radius = this.timerElementPlaying.width / 4;
+            this.centerX = this.timerElementPlaying.width / 2;
+            this.centerY = this.timerElementPlaying.height / 2;
             this.timerId = null;
             this.audioContext = null;
             this.ticking = new Sound('/assets/audio/ticking.mp3');
@@ -67,6 +71,7 @@ export class Timer {
             this.guitar = new Sound('/assets/audio/guitar-riff.mp3');
             this.totalTime = totalTime;
             this.onTimerReady = onTimerReady;
+            this.onTimerTick = onTimerTick;
             this.onTimerExpiredCallback = onTimerExpiredCallback;
             this.onTimerClosedCallback = onTimerClosedCallback;
         } catch (error) {
@@ -83,7 +88,7 @@ export class Timer {
         await this.completed_with_errors.load()
         await this.boo.load()
         await this.guitar.load()
-        console.log('Sound sources loaded');
+        /* console.log('Sound sources loaded') */
         if (this.onTimerReady) {
             this.onTimerReady()
         }
@@ -112,7 +117,7 @@ export class Timer {
                 await this.boo.decode(this.audioContext)
                 await this.guitar.decode(this.audioContext)
 
-                console.log('Audio context initialized successfully, sound sources connected');
+                /* console.log('Audio context initialized successfully, sound sources connected') */
                 resolve(); // Resolve the promise on success
 
             } catch (error) {
@@ -122,13 +127,15 @@ export class Timer {
         });
     }
 
+    /*
     clearTimer() {
-        this.svg.style.display = 'none';
         this.innerCircle2.setAttribute('stroke-width', 0);
     }
+    */
 
     drawTimer(timeRemaining) {
         let percentElapsed = ((this.totalTime - timeRemaining) / this.totalTime)
+        console.log(this.totalTime, timeRemaining, percentElapsed)
 
         let hidden1 = percentElapsed * this.circonf1
         let visible1 = this.circonf1 - hidden1
@@ -140,6 +147,8 @@ export class Timer {
         if (visible2 - 6 >= 0) {
             innerCircle2.setAttribute('stroke-dasharray', `0 3 ${visible2 - 6} ${hidden2 + 3}`);
             innerCircle2.setAttribute('stroke-width', 2);
+        } else {
+            innerCircle2.setAttribute('stroke-width', 0);
         }
     }
 
@@ -152,6 +161,7 @@ export class Timer {
             this.timerId = requestAnimationFrame((timestamp) => this.updateTimer(timestamp, startTime));
         } else {
             this.ticking.stop();
+            clearInterval(this.showNumber)
             if (this.onTimerExpiredCallback) {
                 this.onTimerExpiredCallback();
             } else {
@@ -162,24 +172,33 @@ export class Timer {
     }
 
     start() {
-        this.svg.style.display = 'block';
+        this.timerElementPlaying.style.display = 'block';
+        this.timerElementNotPlaying.style.display = 'none';
+        this.ticks = 0
         this.ticking.play();
         const startTime = performance.now();
         this.timerId = requestAnimationFrame((timestamp) => this.updateTimer(timestamp, startTime));
-        console.log('timer started');
+        this.onTimerTick(this.totalTime, this.ticks)
+        this.showNumber = setInterval(() => {
+            this.onTimerTick(this.totalTime, ++this.ticks)
+        }, 1000)
+
+        /* console.log('timer started') */
     }
     stop() {
-        this.clearTimer()
+        clearInterval(this.showNumber)
+
+        // this.clearTimer()
         cancelAnimationFrame(this.timerId);
         this.timerId = null
         this.ticking.stop();
-        console.log('timer stopped');
+        /* console.log('timer stopped') */
     }
     close() {
         if (this.audioContext) {
-            console.log("closing audioContext...")
+            /* console.log("closing audioContext...") */
             this.audioContext.close().then(() => {
-                console.log('Audio context closed and nullified');
+                /* console.log('Audio context closed and nullified') */
                 if (this.onTimerClosedCallback) {
                     this.onTimerClosedCallback();
                 }
@@ -190,6 +209,8 @@ export class Timer {
                 this.onTimerClosedCallback();
             }
         }
-        console.log('timer closed');
+        this.timerElementPlaying.style.display = 'none';
+        this.timerElementNotPlaying.style.display = 'block';
+        /* console.log('timer closed') */
     }
 }

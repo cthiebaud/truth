@@ -55,6 +55,7 @@
     <!-- /* changed by "NODE_ENV=<development|production> node my-build.js" or "npm run <dev\prod>" */ -->
     <link rel="stylesheet" href='/dist/css/bootstrap.min.css'>
     <link rel="stylesheet" href='/dist/css/index.min.css'>
+    <link rel="stylesheet" href='/dist/css/timer.min.css'>
 
     <!-- BEGIN livejs for test - - >
         <script type="text/javascript" src="https://livejs.com/live.js"></script>
@@ -64,7 +65,7 @@
 <body class="">
 
     <!-- Define the play button svg as a symbol -->
-    <svg xmlns="http://www.w3.org/2000/svg" class="symbol">
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
         <symbol id="svg-play" viewBox="0 0 24 24">
             <path
                 d="M21.4086 9.35258C23.5305 10.5065 23.5305 13.4935 21.4086 14.6474L8.59662 21.6145C6.53435 22.736 4 21.2763 4 18.9671L4 5.0329C4 2.72368 6.53435 1.26402 8.59661 2.38548L21.4086 9.35258Z" />
@@ -218,11 +219,11 @@
         <nav id="nav" class="navbar fixed-bottom">
             <div class="container-fluid justify-content-center">
                 <button id="play" type="button" class="btn btn-light playbutton" aria-label="play" disabled>
-                    <svg id="not_playing" xmlns="http://www.w3.org/2000/svg">
+                    <svg id="timer-not-playing" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="#svg-play"></use>
                     </svg>
-                    <div id="timer-svg">
-                        <div id="compteARebours">12</div>
+                    <div id="timer-playing">
+                        <div id="compte-à-rebours"></div>
                         <svg viewBox="4 4 92 92" xmlns="http://www.w3.org/2000/svg">
                             <g transform="rotate(-90 50 50)">
                                 <circle id="innerCircle1" cx="50" cy="50" r="55" stroke="rgba(23, 63, 53, .25)" stroke-width="46" fill="none" />
@@ -321,7 +322,7 @@
                     player._timer.close()
                 })
                 this._playing = false
-                this._timer = new Timer(40, 'timer-svg', this.ready, this.expired, this.afterTimerClosed)
+                this._timer = new Timer(60, 'play', this.ready, this.tick, this.expired, this.afterTimerClosed)
                 this._timer.loadResources()
             }
 
@@ -331,7 +332,7 @@
                 // stop timer
                 player._timer.stop()
                 document.getElementById('results-msg').innerHTML = msg
-                document.getElementById('results-elapsed').innerHTML = results.elapsed.value - 1
+                document.getElementById('results-elapsed').innerHTML = results.elapsed.value - 2
                 document.getElementById('results-unconcealed').innerHTML = results.unconcealed.value
                 document.getElementById('results-erred').innerHTML = results.erred.value !== 0 ? results.erred.value : '∅'
                 const currentDate = new Date()
@@ -355,6 +356,16 @@
             ready() {
                 document.getElementById("play").style.visibility = 'visible'
                 document.getElementById("play").disabled = false
+            }
+
+            tick(totalTime, ticks) {
+                function showCountDown(elapsed) {
+                    const remaining = totalTime - elapsed
+                    const darkenedRed = tinycolor2('#ff0000').darken(remaining).toString("hex6")
+                    document.getElementById('compte-à-rebours').innerHTML = `<span style="color: ${darkenedRed}">${remaining}</span>`
+                }
+                showCountDown(this.ticks)
+                player.results.elapsed.increment()
             }
 
             expired() {
@@ -447,24 +458,13 @@
                         elem.classList.remove('translucent')
                     })
                 }).finally(() => {
-                    document.getElementById('not_playing').style.display = 'none'
                     document.getElementById("shuffle-colors").disabled = true
                     document.getElementById("paragraph-breaks").disabled = true
                 })
                 this.results.reset()
-                function showCountDown(elapsed) {
-                    const remaining = 40 - elapsed
-                    const darkenedRed = tinycolor2('#ff0000').darken(remaining).toString("hex6")
-                    document.getElementById('compteARebours').innerHTML = `<span style="color: ${darkenedRed}">${remaining}</span>`
-                }
-                showCountDown(0)
-                this.showNumber = setInterval(() => {
-                    showCountDown(this.results.elapsed.increment())
-                }, 1000)
                 this.playing = true
             }
             afterTimerClosed() {
-                document.getElementById('not_playing').style.display = 'block'
                 document.getElementById("shuffle-colors").disabled = false
                 document.getElementById("paragraph-breaks").disabled = false
                 document.getElementById('play').classList.remove('playing')
@@ -473,7 +473,6 @@
             }
             stop() {
                 if (!this.playing) return
-                clearInterval(player.showNumber)
                 this._timer.stop()
                 this._timer.close()
                 this.playing = false

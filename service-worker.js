@@ -37,7 +37,7 @@ if (workbox) {
     { revision: 'e7e93808bde4ceead0f0bb8727c817fa', url: 'favicons/mstile-150x150.png' },
     { revision: '318f1210aabf904c588a8cbb2b30c571', url: 'icon.png' },
     { revision: '5ca35952e03f6b381dc92b93a4d1430a', url: 'icon2.png' },
-    { revision: 'c033ca48e20949a1a0159f702c97e50d', url: 'index.html' },
+    { revision: 'c423fc754c0770d8e02c6d521ee86bc4', url: 'index.html' },
     { revision: '4628442658184696eb42308be406a20d', url: 'screenshots/1280x800-screenshot.png' },
     { revision: '66b8f7519d6deda505b0f18f90e5394b', url: 'screenshots/750x1334-screenshot.png' },
     { revision: '41bb2eba0acba8024a642cbaa43580d9', url: 'screenshots/input.png' },
@@ -45,8 +45,9 @@ if (workbox) {
     { revision: '9b179f93bb00dfa436d3cb8d836ff1f4', url: 'screenshots/iPhone15.png' },
     { revision: 'abf15913f3920d1a68ae587e4b8e6226', url: 'screenshots/output.png' },
     { revision: 'd6260c94d4534a4875cf6963ccb25f9a', url: 'dist/css/bootstrap.min.css' },
-    { revision: '810e0c4b3f92827967b5db6a2c4da9c2', url: 'dist/css/index.min.css' },
-    { revision: '62ff270122045e3318555878c3ed04ab', url: 'dist/js/TimerClass.min.js' },
+    { revision: '522f30024b8a8861d3bfb3d02643d2ac', url: 'dist/css/index.min.css' },
+    { revision: '4e8fb6c831539bac1f0a1ea14317c89c', url: 'dist/css/timer.min.css' },
+    { revision: '166defce0126b8793cdf0d31e3fb41e8', url: 'dist/js/TimerClass.min.js' },
   ])
 
   // Cache Google Fonts with a stale-while-revalidate strategy
