@@ -147,20 +147,6 @@
                     <path d="M16 18.6L20 15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
             </h1>
-            <button id="play" type="button" class="btn btn-light playbutton" aria-label="play" disabled>
-                <svg id="not_playing" xmlns="http://www.w3.org/2000/svg">
-                    <use xlink:href="#svg-play"></use>
-                </svg>
-                <div id="timer-svg">
-                    <div id="compteARebours">12</div>
-                    <svg viewBox="4 4 92 92" xmlns="http://www.w3.org/2000/svg">
-                        <g transform="rotate(-90 50 50)">
-                            <circle id="innerCircle1" cx="50" cy="50" r="55" stroke="rgba(23, 63, 53, .25)" stroke-width="46" fill="none" />
-                            <circle id="innerCircle2" cx="50" cy="50" r="40" stroke="rgba(23, 63, 53, .666)" stroke-width="0" fill="none" />
-                        </g>
-                    </svg>
-                </div>
-            </button>
             <div id="buttons" class="btn-group btn-group-sm" role="group">
 
                 <!-- BEGIN Button trigger modal for test - - >
@@ -188,17 +174,11 @@
                 <input type="checkbox" class="btn-check" id="paragraph-breaks" autocomplete="off" aria-label="paragraph-breaks toggle">
                 <label class="btn btn-outline-light" for="paragraph-breaks">
                     <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="16" height="16" viewBox="0 0 24 24">
-                        
+
                         <g transform="scale(-1, 1) translate(-24, 0)">
-                        <path d="M7 15h15v1H7zm-5 7h20v-1H2zM22 9H12v1h10zm0-6h-5v1h5z"/>
+                            <path d="M7 15h15v1H7zm-5 7h20v-1H2zM22 9H12v1h10zm0-6h-5v1h5z" />
                         </g>
                     </svg>
-                        <!-- 
-                        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="16" height="16" viewBox="0 0 14.963 14.974">
-                            <path stroke="none"
-                            d="M14.963 0H3.955A3.96 3.96 0 0 0 0 3.955a3.958 3.958 0 0 0 3.955 3.954h3.008v7.065h1V1h2.015v13.974h1V1h3.985zm-8 6.91H3.955A2.957 2.957 0 0 1 1 3.956a2.958 2.958 0 0 1 2.955-2.955h3.008z" />
-                        </svg>
-                        -->
                 </label>
                 <!-- https://stackoverflow.com/a/72784674/1070215 -->
                 <div class="m-0 p-0 button-separator"></div>
@@ -217,7 +197,9 @@
                 </button>
             </div>
         </div>
+        
         <div id="tables" class="transparent-border center-children"></div>
+
         <h1 id="aletheia" class="text-center p-2 mb-0 d-flex justify-content-between align-items-end">
             <div id="copyright" class="text-body-tertiary float-start">
                 ©&nbsp;CT
@@ -232,6 +214,26 @@
                 </svg>
             </button>
         </h1>
+
+        <nav id="nav" class="navbar fixed-bottom">
+            <div class="container-fluid justify-content-center">
+                <button id="play" type="button" class="btn btn-light playbutton" aria-label="play" disabled>
+                    <svg id="not_playing" xmlns="http://www.w3.org/2000/svg">
+                        <use xlink:href="#svg-play"></use>
+                    </svg>
+                    <div id="timer-svg">
+                        <div id="compteARebours">12</div>
+                        <svg viewBox="4 4 92 92" xmlns="http://www.w3.org/2000/svg">
+                            <g transform="rotate(-90 50 50)">
+                                <circle id="innerCircle1" cx="50" cy="50" r="55" stroke="rgba(23, 63, 53, .25)" stroke-width="46" fill="none" />
+                                <circle id="innerCircle2" cx="50" cy="50" r="40" stroke="rgba(23, 63, 53, .666)" stroke-width="0" fill="none" />
+                            </g>
+                        </svg>
+                    </div>
+                </button>
+            </div>
+        </nav>
+
     </div>
     <script>
         /* BEGIN comment for dev */

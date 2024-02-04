@@ -44,30 +44,34 @@ class Sound {
 
 export class Timer {
     constructor(totalTime, svgId, onTimerReady, onTimerExpiredCallback, onTimerClosedCallback) {
-        this.svg = document.getElementById(svgId);
-        this.innerCircle1 = this.svg.querySelector('#innerCircle1');
-        this.innerCircle2 = this.svg.querySelector('#innerCircle2');
-        this.radius1 = this.innerCircle1.getAttribute('r');
-        this.radius2 = this.innerCircle2.getAttribute('r');
-        this.circonf1 = this.radius1 * 2 * Math.PI;
-        this.circonf2 = this.radius2 * 2 * Math.PI;
-        this.radius = this.svg.width / 4;
-        this.centerX = this.svg.width / 2;
-        this.centerY = this.svg.height / 2;
-        this.timerId = null;
-        this.audioContext = null;
-        this.ticking = new Sound('/assets/audio/ticking.mp3');
-        this.coin = new Sound('/assets/audio/coin.mp3');
-        this.laughs = new Sound('/assets/audio/laughs-lower.mp3');
-        this.tada = new Sound('/assets/audio/tada.mp3');
-        this.fail = new Sound('/assets/audio/fail.mp3');
-        this.completed_with_errors = new Sound('/assets/audio/completed_with_errors.mp3')
-        this.boo = new Sound('/assets/audio/boo.mp3');
-        this.guitar = new Sound('/assets/audio/guitar-riff.mp3');
-        this.totalTime = totalTime;
-        this.onTimerReady = onTimerReady;
-        this.onTimerExpiredCallback = onTimerExpiredCallback;
-        this.onTimerClosedCallback = onTimerClosedCallback;
+        try {
+            this.svg = document.getElementById(svgId);
+            this.innerCircle1 = this.svg.querySelector('#innerCircle1');
+            this.innerCircle2 = this.svg.querySelector('#innerCircle2');
+            this.radius1 = this.innerCircle1.getAttribute('r');
+            this.radius2 = this.innerCircle2.getAttribute('r');
+            this.circonf1 = this.radius1 * 2 * Math.PI;
+            this.circonf2 = this.radius2 * 2 * Math.PI;
+            this.radius = this.svg.width / 4;
+            this.centerX = this.svg.width / 2;
+            this.centerY = this.svg.height / 2;
+            this.timerId = null;
+            this.audioContext = null;
+            this.ticking = new Sound('/assets/audio/ticking.mp3');
+            this.coin = new Sound('/assets/audio/coin.mp3');
+            this.laughs = new Sound('/assets/audio/laughs-lower.mp3');
+            this.tada = new Sound('/assets/audio/tada.mp3');
+            this.fail = new Sound('/assets/audio/fail.mp3');
+            this.completed_with_errors = new Sound('/assets/audio/completed_with_errors.mp3')
+            this.boo = new Sound('/assets/audio/boo.mp3');
+            this.guitar = new Sound('/assets/audio/guitar-riff.mp3');
+            this.totalTime = totalTime;
+            this.onTimerReady = onTimerReady;
+            this.onTimerExpiredCallback = onTimerExpiredCallback;
+            this.onTimerClosedCallback = onTimerClosedCallback;
+        } catch (error) {
+            console.error(error)
+        }
     }
 
     async loadResources() {

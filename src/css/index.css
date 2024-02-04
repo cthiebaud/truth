@@ -19,10 +19,14 @@ body {
   font-family: var(--bs-body-font-family);
 }
 
+nav#nav {
+  border-top: 0.75px solid var(--border-color);
+  background-color: #f1efe0; /* f8f7ef; /* e9e6ce; */
+}
+
 #con.container {
   background-color: #f1efe0;
   border-radius: 0.375rem;
-  /* visibility: hidden; */
   max-width: 580px;
   padding: 0;
 }
@@ -30,6 +34,17 @@ body {
 #αβ {
   font-weight: normal;
   letter-spacing: 0.375rem;
+}
+
+#aletheia {
+  visibility: hidden;
+  padding-bottom: 4rem !important;
+}
+
+#aletheia a {
+  font-size: 72px;
+  text-decoration: none;
+  color: inherit;
 }
 
 #tables > div:not(.separator-container) {
@@ -188,16 +203,6 @@ body {
   /* Set the origin of the transformation to the top-right corner */
 }
 
-#aletheia {
-  visibility: hidden;
-}
-
-#aletheia a {
-  font-size: 72px;
-  text-decoration: none;
-  color: inherit;
-}
-
 .translucent {
   opacity: 0;
 }
@@ -210,14 +215,13 @@ body {
 #play-again {
   display: flex;
   align-items: flex-end;
-  padding: .25rem;
+  padding: 0.25rem;
   margin-bottom: -0.375rem;
 }
 
 #play-again label {
-  margin-right: .376rem;
+  margin-right: 0.376rem;
 }
-
 
 button#play {
   visibility: hidden;
