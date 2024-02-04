@@ -24,6 +24,12 @@ nav#nav {
   background-color: #f1efe0; /* f8f7ef; /* e9e6ce; */
 }
 
+#buttons > .btn-check:disabled+.btn, 
+#buttons > .btn-check[disabled]+.btn,
+#buttons > button:disabled  {
+  opacity: 0.33;
+}
+
 #con.container {
   background-color: #f1efe0;
   border-radius: 0.375rem;
@@ -171,21 +177,6 @@ nav#nav {
 
 .center-children {
   text-align: center;
-}
-
-#github,
-#buttons {
-  border: 0.75px solid var(--border-color);
-}
-
-#buttons > label.btn,
-#buttons > button {
-  border-color: transparent;
-}
-
-#button-separator {
-  background-color: lightgray;
-  width: 1px;
 }
 
 .diagonal-line::before {
