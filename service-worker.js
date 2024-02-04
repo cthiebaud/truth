@@ -44,7 +44,7 @@ if (workbox) {
     { revision: '45eb09b3ce5070919576d363a5938c0a', url: 'screenshots/iPad10th.png' },
     { revision: '9b179f93bb00dfa436d3cb8d836ff1f4', url: 'screenshots/iPhone15.png' },
     { revision: 'abf15913f3920d1a68ae587e4b8e6226', url: 'screenshots/output.png' },
-    { revision: '36c92c4620b5bee743d1ba9db44e74a6', url: 'dist/css/bootstrap.min.css' },
+    { revision: 'd6260c94d4534a4875cf6963ccb25f9a', url: 'dist/css/bootstrap.min.css' },
     { revision: '810e0c4b3f92827967b5db6a2c4da9c2', url: 'dist/css/index.min.css' },
     { revision: '62ff270122045e3318555878c3ed04ab', url: 'dist/js/TimerClass.min.js' },
   ])
