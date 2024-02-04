@@ -135,7 +135,7 @@ export class Timer {
 
     drawTimer(timeRemaining) {
         let percentElapsed = ((this.totalTime - timeRemaining) / this.totalTime)
-        console.log(this.totalTime, timeRemaining, percentElapsed)
+        /* console.log(this.totalTime, timeRemaining, percentElapsed) */
 
         let hidden1 = percentElapsed * this.circonf1
         let visible1 = this.circonf1 - hidden1
