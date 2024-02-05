@@ -198,11 +198,6 @@ nav#nav {
   opacity: 0;
 }
 
-/* #play {
-  position: relative;
-}
-*/
-
 #play-again {
   display: flex;
   align-items: flex-end;

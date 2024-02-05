@@ -83,20 +83,18 @@
             }
 
             #modal-body #results-display table {
-                /* max-width: 300px;
-                You can adjust the max-width based on your design */
                 margin: auto;
                 /* Center the table within the container */
             }
 
-            #modal-body #results-display table td {
-                text-align: left;
-            }
-
             #modal-body #results-display table td:first-child {
                 text-align: right;
-                padding-right: 10px;
-                /* Adjust the padding as needed */
+                padding-right: 5px;
+            }
+
+            #modal-body #results-display table td:last-child {
+                text-align: left;
+                padding-left: 5px;
             }
         </style>
 
@@ -126,8 +124,8 @@
                     </div>
                     <div id="play-again" class="float-end">
                         <label>Play again</label>
-                        <button id="playAgainButton" type="button" class="btn btn-light playbutton " aria-label="play-again">
-                            <svg xmlns="http://www.w3.org/2000/svg">
+                        <button id="playAgainButton" type="button" class="btn btn-light timer-container" aria-label="play-again" style="width:36px; height: 36px;">
+                            <svg class="timer-not-playing" xmlns="http://www.w3.org/2000/svg">
                                 <use xlink:href="#svg-play"></use>
                             </svg>
                         </button>
@@ -216,12 +214,12 @@
 
         <nav id="nav" class="navbar fixed-bottom">
             <div class="container-fluid justify-content-center">
-                <button id="play" type="button" class="btn btn-light playbutton" aria-label="play" disabled>
-                    <svg id="timer-not-playing" xmlns="http://www.w3.org/2000/svg">
+                <button id="play" type="button" class="btn btn-light timer-container" aria-label="play" disabled style="width:36px; height: 36px;">
+                    <svg class="timer-not-playing" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="#svg-play"></use>
                     </svg>
-                    <div id="timer-playing">
-                        <div id="compte-à-rebours"></div>
+                    <div class="timer-playing">
+                        <div class="compte-à-rebours"></div>
                         <svg viewBox="4 4 92 92" xmlns="http://www.w3.org/2000/svg">
                             <g transform="rotate(-90 50 50)">
                                 <circle id="innerCircle1" cx="50" cy="50" r="55" stroke="rgba(23, 63, 53, .25)" stroke-width="46" fill="none" />
@@ -360,7 +358,8 @@
                 function showCountDown(elapsed) {
                     const remaining = totalTime - elapsed
                     const darkenedRed = tinycolor2('#ff0000').darken(remaining).toString("hex6")
-                    document.getElementById('compte-à-rebours').innerHTML = `<span style="color: ${darkenedRed}">${remaining}</span>`
+
+                    Array.from(document.getElementsByClassName("compte-à-rebours")).forEach(element => element.innerHTML = `<span style="color: ${darkenedRed}">${remaining}</span>`);
                 }
                 showCountDown(this.ticks)
                 player.results.elapsed.increment()
@@ -451,7 +450,7 @@
                 this._timer.initializeAudio().then(() => {
                     this._timer.start()
                 }).catch((error) => {
-                    console.log('Error initializing audio context')
+                    console.log('Error initializing audio context', error)
                     document.querySelectorAll('#tables td').forEach(elem => {
                         elem.classList.remove('translucent')
                     })

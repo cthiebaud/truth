@@ -47,8 +47,8 @@ export class Timer {
     constructor(totalTime, containerId, onTimerReady, onTimerTick, onTimerExpiredCallback, onTimerClosedCallback) {
         try {
             this.timerContainer = document.getElementById(containerId);
-            this.timerElementPlaying = this.timerContainer.querySelector("#timer-playing");
-            this.timerElementNotPlaying = this.timerContainer.querySelector("#timer-not-playing");
+            this.timerElementPlaying = this.timerContainer.querySelector(".timer-playing");
+            this.timerElementNotPlaying = this.timerContainer.querySelector(".timer-not-playing");
             this.ticks = 0
             this.innerCircle1 = this.timerElementPlaying.querySelector('#innerCircle1');
             this.innerCircle2 = this.timerElementPlaying.querySelector('#innerCircle2');
