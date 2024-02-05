@@ -64,18 +64,20 @@
     const timer = new Timer(10, "qwe", onTimerReady, onTimerTick, onTimerExpire, onTimerClose);
 
     timer.loadResources().then(() =>
-      timer.initializeAudio().then(() => {
-        document.addEventListener("click", () => {
-          if (timer.timerId != null) {
-            timer.stop();
-          } else {
+      document.addEventListener("click", () => {
+        if (timer.timerId == null) {
+          if (timer.audioContext == null) {
             timer.initializeAudio().then(() => {
               timer.start();
             });
+          } else {
+            timer.close();
           }
-        });
+        } else {
+          timer.stop();
+        }
       })
-    );
+    )
   </script>
 </body>
 

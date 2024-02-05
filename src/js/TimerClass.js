@@ -127,12 +127,6 @@ export class Timer {
         });
     }
 
-    /*
-    clearTimer() {
-        this.innerCircle2.setAttribute('stroke-width', 0);
-    }
-    */
-
     drawTimer(timeRemaining) {
         let percentElapsed = ((this.totalTime - timeRemaining) / this.totalTime)
         /* console.log(this.totalTime, timeRemaining, percentElapsed) */
