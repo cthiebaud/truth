@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client-side JSX Compilation</title>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <!-- Include Babel Standalone -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.14.0/umd/react.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.14.0/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+
+    <script type="text/babel">
+        // Your JSX code here
+        const App = () => {
+            return (
+                <div>
+                    <h1>Hello, world!</h1>
+                    <p>This is a JSX component.</p>
+                </div>
+            );
+        };
+
+        // Compile JSX code
+        console.log(App.name)
+        const compiledCode = Babel.transform(`<${App.name} />`, {
+            presets: ['es2015', 'react']
+        }).code;
+
+        // Render the JSX component into the DOM
+        ReactDOM.render(<App />, document.getElementById('app'));
+    </script>
+</body>
+
+</html>
