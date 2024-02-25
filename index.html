@@ -318,7 +318,7 @@
                     player._timer.close()
                 })
                 this._playing = false
-                this._timer = new Timer(60, 'play', this.ready, this.tick, this.expired, this.afterTimerClosed)
+                this._timer = new Timer(120, 'play', this.ready, this.tick, this.expired, this.afterTimerClosed)
                 this._timer.loadResources()
             }
 
