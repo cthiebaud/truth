@@ -1,0 +1,15 @@
+[
+    {
+      "relation": [
+        "delegate_permission/common.handle_all_urls"
+      ],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "com.cthiebaud.aletheia.twa",
+        "sha256_cert_fingerprints": [
+          "EA:5C:B9:ED:45:36:50:9B:48:C3:C7:0D:79:53:A0:4C:8F:91:BB:AE:45:4C:01:FC:C1:82:30:2F:EF:80:AF:A8"
+        ]
+      }
+    }
+  ]
+  
