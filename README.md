@@ -4,6 +4,16 @@ La référence à Martin Heidegger est flagrante : « <i>En traduisant ἀλήθ
 
 Il s'agit donc de dévoiler les petites briques colorées pour faire apparaître ce que l'on appelle les tables de vérité ⁽²⁾ en jargon mathématique.
 
+5 résultats sont possibles:
+
+1. `You won!` : toutes les briques (32) sont dévoilées dans le temps imparti, sans erreurs.
+2. `Pas mal, mais peut mieux faire.` : toutes les briques sont dévoilées dans le temps imparti, avec erreurs.
+3. `Raté!` : le temps imparti est écoulé et il reste au moins une brique à dévoiler, avec ou sans erreurs.
+4. `You cheated?!` : toutes les briques sont dévoilées dans le temps imparti, mais toutes les erreurs possibles ont été faites (le joueur a cliqué **toutes** les cases sans distinction).
+5. `Ooooh ... Subtil !` : le temps imparti est écoulé, aucune brique n'est dévoilée, et toutes les erreurs possibles ont été faites (le joueur a joué au qui perd gagne).
+
+La petite musique qui accompagne chaque résultat est différente, of course.
+
 1. https://fr.wikipedia.org/wiki/Al%C3%A8theia_dans_la_philosophie_de_Martin_Heidegger
 1. https://fr.wikipedia.org/wiki/Table_de_v%C3%A9rit%C3%A9
 
