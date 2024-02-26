@@ -140,7 +140,7 @@
 
     <div id="con" class="container">
         <div id="alpha-beta" class="p-2 d-flex justify-content-between align-items-start">
-            <h1 id="αβ">(α,β)<svg width="32" height="32" preserveAspectRatio="none" viewBox="0 -2 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <h1 id="αβ">(A,B)<svg width="32" height="32" preserveAspectRatio="none" viewBox="0 -2 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M4 6L10.4 6C13.4928 6 16 8.50721 16 11.6L16 18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                     <path d="M16 18.6L12 15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                     <path d="M16 18.6L20 15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -650,12 +650,12 @@
                     '!α & !β',
                     '!α & β',
                     2,
-                    'α == β',
-                    'α != β',
                     'α',
                     'β',
                     '!α',
                     '!β',
+                    'α & β | !α & !β',
+                    'α & !β | !α & β',
                     3,
                     'α | β',
                     'α | !β',
@@ -665,6 +665,25 @@
                     'true',
                 ]
                 this[𝛗2] = this[𝛗].slice(0)
+                this.display = {
+                }
+                const negationMap = {
+                    '!α': "<span class='negation'>A</span>",
+                    '!β': "<span class='negation'>B</span>"
+                };
+                this[𝛗].forEach(item => {
+                    if (typeof item === 'string') {
+                        this.display[item] = item.replace(/(!?)α|(!?)β/g, (match, negationA, negationB) => {
+                            if (negationA === '!') {
+                                return negationMap['!α'];
+                            } else if (negationB === '!') {
+                                return negationMap['!β'];
+                            } else {
+                                return match === 'α' ? 'A' : 'B';
+                            }
+                        });
+                    }
+                });
             }
 
             iterate(iterator) {
@@ -678,7 +697,7 @@
                 if (f === 'true') {
                     return new OneOrTwoColors(colors.colorTrue)
                 }
-                if (f === "α == β" || f === "α != β") {
+                if (f === ('α & β | !α & !β') || f === 'α & !β | !α & β') {
                     return new OneOrTwoColors(colors.nextColor(), colors.nextColor())
                 }
                 return new OneOrTwoColors(colors.nextColor())
@@ -730,7 +749,7 @@
                     const tbodyID = `tbody${index}`
                     const template = `<div id="${elementID}">
         <table class="table inline table-sm caption-top table-borderless">
-            <caption class="text-center">${func}</caption>
+            <caption class="text-center">${functions.display[func]}</caption>
             <thead id="${theadID}"></thead>
             <tbody id="${tbodyID}"></tbody>
         </table>
@@ -834,7 +853,7 @@
                     let remainingTrue = document.querySelectorAll('#tables td.true.translucent').length
                     let remainingFalse = document.querySelectorAll('#tables td.false.translucent').length
                     if ((remainingTrue === 0)
-                        || 
+                        ||
                         (remainingFalse === 0 && remainingTrue === 32)) {
                         player.victory()
                     }
