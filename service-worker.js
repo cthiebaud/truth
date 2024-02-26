@@ -37,7 +37,7 @@ if (workbox) {
     { revision: 'e7e93808bde4ceead0f0bb8727c817fa', url: 'favicons/mstile-150x150.png' },
     { revision: '318f1210aabf904c588a8cbb2b30c571', url: 'icon.png' },
     { revision: '5ca35952e03f6b381dc92b93a4d1430a', url: 'icon2.png' },
-    { revision: 'b48788ae1eb5372459747fa6637ab616', url: 'index.html' },
+    { revision: 'e695bc01b1672914779ff02356746f55', url: 'index.html' },
     { revision: '116f32b33817a41a6dea393a7e96b96c', url: 'screenshots/1024x500-screenshot.png' },
     { revision: '4628442658184696eb42308be406a20d', url: 'screenshots/1280x800-screenshot.png' },
     { revision: '66b8f7519d6deda505b0f18f90e5394b', url: 'screenshots/750x1334-screenshot.png' },
@@ -49,7 +49,7 @@ if (workbox) {
     { revision: '55f099a6dd78203579f853c0432df570', url: 'dist/css/bootstrap.min.css' },
     { revision: '4d1c6a450f31c580143767550c391b16', url: 'dist/css/index.min.css' },
     { revision: 'ffd71e86c0f3f69a0284362481f4bac2', url: 'dist/css/timer.min.css' },
-    { revision: '94fd4d8051ecd2811639be86c644fa4b', url: 'dist/js/TimerClass.min.js' },
+    { revision: 'da1f5f860ac1124b28212be3dbb2ffb6', url: 'dist/js/TimerClass.min.js' },
     { revision: '6f9ad7cdeb0eb9bcc3c2cff03e9829cc', url: 'dist/js/TimerElement.min.js' },
   ])
 

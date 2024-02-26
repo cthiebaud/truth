@@ -69,6 +69,7 @@ export class Timer {
             this.completed_with_errors = new Sound('/assets/audio/completed_with_errors.mp3')
             this.boo = new Sound('/assets/audio/boo.mp3');
             this.guitar = new Sound('/assets/audio/guitar-riff.mp3');
+            this.boredom = new Sound('/assets/audio/boredom.mp3');
             this.totalTime = totalTime;
             this.onTimerReady = onTimerReady;
             this.onTimerTick = onTimerTick;
@@ -88,6 +89,7 @@ export class Timer {
         await this.completed_with_errors.load()
         await this.boo.load()
         await this.guitar.load()
+        await this.boredom.load()
         /* console.log('Sound sources loaded') */
         if (this.onTimerReady) {
             this.onTimerReady()
@@ -116,6 +118,7 @@ export class Timer {
                 await this.completed_with_errors.decode(this.audioContext)
                 await this.boo.decode(this.audioContext)
                 await this.guitar.decode(this.audioContext)
+                await this.boredom.decode(this.audioContext)
 
                 /* console.log('Audio context initialized successfully, sound sources connected') */
                 resolve(); // Resolve the promise on success
