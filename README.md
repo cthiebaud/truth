@@ -1,4 +1,4 @@
-Le nouveau jeu à la mode : [ἀλήθεια](https://aletheia.cthiebaud.com/).
+### Le nouveau jeu à la mode : [ἀλήθεια](https://aletheia.cthiebaud.com/).
 
 La référence à Martin Heidegger est flagrante : « <i>En traduisant ἀλήθεια par Unverborgenheit, dévoilement ou plutôt non-voilement, et non plus simplement par “Vérité”, Heidegger s'efforce de faire entendre quelque chose du sens, de ce vers quoi ἀλήθεια faisait signe, même à l'insu des Grecs, et à partir duquel ils déployaient leur monde.</i> » [⁽¹⁾](https://fr.wikipedia.org/wiki/Al%C3%A8theia_dans_la_philosophie_de_Martin_Heidegger).
 
