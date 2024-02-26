@@ -198,9 +198,12 @@
         <div id="tables" class="transparent-border center-children"></div>
 
         <h1 id="aletheia" class="text-center p-2 mb-0 d-flex justify-content-between align-items-end">
-            <div id="copyright" class="text-body-tertiary float-start">
+            <button id="infos" type="button" class="btn btn-sm btn-outline-light float-end" aria-label="infos">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32"><path d="M18 23h-1v-8.938c0-.011-.003-.021-.003-.031S17 14.011 17 14a1 1 0 0 0-1-1h-2a1 1 0 0 0 0 2h1v8h-1a1 1 0 0 0 0 2h4a1 1 0 0 0 0-2zm-2-12a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm0-11C7.164 0 0 7.163 0 16s7.163 16 16 16 16-7.163 16-16S24.837 0 16 0zm0 30.031c-7.72 0-14-6.312-14-14.032s6.28-14 14-14 14 6.28 14 14-6.28 14.032-14 14.032z"/></svg>
+            </button>
+            <!-- div id="copyright" class="text-body-tertiary float-start">
                 ©&nbsp;CT
-            </div>
+            </!-->
             <a href="https://en.wikipedia.org/wiki/Aletheia" target="_wikipedia">ἀλήθεια</a>
             <!-- github -->
             <button id="github" type="button" class="btn btn-sm btn-outline-light float-end" aria-label="github">
@@ -887,6 +890,13 @@
                 clickEvent.stopPropagation()
                 window.open("https://github.com/cthiebaud/truth", "_github")
             })
+
+            document.getElementById("infos").addEventListener('click', clickEvent => {
+                clickEvent.preventDefault()
+                clickEvent.stopPropagation()
+                window.open("/showdown.html?/README.md", "_infos")
+            })
+
             {
                 function playToggle(event) {
                     event.preventDefault()

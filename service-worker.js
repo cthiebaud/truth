@@ -37,17 +37,20 @@ if (workbox) {
     { revision: 'e7e93808bde4ceead0f0bb8727c817fa', url: 'favicons/mstile-150x150.png' },
     { revision: '318f1210aabf904c588a8cbb2b30c571', url: 'icon.png' },
     { revision: '5ca35952e03f6b381dc92b93a4d1430a', url: 'icon2.png' },
-    { revision: 'f8727cd066f41708da692f6875b826ac', url: 'index.html' },
+    { revision: '316dfd4c7ce1f01a6d2d6c3affb5f37e', url: 'index.html' },
+    { revision: '116f32b33817a41a6dea393a7e96b96c', url: 'screenshots/1024x500-screenshot.png' },
     { revision: '4628442658184696eb42308be406a20d', url: 'screenshots/1280x800-screenshot.png' },
     { revision: '66b8f7519d6deda505b0f18f90e5394b', url: 'screenshots/750x1334-screenshot.png' },
     { revision: '41bb2eba0acba8024a642cbaa43580d9', url: 'screenshots/input.png' },
     { revision: '45eb09b3ce5070919576d363a5938c0a', url: 'screenshots/iPad10th.png' },
     { revision: '9b179f93bb00dfa436d3cb8d836ff1f4', url: 'screenshots/iPhone15.png' },
     { revision: 'abf15913f3920d1a68ae587e4b8e6226', url: 'screenshots/output.png' },
+    { revision: '9b63cff10cca63caac97a531152c389c', url: 'showdown.html' },
     { revision: '55f099a6dd78203579f853c0432df570', url: 'dist/css/bootstrap.min.css' },
-    { revision: '61c4c21be81a8c8384ad80ffcd515fa4', url: 'dist/css/index.min.css' },
-    { revision: 'bdd006c8d12ab10ec0ebef8044ef77c3', url: 'dist/css/timer.min.css' },
+    { revision: '4d1c6a450f31c580143767550c391b16', url: 'dist/css/index.min.css' },
+    { revision: 'ffd71e86c0f3f69a0284362481f4bac2', url: 'dist/css/timer.min.css' },
     { revision: '94fd4d8051ecd2811639be86c644fa4b', url: 'dist/js/TimerClass.min.js' },
+    { revision: '6f9ad7cdeb0eb9bcc3c2cff03e9829cc', url: 'dist/js/TimerElement.min.js' },
   ])
 
   // Cache Google Fonts with a stale-while-revalidate strategy
