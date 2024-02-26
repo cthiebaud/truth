@@ -373,10 +373,10 @@
                     let msg
                     if (player.results.erred.value === 32) {
                         player.guitar()
-                        msg = `Ooooh ... Subtil !`
+                        msg = `Ooooh ... Subtle!`
                     } else {
                         player.fail()
-                        msg = `Raté&nbsp;!`
+                        msg = `Oops! Time's up!`
                     }
                     player.stopTimerShowResultsThenCloseTimer(msg, player.results)
                 }, 100)
@@ -393,7 +393,7 @@
                         msg = `You cheated?!`
                     } else {
                         player.completed_with_errors()
-                        msg = `Pas mal, mais peut mieux faire.`
+                        msg = `Nicely done, but you can do better.`
                     }
                     player.stopTimerShowResultsThenCloseTimer(msg, player.results)
                 }, 100)

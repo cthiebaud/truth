@@ -7,10 +7,10 @@ Il s'agit donc de dévoiler les petites briques colorées pour faire apparaître
 5 résultats sont possibles:
 
 1. `You won!` : toutes les briques (32) sont dévoilées dans le temps imparti, sans erreurs.
-2. `Pas mal, mais peut mieux faire.` : toutes les briques sont dévoilées dans le temps imparti, avec erreurs.
-3. `Raté!` : le temps imparti est écoulé et il reste au moins une brique à dévoiler, avec ou sans erreurs.
+2. `Nicely done, but you can do better.` : toutes les briques sont dévoilées dans le temps imparti, avec erreurs.
+3. `Oops! Time's up!` : le temps imparti est écoulé et il reste au moins une brique à dévoiler, avec ou sans erreurs.
 4. `You cheated?!` : toutes les briques sont dévoilées dans le temps imparti, mais toutes les erreurs possibles ont été faites (le joueur a cliqué **toutes** les cases sans distinction).
-5. `Ooooh ... Subtil !` : le temps imparti est écoulé, aucune brique n'est dévoilée, et toutes les erreurs possibles ont été faites (le joueur a joué au qui perd gagne).
+5. `Ooooh ... Subtle!` : le temps imparti est écoulé, aucune brique n'est dévoilée, et toutes les erreurs possibles ont été faites (le joueur a joué au qui perd gagne).
 
 La petite musique qui accompagne chaque résultat est différente, of course.
 
