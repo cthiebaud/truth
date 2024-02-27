@@ -654,8 +654,8 @@
                     'β',
                     '!α',
                     '!β',
-                    'α & β | !α & !β',
-                    '!α & β | α & !β',
+                    'α & β | !α & !β', // look for new RegExp('α', ...) ~40 lines below before changing these two line. 
+                    '!α & β | α & !β', // It assumes there are 2 'α' chars to enable various colors for the bricks.
                     3,
                     'α | β',
                     'α | !β',
@@ -697,7 +697,7 @@
                 if (f === 'true') {
                     return new OneOrTwoColors(colors.colorTrue)
                 }
-                if (f === ('α & β | !α & !β') || f === 'α & !β | !α & β') {
+                if ((f.match(new RegExp('α', "g")) || []).length === 2) { 
                     return new OneOrTwoColors(colors.nextColor(), colors.nextColor())
                 }
                 return new OneOrTwoColors(colors.nextColor())

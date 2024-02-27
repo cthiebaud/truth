@@ -38,7 +38,7 @@ if (workbox) {
     { revision: '2f7e34960fd437beaa92f3b04c5c3050', url: 'favicons/README.md' },
     { revision: '318f1210aabf904c588a8cbb2b30c571', url: 'icon.png' },
     { revision: '5ca35952e03f6b381dc92b93a4d1430a', url: 'icon2.png' },
-    { revision: '3ed606d4536702990ed8acef89b13d4c', url: 'index.html' },
+    { revision: '4c3d32cf72b07289a3e05302132305ed', url: 'index.html' },
     { revision: 'b6e5ab5aa611f1689f0e3a12b5788be6', url: 'README.md' },
     { revision: '116f32b33817a41a6dea393a7e96b96c', url: 'screenshots/1024x500-screenshot.png' },
     { revision: '4628442658184696eb42308be406a20d', url: 'screenshots/1280x800-screenshot.png' },
