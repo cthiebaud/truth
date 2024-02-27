@@ -218,33 +218,43 @@
             </button>
         </h1>
         <style>
-            #nav.navbar .carousel img {
-                width: 24px;
-                height: 32px;
-                margin: 0 auto;
+            #nav.navbar #carouselExampleIndicators.carousel {
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
 
-            .carousel-control-next-icon,
-            .carousel-control-prev-icon {
+            #nav.navbar #carouselExampleIndicators.carousel .carousel-item {
+                transition: none;
+            }
+
+            #nav.navbar #carouselExampleIndicators.carousel .carousel-item img {
+                width: auto;
+                height: 28px;
+                margin: auto;
+            }
+
+            #nav.navbar #carouselExampleIndicators.carousel .carousel-control-next-icon,
+            #nav.navbar #carouselExampleIndicators.carousel .carousel-control-prev-icon {
                 filter: invert(1);
             }
         </style>
         <nav id="nav" class="navbar fixed-bottom">
             <div class="container-fluid justify-content-around">
-                <div id="carouselExampleIndicators" class="carousel slide" style="width: 80px; background-color: trasnparent;">
-                    <div class="carousel-indicators" style="display: none;">
+                <div id="carouselExampleIndicators" class="carousel carousel-fade" data-bs-touch="false" style="width: 80px; background-color: transparent;">
+                    <div class="carousel-indicators" style="display: none;"> <!--  -->
                         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
                         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
                     </div>
                     <div class="carousel-inner">
-                        <div id="tortoise" data-time="120" class="carousel-item active">
+                        <div id="tortoise" data-time="120" class="carousel-item active" data-bs-interval="0">
                             <img src="/assets/svg/tortoise-fill-svgrepo-com.svg" class="d-block" alt="">
                         </div>
-                        <div id="hare" data-time="60" class="carousel-item">
+                        <div id="hare" data-time="60" class="carousel-item" data-bs-interval="0">
                             <img src="/assets/svg/hare-fill-svgrepo-com.svg" class="d-block" alt="">
                         </div>
-                        <div id="bolt" data-time="30" class="carousel-item">
+                        <div id="bolt" data-time="30" class="carousel-item" data-bs-interval="0">
                             <img src="/assets/svg/bolt-fill-svgrepo-com.svg" class="d-block" alt="">
                         </div>
                     </div>
@@ -301,6 +311,11 @@
         import { Timer } from './dist/js/TimerClass.min.js'
 
         let paragraphBreaks = false // true //
+
+        const carousel = new bsCarousel(document.getElementById('carouselExampleIndicators'), {
+            interval: 0,
+            touch: false
+        })
 
         class ResultProperty {
             constructor(value) {
@@ -1005,6 +1020,14 @@
                 let modal = bsModal.getInstance(resultsModal)
                 modal.hide()
             })
+
+                ;[...document.getElementsByClassName('carousel-item')].forEach(carouselItem => {
+                    carouselItem.addEventListener('click', clickEvent => {
+                        clickEvent.preventDefault()
+                        clickEvent.stopPropagation()
+                        carousel.next()
+                    })
+                });
 
         })
 
