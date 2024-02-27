@@ -217,23 +217,63 @@
                 </svg>
             </button>
         </h1>
+        <style>
+            #nav.navbar .carousel img {
+                width: 24px;
+                height: 32px;
+                margin: 0 auto;
+            }
 
+            .carousel-control-next-icon,
+            .carousel-control-prev-icon {
+                filter: invert(1);
+            }
+        </style>
         <nav id="nav" class="navbar fixed-bottom">
-            <div class="container-fluid justify-content-center">
-                <button id="play" type="button" class="btn btn-light timer-container" aria-label="play" disabled style="width:36px; height: 36px;">
-                    <svg class="timer-not-playing" xmlns="http://www.w3.org/2000/svg">
-                        <use xlink:href="#svg-play"></use>
-                    </svg>
-                    <div class="timer-playing">
-                        <div class="compte-à-rebours"></div>
-                        <svg viewBox="4 4 92 92" xmlns="http://www.w3.org/2000/svg">
-                            <g transform="rotate(-90 50 50)">
-                                <circle id="innerCircle1" cx="50" cy="50" r="55" stroke="rgba(23, 63, 53, .25)" stroke-width="46" fill="none" />
-                                <circle id="innerCircle2" cx="50" cy="50" r="40" stroke="rgba(23, 63, 53, .666)" stroke-width="0" fill="none" />
-                            </g>
-                        </svg>
+            <div class="container-fluid justify-content-around">
+                <div id="carouselExampleIndicators" class="carousel slide" style="width: 80px; background-color: trasnparent;">
+                    <div class="carousel-indicators" style="display: none;">
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
                     </div>
-                </button>
+                    <div class="carousel-inner">
+                        <div id="tortoise" data-time="120" class="carousel-item active">
+                            <img src="/assets/svg/tortoise-fill-svgrepo-com.svg" class="d-block" alt="">
+                        </div>
+                        <div id="hare" data-time="60" class="carousel-item">
+                            <img src="/assets/svg/hare-fill-svgrepo-com.svg" class="d-block" alt="">
+                        </div>
+                        <div id="bolt" data-time="30" class="carousel-item">
+                            <img src="/assets/svg/bolt-fill-svgrepo-com.svg" class="d-block" alt="">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+                <!-- ########################## -->
+                <div>
+                    <button id="play" type="button" class="btn btn-light timer-container" aria-label="play" disabled style="width:36px; height: 36px;">
+                        <svg class="timer-not-playing" xmlns="http://www.w3.org/2000/svg">
+                            <use xlink:href="#svg-play"></use>
+                        </svg>
+                        <div class="timer-playing">
+                            <div class="compte-à-rebours"></div>
+                            <svg viewBox="4 4 92 92" xmlns="http://www.w3.org/2000/svg">
+                                <g transform="rotate(-90 50 50)">
+                                    <circle id="innerCircle1" cx="50" cy="50" r="55" stroke="rgba(23, 63, 53, .25)" stroke-width="46" fill="none" />
+                                    <circle id="innerCircle2" cx="50" cy="50" r="40" stroke="rgba(23, 63, 53, .666)" stroke-width="0" fill="none" />
+                                </g>
+                            </svg>
+                        </div>
+                    </button>
+                </div>
             </div>
         </nav>
 
@@ -253,6 +293,7 @@
     </script>
     <script type="module">
         import { Modal as bsModal } from 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/+esm'
+        import { Carousel as bsCarousel } from 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/+esm'
         import hammerjs from 'https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/+esm'
         import tinycolor2 from 'https://cdn.jsdelivr.net/npm/tinycolor2@1.6.0/+esm'
 
@@ -451,7 +492,7 @@
                 this._timer.boredom.play()
             }
 
-            start() {
+            start(totalTime) {
                 if (this.playing) return
                 window.scrollTo({
                     top: 0,
@@ -461,7 +502,7 @@
                     elem.classList.add('translucent')
                 })
                 this._timer.initializeAudio().then(() => {
-                    this._timer.start()
+                    this._timer.start(totalTime)
                 }).catch((error) => {
                     console.log('Error initializing audio context', error)
                     document.querySelectorAll('#tables td').forEach(elem => {
@@ -654,7 +695,7 @@
                     'β',
                     '!α',
                     '!β',
-                    'α & β | !α & !β', // look for new RegExp('α', ...) ~40 lines below before changing these two line. 
+                    'α & β | !α & !β', // look for new RegExp('α', ...) ~40 lines below before changing these two lines. 
                     '!α & β | α & !β', // It assumes there are 2 'α' chars to enable various colors for the bricks.
                     3,
                     'α | β',
@@ -697,7 +738,7 @@
                 if (f === 'true') {
                     return new OneOrTwoColors(colors.colorTrue)
                 }
-                if ((f.match(new RegExp('α', "g")) || []).length === 2) { 
+                if ((f.match(new RegExp('α', "g")) || []).length === 2) {
                     return new OneOrTwoColors(colors.nextColor(), colors.nextColor())
                 }
                 return new OneOrTwoColors(colors.nextColor())
@@ -937,7 +978,7 @@
                     if (player.playing) {
                         player.stop()
                     } else {
-                        player.start()
+                        player.start(Number(document.querySelector('.carousel-item.active').dataset.time))
                     }
                 }
                 document.getElementById("play").addEventListener('click', clickEvent => {
@@ -958,7 +999,7 @@
                 let resultsModal = document.getElementById('resultsModal')
                 resultsModal.addEventListener('hidden.bs.modal', event => {
                     setTimeout(() => {
-                        player.start()
+                        player.start(Number(document.querySelector('.carousel-item.active').dataset.time))
                     }, 100)
                 }, { once: true, })
                 let modal = bsModal.getInstance(resultsModal)

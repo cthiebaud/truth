@@ -168,7 +168,10 @@ export class Timer {
         }
     }
 
-    start() {
+    start(totalTime) {
+        if (totalTime) {
+            this.totalTime = totalTime
+        }
         this.timerElementPlaying.style.display = 'block';
         this.timerElementNotPlaying.style.display = 'none';
         this.ticks = 0
