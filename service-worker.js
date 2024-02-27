@@ -56,7 +56,7 @@ if (workbox) {
     { revision: 'ecfd4cfb171881e2d4705bad6f25af18', url: 'dist/css/bootstrap.min.css' },
     { revision: 'e96e85200d1f32e6e773065ed63083fb', url: 'dist/css/index.min.css' },
     { revision: 'ebaf120ef8b9bac2370c6da6a9faf92c', url: 'dist/css/timer.min.css' },
-    { revision: '0a4bb53fc9e29bed5696506ea866e54d', url: 'dist/js/TimerClass.min.js' },
+    { revision: 'be40a5d2e647859fb17fa15d2326d41a', url: 'dist/js/TimerClass.min.js' },
     { revision: '6f9ad7cdeb0eb9bcc3c2cff03e9829cc', url: 'dist/js/TimerElement.min.js' },
   ])
 
