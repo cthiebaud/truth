@@ -63,7 +63,7 @@ export class Timer {
             this.audioContext = null;
             this.ticking = new Sound('/assets/audio/ticking.mp3');
             this.coin = new Sound('/assets/audio/coin.mp3');
-            this.laughs = new Sound('/assets/audio/oops.mp3');
+            this.laughs = new Sound('/assets/audio/guitar-string-snap2.mp3');
             this.tada = new Sound('/assets/audio/tada.mp3');
             this.fail = new Sound('/assets/audio/fail.mp3');
             this.completed_with_errors = new Sound('/assets/audio/completed_with_errors.mp3')
