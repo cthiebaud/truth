@@ -43,7 +43,7 @@ if (workbox) {
     { revision: 'c9ce66f4033637c701aba2c5f3ca112c', url: 'favicons/safari-pinned-tab.svg' },
     { revision: '318f1210aabf904c588a8cbb2b30c571', url: 'icon.png' },
     { revision: '5ca35952e03f6b381dc92b93a4d1430a', url: 'icon2.png' },
-    { revision: '04638b226cde04839126a39fb2afed3d', url: 'index.html' },
+    { revision: '7f2b76dbc4503418018f71cd8f8c501f', url: 'index.html' },
     { revision: 'b6e5ab5aa611f1689f0e3a12b5788be6', url: 'README.md' },
     { revision: '116f32b33817a41a6dea393a7e96b96c', url: 'screenshots/1024x500-screenshot.png' },
     { revision: '4628442658184696eb42308be406a20d', url: 'screenshots/1280x800-screenshot.png' },
@@ -113,3 +113,5 @@ if (workbox) {
 } else {
   console.error('Workbox could not be loaded. No offline support.')
 }
+
+//
