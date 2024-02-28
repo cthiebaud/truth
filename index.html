@@ -163,11 +163,9 @@
 
                 <input type="checkbox" class="btn-check" id="table-borders" autocomplete="off" aria-label="table-borders toggle">
                 <label class="btn btn-outline-light" for="table-borders">
-                    <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="16" height="16" viewBox="0 0 16 16">
-                        <g stroke="none" fill-rule="evenodd"> <!-- fill="#434343" -->
-                            <path
-                                d="M13.048.99h1.993v1.987h.907V.057h-2.9V.99zM.923 3.008V.99h2.028V0H.027v3.008h.896zM2.951 15.03H.964v-1.95H.027v2.928h2.924v-.977zM15 5.013v2.01h.989v-2.01H15ZM15 9.013v1.961h.982v-1.96H15ZM9 .013V.98h1.984V.013H9ZM5 .013v.973h1.995V.013H5ZM9 15.013v.973h1.958v-.973H9ZM5 15.013v.993h1.987v-.993H5ZM0 5.013v1.99h.98v-1.99H0ZM0 9.013v1.962h.954V9.013H0ZM15.006 13.013v2.073H13v.946h3.003v-3.019h-.997z" />
-                        </g>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="2 2 20 20">
+                        <path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 3h.01M3 12h.01M3 21h.01M3 16.5h.01M3 7.5h.01M7.5 3h.01m-.01 9h.01m-.01 9h.01M16.5 3h.01m-.01 9h.01m-.01 9h.01M12 3h.01M12 12h.01M12 21h.01M12 16.5h.01m-.01-9h.01M21 3h.01M21 12h.01M21 21h.01M21 16.5h.01m-.01-9h.01" />
                     </svg>
                 </label>
                 <input type="checkbox" class="btn-check" id="ab-axes" autocomplete="off" aria-label="axes toggle">
@@ -499,7 +497,7 @@
                     player.stopTimerShowResultsThenCloseTimer(msg, player.results)
                 }, 100)
             }
-            
+
             abort() {
                 setTimeout(() => {
                     let msg

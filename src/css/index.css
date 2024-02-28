@@ -93,6 +93,23 @@ nav#nav {
   background-color: transparent;
 }
 
+#tables:not(.transparent-border) tbody > tr:nth-child(1) > td:nth-child(2) {
+  border-right: 0.75px dashed var(--border-color);
+  border-bottom: 0.75px dashed var(--border-color);
+}
+#tables:not(.transparent-border) tbody > tr:nth-child(1) > td:nth-child(3) {
+  border-left: 0.75px dashed var(--border-color);
+  border-bottom: 0.75px dashed var(--border-color);
+}
+#tables:not(.transparent-border) tbody > tr:nth-child(2) > td:nth-child(2) {
+  border-right: 0.75px dashed var(--border-color);
+  border-top: 0.75px dashed var(--border-color);
+}
+#tables:not(.transparent-border) tbody > tr:nth-child(2) > td:nth-child(3) {
+  border-left: 0.75px dashed var(--border-color);
+  border-top: 0.75px dashed var(--border-color);
+}
+
 #tables table.inline {
   display: inline-block;
   margin: 0;
@@ -199,7 +216,6 @@ nav#nav {
   transform-origin: 100%;
   /* Set the origin of the transformation to the top-right corner */
 }
-
 .translucent {
   opacity: 0;
 }
