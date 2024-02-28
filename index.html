@@ -1005,6 +1005,13 @@
                 colors.shuffle()
                 doIt()
             }
+            function mega_reorder() {
+                if (player.playing) return
+                if (paragraphBreaks) return
+                functions.unshuffle()
+                colors.shuffle()
+                doIt()
+            }
 
             const theTables = document.getElementById("tables")
             const hammertime = new hammerjs(theTables)
@@ -1013,7 +1020,7 @@
                 mega_shuffle()
             })
             hammertime.on('swipeleft', function () {
-                mega_shuffle()
+                mega_reorder()
             })
 
             document.getElementById("ab-axes").addEventListener('click', clickEvent => {
