@@ -59,7 +59,7 @@
                 }
                 const images = document.querySelectorAll("img")
                 images.forEach(function (img) {
-                    if (img.alt && !(img.alt.includes('Android') || img.alt.includes('Apple') )) {
+                    if (img.alt && !(img.alt.includes('Android') || img.alt.includes('Apple') || img.alt.includes('example') || img.alt.includes('github') )) {
                         img.classList.add("img-fluid")
                     }
                 })
