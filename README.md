@@ -1,4 +1,8 @@
-### Le nouveau jeu à la mode : [ἀλήθεια](https://aletheia.cthiebaud.com/).
+# ἀλήθεια
+
+[![WWW](assets/svg/internet-svgrepo-com.svg)](https://aletheia.cthiebaud.com/) 
+[![Android App Store](assets/svg/android-svgrepo-com.svg)](https://play.google.com/apps/testing/com.cthiebaud.aletheia.twa)
+[![Apple App Store](assets/svg/Apple_logo_grey.svg)](https://apps.apple.com/us/app/aletheia-by-%C3%A6quologica/id6476017817)
 
 La référence à Martin Heidegger est flagrante : « <i>En traduisant ἀλήθεια par Unverborgenheit, dévoilement ou plutôt non-voilement, et non plus simplement par “Vérité”, Heidegger s'efforce de faire entendre quelque chose du sens, de ce vers quoi ἀλήθεια faisait signe, même à l'insu des Grecs, et à partir duquel ils déployaient leur monde.</i> » [⁽¹⁾](https://fr.wikipedia.org/wiki/Al%C3%A8theia_dans_la_philosophie_de_Martin_Heidegger).
 
@@ -16,3 +20,5 @@ Il s'agit donc de dévoiler les petites briques colorées pour faire apparaître
 Le son qui accompagne chaque résultat est différent, bien sûr.
 
 ![ἀλήθεια](screenshots/iPad10th.png)
+
+

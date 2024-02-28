@@ -18,6 +18,11 @@
             text-decoration: none;
         }
 
+        .italic {
+            font-style: italic;
+            color: rgb(192, 31, 31);
+        }
+
         pre {
             border-radius: 3px;
             font-size: 85%;
@@ -29,8 +34,6 @@
 </head>
 
 <body>
-    <!-- class="bg-secondary text-white" -->
-
     <div class="container"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/showdown@latest/dist/showdown.min.js"></script>
@@ -39,39 +42,44 @@
 
         document.addEventListener("DOMContentLoaded", function () {
 
-            if (location.search && location.search.substring(1)) {
-
-                function displayResult(text) {
-                    var converter = new showdown.Converter({ strikethrough: true }),
-                        html = converter.makeHtml(text);
-                    document.querySelector("div.container").innerHTML += html;
-                    if (document.querySelector("h1")) {
-                        document.head.prepend(document.createElement("title")).textContent = document.querySelector("h1").textContent;
-                    }
-                    var images = document.querySelectorAll("img");
-                    images.forEach(function (img) {
-                        img.classList.add("img-fluid");
-                    });
-                }
-
-                var xhr = new XMLHttpRequest();
-                xhr.open("GET", location.search.substring(1) + "?_=" + Date.now(), true);
-                xhr.onreadystatechange = function () {
-                    if (xhr.readyState === 4) {
-                        if (xhr.status === 200) {
-                            displayResult(xhr.responseText);
-                        } else {
-                            document.querySelector(".container").innerHTML += '<div class="alert alert-warning mt-2">[ ' + location.search.substring(1) + ' ] not found</div>';
-                        }
-                    }
-                };
-                xhr.send();
-
-            } else {
-                document.querySelector(".container").innerHTML += '<div class="alert alert-primary mt-2">Try the same URL with a \'?\' followed with a link to a markdown file.</div>';
+            if (!(location.search && location.search.substring(1))) {
+                document.querySelector(".container").innerHTML += '<div class="alert alert-primary mt-2">Try the same URL with a \'?\' followed with a link to a markdown file.</div>'
+                return
             }
 
-        });
+            function displayResult(text) {
+                const converter = new showdown.Converter({ strikethrough: true })
+                const html = converter.makeHtml(text)
+                document.querySelector("div.container").innerHTML += html
+                const h1 = document.querySelector("h1")
+                if (h1) {
+                    const tit = document.createElement("title")
+                    tit.textContent = h1.textContent
+                    document.head.prepend(tit)
+                }
+                const images = document.querySelectorAll("img")
+                images.forEach(function (img) {
+                    if (img.alt && !(img.alt.includes('Android') || img.alt.includes('Apple') )) {
+                        img.classList.add("img-fluid")
+                    }
+                })
+            }
+
+            const xhr = new XMLHttpRequest()
+            xhr.open("GET", location.search.substring(1) + "?_=" + Date.now(), true)
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        displayResult(xhr.responseText)
+                    } else {
+                        document.querySelector(".container").innerHTML += '<div class="alert alert-warning mt-2"><span class="italic">' + location.search.substring(1) + '</span> not found 🙁 </div>'
+                    }
+                }
+            }
+
+            xhr.send()
+
+        })
     </script>
 
 </body>
