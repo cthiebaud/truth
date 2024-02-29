@@ -43,14 +43,6 @@
   font-style: normal;
 }
 
-/* .timer-container > div.timer-playing > */ .compte-à-rebours {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 14px;
-}
-
 #play.btn:hover {
   background-color: white;
 }

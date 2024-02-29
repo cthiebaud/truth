@@ -224,39 +224,56 @@
             </button>
         </h1>
         <style>
-            #nav.navbar #tortoise-hare-bolt.carousel {
+            #nav.navbar #controls {
                 display: flex;
                 justify-content: center;
                 align-items: center;
             }
 
-            #nav.navbar #tortoise-hare-bolt.carousel .carousel-item {
+            #nav.navbar #controls .left,
+            #nav.navbar #controls .right {
+                width: 80px;
+                background-color: transparent;
+            }
+
+            #nav.navbar #controls .center {
+                width: 100px;
+                text-align: center;
+            }
+
+            #nav.navbar #controls #tortoise-hare-achilles.carousel {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            #nav.navbar #controls #tortoise-hare-achilles.carousel .carousel-item {
                 transition: none;
             }
 
-
-            #nav.navbar #tortoise-hare-bolt.carousel .carousel-item>div {
+            #nav.navbar #controls #tortoise-hare-achilles.carousel .carousel-item>div {
                 display: flex;
                 justify-content: center;
             }
 
-            #nav.navbar #tortoise-hare-bolt.carousel .carousel-item img {
+            #nav.navbar #controls #tortoise-hare-achilles.carousel .carousel-item img {
                 width: auto;
                 height: 30px;
             }
 
-            #nav.navbar #tortoise-hare-bolt.carousel .carousel-control-next-icon,
-            #nav.navbar #tortoise-hare-bolt.carousel .carousel-control-prev-icon {
+            #nav.navbar #controls #tortoise-hare-achilles.carousel .carousel-control-next-icon,
+            #nav.navbar #controls #tortoise-hare-achilles.carousel .carousel-control-prev-icon {
                 filter: invert(1);
             }
         </style>
         <nav id="nav" class="navbar fixed-bottom">
-            <div class="container-fluid justify-content-around">
-                <div id="tortoise-hare-bolt" class="carousel carousel-fade" data-bs-touch="false" style="width: 80px; background-color: transparent;">
+            <div id="controls" class="container-fluid">
+
+                <div id="tortoise-hare-achilles" class="left carousel carousel-fade" data-bs-touch="false">
                     <div class="carousel-indicators" style="display: none;"> <!--  -->
-                        <button type="button" data-bs-target="#tortoise-hare-bolt" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#tortoise-hare-bolt" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#tortoise-hare-bolt" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        <button type="button" data-bs-target="#tortoise-hare-achilles" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#tortoise-hare-achilles" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#tortoise-hare-achilles" data-bs-slide-to="2" aria-label="Slide 3"></button>
                     </div>
                     <div class="carousel-inner">
                         <div id="tortoise" data-time="120" class="carousel-item active" data-bs-interval="0">
@@ -269,24 +286,25 @@
                                 <img src="/assets/svg/hare-fill-svgrepo-com.svg">
                             </div>
                         </div>
-                        <div id="bolt" data-time="30" class="carousel-item" data-bs-interval="0">
+                        <div id="achilles" data-time="30" class="carousel-item" data-bs-interval="0">
                             <div>
-                                <img src="/assets/svg/bolt-fill-svgrepo-com.svg">
+                                <img src="/assets/svg/ancient-greek-helmet-1-svgrepo-com.svg">
                             </div>
                         </div>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#tortoise-hare-bolt" data-bs-slide="prev">
+                    <button class="carousel-control-prev" type="button" data-bs-target="#tortoise-hare-achilles" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                     </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#tortoise-hare-bolt" data-bs-slide="next">
+                    <button class="carousel-control-next" type="button" data-bs-target="#tortoise-hare-achilles" data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                     </button>
                 </div>
                 <!-- ########################## -->
-                <div class="compte-à-rebours victor-mono-400"></div>
-                <div style="width: 80px;">
+                <div class="center compte-à-rebours victor-mono-400"></div>
+                <!-- ########################## -->
+                <div class="right" style="width: 80px;">
                     <button id="play" type="button" class="btn btn-light timer-container" aria-label="play" disabled style="width:36px; height: 36px; margin: auto;">
                         <!-- div class="timer-not-playing">⏵</!-->
                         <svg class="timer-not-playing" xmlns="http://www.w3.org/2000/svg">
@@ -400,7 +418,7 @@
                 var seconds = durationInSeconds % 60;
 
                 // Format the time
-                var formattedTime = minutes + '′' + (seconds < 10 ? '0' : '') + seconds + '″';
+                var formattedTime = '<span style="color: transparent">00</span>' + minutes + '′' + (seconds < 10 ? '0' : '') + seconds + '″';
 
                 return formattedTime;
             }
@@ -428,11 +446,11 @@
                 this._timer = new Timer(120, 'play', this.ready, this.tick, this.expired, this.afterTimerClosed)
                 this._timer.loadResources()
                 this.compteARebours = new CompteARebours()
-                this.tortoiseHareBolt = new bsCarousel(document.getElementById('tortoise-hare-bolt'), {
+                this.tortoiseHareAchilles = new bsCarousel(document.getElementById('tortoise-hare-achilles'), {
                     interval: 0,
                     touch: false
                 })
-                document.getElementById('tortoise-hare-bolt').addEventListener('slid.bs.carousel', event => {
+                document.getElementById('tortoise-hare-achilles').addEventListener('slid.bs.carousel', event => {
                     this.compteARebours.reset()
                 })
 
@@ -582,8 +600,8 @@
                 document.querySelectorAll('#tables td').forEach(elem => {
                     elem.classList.add('translucent')
                 })
-                document.getElementById('tortoise-hare-bolt').style.opacity = '.5'
-                document.querySelectorAll('#tortoise-hare-bolt button').forEach(button => {
+                document.getElementById('tortoise-hare-achilles').style.opacity = '.5'
+                document.querySelectorAll('#tortoise-hare-achilles button').forEach(button => {
                     button.disabled = true
                 })
                 this._timer.initializeAudio().then(() => {
@@ -611,8 +629,8 @@
             stop() {
                 // if (!this.playing) return
                 this.compteARebours.reset()
-                document.getElementById('tortoise-hare-bolt').style.opacity = '1'
-                document.querySelectorAll('#tortoise-hare-bolt button').forEach(button => {
+                document.getElementById('tortoise-hare-achilles').style.opacity = '1'
+                document.querySelectorAll('#tortoise-hare-achilles button').forEach(button => {
                     button.disabled = false
                 })
                 this._timer.stop()
@@ -1115,7 +1133,7 @@
                         clickEvent.preventDefault()
                         clickEvent.stopPropagation()
                         if (player.playing) return
-                        player.tortoiseHareBolt.next()
+                        player.tortoiseHareAchilles.next()
                     })
                 });
 
