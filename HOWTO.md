@@ -15,6 +15,4 @@ The presence or absence of a brick within a cell is fully determined by the valu
 
 The aim of the game is to unconceal all the true values ​​by clicking only on the cells containing a colored brick.
 
-Making errors poses no harm, yet striving for accuracy amplifies the overall satisfaction of the game, especially regarding the textual and auditory rewards upon completion.
-
-
+Making mistakes doesn't hurt, but striving for accuracy enhances the overall enjoyment of the game, particularly with the textual and auditory rewards when finished.
