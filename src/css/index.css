@@ -108,8 +108,7 @@ nav#nav {
   border-left: 0.75px dashed var(--border-color);
   border-top: 0.75px dashed var(--border-color);
 }
-/*
-*/
+
 #tables table:not(.hint) td.true.translucent {
   opacity: 0;
 }
@@ -118,7 +117,7 @@ nav#nav {
 }
 
 #tables td.true:not(.translucent) {
-  border: 0 solid transparent !important;
+  border: none !important;
 }
 
 #tables table.inline {

@@ -1040,9 +1040,9 @@
                 mega_reorder()
             })
 
-            const theHeaders = document.getElementsByTagName('caption')
-            Array.from(theHeaders).forEach(function (header, index) {
-                const hammerpress = new hammerjs(header)
+            const captions = document.getElementsByTagName('caption')
+            Array.from(captions).forEach(function (caption, index) {
+                const hammerpress = new hammerjs(caption)
                 hammerpress.on('press', function (e) {
                     if (!player.playing) return
                     // When trigger element is tapped, show the target element
@@ -1054,7 +1054,9 @@
                     if (!player.playing) return
                     // When the press on the trigger element is released, hide the target element
                     console.log("RELEASED", e)
-                    e.target.parentNode.classList.remove("hint")
+                    Array.from(captions).forEach(function (caption2, index) {
+                        caption2.parentNode.classList.remove("hint")
+                    })
                 })
             })
 
