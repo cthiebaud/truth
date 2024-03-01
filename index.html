@@ -878,6 +878,26 @@
             }
         }
 
+        function scrambleIt(idsArray, shuffle = true) {
+            // Detach each element with an ID
+            const detachedElements = idsArray.map(id => {
+                const element = document.getElementById(id);
+                const parent = element.parentNode;
+                parent.removeChild(element);
+                return element;
+            });
+
+            // Shuffle the detached elements
+            if (shuffle) {
+                shuffleArray(detachedElements);
+            }
+
+            // Reattach the shuffled elements
+            detachedElements.forEach(element => {
+                tables.appendChild(element);
+            });
+        }
+
         function doIt() {
 
             if (player.playing) return
@@ -1034,25 +1054,27 @@
                     })
                 })
             })
+
+            // Get all elements with the selector 'table.table'
+            const elements = document.querySelectorAll('#tables>div');
+
+            // Convert the NodeList to an array and then map to extract IDs
+            return Array.from(elements).map(element => element.id);
         }
 
         window.addEventListener("load", loadEvent => {
 
-            doIt()
+            const idsArray = doIt()
 
             function mega_shuffle() {
                 if (player.playing) return
                 if (paragraphBreaks) return
-                functions.shuffle()
-                colors.shuffle()
-                doIt()
+                scrambleIt(idsArray)
             }
             function mega_reorder() {
                 if (player.playing) return
                 if (paragraphBreaks) return
-                functions.unshuffle()
-                colors.shuffle()
-                doIt()
+                scrambleIt(idsArray, false)
             }
 
             const theTables = document.getElementById("tables")
@@ -1084,10 +1106,9 @@
                 paragraphBreaks = !paragraphBreaks
                 toggleElementsVisibility(document.querySelectorAll('div.separator-container'), 'flex')
                 if (paragraphBreaks) {
-                    functions.unshuffle()
                     document.getElementById("shuffle-all").disabled = true
                     theTables.classList.remove("center-children")
-                    doIt()
+                    scrambleIt(idsArray, false)
                 } else {
                     theTables.classList.add("center-children")
                     document.getElementById("shuffle-all").disabled = false
@@ -1099,13 +1120,7 @@
                 clickEvent.stopPropagation()
                 mega_shuffle()
             })
-            /*
-            document.getElementById("github").addEventListener('click', clickEvent => {
-                clickEvent.preventDefault()
-                clickEvent.stopPropagation()
-                window.open("https://github.com/cthiebaud/truth", "_github")
-            })
-            */
+
             document.getElementById("infos").addEventListener('click', clickEvent => {
                 clickEvent.preventDefault()
                 clickEvent.stopPropagation()
