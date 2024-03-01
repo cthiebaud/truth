@@ -1010,6 +1010,30 @@
                         player.victory()
                     }
                 })
+
+                const captions = document.getElementsByTagName('caption')
+                Array.from(captions).forEach(function (caption, index) {
+                    const hammerpress = new hammerjs(caption, {
+                        press: {
+                            time: 0 // Set the time option for the 'press' event to 10 milliseconds
+                        }
+                    })
+                    hammerpress.on('press', function (e) {
+                        if (!player.playing) return
+                        // When trigger element is tapped, show the target element
+                        console.log("PRESSED", e, e.target.parentNode)
+                        e.target.parentNode.classList.add("hint")
+                    })
+
+                    hammerpress.on('pressup', function (e) {
+                        if (!player.playing) return
+                        // When the press on the trigger element is released, hide the target element
+                        console.log("RELEASED", e)
+                        Array.from(captions).forEach(function (caption2, index) {
+                            caption2.parentNode.classList.remove("hint")
+                        })
+                    })
+                })
             })
         }
 
@@ -1040,30 +1064,6 @@
             })
             hammertime.on('swipeleft', function () {
                 mega_reorder()
-            })
-
-            const captions = document.getElementsByTagName('caption')
-            Array.from(captions).forEach(function (caption, index) {
-                const hammerpress = new hammerjs(caption, {
-                    press: {
-                        time: 0 // Set the time option for the 'press' event to 10 milliseconds
-                    }
-                })
-                hammerpress.on('press', function (e) {
-                    if (!player.playing) return
-                    // When trigger element is tapped, show the target element
-                    console.log("PRESSED", e, e.target.parentNode)
-                    e.target.parentNode.classList.add("hint")
-                })
-
-                hammerpress.on('pressup', function (e) {
-                    if (!player.playing) return
-                    // When the press on the trigger element is released, hide the target element
-                    console.log("RELEASED", e)
-                    Array.from(captions).forEach(function (caption2, index) {
-                        caption2.parentNode.classList.remove("hint")
-                    })
-                })
             })
 
             document.getElementById("ab-axes").addEventListener('click', clickEvent => {
