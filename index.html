@@ -716,17 +716,14 @@
             return display
         }
 
-        const 𝛗 = Symbol('private')
-        const 𝛗2 = Symbol('private2')
-
         class Axes {
             constructor() {
-                this[𝛗] = [null, true, false]
+                this.axesArray = [null, true, false]
                 this.visible = false
                 setCellWidth(!this.visible)
             }
             iterate(iterator) {
-                this[𝛗].forEach(iterator)
+                this.axesArray.forEach(iterator)
             }
             applyVisibility() {
                 ((thElements) => {
@@ -756,7 +753,8 @@
                     '#91501C',
                 ]
                 this.colors = colors.concat(colors)
-                this.shuffle()
+                this.colorsMapCSS = new Map()
+                this.shuffleColors()
             }
 
             colorFalse = 'transparent'
@@ -766,11 +764,11 @@
                 const currentColor = this.colors[this.currentColorIndex++]
                 this.currentColorIndex %= this.colors.length
                 if (this.currentColorIndex === 0) {
-                    this.shuffle()
+                    this.shuffleColors()
                 }
                 return currentColor
             }
-            shuffle() {
+            shuffleColors() {
                 this.colors = shuffleNoAdjacentDuplicates(this.colors)
             }
         }
@@ -793,7 +791,7 @@
 
         class Functions {
             constructor() {
-                this[𝛗] = [
+                this.functionArray = [
                     0,
                     'false',
                     1,
@@ -816,14 +814,13 @@
                     4,
                     'true',
                 ]
-                this[𝛗2] = this[𝛗].slice(0)
                 this.display = {
                 }
                 const negationMap = {
                     '!α': "<span class='negation'>A</span>",
                     '!β': "<span class='negation'>B</span>"
                 };
-                this[𝛗].forEach(item => {
+                this.functionArray.forEach(item => {
                     if (typeof item === 'string') {
                         this.display[item] = item.replace(/(!?)α|(!?)β/g, (match, negationA, negationB) => {
                             if (negationA === '!') {
@@ -839,10 +836,10 @@
             }
 
             iterate(iterator) {
-                this[𝛗2].forEach(iterator)
+                this.functionArray.forEach(iterator)
             }
 
-            color(f) {
+            getOneOrTwoColors(f) {
                 if (f === 'false') {
                     return new OneOrTwoColors(colors.colorFalse)
                 }
@@ -853,12 +850,6 @@
                     return new OneOrTwoColors(colors.nextColor(), colors.nextColor())
                 }
                 return new OneOrTwoColors(colors.nextColor())
-            }
-            shuffle() {
-                shuffleArray(this[𝛗2])
-            }
-            unshuffle() {
-                this[𝛗2] = this[𝛗].slice(0)
             }
         }
         const functions = new Functions()
@@ -878,7 +869,7 @@
             }
         }
 
-        function scrambleIt(originalElementsArray, shuffle = true) {
+        function scrambleIt(originalElementsArray, shuffleParam = true) {
             // Detach each element with an ID
             const detachedElements = originalElementsArray.map(element => {
                 const parent = element.parentNode;
@@ -887,7 +878,7 @@
             });
 
             // Shuffle the detached elements
-            if (shuffle) {
+            if (shuffleParam) {
                 shuffleArray(detachedElements);
             }
 
@@ -928,7 +919,7 @@
     `
                     blender.blend(template, elementID)
 
-                    let backgroundcolors = functions.color(func)
+                    let backgroundcolors = functions.getOneOrTwoColors(func)
 
                     axes.iterate(rowElem => {
                         const row = document.createElement("tr")
