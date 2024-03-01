@@ -186,7 +186,7 @@
                         </g>
                     </svg>
                 </label>
-                <button id="shuffle-colors" type="button" class="btn btn-outline-light float-end" aria-label="shuffle-colors">
+                <button id="shuffle-all" type="button" class="btn btn-outline-light float-end" aria-label="shuffle-all">
                     <svg width="16" height="16" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 49.7 49.7"
                         xml:space="preserve">
                         <g>
@@ -271,7 +271,7 @@
         <nav id="nav" class="navbar fixed-bottom">
             <div id="controls" class="container-fluid">
 
-                <div id="tortoise-hare-achilles" class="left carousel carousel-fade" data-bs-touch="false">
+                <div id="tortoise-hare-achilles" class="left carousel carousel-fade" data-bs-touch="false" data-bs-wrap="false">
                     <div class="carousel-indicators" style="display: none;"> <!--  -->
                         <button type="button" data-bs-target="#tortoise-hare-achilles" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                         <button type="button" data-bs-target="#tortoise-hare-achilles" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -615,14 +615,14 @@
                         elem.classList.remove('translucent')
                     })
                 }).finally(() => {
-                    document.getElementById("shuffle-colors").disabled = true
+                    document.getElementById("shuffle-all").disabled = true
                     document.getElementById("paragraph-breaks").disabled = true
                 })
                 this.results.reset()
                 this.playing = true
             }
             afterTimerClosed() {
-                document.getElementById("shuffle-colors").disabled = false
+                document.getElementById("shuffle-all").disabled = false
                 document.getElementById("paragraph-breaks").disabled = false
                 document.getElementById('play').classList.remove('playing')
                 document.querySelectorAll('#tables td.false').forEach(elem => { elem.classList.add('translucent') })
@@ -1021,14 +1021,13 @@
                     hammerpress.on('press', function (e) {
                         if (!player.playing) return
                         // When trigger element is tapped, show the target element
-                        console.log("PRESSED", e, e.target.parentNode)
+                        // console.log("PRESSED", e, e.target.parentNode)
                         e.target.parentNode.classList.add("hint")
                     })
 
                     hammerpress.on('pressup', function (e) {
-                        if (!player.playing) return
                         // When the press on the trigger element is released, hide the target element
-                        console.log("RELEASED", e)
+                        // console.log("RELEASED", e)
                         Array.from(captions).forEach(function (caption2, index) {
                             caption2.parentNode.classList.remove("hint")
                         })
@@ -1066,6 +1065,15 @@
                 mega_reorder()
             })
 
+            document.getElementById("table-borders").addEventListener('click', clickEvent => {
+                clickEvent.stopPropagation()
+                if (theTables.classList.contains("transparent-border")) {
+                    theTables.classList.remove("transparent-border")
+                } else {
+                    theTables.classList.add("transparent-border")
+                }
+            })
+
             document.getElementById("ab-axes").addEventListener('click', clickEvent => {
                 clickEvent.stopPropagation()
                 axes.toggleVisibility()
@@ -1077,25 +1085,16 @@
                 toggleElementsVisibility(document.querySelectorAll('div.separator-container'), 'flex')
                 if (paragraphBreaks) {
                     functions.unshuffle()
-                    document.getElementById("shuffle-colors").disabled = true
+                    document.getElementById("shuffle-all").disabled = true
                     theTables.classList.remove("center-children")
                     doIt()
                 } else {
                     theTables.classList.add("center-children")
-                    document.getElementById("shuffle-colors").disabled = false
+                    document.getElementById("shuffle-all").disabled = false
                 }
             })
 
-            document.getElementById("table-borders").addEventListener('click', clickEvent => {
-                clickEvent.stopPropagation()
-                if (theTables.classList.contains("transparent-border")) {
-                    theTables.classList.remove("transparent-border")
-                } else {
-                    theTables.classList.add("transparent-border")
-                }
-            })
-
-            document.getElementById("shuffle-colors").addEventListener('click', clickEvent => {
+            document.getElementById("shuffle-all").addEventListener('click', clickEvent => {
                 clickEvent.preventDefault()
                 clickEvent.stopPropagation()
                 mega_shuffle()
@@ -1159,7 +1158,22 @@
                         clickEvent.preventDefault()
                         clickEvent.stopPropagation()
                         if (player.playing) return
-                        player.tortoiseHareAchilles.next()
+
+                        var clickedElement = clickEvent.target;
+                        // Check if the clicked element is the desired DIV
+                        var rect = clickedElement.getBoundingClientRect();
+                        var clickX = event.clientX - rect.left;
+                        var midpoint = rect.width / 2;
+
+                        if (clickX < midpoint) {
+                            // Clicked on the left half
+                            console.log('left')
+                            player.tortoiseHareAchilles.prev()
+                        } else {
+                            // Clicked on the right half
+                            console.log('right')
+                            player.tortoiseHareAchilles.next()
+                        }
                     })
                 });
 
