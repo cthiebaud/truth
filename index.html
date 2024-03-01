@@ -16,7 +16,7 @@
     <title>The Unconcealment of Truths</title>
     <meta name="description" content="Unconceal the colored bricks to reveal the truth tables.">
 
-    <meta name="version" content="12">
+    <meta name="version" content="13">
 
     <!-- Open Graph data -->
     <!-- https://yoast.com/help/fb-app-id-warnings/
@@ -1044,7 +1044,11 @@
 
             const captions = document.getElementsByTagName('caption')
             Array.from(captions).forEach(function (caption, index) {
-                const hammerpress = new hammerjs(caption)
+                const hammerpress = new hammerjs(caption, {
+                    press: {
+                        time: 0 // Set the time option for the 'press' event to 10 milliseconds
+                    }
+                })
                 hammerpress.on('press', function (e) {
                     if (!player.playing) return
                     // When trigger element is tapped, show the target element
