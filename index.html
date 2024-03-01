@@ -1040,6 +1040,24 @@
                 mega_reorder()
             })
 
+            const theHeaders = document.getElementsByTagName('caption')
+            Array.from(theHeaders).forEach(function (header, index) {
+                const hammerpress = new hammerjs(header)
+                hammerpress.on('press', function (e) {
+                    if (!player.playing) return
+                    // When trigger element is tapped, show the target element
+                    console.log("PRESSED", e, e.target.parentNode)
+                    e.target.parentNode.classList.add("hint")
+                })
+
+                hammerpress.on('pressup', function (e) {
+                    if (!player.playing) return
+                    // When the press on the trigger element is released, hide the target element
+                    console.log("RELEASED", e)
+                    e.target.parentNode.classList.remove("hint")
+                })
+            })
+
             document.getElementById("ab-axes").addEventListener('click', clickEvent => {
                 clickEvent.stopPropagation()
                 axes.toggleVisibility()

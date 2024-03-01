@@ -27,9 +27,9 @@ nav#nav {
   background-color: #f1efe0; /* f8f7ef; /* e9e6ce; */
 }
 
-#buttons > .btn-check:disabled+.btn, 
-#buttons > .btn-check[disabled]+.btn,
-#buttons > button:disabled  {
+#buttons > .btn-check:disabled + .btn,
+#buttons > .btn-check[disabled] + .btn,
+#buttons > button:disabled {
   opacity: 0.33;
 }
 
@@ -51,7 +51,7 @@ nav#nav {
 }
 
 #aletheia a {
-  font-family: Georgia, 'Times New Roman', Times, serif; 
+  font-family: Georgia, 'Times New Roman', Times, serif;
   font-size: 64px;
   text-decoration: none;
   color: inherit;
@@ -92,7 +92,6 @@ nav#nav {
   padding: 0 0.375rem;
   background-color: transparent;
 }
-
 #tables:not(.transparent-border) tbody > tr:nth-child(1) > td:nth-child(2) {
   border-right: 0.75px dashed var(--border-color);
   border-bottom: 0.75px dashed var(--border-color);
@@ -108,6 +107,18 @@ nav#nav {
 #tables:not(.transparent-border) tbody > tr:nth-child(2) > td:nth-child(3) {
   border-left: 0.75px dashed var(--border-color);
   border-top: 0.75px dashed var(--border-color);
+}
+/*
+*/
+#tables table:not(.hint) td.true.translucent {
+  opacity: 0;
+}
+#tables table td.false.translucent {
+  opacity: 0;
+}
+
+#tables td.true:not(.translucent) {
+  border: 0 solid transparent !important;
 }
 
 #tables table.inline {
@@ -215,9 +226,6 @@ nav#nav {
   /* Adjust the angle of the second diagonal line */
   transform-origin: 100%;
   /* Set the origin of the transformation to the top-right corner */
-}
-.translucent {
-  opacity: 0;
 }
 
 #play-again {
