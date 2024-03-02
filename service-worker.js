@@ -64,7 +64,7 @@ if (workbox) {
     { revision: 'abf15913f3920d1a68ae587e4b8e6226', url: 'screenshots/output.png' },
     { revision: 'fa0d60506cce2bc8391f70fd8c247bc5', url: 'showdown.html' },
     { revision: 'ee0a6fd12039a980b0f9f6053269f6a7', url: 'dist/css/bootstrap.min.css' },
-    { revision: '74bce8f150443c2f89ad8bc99eb2cdb8', url: 'dist/css/index.min.css' },
+    { revision: '808d8d1c8489428311064987175138b0', url: 'dist/css/index.min.css' },
     { revision: '476c9c641caca3b8fa3dcfe0a18e83a9', url: 'dist/css/timer.min.css' },
     { revision: '738e315e6fe66f9243602d84a88b3ee7', url: 'dist/js/TimerClass.min.js' },
     { revision: '6f9ad7cdeb0eb9bcc3c2cff03e9829cc', url: 'dist/js/TimerElement.min.js' },
