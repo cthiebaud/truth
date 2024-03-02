@@ -1024,14 +1024,17 @@
             })
 
             // BEGIN HINTS 
+            let timout = null
             function clearHints() {
+                if (timout) {
+                    clearTimeout(timout)
+                    timout = null
+                }
                 const hints = document.querySelectorAll('.hint')
                 Array.from(hints).forEach((hint) => {
                     hint.classList.remove("hint")
                 })
-
             }
-            
             window.addEventListener("scroll", function (e) {
                 clearHints()
             })
@@ -1039,7 +1042,6 @@
                 clearHints()
             })
             const captions = document.getElementsByTagName('caption')
-            let timout = null
             Array.from(captions).forEach((caption) => {
                 caption.addEventListener('pointerdown', (e) => {
                     if (!player.playing) return
@@ -1051,10 +1053,6 @@
                 })
                 caption.addEventListener('pointerup', (e) => {
                     clearHints()
-                    if (timout) {
-                        clearTimeout(timout)
-                        timout = null
-                    }
                     caption.releasePointerCapture(e.pointerId);
                 })
             })
