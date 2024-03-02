@@ -593,15 +593,55 @@
                 this._timer.boredom.play()
             }
 
-            start() {
+            veilUnveilScores(veilOrUnveil) {
+
+                // https://css-tricks.com/why-using-reduce-to-sequentially-resolve-promises-works/
+                function methodThatReturnsAPromise(tbody, veilOrUnveil) {
+                    return new Promise((resolve) => {
+                        const tds = tbody.querySelectorAll('td')
+                        if (veilOrUnveil) {
+                            tds.forEach(td => { td.classList.add('translucent') })
+                        } else {
+                            tds.forEach(td => {
+                                if (td.classList.contains('true')) {
+                                    td.classList.remove('translucent')
+                                } else if (td.classList.contains('false')) {
+                                    td.classList.add('translucent')
+                                }
+                            })
+                        }
+                        setTimeout(() => {
+                            resolve(tbody)
+                        }, 25);
+                    })
+                }
+                const result = Array.from(document.querySelectorAll('#tables tbody')).reduce((accumulatorPromise, tbody) => {
+                    return accumulatorPromise.then(() => {
+                        return methodThatReturnsAPromise(tbody, veilOrUnveil)
+                    });
+                }, Promise.resolve());
+
+                result.then(e => {
+                    console.log("'unveil scores complete")
+                });
+
+                /*
+                if (veilOrUnveil) {
+                    document.querySelectorAll('#tables td').forEach(elem => { elem.classList.add('translucent') })
+                } else {
+                    document.querySelectorAll('#tables td.false').forEach(elem => { elem.classList.add('translucent') })
+                    document.querySelectorAll('#tables td.true').forEach(elem => { elem.classList.remove('translucent') })
+                }
+                */
+            }
+
+            async start() {
                 if (this.playing) return
                 window.scrollTo({
                     top: 0,
                     behavior: 'smooth' // Use 'smooth' for smooth scrolling
                 })
-                document.querySelectorAll('#tables td').forEach(elem => {
-                    elem.classList.add('translucent')
-                })
+                await player.veilUnveilScores(true)
                 document.getElementById('tortoise-hare-achilles').style.opacity = '.5'
                 document.querySelectorAll('#tortoise-hare-achilles button').forEach(button => {
                     button.disabled = true
@@ -625,8 +665,7 @@
                 document.getElementById("shuffle-all").disabled = false
                 document.getElementById("paragraph-breaks").disabled = false
                 document.getElementById('play').classList.remove('playing')
-                document.querySelectorAll('#tables td.false').forEach(elem => { elem.classList.add('translucent') })
-                document.querySelectorAll('#tables td.true').forEach(elem => { elem.classList.remove('translucent') })
+                player.veilUnveilScores(false)
             }
             stop() {
                 // if (!this.playing) return
