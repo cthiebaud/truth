@@ -1021,29 +1021,40 @@
                     }
                 })
 
-                const captions = document.getElementsByTagName('caption')
-                Array.from(captions).forEach(function (caption, index) {
-                    const hammerpress = new hammerjs(caption, {
-                        press: {
-                            time: 0 // Set the time option for the 'press' event to 10 milliseconds
-                        }
-                    })
-                    hammerpress.on('press', function (e) {
-                        if (!player.playing) return
-                        // When trigger element is tapped, show the target element
-                        // console.log("PRESSED", e, e.target.parentNode)
-                        e.target.parentNode.classList.add("hint")
-                    })
+            })
 
-                    hammerpress.on('pressup', function (e) {
-                        // When the press on the trigger element is released, hide the target element
-                        // console.log("RELEASED", e)
-                        Array.from(captions).forEach(function (caption2, index) {
-                            caption2.parentNode.classList.remove("hint")
-                        })
-                    })
+            // BEGIN HINTS 
+            function clearHints() {
+                const hints = document.querySelectorAll('.hint')
+                Array.from(hints).forEach((hint) => {
+                    hint.classList.remove("hint")
+                })
+
+            }
+            window.addEventListener("scroll", function (e) {
+                clearHints()
+            })
+            const captions = document.getElementsByTagName('caption')
+            let timout = null
+            Array.from(captions).forEach((caption) => {
+                caption.addEventListener('pointerdown', (e) => {
+                    if (!player.playing) return
+                    caption.setPointerCapture(e.pointerId);
+                    timout = setTimeout(() => {
+                        e.target.parentNode.classList.add("hint")
+                        e.target.parentNode.parentNode.classList.add("hint")
+                    }, 250);
+                })
+                caption.addEventListener('pointerup', (e) => {
+                    clearHints()
+                    if (timout) {
+                        clearTimeout(timout)
+                        timout = null
+                    }
+                    caption.releasePointerCapture(e.pointerId);
                 })
             })
+            // END HINTS 
 
             // Get all elements with the selector 'table.table'
             return Array.from(document.querySelectorAll('#tables>div'))
@@ -1169,11 +1180,9 @@
 
                         if (clickX < midpoint) {
                             // Clicked on the left half
-                            console.log('left')
                             player.tortoiseHareAchilles.prev()
                         } else {
                             // Clicked on the right half
-                            console.log('right')
                             player.tortoiseHareAchilles.next()
                         }
                     })
