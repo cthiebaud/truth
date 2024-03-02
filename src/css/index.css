@@ -112,12 +112,15 @@ nav#nav {
 #tables table:not(.hint) td.true.translucent {
   opacity: 0;
 }
-#tables table.hint td.true.translucent {
+#tables table.hint tbody {
   filter: blur(3px);
   opacity: 0.8;
 }
 #tables table td.false.translucent {
   opacity: 0;
+}
+#tables table.hint td.false:not(.translucent) {
+  opacity: 0.5;
 }
 
 #tables td.true:not(.translucent) {
