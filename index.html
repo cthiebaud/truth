@@ -1031,7 +1031,11 @@
                 })
 
             }
+            
             window.addEventListener("scroll", function (e) {
+                clearHints()
+            })
+            window.addEventListener("touchmove", function (e) {
                 clearHints()
             })
             const captions = document.getElementsByTagName('caption')
