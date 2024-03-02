@@ -1,4 +1,4 @@
-const fs = require('fs');
+import { readFileSync, writeFileSync } from 'fs';
 
 const toProduction = process.env.NODE_ENV === 'production';
 
@@ -35,13 +35,13 @@ if (productionPaths.length !== developmentPaths.length) {
 }
 
 // Read the original HTML content from index.html
-let originalHTMLContent = fs.readFileSync('index.html', 'utf8');
+let originalHTMLContent = readFileSync('index.html', 'utf8');
 
 for (let i = 0; i < productionPaths.length; i++) {
     const productionPath = productionPaths[i]
     const developmentPath = developmentPaths[i]
-        // Replace the development file path with the production file path and vice versa
-        if (toProduction) {
+    // Replace the development file path with the production file path and vice versa
+    if (toProduction) {
         originalHTMLContent = originalHTMLContent.replace(developmentPath, productionPath);
     } else {
         originalHTMLContent = originalHTMLContent.replace(productionPath, developmentPath);
@@ -49,6 +49,6 @@ for (let i = 0; i < productionPaths.length; i++) {
 }
 
 // Write the updated HTML content back to index.html
-fs.writeFileSync('index.html', originalHTMLContent);
+writeFileSync('index.html', originalHTMLContent);
 
 console.log(`My build successful for ${toProduction ? 'production' : 'development'} environment.`);

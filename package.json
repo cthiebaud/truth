@@ -1,7 +1,7 @@
 {
   "scripts": {
-    "dev": "NODE_ENV=development node my-build.js",
-    "prod": "NODE_ENV=production node my-build.js",
+    "dev": "NODE_ENV=development node dev-oder-prod.mjs",
+    "prod": "NODE_ENV=production node dev-oder-prod.mjs",
     "build": "npm run prod && npm-run-all -s build:*",
     "build:minify-css": "postcss src/css/*.css --ext .min.css --dir dist/css",
     "build:terser": "npm-run-all -s build:terser:*",
