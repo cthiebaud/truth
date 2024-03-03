@@ -14,8 +14,8 @@ if [ -n "$(git status --porcelain)" ]; then
   exit 1
 fi
 
-# Create and switch to the production branch
-git checkout -b production
+# switch to the production branch
+git checkout production
 
 # Inject the commit hash into the HTML
 ./inject_commit_hash.sh
