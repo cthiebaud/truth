@@ -254,9 +254,11 @@
                 align-items: center;
             }
 
+            /*
             #nav.navbar #controls #tortoise-hare-achilles.carousel .carousel-item {
                 transition: none;
             }
+            */
 
             #nav.navbar #controls #tortoise-hare-achilles.carousel .carousel-item>div {
                 display: flex;
@@ -269,7 +271,7 @@
             }
 
             #nav.navbar #controls #tortoise-hare-achilles.carousel button:disabled {
-                visibility: hidden;
+                filter: opacity(0.5);
             }
 
             #nav.navbar #controls #tortoise-hare-achilles.carousel .carousel-control-next-icon,
@@ -280,9 +282,9 @@
         <nav id="nav" class="navbar fixed-bottom align-item-center">
             <div id="controls" class="container-fluid">
 
-                <div id="tortoise-hare-achilles" class="left carousel carousel-dark" data-bs-touch="false" data-bs-wrap="false">
+                <div id="tortoise-hare-achilles" class="left carousel slide" data-bs-wrap="false">
                     <div class="carousel-inner">
-                        <div id="tortoise" data-time="120" class="carousel-item active" data-bs-interval="0">
+                        <div id="tortoise" data-time="120" class="carousel-item active"><!-- data-bs-interval="0" -->
                             <div>
                                 <!-- 
                                 <img src="/assets/svg/tortoise-fill-svgrepo-com.svg" alt="tortoise">
@@ -293,7 +295,7 @@
                                 </svg>
                             </div>
                         </div>
-                        <div id="hare" data-time="60" class="carousel-item" data-bs-interval="0">
+                        <div id="hare" data-time="60" class="carousel-item"><!-- data-bs-interval="0" -->
                             <div>
                                 <!-- 
                                 <img src="/assets/svg/hare-fill-svgrepo-com.svg" alt="hare">
@@ -304,7 +306,7 @@
                                 </svg>
                             </div>
                         </div>
-                        <div id="achilles" data-time="30" class="carousel-item" data-bs-interval="0">
+                        <div id="achilles" data-time="30" class="carousel-item"><!-- data-bs-interval="0" -->
                             <div>
                                 <!-- 
                                 <img src="/assets/svg/ancient-greek-helmet-1-svgrepo-com.svg" alt="achilles">
@@ -341,14 +343,11 @@
                 <!-- ########################## -->
                 <div class="right" style="width: 80px;">
                     <button id="play" type="button" class="btn btn-light timer-container" aria-label="play" disabled style="width:36px; height: 36px; margin: auto;">
-                        <!-- div class="timer-not-playing">⏵</!-->
                         <svg class="timer-not-playing" xmlns="http://www.w3.org/2000/svg">
                             <use xlink:href="#svg-play"></use>
                         </svg>
                         <div class="timer-playing">
-                            <!-- div class="compte-à-rebours"></!-->
                             <svg viewBox="4 4 92 92" xmlns="http://www.w3.org/2000/svg">
-
                                 <g transform="rotate(-90 50 50)">
                                     <circle id="innerCircle1" cx="50" cy="50" r="55" stroke="rgba(23, 63, 53, .25)" stroke-width="46" fill="none" />
                                     <circle id="innerCircle2" cx="50" cy="50" r="40" stroke="rgba(23, 63, 53, .666)" stroke-width="0" fill="none" />
@@ -441,31 +440,88 @@
             }
         }
 
+        function normalizeVraiment(x, srcmin, srcmax, dstmin, dstmax) {
+            if (srcmax === srcmin) return 0
+            if (Math.abs(x - srcmax) < Number.EPSILON) {
+                return dstmax;
+            }
+            const y = dstmin + (dstmax - dstmin) * (x - srcmin) / (srcmax - srcmin)
+            return y
+        }
+        function isNumber(value) {
+            return !Number.isNaN(parseFloat(value)) && Number.isFinite(value);
+        }
+
         class CompteARebours {
+            _animationTimeInMilliseconds
+            _duration
+
+            constructor() {
+                this._animationTimeInMilliseconds = 600
+                this._duration = 120
+            }
+
+            get animationTimeInMilliseconds() {
+                return this._animationTimeInMilliseconds;
+            };
+
+            set animationTimeInMilliseconds(animationTimeInMillisecondsParam) {
+                this._animationTimeInMilliseconds = animationTimeInMillisecondsParam
+                // console.log("animationTimeInMilliseconds", this._animationTimeInMilliseconds)
+            }
+
+            get duration() {
+                return this._duration;
+            };
+
+            set duration(durationParam) {
+                if (!isNumber(durationParam)) throw new Error(`not a number: ${durationParam} !`)
+                this._duration = durationParam;
+                const darkenedRed = tinycolor2('#ff0000').darken(this._duration).toString("hex6");
+                const element = document.querySelector(".compte-à-rebours");
+                element.innerHTML = `<span style="color: ${darkenedRed}">${this.formatDuration(this._duration)}</span>`;
+            };
+
+            animateSetDuration(durationParam) {
+                let newDuration = Number(durationParam);
+
+                let currentDuration = this._duration;
+
+                const startTime = performance.now();
+
+                const updateAnimation = (currentTime) => {
+                    const elapsedTime = Math.min(performance.now() - startTime, this._animationTimeInMilliseconds);
+                    let whereAreWe = normalizeVraiment(elapsedTime, 0, this._animationTimeInMilliseconds, currentDuration, newDuration)
+
+                    // console.log(Math.abs(whereAreWe - newDuration))
+
+                    this.duration = whereAreWe
+
+                    if (Math.abs(whereAreWe - newDuration) > .5) {
+                        requestAnimationFrame(updateAnimation);
+                    }
+                };
+
+                cancelAnimationFrame(this._animationFrameId);
+                this._animationFrameId = requestAnimationFrame(updateAnimation);
+            }
+
             formatDuration(durationInSeconds) {
                 // Ensure duration is within the range of 30 seconds to 2 minutes
+                /*
                 if (durationInSeconds > 120) {
                     throw new Error('Duration must be under 2 minutes');
                 }
+                */
 
                 // Calculate minutes and seconds
                 var minutes = Math.floor(durationInSeconds / 60);
-                var seconds = durationInSeconds % 60;
+                var seconds = Math.floor(durationInSeconds % 60);
 
                 // Format the time
                 var formattedTime = '<span style="color: transparent">00</span>' + minutes + '′' + (seconds < 10 ? '0' : '') + seconds + '″';
 
                 return formattedTime;
-            }
-
-            display(duration) {
-                const darkenedRed = tinycolor2('#ff0000').darken(duration).toString("hex6")
-
-                Array.from(document.getElementsByClassName("compte-à-rebours")).forEach(element => element.innerHTML = `<span style="color: ${darkenedRed}">${this.formatDuration(duration)}</span>`);
-            }
-
-            reset() {
-                this.display(Number(document.querySelector('.carousel-item.active').dataset.time))
             }
         }
 
@@ -482,19 +538,33 @@
                 this._timer.loadResources()
                 this.compteARebours = new CompteARebours()
                 this.tortoiseHareAchilles = new bsCarousel(document.getElementById('tortoise-hare-achilles'), {
-                    interval: 0,
+                    /* interval: 0,
                     touch: false
+                    */
+                })
+                let startSlide = undefined
+                document.getElementById('tortoise-hare-achilles').addEventListener('slide.bs.carousel', event => {
+                    // console.log(event)
+                    startSlide = performance.now()
+                    this.compteARebours.animateSetDuration(event.relatedTarget.dataset.time)
                 })
                 document.getElementById('tortoise-hare-achilles').addEventListener('slid.bs.carousel', event => {
+                    // console.log(event)
+                    if (startSlide) {
+                        this.compteARebours.animationTimeInMilliseconds = performance.now() - startSlide
+                    }
+                    // BEGIN CAROUSEL
                     const carousel = document.getElementById('tortoise-hare-achilles')
+                    const active = carousel.querySelector('.carousel-item.active')
+                    carousel.style.opacity = '1'
                     carousel.querySelector('.carousel-control-next').disabled = false
                     carousel.querySelector('.carousel-control-prev').disabled = false
-                    if (event.relatedTarget.id === 'tortoise') {
+                    if (active.id === 'tortoise') {
                         carousel.querySelector('.carousel-control-prev').disabled = true
-                    } else if (event.relatedTarget.id === 'achilles') {
+                    } else if (active.id === 'achilles') {
                         carousel.querySelector('.carousel-control-next').disabled = true
                     }
-                    this.compteARebours.reset()
+                    // END CAROUSEL
                 })
 
             }
@@ -529,7 +599,7 @@
             ready() {
                 document.getElementById("play").style.visibility = 'visible'
                 document.getElementById("play").disabled = false
-                player.compteARebours.reset()
+                player.compteARebours.duration = Number(document.querySelector('.carousel-item.active').dataset.time)
             }
 
             tick(totalTime, ticks) {
@@ -542,7 +612,7 @@
                 }
                 showCountDown(ticks)
                 */
-                player.compteARebours.display(totalTime - ticks)
+                player.compteARebours.duration = (totalTime - ticks)
                 player.results.elapsed.increment()
             }
 
@@ -710,11 +780,19 @@
             }
             stop() {
                 // if (!this.playing) return
-                this.compteARebours.reset()
-                document.getElementById('tortoise-hare-achilles').style.opacity = '1'
-                document.querySelectorAll('#tortoise-hare-achilles button').forEach(button => {
-                    button.disabled = false
-                })
+                this.compteARebours.duration = Number(document.querySelector('.carousel-item.active').dataset.time)
+                // BEGIN CAROUSEL
+                const carousel = document.getElementById('tortoise-hare-achilles')
+                const active = carousel.querySelector('.carousel-item.active')
+                carousel.style.opacity = '1'
+                carousel.querySelector('.carousel-control-next').disabled = false
+                carousel.querySelector('.carousel-control-prev').disabled = false
+                if (active.id === 'tortoise') {
+                    carousel.querySelector('.carousel-control-prev').disabled = true
+                } else if (active.id === 'achilles') {
+                    carousel.querySelector('.carousel-control-next').disabled = true
+                }
+                // END CAROUSEL
                 this._timer.stop()
                 this._timer.close()
                 this.playing = false
@@ -984,7 +1062,7 @@
                         trueTD.style.backgroundColor = backgroundcolors.next()
                         trueTD.style.color = colors.bg2color(trueTD.style.backgroundColor)
                     })
-                    console.log(backgroundcolors)
+                    // console.log(backgroundcolors)
                 }
             })
         }
