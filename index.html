@@ -935,7 +935,7 @@
             });
         }
 
-        function shuffleBricksColors(originalElementsArray) {
+        function shuffleBrickColors(originalElementsArray) {
             originalElementsArray.forEach(elem => {
                 if (elem.dataset.function) {
                     let backgroundcolors = functions.getOneOrTwoColors(elem.dataset.function)
@@ -1134,7 +1134,7 @@
             function mega_reorder() {
                 if (player.playing) return
                 if (tables.dataset.scrambled === 'false') {
-                    shuffleBricksColors(originalElementsArray)
+                    shuffleBrickColors(originalElementsArray)
                 } else {
                     scrambleIt(originalElementsArray, false)
                 }
