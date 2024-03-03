@@ -493,12 +493,12 @@
                     const elapsedTime = Math.min(performance.now() - startTime, this._animationTimeInMilliseconds);
                     let whereAreWe = normalizeVraiment(elapsedTime, 0, this._animationTimeInMilliseconds, currentDuration, newDuration)
 
-                    // console.log(Math.abs(whereAreWe - newDuration))
-
                     this.duration = whereAreWe
 
                     if (Math.abs(whereAreWe - newDuration) > .5) {
                         requestAnimationFrame(updateAnimation);
+                    } else {
+                        this.duration = newDuration
                     }
                 };
 
@@ -507,12 +507,9 @@
             }
 
             formatDuration(durationInSeconds) {
-                // Ensure duration is within the range of 30 seconds to 2 minutes
-                /*
-                if (durationInSeconds > 120) {
-                    throw new Error('Duration must be under 2 minutes');
+                if (durationInSeconds >= 540) { // 10 minutes
+                    throw new Error('Duration must be under 9′59″');
                 }
-                */
 
                 // Calculate minutes and seconds
                 var minutes = Math.floor(durationInSeconds / 60);
