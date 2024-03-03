@@ -28,7 +28,7 @@ fi
 # Get the latest commit hash on the main branch
 latest_commit_hash=$(git rev-parse --short main)
 
-# Inject the commit hash into the HTML
+# Inject the commit hash into the HOWTO
 ./inject_commit_hash.sh
 
 # switch to the production branch
@@ -40,7 +40,7 @@ commit_message="Update commit hash to $latest_commit_hash in HOWTO.md for produc
 git commit -m "$commit_message"
 
 # Push changes to the remote production branch
-git push origin production
+git push origin production --force
 
 # Switch back to the main branch
 git checkout main
