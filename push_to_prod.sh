@@ -21,8 +21,8 @@ git checkout -b production
 ./inject_commit_hash.sh
 
 # Commit changes to the production branch
-git add index.html
-git commit -m "Update commit hash in index.html for production"
+git add HOWTO.md
+git commit -m "Update commit hash in HOWTO.md for production"
 
 # Push changes to the remote production branch
 git push origin production
