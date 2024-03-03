@@ -1,15 +1,17 @@
 {
   "scripts": {
-    "dev": "NODE_ENV=development node dev-oder-prod.mjs",
-    "prod": "NODE_ENV=production node dev-oder-prod.mjs",
+    "dev": "cross-env-shell NODE_ENV=development node dev-oder-prod.mjs",
+    "prod": "cross-env-shell NODE_ENV=production node dev-oder-prod.mjs",
     "build": "npm run prod && npm-run-all -s build:*",
     "build:minify-css": "postcss src/css/*.css --ext .min.css --dir dist/css",
     "build:terser": "npm-run-all -s build:terser:*",
     "build:terser:clean": "rimraf dist/js && mkdirp dist/js",
     "build:terser:terse": "foreach -g \"src/js/*.js\" --concurrent -x \"terser #{path} -o dist/js/#{name}.min#{ext} -c \"ecma=6,toplevel\" -m \"toplevel,eval\"\"",
-    "build:inject": "npx workbox injectManifest workbox-config.js && npx prettier --write service-worker.js "
+    "build:inject": "npx workbox injectManifest workbox-config.js && npx prettier --write service-worker.js ",
+    "push2prod": "./push_to_prod.sh"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "cssnano": "^6.0.3",
     "foreach-cli": "^1.8.1",
     "mkdirp": "^3.0.1",
