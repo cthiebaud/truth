@@ -1,6 +1,15 @@
 #!/bin/bash
 set -e
 
+# Define cleanup function
+cleanup() {
+    # Switch back to the main branch
+    git checkout main
+}
+
+# Trap any signals to trigger cleanup
+trap cleanup EXIT
+
 echo "NODE_ENV: $NODE_ENV"
 
 # Check if NODE_ENV is set to "production"
