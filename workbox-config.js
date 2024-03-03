@@ -12,6 +12,7 @@ module.exports = {
     "test/**",
     "packages/**",
     "*.js",
+    "svg/**",
   ],
   swSrc: 'service-worker-src.js',
   swDest: 'service-worker.js',
