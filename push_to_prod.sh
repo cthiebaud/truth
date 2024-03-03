@@ -31,9 +31,6 @@ latest_commit_hash=$(git rev-parse --short main)
 # Inject the commit hash into the HOWTO
 ./inject_commit_hash.sh
 
-# switch to the production branch
-git checkout production || true # ensures that the command always returns a success status code, even if it encounters an error.
-
 # Commit changes to the production branch
 git add HOWTO.md
 commit_message="Update commit hash to $latest_commit_hash in HOWTO.md for production"
@@ -42,9 +39,6 @@ git commit -m "$commit_message"
 # Push changes to the remote production branch
 git push origin production --force
 
-# Switch back to the main branch
-git checkout main
-
-# Reset the main branch
-git reset --hard
+# Reset the main branch 
+git reset HEAD~1 --hard
 
