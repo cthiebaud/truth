@@ -263,20 +263,14 @@
                 height: 30px;
             }
 
-            #nav.navbar #controls #tortoise-hare-achilles.carousel .carousel-control-next-icon,
-            #nav.navbar #controls #tortoise-hare-achilles.carousel .carousel-control-prev-icon {
-                filter: invert(1);
+            #nav.navbar #controls #tortoise-hare-achilles.carousel button:disabled {
+                visibility: hidden;
             }
         </style>
         <nav id="nav" class="navbar fixed-bottom">
             <div id="controls" class="container-fluid">
 
-                <div id="tortoise-hare-achilles" class="left carousel carousel-fade" data-bs-touch="false" data-bs-wrap="false">
-                    <div class="carousel-indicators" style="display: none;"> <!--  -->
-                        <button type="button" data-bs-target="#tortoise-hare-achilles" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#tortoise-hare-achilles" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#tortoise-hare-achilles" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                    </div>
+                <div id="tortoise-hare-achilles" class="left carousel carousel-dark" data-bs-touch="false" data-bs-wrap="false">
                     <div class="carousel-inner">
                         <div id="tortoise" data-time="120" class="carousel-item active" data-bs-interval="0">
                             <div>
@@ -294,7 +288,7 @@
                             </div>
                         </div>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#tortoise-hare-achilles" data-bs-slide="prev">
+                    <button class="carousel-control-prev" type="button" data-bs-target="#tortoise-hare-achilles" data-bs-slide="prev" disabled>
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                     </button>
@@ -453,6 +447,14 @@
                     touch: false
                 })
                 document.getElementById('tortoise-hare-achilles').addEventListener('slid.bs.carousel', event => {
+                    const carousel = document.getElementById('tortoise-hare-achilles')
+                    carousel.querySelector('.carousel-control-next').disabled = false
+                    carousel.querySelector('.carousel-control-prev').disabled = false
+                    if (event.relatedTarget.id === 'tortoise') {
+                        carousel.querySelector('.carousel-control-prev').disabled = true
+                    } else if (event.relatedTarget.id === 'achilles') {
+                        carousel.querySelector('.carousel-control-next').disabled = true
+                    }
                     this.compteARebours.reset()
                 })
 
@@ -1238,9 +1240,9 @@
                         clickEvent.stopPropagation()
                         if (player.playing) return
 
-                        var clickedElement = clickEvent.target;
+                        var target = clickEvent.target;
                         // Check if the clicked element is the desired DIV
-                        var rect = clickedElement.getBoundingClientRect();
+                        var rect = target.getBoundingClientRect();
                         var clickX = event.clientX - rect.left;
                         var midpoint = rect.width / 2;
 
