@@ -810,6 +810,9 @@
             shuffleColors() {
                 this.colors = shuffleNoAdjacentDuplicates(this.colors)
             }
+            bg2color(bg) {
+                return tinycolor2(bg).darken(3).toString("hex6")
+            }
         }
         const colors = new Colors()
 
@@ -872,6 +875,9 @@
                         });
                     }
                 });
+                this.getFunction = (functionAsString) => {
+                    return 0
+                }
             }
 
             iterate(iterator) {
@@ -917,14 +923,29 @@
             });
 
             // Shuffle the detached elements
+            tables.dataset.scrambled = false
             if (shuffleParam) {
                 shuffleArray(detachedElements);
+                tables.dataset.scrambled = true
             }
 
             // Reattach the shuffled elements
             detachedElements.forEach(element => {
                 tables.appendChild(element);
             });
+        }
+
+        function shuffleBricksColors(originalElementsArray) {
+            originalElementsArray.forEach(elem => {
+                if (elem.dataset.function) {
+                    let backgroundcolors = functions.getOneOrTwoColors(elem.dataset.function)
+                    elem.querySelectorAll('td.true').forEach(trueTD => {
+                        trueTD.style.backgroundColor = backgroundcolors.next()
+                        trueTD.style.color = colors.bg2color(trueTD.style.backgroundColor)
+                    })
+                    console.log(backgroundcolors)
+                }
+            })
         }
 
         function doIt() {
@@ -948,7 +969,7 @@
                 } else {
                     const theadID = `thead${index}`
                     const tbodyID = `tbody${index}`
-                    const template = `<div id="${elementID}">
+                    const template = `<div id="${elementID}" data-function="${func}">
         <table class="table inline table-sm caption-top table-borderless">
             <caption class="text-center">${functions.display[func]}</caption>
             <thead id="${theadID}"></thead>
@@ -980,7 +1001,7 @@
                                     col.classList.add(result ? 'true' : 'false')
                                     if (result) {
                                         col.style.backgroundColor = backgroundcolors.next()
-                                        col.style.color = tinycolor2(col.style.backgroundColor).darken(3).toString("hex6")
+                                        col.style.color = colors.bg2color(col.style.backgroundColor)
                                         col.innerHTML = '●' // '○' // 
                                     } else {
                                         col.style.backgroundColor = colors.colorFalse
@@ -1112,8 +1133,11 @@
             }
             function mega_reorder() {
                 if (player.playing) return
-                if (paragraphBreaks) return
-                scrambleIt(originalElementsArray, false)
+                if (tables.dataset.scrambled === 'false') {
+                    shuffleBricksColors(originalElementsArray)
+                } else {
+                    scrambleIt(originalElementsArray, false)
+                }
             }
 
             const theTables = document.getElementById("tables")
