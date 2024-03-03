@@ -5,6 +5,7 @@ set -e
 cleanup() {
     # Switch back to the main branch
     git checkout main
+    git reset --hard
 }
 
 # Trap any signals to trigger cleanup
@@ -28,7 +29,7 @@ fi
 ./inject_commit_hash.sh
 
 # switch to the production branch
-git checkout production
+git checkout production || true # ensures that the command always returns a success status code, even if it encounters an error.
 
 # Commit changes to the production branch
 git add HOWTO.md
