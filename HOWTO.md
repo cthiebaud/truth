@@ -1,7 +1,7 @@
 [![WWW](assets/svg/internet-svgrepo-com.svg)](https://aletheia.cthiebaud.com/) 
 [![Android App Store](assets/svg/android-svgrepo-com.svg)](https://play.google.com/apps/testing/com.cthiebaud.aletheia.twa)
 [![Apple App Store](assets/svg/Apple_logo_grey.svg)](https://apps.apple.com/us/app/aletheia-by-%C3%A6quologica/id6476017817)
-[![Github](assets/svg/github.svg)](https://github.com/cthiebaud/truth)
+[![Github](assets/svg/github.svg)](https://github.com/cthiebaud/truth/commit/6e9b59a4aa24ce3b65e2e70def1ce90f58f5f3a1)
 
 # ἀλήθεια
 
