@@ -25,6 +25,9 @@ if [ -n "$(git status --porcelain)" ]; then
   exit 1
 fi
 
+# Get the latest commit hash on the main branch
+latest_commit_hash=$(git rev-parse --short main)
+
 # Inject the commit hash into the HTML
 ./inject_commit_hash.sh
 
@@ -33,7 +36,8 @@ git checkout production || true # ensures that the command always returns a succ
 
 # Commit changes to the production branch
 git add HOWTO.md
-git commit -m "Update commit hash in HOWTO.md for production"
+commit_message="Update commit hash to $latest_commit_hash in HOWTO.md for production"
+git commit -m "$commit_message"
 
 # Push changes to the remote production branch
 git push origin production
