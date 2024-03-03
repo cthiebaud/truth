@@ -37,7 +37,7 @@ commit_message="Update commit hash to $latest_commit_hash in HOWTO.md for produc
 git commit -m "$commit_message"
 
 # Push changes to the remote production branch
-git push origin production --force
+git push --force origin main:production
 
 # Reset the main branch 
 git reset HEAD~1 --hard
