@@ -601,9 +601,7 @@
             }
 
             onTimerStart() {
-                player._soundMachine.underwater.volume(0.01)
                 player._soundMachine.underwater.play();
-                player._soundMachine.ticking.volume(0.67)
                 player._soundMachine.ticking.play();
             }
 
@@ -627,8 +625,8 @@
             }
 
             onTimerStop() {
-                player._soundMachine.ticking.fade2(0.01);
-                player._soundMachine.underwater.fade2(0.01);
+                player._soundMachine.ticking.fade(undefined, 0.001);
+                player._soundMachine.underwater.fade(undefined, 0.001);
             }
 
             onTimerClose() {
@@ -1206,7 +1204,7 @@
                 Array.from(hints).forEach((hint) => {
                     hint.classList.remove("hint")
                 })
-                player._soundMachine.underwater.fade2(0.01)
+                player._soundMachine.underwater.fade(undefined, 0.001)
 
             }
             window.addEventListener("scroll", function (e) {
@@ -1220,7 +1218,7 @@
                 caption.addEventListener('pointerdown', (e) => {
                     if (!player.playing) return
                     caption.setPointerCapture(e.pointerId);
-                    player._soundMachine.underwater.fade2(0.33)
+                    player._soundMachine.underwater.fade(undefined, 0.33)
 
                     timout = setTimeout(() => {
                         e.target.parentNode.classList.add("hint")

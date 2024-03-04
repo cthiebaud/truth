@@ -6,25 +6,42 @@ export class SoundMachine {
         if (!Howler.usingWebAudio) {
             return {
                 play: () => { },
-                fade2: () => { },
+                fade: () => { },
                 stop: () => { },
                 volume: () => { },
             };
         }
 
-        const howl = new Howl(config);
+        class CustomHowl extends Howl {
+            constructor(config) {
+                super(config); // Call the superclass constructor
+                this._initialVolume = config.volume
+            }
 
-        howl.fade2 = (to) => {
-            let volume = howl.volume();
-            howl.fade(volume, to, 1000);
-        };
+            play(sprite_or_id) {
+                if (this._initialVolume) {
+                    this.volume(this._initialVolume)
+                }
+                super.play(sprite_or_id);
+            }
 
-        return howl;
+            fade(volume, to, timespan, id) {
+                if (typeof volume === "undefined") {
+                    volume = this.volume();
+                }
+                if (typeof timespan === "undefined") {
+                    timespan = 1000
+                }
+                super.fade(volume, to, timespan, id);
+            }
+        }
+        
+        return new CustomHowl(config);
     }
 
     constructor() {
-        this.ticking = SoundMachine.newHowl({ src: ['/assets/audio/ticking.mp3'], loop: true, volume: 0.67 });
-        this.underwater = SoundMachine.newHowl({ src: ['/assets/audio/underwater.mp3'], loop: true, volume: 0.01 });
+        this.ticking = SoundMachine.newHowl({ src: ['/assets/audio/ticking.mp3'], loop: true, volume: 0.5 });
+        this.underwater = SoundMachine.newHowl({ src: ['/assets/audio/underwater.mp3'], loop: true, volume: 0.001 });
         this.coin = SoundMachine.newHowl({ src: ['/assets/audio/coin.mp3'] });
         this.laughs = SoundMachine.newHowl({ src: ['/assets/audio/guitar-string-snap2.mp3'] });
         this.tada = SoundMachine.newHowl({ src: ['/assets/audio/tada.mp3'] });
