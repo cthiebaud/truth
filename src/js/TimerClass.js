@@ -8,6 +8,8 @@ class Sound {
         this.soundBuffer = null
         this.soundSource = null
         this.audioContext = null
+        this.gainNode = null
+        this._volume = 0.001
     }
     async load() {
         const response = await fetch(this.file);
@@ -17,13 +19,26 @@ class Sound {
         this.audioContext = audioContext
         this.soundBuffer = await this.audioContext.decodeAudioData(this.arrayBuffer.slice(0));
     }
+    addGainNode() {
+        // Create a GainNode
+        this.gainNode = this.audioContext.createGain();
+        this.gainNode.gain.value = this._volume
+    }
     connect() {
         if (this.soundBuffer == null) {
-            return { start: () => {/* console.log("fake start") */} }
+            return { start: () => {/* console.log("fake start") */ } }
         }
         const soundSource = this.audioContext.createBufferSource();
         soundSource.buffer = this.soundBuffer;
-        soundSource.connect(this.audioContext.destination);
+        if (this.gainNode) {
+            // Connect the gain node to the destination (e.g., speakers)
+            this.gainNode.connect(this.audioContext.destination);
+            // Connect the audio source to the gain node
+            soundSource.connect(this.gainNode);
+        } else {
+
+            soundSource.connect(this.audioContext.destination);
+        }
         soundSource.onended = () => {
             soundSource.disconnect();
         };
@@ -39,6 +54,27 @@ class Sound {
     stop() {
         if (this.soundSource != null) {
             this.soundSource.stop()
+        }
+    }
+    get volume() {
+        return this._volume
+    }
+    set volume(nextVolume) {
+        if (nextVolume == 0) {
+            nextVolume = 0.001
+        }
+        console.log(this.volume, '=>', nextVolume)
+        if (nextVolume == this.volume) {
+            return
+        }
+        this._volume = nextVolume
+
+        // const decay = nextVolume === 0.001 ? 2 : (1 / 3)
+        if (this.gainNode) {
+            this.gainNode.gain.exponentialRampToValueAtTime(
+                nextVolume,
+                this.audioContext.currentTime + 1
+            )
         }
     }
 }
@@ -70,6 +106,7 @@ export class Timer {
             this.boo = new Sound('/assets/audio/boo.mp3');
             this.guitar = new Sound('/assets/audio/guitar-riff.mp3');
             this.boredom = new Sound('/assets/audio/boredom.mp3');
+            this.underwater = new Sound('/assets/audio/underwater.mp3');
             this.totalTime = totalTime;
             this.onTimerReady = onTimerReady;
             this.onTimerTick = onTimerTick;
@@ -90,6 +127,8 @@ export class Timer {
         await this.boo.load()
         await this.guitar.load()
         await this.boredom.load()
+        await this.underwater.load()
+
         /* console.log('Sound sources loaded') */
         if (this.onTimerReady) {
             this.onTimerReady()
@@ -119,6 +158,14 @@ export class Timer {
                 await this.boo.decode(this.audioContext)
                 await this.guitar.decode(this.audioContext)
                 await this.boredom.decode(this.audioContext)
+                if (this.underwater) {
+                    await this.underwater.decode(this.audioContext)
+                    this.underwater.addGainNode()
+                    this.underwater.soundSource = this.underwater.connect()
+                    this.underwater.soundSource.onended = null
+                    // Loop the sound 
+                    this.underwater.soundSource.loop = true;
+                }
 
                 /* console.log('Audio context initialized successfully, sound sources connected') */
                 resolve(); // Resolve the promise on success
@@ -158,6 +205,7 @@ export class Timer {
             this.timerId = requestAnimationFrame((timestamp) => this.updateTimer(timestamp, startTime));
         } else {
             this.ticking.stop();
+            this.underwater.stop();
             clearInterval(this.showNumber)
             if (this.onTimerExpiredCallback) {
                 this.onTimerExpiredCallback();
@@ -176,6 +224,7 @@ export class Timer {
         this.timerElementNotPlaying.style.display = 'none';
         this.ticks = 0
         this.ticking.play();
+        this.underwater.play();
         const startTime = performance.now();
         this.timerId = requestAnimationFrame((timestamp) => this.updateTimer(timestamp, startTime));
         this.onTimerTick(this.totalTime, this.ticks)
@@ -192,6 +241,7 @@ export class Timer {
         cancelAnimationFrame(this.timerId);
         this.timerId = null
         this.ticking.stop();
+        this.underwater.stop();
         /* console.log('timer stopped') */
     }
     close() {
