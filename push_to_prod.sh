@@ -11,6 +11,7 @@ cleanup() {
 # Trap any signals to trigger cleanup
 trap cleanup EXIT
 
+NODE_ENV=$(cat .node_env)
 echo "NODE_ENV: $NODE_ENV"
 
 # Check if NODE_ENV is set to "production"

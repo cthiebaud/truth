@@ -50,5 +50,6 @@ for (let i = 0; i < productionPaths.length; i++) {
 
 // Write the updated HTML content back to index.html
 writeFileSync('index.html', originalHTMLContent);
+writeFileSync('.node_env', process.env.NODE_ENV);
 
-console.log(`My build successful for ${toProduction ? 'production' : 'development'} environment.`);
+console.log(`My build successful for environment: ${process.env.NODE_ENV}`);
