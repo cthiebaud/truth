@@ -2,14 +2,15 @@
 import tinycolor2 from 'https://cdn.jsdelivr.net/npm/tinycolor2@1.6.0/+esm'
 
 class Sound {
-    constructor(file) {
+    constructor(file, volume = 1, loop = false) {
         this.file = file
         this.arrayBuffer = null
         this.soundBuffer = null
         this.soundSource = null
         this.audioContext = null
         this.gainNode = null
-        this._volume = 0.001
+        this._volume = volume
+        this._loop = loop
     }
     async load() {
         const response = await fetch(this.file);
@@ -18,9 +19,6 @@ class Sound {
     async decode(audioContext) {
         this.audioContext = audioContext
         this.soundBuffer = await this.audioContext.decodeAudioData(this.arrayBuffer.slice(0));
-    }
-    addGainNode() {
-        // Create a GainNode
         this.gainNode = this.audioContext.createGain();
         this.gainNode.gain.value = this._volume
     }
@@ -30,17 +28,17 @@ class Sound {
         }
         const soundSource = this.audioContext.createBufferSource();
         soundSource.buffer = this.soundBuffer;
-        if (this.gainNode) {
-            // Connect the gain node to the destination (e.g., speakers)
-            this.gainNode.connect(this.audioContext.destination);
-            // Connect the audio source to the gain node
-            soundSource.connect(this.gainNode);
-        } else {
-
-            soundSource.connect(this.audioContext.destination);
-        }
+        // Connect the gain node to the destination (e.g., speakers)
+        this.gainNode.connect(this.audioContext.destination);
+        // Connect the audio source to the gain node
+        soundSource.loop = this._loop;
+        soundSource.connect(this.gainNode);
         soundSource.onended = () => {
-            soundSource.disconnect();
+            console.log(`${this.file} sound has ended`, this.audioContext.currentTime)
+            if (!this._loop) {
+                soundSource.disconnect()
+                console.log(`${this.file} sound has been disconnected`, this.audioContext.currentTime)
+            }
         };
         return soundSource
     }
@@ -49,33 +47,39 @@ class Sound {
             this.connect().start()
         } else {
             this.soundSource.start()
+            this.gainNode.gain.linearRampToValueAtTime(this._volume, this.audioContext.currentTime); 
         }
     }
-    stop() {
+    fade() {
+        this.volume = 0.001
+    }
+    /*
+    stop(time = undefined) {
         if (this.soundSource != null) {
-            this.soundSource.stop()
+            if (!time) time = this.audioContext.currentTime
+            console.log('will stop at', time)
+            this.soundSource.stop(time)
         }
     }
+    */
     get volume() {
-        return this._volume
+        return this.gainNode.gain.value
     }
     set volume(nextVolume) {
-        if (nextVolume == 0) {
+        if (nextVolume === 0) {
             nextVolume = 0.001
         }
-        console.log(this.volume, '=>', nextVolume)
-        if (nextVolume == this.volume) {
+        let prevVolume = this.volume
+        if (nextVolume === prevVolume) {
             return
         }
-        this._volume = nextVolume
+        let time = (prevVolume < nextVolume ? 1 : 6)
 
-        // const decay = nextVolume === 0.001 ? 2 : (1 / 3)
-        if (this.gainNode) {
-            this.gainNode.gain.exponentialRampToValueAtTime(
-                nextVolume,
-                this.audioContext.currentTime + 1
-            )
-        }
+        console.log(`${this.file} sound volume from ${prevVolume} to ${nextVolume}`)
+        this.gainNode.gain.exponentialRampToValueAtTime(
+            nextVolume,
+            this.audioContext.currentTime + time
+        )
     }
 }
 
@@ -97,7 +101,7 @@ export class Timer {
             this.centerY = this.timerElementPlaying.height / 2;
             this.timerId = null;
             this.audioContext = null;
-            this.ticking = new Sound('/assets/audio/ticking.mp3');
+            this.ticking = new Sound('/assets/audio/ticking.mp3', 0.8, true);
             this.coin = new Sound('/assets/audio/coin.mp3');
             this.laughs = new Sound('/assets/audio/guitar-string-snap2.mp3');
             this.tada = new Sound('/assets/audio/tada.mp3');
@@ -106,7 +110,7 @@ export class Timer {
             this.boo = new Sound('/assets/audio/boo.mp3');
             this.guitar = new Sound('/assets/audio/guitar-riff.mp3');
             this.boredom = new Sound('/assets/audio/boredom.mp3');
-            this.underwater = new Sound('/assets/audio/underwater.mp3');
+            this.underwater = new Sound('/assets/audio/underwater.mp3', 0.001, true);
             this.abort = new Sound('/assets/audio/short-whoosh.mp3');
             this.totalTime = totalTime;
             this.onTimerReady = onTimerReady;
@@ -145,13 +149,7 @@ export class Timer {
                 } else {
                     console.warn('Audio context is already initialized');
                 }
-                if (this.ticking) {
-                    await this.ticking.decode(this.audioContext)
-                    this.ticking.soundSource = this.ticking.connect()
-                    this.ticking.soundSource.onended = null
-                    // Loop the sound 
-                    this.ticking.soundSource.loop = true;
-                }
+                await this.ticking.decode(this.audioContext)
                 await this.coin.decode(this.audioContext)
                 await this.laughs.decode(this.audioContext)
                 await this.tada.decode(this.audioContext)
@@ -161,14 +159,7 @@ export class Timer {
                 await this.guitar.decode(this.audioContext)
                 await this.boredom.decode(this.audioContext)
                 await this.abort.decode(this.audioContext)
-                if (this.underwater) {
-                    await this.underwater.decode(this.audioContext)
-                    this.underwater.addGainNode()
-                    this.underwater.soundSource = this.underwater.connect()
-                    this.underwater.soundSource.onended = null
-                    // Loop the sound 
-                    this.underwater.soundSource.loop = true;
-                }
+                await this.underwater.decode(this.audioContext)
 
                 /* console.log('Audio context initialized successfully, sound sources connected') */
                 resolve(); // Resolve the promise on success
@@ -207,8 +198,8 @@ export class Timer {
             this.drawTimer(timeRemaining);
             this.timerId = requestAnimationFrame((timestamp) => this.updateTimer(timestamp, startTime));
         } else {
-            this.ticking.stop();
-            this.underwater.stop();
+            this.ticking.fade();
+            this.underwater.fade();
             clearInterval(this.showNumber)
             if (this.onTimerExpiredCallback) {
                 this.onTimerExpiredCallback();
@@ -243,8 +234,8 @@ export class Timer {
         // this.clearTimer()
         cancelAnimationFrame(this.timerId);
         this.timerId = null
-        this.ticking.stop();
-        this.underwater.stop();
+        this.ticking.fade();
+        this.underwater.fade();
         /* console.log('timer stopped') */
     }
     close() {

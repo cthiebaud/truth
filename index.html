@@ -1229,7 +1229,7 @@
                 caption.addEventListener('pointerdown', (e) => {
                     if (!player.playing) return
                     caption.setPointerCapture(e.pointerId);
-                    player._timer.underwater.volume = 0.2
+                    player._timer.underwater.volume = 0.3
                     timout = setTimeout(() => {
                         e.target.parentNode.classList.add("hint")
                         e.target.parentNode.parentNode.classList.add("hint")
