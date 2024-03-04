@@ -107,6 +107,7 @@ export class Timer {
             this.guitar = new Sound('/assets/audio/guitar-riff.mp3');
             this.boredom = new Sound('/assets/audio/boredom.mp3');
             this.underwater = new Sound('/assets/audio/underwater.mp3');
+            this.abort = new Sound('/assets/audio/short-whoosh.mp3');
             this.totalTime = totalTime;
             this.onTimerReady = onTimerReady;
             this.onTimerTick = onTimerTick;
@@ -128,6 +129,7 @@ export class Timer {
         await this.guitar.load()
         await this.boredom.load()
         await this.underwater.load()
+        await this.abort.load()
 
         /* console.log('Sound sources loaded') */
         if (this.onTimerReady) {
@@ -158,6 +160,7 @@ export class Timer {
                 await this.boo.decode(this.audioContext)
                 await this.guitar.decode(this.audioContext)
                 await this.boredom.decode(this.audioContext)
+                await this.abort.decode(this.audioContext)
                 if (this.underwater) {
                     await this.underwater.decode(this.audioContext)
                     this.underwater.addGainNode()

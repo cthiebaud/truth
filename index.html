@@ -630,8 +630,8 @@
 
             abort() {
                 setTimeout(() => {
-                    let msg
-                    msg = `You stopped!`
+                    player.abortSound()
+                    let msg = `You stopped!`
                     player.stopTimerShowResultsThenCloseTimer(msg, player.results)
                 }, 100)
             }
@@ -684,6 +684,10 @@
 
             fail() {
                 this._timer.fail.play()
+            }
+
+            abortSound() {
+                this._timer.abort.play()
             }
 
             completed_with_errors() {
