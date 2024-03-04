@@ -15,11 +15,11 @@
     "foreach-cli": "^1.8.1",
     "mkdirp": "^3.0.1",
     "npm-run-all": "^4.1.5",
-    "postcss": "^8.4.33",
+    "postcss": "^8.4.35",
     "postcss-cli": "^11.0.0",
-    "prettier": "^3.1.1",
+    "prettier": "^3.2.5",
     "rimraf": "^5.0.5",
-    "terser": "^5.26.0",
+    "terser": "^5.28.1",
     "workbox-cli": "^7.0.0"
   }
 }
