@@ -7,12 +7,11 @@
     "build:terser": "npm-run-all -s build:terser:*",
     "build:terser:clean": "rimraf dist/js && mkdirp dist/js",
     "build:terser:terse": "foreach -g \"src/js/*.js\" --concurrent -x \"terser #{path} -o dist/js/#{name}.min#{ext} -c \"ecma=6,toplevel\" -m \"toplevel,eval\"\"",
-    "build:inject": "npx workbox injectManifest workbox-config.js && npx prettier --write service-worker.js ",
+    "build:inject": "npx workbox injectManifest workbox-config.js && npx prettier --write service-worker.js",
     "push2prod": "./push_to_prod.sh"
   },
   "devDependencies": {
-    "cross-env": "^7.0.3",
-    "cssnano": "^6.0.3",
+    "cssnano": "^6.0.5",
     "foreach-cli": "^1.8.1",
     "mkdirp": "^3.0.1",
     "npm-run-all": "^4.1.5",
