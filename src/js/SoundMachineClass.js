@@ -8,6 +8,7 @@ export class SoundMachine {
                 play: () => { },
                 fade2: () => { },
                 stop: () => { },
+                volume: () => { },
             };
         }
 
