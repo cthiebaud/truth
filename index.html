@@ -280,7 +280,7 @@
             }
         </style>
         <nav id="nav" class="navbar fixed-bottom align-item-center">
-            <div id="controls" class="container-fluid">
+            <div id="controls" class="container-fluid" style="visibility: hidden">
 
                 <div id="tortoise-hare-achilles" class="left carousel slide" data-bs-wrap="false">
                     <div class="carousel-inner">
@@ -342,7 +342,7 @@
                 <div class="center compte-à-rebours victor-mono-400"></div>
                 <!-- ########################## -->
                 <div class="right" style="width: 80px;">
-                    <button id="play" type="button" class="btn btn-light timer-container" aria-label="play" disabled style="width:36px; height: 36px; margin: auto;">
+                    <button id="play" type="button" class="btn btn-light timer-container" aria-label="play" style="width:36px; height: 36px; margin: auto;">
                         <svg class="timer-not-playing" xmlns="http://www.w3.org/2000/svg">
                             <use xlink:href="#svg-play"></use>
                         </svg>
@@ -384,6 +384,7 @@
 
         /* changed by "NODE_ENV=<development|production> node dev-oder-prod.mjs" or "npm run <dev|prod>" */
         import { Timer } from './dist/js/TimerClass.min.js'
+        import { SoundMachine } from './dist/js/SoundMachineClass.min.js'
 
         let paragraphBreaks = false // true //
 
@@ -532,14 +533,21 @@
                     player.stop()
                 })
                 this._playing = false
-                this._timer = new Timer(120, 'play', this.ready, this.tick, this.expired, this.afterTimerClosed)
-                this._timer.loadResources()
+
+                this._soundMachine = new SoundMachine()
+                document.getElementById('controls').style.visibility = 'visible'
+
                 this.compteARebours = new CompteARebours()
-                this.tortoiseHareAchilles = new bsCarousel(document.getElementById('tortoise-hare-achilles'), {
-                    /* interval: 0,
-                    touch: false
-                    */
+                this.compteARebours.duration = Number(document.querySelector('.carousel-item.active').dataset.time)
+                this._timer = new Timer(this.compteARebours.duration, 'play', {
+                    onStart: this.onTimerStart,
+                    onTick: this.onTimerTick,
+                    onExpired: this.onTimerExpired,
+                    onStop: this.onTimerStop,
+                    onClose: this.onTimerClose,
                 })
+
+                this.tortoiseHareAchilles = new bsCarousel(document.getElementById('tortoise-hare-achilles'), {})
                 let startSlide = undefined
                 document.getElementById('tortoise-hare-achilles').addEventListener('slide.bs.carousel', event => {
                     // console.log(event)
@@ -568,8 +576,6 @@
             }
 
             stopTimerShowResultsThenCloseTimer(msg, results) {
-                // stop number drawing
-                clearInterval(player.showNumber)
                 // stop timer
                 player._timer.stop()
                 document.getElementById('results-msg').innerHTML = msg
@@ -594,27 +600,19 @@
                 resultsModal.show() // will close timer when dismissed
             }
 
-            ready() {
-                document.getElementById("play").style.visibility = 'visible'
-                document.getElementById("play").disabled = false
-                player.compteARebours.duration = Number(document.querySelector('.carousel-item.active').dataset.time)
+            onTimerStart() {
+                player._soundMachine.underwater.volume(0.01)
+                player._soundMachine.underwater.play();
+                player._soundMachine.ticking.volume(0.67)
+                player._soundMachine.ticking.play();
             }
 
-            tick(totalTime, ticks) {
-                /*
-                function showCountDown(elapsed) {
-                    const remaining = totalTime - elapsed
-                    const darkenedRed = tinycolor2('#ff0000').darken(remaining).toString("hex6")
-
-                    Array.from(document.getElementsByClassName("compte-à-rebours")).forEach(element => element.innerHTML = `<span style="color: ${darkenedRed}">${remaining}</span>`);
-                }
-                showCountDown(ticks)
-                */
+            onTimerTick(totalTime, ticks) {
                 player.compteARebours.duration = (totalTime - ticks)
                 player.results.elapsed.increment()
             }
 
-            expired() {
+            onTimerExpired() {
                 setTimeout(() => {
                     let msg
                     if (player.results.erred.value === 0 && player.results.unconcealed.value === 0) {
@@ -626,6 +624,20 @@
                     }
                     player.stopTimerShowResultsThenCloseTimer(msg, player.results)
                 }, 100)
+            }
+
+            onTimerStop() {
+                player._soundMachine.ticking.fade2(0.01);
+                player._soundMachine.underwater.fade2(0.01);
+            }
+
+            onTimerClose() {
+                document.getElementById("shuffle-all").disabled = false
+                document.getElementById("paragraph-breaks").disabled = false
+                document.getElementById('play').classList.remove('playing')
+                player.veilUnveilBricks(false)
+                player._soundMachine.ticking.stop()
+                player._soundMachine.underwater.stop()
             }
 
             abort() {
@@ -670,43 +682,43 @@
             }
 
             coin() {
-                this._timer.coin.play()
+                this._soundMachine.coin.play()
             }
 
             tada() {
-                this._timer.tada.play()
+                this._soundMachine.tada.play()
             }
 
             laughs() {
-                this._timer.laughs.play()
+                this._soundMachine.laughs.play()
                 this.results.erred.increment()
             }
 
             fail() {
-                this._timer.fail.play()
+                this._soundMachine.fail.play()
             }
 
             abortSound() {
-                this._timer.abort.play()
+                this._soundMachine.abort.play()
             }
 
             completed_with_errors() {
-                this._timer.completed_with_errors.play()
+                this._soundMachine.completed_with_errors.play()
             }
 
             boo() {
-                this._timer.boo.play()
+                this._soundMachine.boo.play()
             }
 
             guitar() {
-                this._timer.guitar.play()
+                this._soundMachine.guitar.play()
             }
 
             boredom() {
-                this._timer.boredom.play()
+                this._soundMachine.boredom.play()
             }
 
-            veilUnveilScores(veilOrUnveil) {
+            veilUnveilBricks(veilOrUnveil) {
 
                 // https://css-tricks.com/why-using-reduce-to-sequentially-resolve-promises-works/
                 function methodThatReturnsAPromise(tbody, veilOrUnveil) {
@@ -728,6 +740,7 @@
                         }, 25);
                     })
                 }
+
                 const result = Array.from(document.querySelectorAll('#tables tbody')).reduce((accumulatorPromise, tbody) => {
                     return accumulatorPromise.then(() => {
                         return methodThatReturnsAPromise(tbody, veilOrUnveil)
@@ -737,15 +750,6 @@
                 result.then(e => {
                     console.log("'unveil scores complete")
                 });
-
-                /*
-                if (veilOrUnveil) {
-                    document.querySelectorAll('#tables td').forEach(elem => { elem.classList.add('translucent') })
-                } else {
-                    document.querySelectorAll('#tables td.false').forEach(elem => { elem.classList.add('translucent') })
-                    document.querySelectorAll('#tables td.true').forEach(elem => { elem.classList.remove('translucent') })
-                }
-                */
             }
 
             async start() {
@@ -754,32 +758,19 @@
                     top: 0,
                     behavior: 'smooth' // Use 'smooth' for smooth scrolling
                 })
-                await player.veilUnveilScores(true)
+                const totalTime = Number(document.querySelector('.carousel-item.active').dataset.time)
+                this._timer.start(totalTime)
+                document.getElementById("shuffle-all").disabled = true
+                document.getElementById("paragraph-breaks").disabled = true
+                await player.veilUnveilBricks(true)
                 document.getElementById('tortoise-hare-achilles').style.opacity = '.5'
                 document.querySelectorAll('#tortoise-hare-achilles button').forEach(button => {
                     button.disabled = true
                 })
-                this._timer.initializeAudio().then(() => {
-                    const totalTime = Number(document.querySelector('.carousel-item.active').dataset.time)
-                    this._timer.start(totalTime)
-                }).catch((error) => {
-                    console.log('Error initializing audio context', error)
-                    document.querySelectorAll('#tables td').forEach(elem => {
-                        elem.classList.remove('translucent')
-                    })
-                }).finally(() => {
-                    document.getElementById("shuffle-all").disabled = true
-                    document.getElementById("paragraph-breaks").disabled = true
-                })
                 this.results.reset()
                 this.playing = true
             }
-            afterTimerClosed() {
-                document.getElementById("shuffle-all").disabled = false
-                document.getElementById("paragraph-breaks").disabled = false
-                document.getElementById('play').classList.remove('playing')
-                player.veilUnveilScores(false)
-            }
+
             stop() {
                 // if (!this.playing) return
                 this.compteARebours.duration = Number(document.querySelector('.carousel-item.active').dataset.time)
@@ -1215,7 +1206,7 @@
                 Array.from(hints).forEach((hint) => {
                     hint.classList.remove("hint")
                 })
-                player._timer.underwater.volume = 0
+                player._soundMachine.underwater.fade2(0.01)
 
             }
             window.addEventListener("scroll", function (e) {
@@ -1229,7 +1220,8 @@
                 caption.addEventListener('pointerdown', (e) => {
                     if (!player.playing) return
                     caption.setPointerCapture(e.pointerId);
-                    player._timer.underwater.volume = 0.3
+                    player._soundMachine.underwater.fade2(0.33)
+
                     timout = setTimeout(() => {
                         e.target.parentNode.classList.add("hint")
                         e.target.parentNode.parentNode.classList.add("hint")
@@ -1255,6 +1247,7 @@
                 if (paragraphBreaks) return
                 scrambleIt(originalElementsArray)
             }
+
             function mega_reorder() {
                 if (player.playing) return
                 if (tables.dataset.scrambled === 'false') {

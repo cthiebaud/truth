@@ -46,7 +46,7 @@ if (workbox) {
     { revision: '13decd5360d2121716059213482aef62', url: 'HOWTO.md' },
     { revision: '318f1210aabf904c588a8cbb2b30c571', url: 'icon.png' },
     { revision: '5ca35952e03f6b381dc92b93a4d1430a', url: 'icon2.png' },
-    { revision: '2bf54037ce8e1642b529204d66db92e2', url: 'index.html' },
+    { revision: 'f2f2e9bb9db0273fe7bae9de12c9a05d', url: 'index.html' },
     { revision: '914dd9efa90f70224790ea5710dc31f3', url: 'README.md' },
     { revision: '116f32b33817a41a6dea393a7e96b96c', url: 'screenshots/1024x500-screenshot.png' },
     { revision: '4628442658184696eb42308be406a20d', url: 'screenshots/1280x800-screenshot.png' },
@@ -59,7 +59,9 @@ if (workbox) {
     { revision: '189344593f35e3ee25014e793abf8fb2', url: 'dist/css/bootstrap.min.css' },
     { revision: '94d9106b6e77ee84484e7e84fb4e40e7', url: 'dist/css/index.min.css' },
     { revision: '476c9c641caca3b8fa3dcfe0a18e83a9', url: 'dist/css/timer.min.css' },
-    { revision: '39d4af346945312ef3ae887900c77d37', url: 'dist/js/TimerClass.min.js' },
+    { revision: 'a6dac73b660f7c96ddb93261f305eb2b', url: 'dist/js/SoundMachineClass.min.js' },
+    { revision: '58167ed1c193ff8c425cb12e042f3fe3', url: 'dist/js/SoundMachineWebAudioClass.min.js' },
+    { revision: '369be6303277517065debda444351a21', url: 'dist/js/TimerClass.min.js' },
     { revision: '6f9ad7cdeb0eb9bcc3c2cff03e9829cc', url: 'dist/js/TimerElement.min.js' },
   ])
 
