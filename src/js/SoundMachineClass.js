@@ -35,7 +35,7 @@ export class SoundMachine {
                 super.fade(volume, to, timespan, id);
             }
         }
-        
+
         return new CustomHowl(config);
     }
 
@@ -51,6 +51,7 @@ export class SoundMachine {
         this.guitar = SoundMachine.newHowl({ src: ['/assets/audio/guitar-riff.mp3'] });
         this.boredom = SoundMachine.newHowl({ src: ['/assets/audio/boredom.mp3'] });
         this.abort = SoundMachine.newHowl({ src: ['/assets/audio/short-whoosh.mp3'] });
+        this.riser = SoundMachine.newHowl({ src: ['/assets/audio/scary-riser.mp3'], loop: false, volume: 0.2 });
     }
 
 }
