@@ -480,9 +480,10 @@
             set duration(durationParam) {
                 if (!isNumber(durationParam)) throw new Error(`not a number: ${durationParam} !`)
                 this._duration = durationParam;
-                const darkenedRed = tinycolor2('#ff0000').darken(this._duration).toString("hex6");
+                // const gradientizedColor = tinycolor2('#ff0000').darken(this._duration).toString("hex6");
+                const gradientizedColor = mapNumberToColor(this._duration);
                 const element = document.querySelector(".compte-à-rebours");
-                element.innerHTML = `<span style="color: ${darkenedRed}">${this.formatDuration(this._duration)}</span>`;
+                element.innerHTML = `<span style="color: ${gradientizedColor}">${this.formatDuration(this._duration)}</span>`;
             };
 
             animateSetDuration(durationParam) {
@@ -609,7 +610,7 @@
                 player.compteARebours.duration = (totalTime - ticks)
                 player.results.elapsed.increment()
 
-                if (player.compteARebours.duration <= 13 && !player._soundMachine.riser.playing() ) {
+                if (player.compteARebours.duration <= 13 && !player._soundMachine.riser.playing()) {
                     player._soundMachine.riser.play()
                 }
             }
@@ -929,6 +930,48 @@
                 return tinycolor2(bg).darken(3).toString("hex6")
             }
         }
+        // ########################
+        // Function to map a number to a color
+        function mapNumberToColor(number) {
+            // Define the fixed colors
+            const colors = [
+                { value: 120, color: ("#00852B") },
+                { value: 60,  color: ("#1E5AA8") },
+                { value: 30,  color: ("#B40000") },
+                { value: 0,   color: ("#FF0000") }
+            ];
+
+            // Initialize index
+            let index = 4;
+
+            // Find the two closest boundaries
+            for (let i = 0; i < colors.length - 1; i++) {
+                if (colors[i].value >= number && number > colors[i + 1].value) {
+                    index = i;
+                    break;
+                }
+            }
+            if (index >= 4) {
+                return colors[3].color;
+            }
+
+            // Calculate the ratio for interpolation
+            const ratio = (number - colors[index].value) / (colors[index + 1].value - colors[index].value);
+
+            // Interpolate between the two colors
+            const resultColor = tinycolor2.mix(colors[index].color, colors[index + 1].color, ratio * 100);
+
+            return resultColor.toHexString();
+        }
+
+        // Test the function
+        /*
+        const numbers = [120, 90, 60, 45, 30, 15, 0];
+        numbers.forEach(function (number) {
+            console.log(number + " => " + mapNumberToColor(number));
+        });
+        */
+        // ########################
         const colors = new Colors()
 
         class OneOrTwoColors {
