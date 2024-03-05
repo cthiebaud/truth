@@ -1,6 +1,4 @@
 // TimerClass.js
-import tinycolor2 from 'https://cdn.jsdelivr.net/npm/tinycolor2@1.6.0/+esm'
-
 export class Timer {
     constructor(totalTime, containerId, callbacks = {}) { // onTimerReady, onTimerTick, onTimerExpiredCallback, onTimerClosedCallback 
         try {

@@ -4,6 +4,7 @@ const toProduction = process.env.NODE_ENV === 'production';
 
 // Define the paths for production and development
 const productionPaths = [
+    "'./dist/js/ColorsClass.js'",
     "'./dist/js/TimerClass.min.js'",
     "'./dist/js/SoundMachineClass.min.js'",
     "'/dist/css/bootstrap.min.css'",
@@ -17,6 +18,7 @@ const productionPaths = [
     "< ! - - END livejs for test -->",
 ];
 const developmentPaths = [
+    "'./src/js/ColorsClass.js'",
     "'./src/js/TimerClass.js'",
     "'./src/js/SoundMachineClass.js'",
     "'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css'",
