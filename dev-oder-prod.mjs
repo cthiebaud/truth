@@ -4,7 +4,7 @@ const toProduction = process.env.NODE_ENV === 'production';
 
 // Define the paths for production and development
 const productionPaths = [
-    "'./dist/js/ColorsClass.js'",
+    "'./dist/js/ColorsClass.min.js'",
     "'./dist/js/TimerClass.min.js'",
     "'./dist/js/SoundMachineClass.min.js'",
     "'/dist/css/bootstrap.min.css'",
