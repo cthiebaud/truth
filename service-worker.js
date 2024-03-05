@@ -59,7 +59,7 @@ if (workbox) {
     { revision: '189344593f35e3ee25014e793abf8fb2', url: 'dist/css/bootstrap.min.css' },
     { revision: '94d9106b6e77ee84484e7e84fb4e40e7', url: 'dist/css/index.min.css' },
     { revision: '476c9c641caca3b8fa3dcfe0a18e83a9', url: 'dist/css/timer.min.css' },
-    { revision: '83a881c7edfcd2e5a44545911b0501ed', url: 'dist/js/SoundMachineClass.min.js' },
+    { revision: 'a350731bd6b438d6f95bdcc142866fe6', url: 'dist/js/SoundMachineClass.min.js' },
     { revision: '58167ed1c193ff8c425cb12e042f3fe3', url: 'dist/js/SoundMachineWebAudioClass.min.js' },
     { revision: '369be6303277517065debda444351a21', url: 'dist/js/TimerClass.min.js' },
     { revision: '6f9ad7cdeb0eb9bcc3c2cff03e9829cc', url: 'dist/js/TimerElement.min.js' },

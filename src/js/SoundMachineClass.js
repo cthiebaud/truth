@@ -43,7 +43,7 @@ export class SoundMachine {
         this.ticking = SoundMachine.newHowl({ src: ['/assets/audio/ticking.mp3'], loop: true, volume: 0.5 });
         this.underwater = SoundMachine.newHowl({ src: ['/assets/audio/underwater.mp3'], loop: true, volume: 0.001 });
         this.coin = SoundMachine.newHowl({ src: ['/assets/audio/coin.mp3'] });
-        this.laughs = SoundMachine.newHowl({ src: ['/assets/audio/guitar-string-snap2.mp3'] });
+        this.laughs = SoundMachine.newHowl({ src: ['/assets/audio/guitar-string-snap.mp3'], loop: false, volume: 0.2 });
         this.tada = SoundMachine.newHowl({ src: ['/assets/audio/tada.mp3'] });
         this.fail = SoundMachine.newHowl({ src: ['/assets/audio/fail.mp3'] });
         this.completed_with_errors = SoundMachine.newHowl({ src: ['/assets/audio/completed_with_errors.mp3'] });
