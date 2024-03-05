@@ -941,8 +941,15 @@
                 { value: 0,   color: ("#FF0000") }
             ];
 
+            if (colors[0].value < number) {
+                return colors[0].color
+            }
+            if (number <= colors[colors.length-1].value ) {
+                return colors[colors.length-1].color
+            }
+
             // Initialize index
-            let index = 4;
+            let index = null;
 
             // Find the two closest boundaries
             for (let i = 0; i < colors.length - 1; i++) {
@@ -951,8 +958,8 @@
                     break;
                 }
             }
-            if (index >= 4) {
-                return colors[3].color;
+            if (index === null) {
+                return "#000000";
             }
 
             // Calculate the ratio for interpolation
