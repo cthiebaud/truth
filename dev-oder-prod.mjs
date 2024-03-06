@@ -16,6 +16,8 @@ const productionPaths = [
     "< ! - - END Button trigger modal for test -->",
     "<!-- BEGIN livejs for test - - >",
     "< ! - - END livejs for test -->",
+    "<!-- BEGIN Google tag (gtag.js) -->",
+    "<!-- END Google tag (gtag.js) -->",
 ];
 const developmentPaths = [
     "'./src/js/ColorsClass.js'",
@@ -30,6 +32,8 @@ const developmentPaths = [
     "<!-- END Button trigger modal for test -->",
     "<!-- BEGIN livejs for test -->",
     "<!-- END livejs for test -->",
+    "<!-- BEGIN Google tag (gtag.js) - - >",
+    "< ! - - END Google tag (gtag.js) -->",
 ];
 
 // Check if the arrays have the same length
