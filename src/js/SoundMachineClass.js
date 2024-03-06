@@ -52,6 +52,7 @@ export class SoundMachine {
         this.boredom = SoundMachine.newHowl({ src: ['/assets/audio/boredom.mp3'] });
         this.abort = SoundMachine.newHowl({ src: ['/assets/audio/short-whoosh.mp3'] });
         this.riser = SoundMachine.newHowl({ src: ['/assets/audio/scary-riser.mp3'], loop: false, volume: 0.2 });
+        this.warrior = SoundMachine.newHowl({ src: ['/assets/audio/warrior.mp3'], loop: false, volume: 1 });
     }
 
 }

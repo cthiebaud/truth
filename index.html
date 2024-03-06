@@ -270,7 +270,7 @@
 
                 <div id="tortoise-hare-achilles" class="left carousel slide" data-bs-wrap="false">
                     <div class="carousel-inner">
-                        <div id="tortoise" data-time="120" class="carousel-item active"><!-- data-bs-interval="0" -->
+                        <div id="tortoise" data-time="120" class="carousel-item active" data-sound="ticking"><!-- data-bs-interval="0" -->
                             <div>
                                 <!-- 
                                 <img src="/assets/svg/tortoise-fill-svgrepo-com.svg" alt="tortoise">
@@ -281,7 +281,7 @@
                                 </svg>
                             </div>
                         </div>
-                        <div id="hare" data-time="60" class="carousel-item"><!-- data-bs-interval="0" -->
+                        <div id="hare" data-time="60" class="carousel-item" data-sound="ticking"><!-- data-bs-interval="0" -->
                             <div>
                                 <!-- 
                                 <img src="/assets/svg/hare-fill-svgrepo-com.svg" alt="hare">
@@ -292,7 +292,7 @@
                                 </svg>
                             </div>
                         </div>
-                        <div id="achilles" data-time="30" class="carousel-item"><!-- data-bs-interval="0" -->
+                        <div id="achilles" data-time="30" class="carousel-item" data-sound="warrior"><!-- data-bs-interval="0" -->
                             <div>
                                 <!-- 
                                 <img src="/assets/svg/ancient-greek-helmet-1-svgrepo-com.svg" alt="achilles">
@@ -563,6 +563,10 @@
 
             }
 
+            get level() {
+                return document.querySelector('.carousel-item.active').dataset.sound
+            }
+
             stopTimerShowResultsThenCloseTimer(msg, results) {
                 // stop timer
                 player._timer.stop()
@@ -590,7 +594,7 @@
 
             onTimerStart() {
                 player._soundMachine.underwater.play();
-                player._soundMachine.ticking.play();
+                player._soundMachine[player.level].play();
             }
 
             onTimerTick(totalTime, ticks) {
@@ -617,9 +621,9 @@
             }
 
             onTimerStop() {
-                player._soundMachine.ticking.fade(undefined, 0.001);
+                player._soundMachine[player.level].fade(undefined, 0.001, 3000);
                 player._soundMachine.underwater.fade(undefined, 0.001);
-                player._soundMachine.riser.fade(undefined, 0.001);
+                player._soundMachine.riser.fade(undefined, 0.001, 1500);
             }
 
             onTimerClose() {
@@ -627,7 +631,7 @@
                 document.getElementById("paragraph-breaks").disabled = false
                 document.getElementById('play').classList.remove('playing')
                 player.veilUnveilBricks(false)
-                player._soundMachine.ticking.stop()
+                player._soundMachine[player.level].stop()
                 player._soundMachine.underwater.stop()
             }
 
