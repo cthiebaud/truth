@@ -40,7 +40,7 @@
     <meta property="og:image:width" content="2732" />
     <meta property="og:image:height" content="2048" />
 
-    <!-- Imports the manifest to represent the web application. A web app must have a manifest to be a PWA. -->
+    <!-- Imports the manifest to represent the web application. 𝖠 web app must have a manifest to be a PWA. -->
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#f1efe0" />
 
@@ -150,7 +150,7 @@
 
     <div id="con" class="container">
         <div id="alpha-beta" class="p-2 d-flex justify-content-between align-items-start">
-            <h1 id="αβ">(A,B)<svg width="32" height="32" preserveAspectRatio="none" viewBox="0 -2 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <h1 id="αβ"><span>(𝖠,𝖡)</span><svg width="32" height="32" preserveAspectRatio="none" viewBox="0 -2 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M4 6L10.4 6C13.4928 6 16 8.50721 16 11.6L16 18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                     <path d="M16 18.6L12 15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                     <path d="M16 18.6L20 15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -875,7 +875,7 @@
         }
 
         class Functions {
-            constructor() {
+            constructor(decodeFuncForDisplay = true) {
                 this.functionArray = [
                     0,
                     'false',
@@ -889,8 +889,8 @@
                     'β',
                     '!α',
                     '!β',
-                    'α == β'/* 'α & β | !α & !β'*/, // look for new RegExp('α', ...) ~40 lines below before changing these two lines. 
-                    'α != β'/* '!α & β | α & !β'*/, // It assumes there are 2 'α' chars to enable various colors for the bricks.
+                    'α & β | !α & !β', // look for new RegExp('α', ...) ~40 lines below before changing these two lines. 
+                    '!α & β | α & !β', // It assumes there are 2 'α' chars to enable various colors for the bricks.
                     3,
                     'α | β',
                     'α | !β',
@@ -899,28 +899,31 @@
                     4,
                     'true',
                 ]
+                this.decodeFuncForDisplay = decodeFuncForDisplay
                 this.display = {
                 }
                 const negationMap = {
-                    '!α': "<span class='negation'>A</span>",
-                    '!β': "<span class='negation'>B</span>"
+                    '!α': "<span class='negation'>𝖠</span>",
+                    '!β': "<span class='negation'>𝖡</span>"
                 };
                 this.functionArray.forEach(item => {
-                    /*
                     if (typeof item === 'string') {
-                        const tmp = item.replace(/(!?)α|(!?)β/g, (match, negationA, negationB) => {
-                            if (negationA === '!') {
-                                return negationMap['!α'];
-                            } else if (negationB === '!') {
-                                return negationMap['!β'];
-                            } else {
-                                return match === 'α' ? 'A' : 'B';
-                            }
-                        });
-                        this.display[item] = tmp.replace(/&/g, "∧").replace(/\|/g, "∨")
+                        if (!this.decodeFuncForDisplay) {
+                            this.display[item] = item.replace(/α & β \| !α & !β/g, "α == β").replace(/!α & β \| α & !β/g, "α != β")
+                        } else {
+                            let tmp = item.replace(/α & β \| !α & !β/g, "α ⊻ β").replace(/!α & β \| α & !β/g, "α ⊻ !β")
+                            tmp = tmp.replace(/(!?)α|(!?)β/g, (match, negationA, negationB) => {
+                                if (negationA === '!') {
+                                    return negationMap['!α'];
+                                } else if (negationB === '!') {
+                                    return negationMap['!β'];
+                                } else {
+                                    return match === 'α' ? '𝖠' : '𝖡';
+                                }
+                            });
+                            this.display[item] = tmp.replace(/&/g, "∧").replace(/\|/g, "∨").replace(/true/, "⊤").replace(/false/, "⊥")
+                        }
                     }
-                    */
-                    this.display[item] = item 
                 });
                 this.getFunction = (functionAsString) => {
                     return 0
@@ -939,14 +942,19 @@
                     return new OneOrTwoColors(colors.colorTrue)
                 }
                 if ((f.match(new RegExp('α', "g")) || []).length === 2
-                || f.match(new RegExp('==', "g"))
-                || f.match(new RegExp('!=', "g"))) {
+                    || f.match(new RegExp('==', "g"))
+                    || f.match(new RegExp('!=', "g"))) {
                     return new OneOrTwoColors(colors.nextColor(), colors.nextColor())
                 }
                 return new OneOrTwoColors(colors.nextColor())
             }
+
+            get title() {
+                return this.decodeFuncForDisplay ? "(𝖠,𝖡)" : "(α,β)"
+            }
         }
-        const functions = new Functions()
+        const functions = new Functions() // true (default): 𝖠 and 𝖡, false: α and β
+        document.querySelector('h1#αβ > span').innerHTML = functions.title
 
         class Blender {
             constructor() {
@@ -1082,7 +1090,7 @@
                                 player.results.unconcealed.increment()
 
                                 function checkDescendantsClasses(element, classA, classX, classY) {
-                                    // Find the nearest ancestor with class A
+                                    // Find the nearest ancestor with class 𝖠
                                     let ancestorWithClassA = findAncestor(element, classA)
 
                                     if (!ancestorWithClassA) {
