@@ -1,4 +1,5 @@
 *.mov
+*.mp4
 node_modules/
 packages/
 .ssh/

@@ -427,6 +427,12 @@
             get unconcealed() {
                 return this._revealed
             }
+
+            get victory() {
+                const vic = this.erred.value === 0 && this.unconcealed.value === 32
+                console.log(`this.erred ${this.erred.value}, this.unconcealed ${this.unconcealed.value}, victory: ${vic}`)
+                return vic
+            }
         }
 
         function normalizeVraiment(x, srcmin, srcmax, dstmin, dstmax) {
@@ -621,7 +627,10 @@
             }
 
             onTimerStop() {
-                player._soundMachine[player.level].fade(undefined, 0.001, 3000);
+                console.log(player.level, player.results.victory)
+                if (player.level != 'warrior' || !player.results.victory) {
+                    player._soundMachine[player.level].fade(undefined, 0.001, 3000);
+                }
                 player._soundMachine.underwater.fade(undefined, 0.001);
                 player._soundMachine.riser.fade(undefined, 0.001, 1500);
             }
@@ -650,7 +659,10 @@
                         player.guitar()
                         msg = `Ooooh ... Subtle!`
                     } else if (player.results.erred.value === 0 && player.results.unconcealed.value === 32) {
-                        player.tada()
+                        console.log(player.level, player.results.victory)
+                        if (player.level != 'warrior' || !player.results.victory) {
+                            player.tada()
+                        }
                         msg = `You won!`
                     } else if (player.results.erred.value >= 28 && player.results.unconcealed.value === 32) {
                         player.boo()
