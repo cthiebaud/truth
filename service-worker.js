@@ -46,7 +46,7 @@ if (workbox) {
     { revision: '13decd5360d2121716059213482aef62', url: 'HOWTO.md' },
     { revision: '318f1210aabf904c588a8cbb2b30c571', url: 'icon.png' },
     { revision: '5ca35952e03f6b381dc92b93a4d1430a', url: 'icon2.png' },
-    { revision: '632cd12bcf13b8710b4ccffc50e3799f', url: 'index.html' },
+    { revision: '0517705f8a82f43de8e07da3b0e70c8c', url: 'index.html' },
     { revision: '914dd9efa90f70224790ea5710dc31f3', url: 'README.md' },
     { revision: '116f32b33817a41a6dea393a7e96b96c', url: 'screenshots/1024x500-screenshot.png' },
     { revision: '4628442658184696eb42308be406a20d', url: 'screenshots/1280x800-screenshot.png' },
@@ -60,7 +60,7 @@ if (workbox) {
     { revision: '94d9106b6e77ee84484e7e84fb4e40e7', url: 'dist/css/index.min.css' },
     { revision: '476c9c641caca3b8fa3dcfe0a18e83a9', url: 'dist/css/timer.min.css' },
     { revision: 'adaf4740c6e782bd8a702d008df13702', url: 'dist/js/ColorsClass.min.js' },
-    { revision: 'b293e5d1e3e47595c6d379cf4fb2c583', url: 'dist/js/SoundMachineClass.min.js' },
+    { revision: '256c5a80b02611d0e060fe4c901130c7', url: 'dist/js/SoundMachineClass.min.js' },
     { revision: 'dea59660e16a1b79e85f8cafbfb11e0d', url: 'dist/js/TimerClass.min.js' },
   ])
 
