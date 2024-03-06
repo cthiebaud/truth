@@ -45,14 +45,14 @@ export class SoundMachine {
         this.coin = SoundMachine.newHowl({ src: ['/assets/audio/coin.mp3'] });
         this.laughs = SoundMachine.newHowl({ src: ['/assets/audio/guitar-string-snap.mp3'], loop: false, volume: 0.2 });
         this.tada = SoundMachine.newHowl({ src: ['/assets/audio/tada.mp3'] });
-        this.fail = SoundMachine.newHowl({ src: ['/assets/audio/fail.mp3'] });
+        this.fail = SoundMachine.newHowl({ src: ['/assets/audio/fail2.mp3'] });
         this.completed_with_errors = SoundMachine.newHowl({ src: ['/assets/audio/completed_with_errors.mp3'] });
         this.boo = SoundMachine.newHowl({ src: ['/assets/audio/boo.mp3'] });
         this.guitar = SoundMachine.newHowl({ src: ['/assets/audio/guitar-riff.mp3'] });
         this.boredom = SoundMachine.newHowl({ src: ['/assets/audio/boredom.mp3'] });
         this.abort = SoundMachine.newHowl({ src: ['/assets/audio/short-whoosh.mp3'] });
         this.riser = SoundMachine.newHowl({ src: ['/assets/audio/solaris-riser.mp3'], loop: false, volume: 0.67 });
-        this.achilles = SoundMachine.newHowl({ src: ['/assets/audio/achilles.mp3'], loop: false, volume: 1 });
+        this.achilles = SoundMachine.newHowl({ src: ['/assets/audio/achilles-v2.mp3'], loop: false, volume: .8 });
     }
 
 }
