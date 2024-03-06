@@ -430,7 +430,7 @@
 
             get victory() {
                 const vic = this.erred.value === 0 && this.unconcealed.value === 32
-                console.log(`this.erred ${this.erred.value}, this.unconcealed ${this.unconcealed.value}, victory: ${vic}`)
+                // console.log(`this.erred ${this.erred.value}, this.unconcealed ${this.unconcealed.value}, victory: ${vic}`)
                 return vic
             }
         }
@@ -607,7 +607,8 @@
                 player.compteARebours.duration = (totalTime - ticks)
                 player.results.elapsed.increment()
 
-                if (player.compteARebours.duration <= 13 && !player._soundMachine.riser.playing()) {
+                if (player.compteARebours.duration <= 17 && !player._soundMachine.riser.playing()) {
+                    // console.log(`${player.compteARebours.duration} : play riser`)
                     player._soundMachine.riser.play()
                 }
             }
@@ -627,9 +628,14 @@
             }
 
             onTimerStop() {
-                console.log(player.level, player.results.victory)
-                if (player.level != 'warrior' || !player.results.victory) {
-                    player._soundMachine[player.level].fade(undefined, 0.001, 3000);
+                if (player.level === 'warrior') {
+                    // can listen to the complate warrior music only when victory, otherwise, fade !
+                    if (!player.results.victory) {
+                        player._soundMachine[player.level].fade(undefined, 0.001, 3000);
+                    }
+                } else {
+                    // always stop tic-tac
+                    player._soundMachine[player.level].fade(undefined, 0.001);
                 }
                 player._soundMachine.underwater.fade(undefined, 0.001);
                 player._soundMachine.riser.fade(undefined, 0.001, 1500);
@@ -659,7 +665,6 @@
                         player.guitar()
                         msg = `Ooooh ... Subtle!`
                     } else if (player.results.erred.value === 0 && player.results.unconcealed.value === 32) {
-                        console.log(player.level, player.results.victory)
                         if (player.level != 'warrior' || !player.results.victory) {
                             player.tada()
                         }
