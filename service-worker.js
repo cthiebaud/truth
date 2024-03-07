@@ -46,7 +46,7 @@ if (workbox) {
     { revision: '47861a90958e47af796cc908799e869c', url: 'HOWTO.md' },
     { revision: '318f1210aabf904c588a8cbb2b30c571', url: 'icon.png' },
     { revision: '5ca35952e03f6b381dc92b93a4d1430a', url: 'icon2.png' },
-    { revision: 'c3577f2ec9efc10802e747fa627bb970', url: 'index.html' },
+    { revision: 'bcad03293b3debb2ca5003b6e70a5cf7', url: 'index.html' },
     { revision: '914dd9efa90f70224790ea5710dc31f3', url: 'README.md' },
     { revision: '116f32b33817a41a6dea393a7e96b96c', url: 'screenshots/1024x500-screenshot.png' },
     { revision: '4628442658184696eb42308be406a20d', url: 'screenshots/1280x800-screenshot.png' },
@@ -59,9 +59,9 @@ if (workbox) {
     { revision: 'c1b33840f34e1b2a1ec44725f90dd72a', url: 'dist/css/bootstrap.min.css' },
     { revision: '071e1cdd94af0aebad0eefbd19fe14a0', url: 'dist/css/index.min.css' },
     { revision: '476c9c641caca3b8fa3dcfe0a18e83a9', url: 'dist/css/timer.min.css' },
-    { revision: 'adaf4740c6e782bd8a702d008df13702', url: 'dist/js/ColorsClass.min.js' },
+    { revision: '0a08a79b4a51df549d3899c972cdce07', url: 'dist/js/ColorsClass.min.js' },
     { revision: '698993ae29da7a69d622a7f45d9feb75', url: 'dist/js/SoundMachineClass.min.js' },
-    { revision: 'dea59660e16a1b79e85f8cafbfb11e0d', url: 'dist/js/TimerClass.min.js' },
+    { revision: 'a565cd491139c222f0575de62868e028', url: 'dist/js/TimerClass.min.js' },
   ])
 
   // Cache Google Fonts with a stale-while-revalidate strategy
