@@ -150,14 +150,16 @@
 
     <div id="con" class="container">
         <div id="alpha-beta" class="p-2 d-flex justify-content-between align-items-start">
-            <button id="canonical-or-javascript" type="button" class="btn my-button" aria-label="canonical-or-javascript" style="padding: 0;">
-                <h1 id="αβ" style="margin: 0.2rem 0.67rem 0.33rem 0.67rem;"><span style="color: #173f35">(𝖠,𝖡)</span><svg width="32" height="32" preserveAspectRatio="none" viewBox="0 0 22 22" fill="none"
+            <button id="canonical-or-javascript" type="button" class="btn my-button" aria-label="canonical-or-javascript">
+                <div id="αβ">
+                    <span style="font-size: 32px;">(𝖠,𝖡)</span>
+                    <svg width="32" height="32" preserveAspectRatio="none" viewBox="0 0 22 22" fill="none" 
                         xmlns="http://www.w3.org/2000/svg">
                         <path d="M4 6L10.4 6C13.4928 6 16 8.50721 16 11.6L16 18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M16 18.6L12 15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M16 18.6L20 15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
-                </h1>
+                </div>
             </button>
             <div id="buttons" class="btn-group btn-group-sm" role="group">
 
@@ -968,7 +970,7 @@
             }
         }
         const functions = new Functions()
-        document.querySelector('h1#αβ > span').innerHTML = functions.display.title
+        document.querySelector('#αβ > span').innerHTML = functions.display.title
 
         class Blender {
             constructor() {
@@ -1234,7 +1236,7 @@
                 } else {
                     document.getElementById('tables').classList.add('javascript')
                 }
-                document.querySelector('h1#αβ > span').innerHTML = functions.display.title
+                document.querySelector('#αβ > span').innerHTML = functions.display.title
                 document.querySelectorAll('[data-function] caption').forEach((c) => {
                     c.innerHTML = functions.display[c.parentNode.parentNode.dataset.function]
                 })
