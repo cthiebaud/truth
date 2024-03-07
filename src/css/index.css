@@ -33,7 +33,8 @@ nav#nav {
 @media (pointer: coarse) {
   /* Your touch device specific styles here */
   .btn:hover {
-    background-color: transparent !important;
+    background-color: unset;
+    color: unset;
   }
 }
 
