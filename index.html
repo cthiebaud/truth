@@ -449,34 +449,30 @@
         }
 
         class CompteARebours {
-            _animationTimeInMilliseconds
-            _duration
-            static _bezierEasing = bezierEasing(0.50, 0.20, 0.50, 1.00)
+            static #bezierEasing = bezierEasing(0.50, 0.20, 0.50, 1.00)
+            #duration
+            #animationFrameId
+            #animationTimeInMilliseconds
 
             constructor() {
-                this._animationTimeInMilliseconds = 600
-                this._duration = 120
+                this.#duration = 120
+                this.#animationTimeInMilliseconds = 600
             }
 
             get animationTimeInMilliseconds() {
-                return this._animationTimeInMilliseconds;
+                return this.#animationTimeInMilliseconds;
             };
 
             set animationTimeInMilliseconds(animationTimeInMillisecondsParam) {
-                this._animationTimeInMilliseconds = animationTimeInMillisecondsParam
-                // console.log("animationTimeInMilliseconds", this._animationTimeInMilliseconds)
+                this.#animationTimeInMilliseconds = animationTimeInMillisecondsParam
             }
 
             get duration() {
-                return this._duration;
+                return this.#duration;
             };
 
-            set duration(durationParam) {
-                if (!isNumber(durationParam)) throw new Error(`not a number: ${durationParam} !`)
-                this._duration = durationParam;
-                const gradientizedColor = Colors.mapNumberToColor(this._duration);
-                const element = document.querySelector(".compte-à-rebours");
-                element.innerHTML = `<span style="color: ${gradientizedColor}">${this.formatDuration(this._duration)}</span>`;
+            set duration(duration) {
+                this.animateSetDuration(duration)
             };
 
             animateSetDuration(durationParam) {
@@ -484,23 +480,30 @@
                 let prevDuration = this.duration;
                 const startTime = performance.now();
                 const updateAnimation = () => {
-                    const elapsedTime = Math.min(performance.now() - startTime, this._animationTimeInMilliseconds);
-                    const normalized = normalizeVraiment(elapsedTime, 0, this._animationTimeInMilliseconds, 0, 1)
-                    const bezierized = CompteARebours._bezierEasing(normalized)
+                    const elapsedTime = Math.min(performance.now() - startTime, this.#animationTimeInMilliseconds);
+                    const normalized = normalizeVraiment(elapsedTime, 0, this.#animationTimeInMilliseconds, 0, 1)
+                    const bezierized = CompteARebours.#bezierEasing(normalized)
                     const whereAreWe = prevDuration + bezierized * (nextDuration - prevDuration)
-                    //console.log(normalized, bezierized, whereAreWe)
-                    this.duration = whereAreWe
+                    this._duration_ = whereAreWe
 
                     if (elapsedTime < this.animationTimeInMilliseconds) {
                         requestAnimationFrame(updateAnimation);
                     } else {
-                        this.duration = nextDuration
+                        this._duration_ = nextDuration
                     }
                 };
 
-                cancelAnimationFrame(this._animationFrameId);
-                this._animationFrameId = requestAnimationFrame(updateAnimation);
+                cancelAnimationFrame(this.#animationFrameId);
+                this.#animationFrameId = requestAnimationFrame(updateAnimation);
             }
+
+            set _duration_(durationParam) {
+                if (!isNumber(durationParam)) throw new Error(`not a number: ${durationParam} !`)
+                this.#duration = durationParam;
+                const gradientizedColor = Colors.mapNumberToColor(this.#duration);
+                const element = document.querySelector(".compte-à-rebours");
+                element.innerHTML = `<span style="color: ${gradientizedColor}">${this.formatDuration(this.#duration)}</span>`;
+            };
 
             formatDuration(durationInSeconds) {
                 if (durationInSeconds >= 540) { // 10 minutes
