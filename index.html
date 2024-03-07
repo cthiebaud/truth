@@ -873,42 +873,52 @@
         }
 
         class Functions {
-            constructor(decodeFuncForDisplay = true) {
-                this.functionArray = [
-                    0,
-                    'false',
-                    1,
-                    'α & β',
-                    'α & !β',
-                    '!α & !β',
-                    '!α & β',
-                    2,
-                    'α',
-                    'β',
-                    '!α',
-                    '!β',
-                    'α & β | !α & !β', // look for new RegExp('α', ...) ~40 lines below before changing these two lines. 
-                    '!α & β | α & !β', // It assumes there are 2 'α' chars to enable various colors for the bricks.
-                    3,
-                    'α | β',
-                    'α | !β',
-                    '!α | !β',
-                    '!α | β',
-                    4,
-                    'true',
-                ]
-                this.decodeFuncForDisplay = decodeFuncForDisplay
-                this.display = {
+            #functionArray = [
+                0,
+                'false',
+                1,
+                'α & β',
+                'α & !β',
+                '!α & !β',
+                '!α & β',
+                2,
+                'α',
+                'β',
+                '!α',
+                '!β',
+                'α & β | !α & !β', // look for new RegExp('α', ...) ~40 lines below before changing these two lines. 
+                '!α & β | α & !β', // It assumes there are 2 'α' chars to enable various colors for the bricks.
+                3,
+                'α | β',
+                'α | !β',
+                '!α | !β',
+                '!α | β',
+                4,
+                'true',
+            ]
+            #display = {
+                'canonical': {
+                    title: "(𝖠,𝖡)"
+                },
+                'javascript': {
+                    title: "(α,β)"
                 }
+            }
+            #defaultDisplay = 'canonical'
+            constructor() {
                 const negationMap = {
                     '!α': "<span class='negation canonical'>𝖠</span>",
                     '!β': "<span class='negation canonical'>𝖡</span>"
                 };
-                this.functionArray.forEach(item => {
+                this.#functionArray.forEach(item => {
                     if (typeof item === 'string') {
-                        if (!this.decodeFuncForDisplay) {
-                            this.display[item] = item.replace(/α & β \| !α & !β/g, "α == β").replace(/!α & β \| α & !β/g, "α != β")
-                        } else {
+                        const key = item
+                        // javascript
+                        {
+                            this.#display.javascript[key] = item.replace(/α & β \| !α & !β/g, "α == β").replace(/!α & β \| α & !β/g, "α != β")
+                        }
+                        // canonical 
+                        {
                             let tmp = item.replace(/α & β \| !α & !β/g, "α ⊻ β").replace(/!α & β \| α & !β/g, "α ⊻ !β")
                             tmp = tmp.replace(/(!?)α|(!?)β/g, (match, negationA, negationB) => {
                                 if (negationA === '!') {
@@ -919,14 +929,14 @@
                                     return match === 'α' ? '𝖠' : '𝖡';
                                 }
                             });
-                            this.display[item] = tmp.replace(/&/g, "∧").replace(/\|/g, "∨").replace(/true/, "⊤").replace(/false/, "⊥")
+                            this.#display.canonical[item] = tmp.replace(/&/g, "∧").replace(/\|/g, "∨").replace(/true/, "⊤").replace(/false/, "⊥")
                         }
                     }
                 });
             }
 
             iterate(iterator) {
-                this.functionArray.forEach(iterator)
+                this.#functionArray.forEach(iterator)
             }
 
             getOneOrTwoColors(f) {
@@ -943,13 +953,15 @@
                 }
                 return new OneOrTwoColors(colors.nextColor())
             }
-
-            get title() {
-                return this.decodeFuncForDisplay ? "(𝖠,𝖡)" : "(α,β)"
+            toggleDisplay() {
+                this.#defaultDisplay = this.#defaultDisplay === 'canonical' ? 'javascript' : 'canonical'
+            }
+            get display() {
+                return this.#display[this.#defaultDisplay]
             }
         }
-        const functions = new Functions() // true (default): 𝖠 and 𝖡, false: α and β
-        document.querySelector('h1#αβ > span').innerHTML = functions.title
+        const functions = new Functions()
+        document.querySelector('h1#αβ > span').innerHTML = functions.display.title
 
         class Blender {
             constructor() {
@@ -1205,6 +1217,16 @@
             })
             hammertime.on('swipeleft', function () {
                 mega_reorder()
+            })
+
+            document.querySelector("#αβ > span:first-child").addEventListener('click', clickEvent => {
+                clickEvent.stopPropagation()
+                console.log('αβ clicked')
+                functions.toggleDisplay()
+                document.querySelector('h1#αβ > span').innerHTML = functions.display.title
+                document.querySelectorAll('[data-function] caption').forEach((c) => {
+                    c.innerHTML = functions.display[c.parentNode.parentNode.dataset.function]
+                })
             })
 
             document.getElementById("table-borders").addEventListener('click', clickEvent => {
