@@ -150,8 +150,9 @@
 
     <div id="con" class="container">
         <div id="alpha-beta" class="p-2 d-flex justify-content-between align-items-start">
-            <button id="canonical-or-javascript" type="button" class="btn my-button" aria-label="canonical-or-javascript">
-                <h1 id="αβ"><span style="color: #173f35">(𝖠,𝖡)</span><svg width="32" height="32" preserveAspectRatio="none" viewBox="0 -2 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <button id="canonical-or-javascript" type="button" class="btn my-button" aria-label="canonical-or-javascript" style="padding: 0 0.67rem;">
+                <h1 id="αβ"><span style="color: #173f35">(𝖠,𝖡)</span><svg width="32" height="32" preserveAspectRatio="none" viewBox="0 -2 24 22" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
                         <path d="M4 6L10.4 6C13.4928 6 16 8.50721 16 11.6L16 18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M16 18.6L12 15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M16 18.6L20 15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -161,8 +162,8 @@
             <div id="buttons" class="btn-group btn-group-sm" role="group">
 
                 <!-- BEGIN Button trigger modal for test - - >
-                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#resultsModal">
-                    *
+                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#resultsModal">
+                    ·
                 </button>
                 < ! - - END Button trigger modal for test -->
 
@@ -330,7 +331,7 @@
                 <div class="center compte-à-rebours victor-mono-400"></div>
                 <!-- ########################## -->
                 <div class="right" style="width: 80px;">
-                    <button id="play" type="button" class="btn btn-outline-secondary timer-container" aria-label="play" style="width:36px; height: 36px; margin: auto;">
+                    <button id="play" type="button" class="btn btn-outline-secondary timer-container" aria-label="play" style="width:36px; height: 36px; margin: auto; background-color: white !important;">
                         <svg class="timer-not-playing" xmlns="http://www.w3.org/2000/svg">
                             <use xlink:href="#svg-play"></use>
                         </svg>
@@ -1229,9 +1230,9 @@
                 clickEvent.stopPropagation()
                 functions.toggleDisplay()
                 if (functions.currentDisplayKey == 'canonical') {
-                    document.getElementById('tables').classList.remove('javascript')    
+                    document.getElementById('tables').classList.remove('javascript')
                 } else {
-                    document.getElementById('tables').classList.add('javascript')    
+                    document.getElementById('tables').classList.add('javascript')
                 }
                 document.querySelector('h1#αβ > span').innerHTML = functions.display.title
                 document.querySelectorAll('[data-function] caption').forEach((c) => {
@@ -1320,6 +1321,14 @@
                 let modal = bsModal.getInstance(resultsModal)
                 modal.hide()
             })
+                /*
+                ;[...document.getElementsByClassName('btn')].forEach(btn => {
+                    btn.addEventListener('click', clickEvent => {
+                        btn.blur()
+                        console.log('blur active element if any', btn, clickEvent.target, clickEvent.currentTarget)
+                    })
+                })
+                */
 
                 ;[...document.getElementsByClassName('carousel-item')].forEach(carouselItem => {
                     carouselItem.addEventListener('click', clickEvent => {

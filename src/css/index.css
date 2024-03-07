@@ -28,24 +28,36 @@ nav#nav {
 }
 
 /* BEGIN prise de tête */
+
+/* Apply styles for touch devices */
+@media (pointer: coarse) {
+  /* Your touch device specific styles here */
+  .btn:hover {
+    background-color: transparent !important;
+  }
+}
+
+/* Apply styles for non-touch devices */
+@media (pointer: fine) {
+  /* Your non-touch device specific styles here */
+  .btn.my-button:not(.disabled):hover,
+  .btn-check:hover:not(checked) + .btn.my-button {
+    background-color: #c0bfb3 !important;
+  }
+}
+
 #buttons > .btn-check:disabled + .btn.my-button,
 #buttons > .btn-check[disabled] + .btn.my-button,
 #buttons > button:disabled.my-button {
   opacity: 0.33;
 }
 
-.btn.my-button:not(.disabled):hover,
-.btn-check:hover:not(checked)+.btn.my-button {
-  background-color: #c0bfb3 !important;
-}
-
-.btn-check:checked+.btn.my-button {
+.btn-check:checked + .btn.my-button {
   background-color: #d8d7c9 !important;
 }
 
-.btn.my-button, 
-.btn-check:not(checked)+.btn.my-button
-.btn.my-button.disabled {
+.btn.my-button,
+.btn-check:not(checked) + .btn.my-button .btn.my-button.disabled {
   background-color: transparent !important;
   border-color: lightgrey !important;
 }
