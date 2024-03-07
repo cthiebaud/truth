@@ -150,12 +150,14 @@
 
     <div id="con" class="container">
         <div id="alpha-beta" class="p-2 d-flex justify-content-between align-items-start">
-            <h1 id="αβ"><span>(𝖠,𝖡)</span><svg width="32" height="32" preserveAspectRatio="none" viewBox="0 -2 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M4 6L10.4 6C13.4928 6 16 8.50721 16 11.6L16 18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M16 18.6L12 15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M16 18.6L20 15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-            </h1>
+            <button id="canonical-or-javascript" type="button" class="btn btn-outline-light" aria-label="canonical-or-javascript">
+                <h1 id="αβ"><span style="color: #173f35">(𝖠,𝖡)</span><svg width="32" height="32" preserveAspectRatio="none" viewBox="0 -2 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 6L10.4 6C13.4928 6 16 8.50721 16 11.6L16 18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M16 18.6L12 15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M16 18.6L20 15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </h1>
+            </button>
             <div id="buttons" class="btn-group btn-group-sm" role="group">
 
                 <!-- BEGIN Button trigger modal for test - - >
@@ -1219,9 +1221,8 @@
                 mega_reorder()
             })
 
-            document.querySelector("#αβ > span:first-child").addEventListener('click', clickEvent => {
+            document.getElementById("canonical-or-javascript").addEventListener('click', clickEvent => {
                 clickEvent.stopPropagation()
-                console.log('αβ clicked')
                 functions.toggleDisplay()
                 document.querySelector('h1#αβ > span').innerHTML = functions.display.title
                 document.querySelectorAll('[data-function] caption').forEach((c) => {
