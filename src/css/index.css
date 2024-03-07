@@ -142,7 +142,7 @@ nav#nav {
 }
 
 #tables table thead th:nth-child(2):after {
-  content: 'B'; /* 'β' */
+  content: '𝖡'; /* 'β' */
   width: 100%;
   overflow: visible;
   position: absolute;
@@ -153,9 +153,11 @@ nav#nav {
   text-align: center;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-
+#tables.javascript table thead th:nth-child(2):after {
+  content: 'β';
+}
 #tables table tbody tr:nth-child(1) th:after {
-  content: 'A'; /* 'α' */
+  content: '𝖠'; /* 'α' */
   height: 100%;
   overflow: visible;
   position: absolute;
@@ -167,6 +169,9 @@ nav#nav {
   transform: rotate(180deg) translateY(-50%);
   /* Rotate the text 180 degrees */
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+#tables.javascript table tbody tr:nth-child(1) th:after {
+  content: 'α';
 }
 
 #tables table th {

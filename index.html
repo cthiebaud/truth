@@ -909,7 +909,7 @@
                     title: "(α,β)"
                 }
             }
-            #defaultDisplay = 'canonical'
+            #currentDisplayKey = 'canonical'
             constructor() {
                 const negationMap = {
                     '!α': "<span class='negation canonical'>𝖠</span>",
@@ -951,18 +951,19 @@
                 if (f === 'true') {
                     return new OneOrTwoColors(colors.colorTrue)
                 }
-                if ((f.match(new RegExp('α', "g")) || []).length === 2
-                    || f.match(new RegExp('==', "g"))
-                    || f.match(new RegExp('!=', "g"))) {
+                if ((f.match(new RegExp('α', "g")) || []).length === 2) {
                     return new OneOrTwoColors(colors.nextColor(), colors.nextColor())
                 }
                 return new OneOrTwoColors(colors.nextColor())
             }
             toggleDisplay() {
-                this.#defaultDisplay = this.#defaultDisplay === 'canonical' ? 'javascript' : 'canonical'
+                this.#currentDisplayKey = this.#currentDisplayKey === 'canonical' ? 'javascript' : 'canonical'
             }
             get display() {
-                return this.#display[this.#defaultDisplay]
+                return this.#display[this.#currentDisplayKey]
+            }
+            get currentDisplayKey() {
+                return this.#currentDisplayKey
             }
         }
         const functions = new Functions()
@@ -1102,7 +1103,7 @@
                                 player.results.unconcealed.increment()
 
                                 function checkDescendantsClasses(element, classA, classX, classY) {
-                                    // Find the nearest ancestor with class 𝖠
+                                    // Find the nearest ancestor with class A
                                     let ancestorWithClassA = findAncestor(element, classA)
 
                                     if (!ancestorWithClassA) {
@@ -1227,6 +1228,11 @@
             document.getElementById("canonical-or-javascript").addEventListener('click', clickEvent => {
                 clickEvent.stopPropagation()
                 functions.toggleDisplay()
+                if (functions.currentDisplayKey == 'canonical') {
+                    document.getElementById('tables').classList.remove('javascript')    
+                } else {
+                    document.getElementById('tables').classList.add('javascript')    
+                }
                 document.querySelector('h1#αβ > span').innerHTML = functions.display.title
                 document.querySelectorAll('[data-function] caption').forEach((c) => {
                     c.innerHTML = functions.display[c.parentNode.parentNode.dataset.function]
