@@ -45,9 +45,10 @@ function shuffleNoAdjacentDuplicates(array) {
     const randomPosition = Math.floor(Math.random() * n)
     return rotateArray(shuffledArray, randomPosition)
 }
+
 export class Colors {
     // ########################
-    // Function to map a number to a color
+    // Function to map a number between 0 and 120 to a color
     static mapNumberToColor(number) {
         // Define the fixed colors
         const colors = [
@@ -108,7 +109,6 @@ export class Colors {
             '#91501C',
         ]
         this.colors = colors.concat(colors)
-        this.colorsMapCSS = new Map()
         this.shuffleColors()
     }
 

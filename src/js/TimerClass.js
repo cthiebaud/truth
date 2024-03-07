@@ -92,18 +92,7 @@ export class Timer {
         // console.log('timer stopped')
     }
     close() {
-        if (this.audioContext) {
-            /* console.log("closing audioContext...") */
-            this.audioContext.close().then(() => {
-                /* console.log('Audio context closed and nullified') */
-                if (this.onTimerClosedCallback) {
-                    this.onTimerClosedCallback();
-                }
-            });
-            this.audioContext = null;
-        } else {
-            this.callbacks.onClose();
-        }
+        this.callbacks.onClose();
         this.timerElementPlaying.style.display = 'none';
         this.timerElementNotPlaying.style.display = 'block';
         /* console.log('timer closed') */
