@@ -5,11 +5,11 @@
 
 # ἀλήθεια
 
-The objective of the game is to unconceal the 'truth' - inside a 'truth table'.
+The objective of the game is to unconceal the 'truth' - inside a ['truth table'](https://en.wikipedia.org/wiki/Truth_table).
 
 The header of each square box provides a clue that can be decoded into bricks filling none, some or all of the 4 cells within the box.
 
-The presence or absence of a brick within a cell is fully determined by the values of A and B as inferred from the clue provided by the square box header, as illustrated below: 
+The presence or absence of a brick within a cell is fully determined by the values of A and B as inferred from the clue (expressed with [logic symbols](https://en.wikipedia.org/wiki/List_of_logic_symbols)) provided by the square box header:
 
 ![example](/HOWTO-example.jpg)
 
