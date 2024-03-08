@@ -280,7 +280,7 @@
 
                 <div id="tortoise-hare-achilles" class="left carousel slide" data-bs-wrap="false">
                     <div class="carousel-inner">
-                        <div id="tortoise" data-time="120" class="carousel-item active" data-sound="ticking"><!-- data-bs-interval="0" -->
+                        <div id="tortoise" data-time="120" class="carousel-item active" data-sound="tortoise"><!-- data-bs-interval="0" -->
                             <div>
                                 <!-- 
                                 <img src="/assets/svg/tortoise-fill-svgrepo-com.svg" alt="tortoise">
@@ -291,7 +291,7 @@
                                 </svg>
                             </div>
                         </div>
-                        <div id="hare" data-time="60" class="carousel-item" data-sound="ticking"><!-- data-bs-interval="0" -->
+                        <div id="hare" data-time="60" class="carousel-item" data-sound="hare"><!-- data-bs-interval="0" -->
                             <div>
                                 <!-- 
                                 <img src="/assets/svg/hare-fill-svgrepo-com.svg" alt="hare">
@@ -1180,7 +1180,6 @@
                     hint.classList.remove("hint")
                 })
                 player._soundMachine.underwater.fade(undefined, 0.001, 1500)
-
             }
             window.addEventListener("scroll", function (e) {
                 clearHints()

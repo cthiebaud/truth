@@ -5,4 +5,3 @@ packages/
 .ssh/
 *.csv
 .node_env
-*.band
