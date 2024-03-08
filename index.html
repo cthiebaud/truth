@@ -679,6 +679,8 @@
                     } else if (player.results.erred.value === 0 && player.results.unconcealed.value === 32) {
                         if (player.level != 'achilles' || !player.results.victory) {
                             player.tada()
+                        } else {
+                            player.gong()
                         }
                         msg = `You won!`
                     } else if (player.results.erred.value >= 28 && player.results.unconcealed.value === 32) {
@@ -711,6 +713,10 @@
 
             tada() {
                 this._soundMachine.tada.play()
+            }
+
+            gong() {
+                this._soundMachine.gong.play()
             }
 
             laughs() {

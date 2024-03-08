@@ -50,9 +50,10 @@ export class SoundMachine {
         this.boo = SoundMachine.newHowl({ src: ['/assets/audio/boo.mp3'] });
         this.guitar = SoundMachine.newHowl({ src: ['/assets/audio/guitar-riff.mp3'] });
         this.boredom = SoundMachine.newHowl({ src: ['/assets/audio/boredom.mp3'] });
+        this.gong = SoundMachine.newHowl({ src: ['/assets/audio/gong.mp3'], loop: false, volume: 0.67 });
         this.abort = SoundMachine.newHowl({ src: ['/assets/audio/short-whoosh.mp3'] });
         this.riser = SoundMachine.newHowl({ src: ['/assets/audio/scary-riser-v2.mp3'], loop: false, volume: 0.67 });
-        this.achilles = SoundMachine.newHowl({ src: ['/assets/audio/achilles-v4.mp3'], loop: false, volume: .8 });
+        this.achilles = SoundMachine.newHowl({ src: ['/assets/audio/achilles-v5.mp3'], loop: false, volume: .8 });
     }
 
 }
