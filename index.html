@@ -532,6 +532,7 @@
 
         let player = null
         class Player {
+            #restarting 
             constructor() {
                 this.results = new Results()
                 const resultsModal = document.getElementById('resultsModal')
@@ -539,6 +540,7 @@
                     player.stop()
                 })
                 this._playing = false
+                this.restarting = false
 
                 this._soundMachine = new SoundMachine()
                 document.getElementById('controls').style.visibility = 'visible'
@@ -579,6 +581,15 @@
                     // END CAROUSEL
                 })
 
+            }
+
+            get restarting() {
+                // console.log(`GET restarting ${this.#restarting}`)
+                return this.#restarting
+            }
+            set restarting(restarting) {
+                // console.log(`SET restarting from ${this.#restarting} to ${restarting}`)
+                this.#restarting = restarting
             }
 
             get level() {
@@ -657,7 +668,7 @@
                 document.getElementById("shuffle-all").disabled = false
                 document.getElementById("paragraph-breaks").disabled = false
                 document.getElementById('play').classList.remove('playing')
-                player.veilUnveilBricks(false)
+                player.unveilBricks()
                 player._soundMachine[player.level].stop()
                 player._soundMachine.underwater.stop()
             }
@@ -748,13 +759,21 @@
                 this._soundMachine.boredom.play()
             }
 
-            veilUnveilBricks(veilOrUnveil) {
+            veilBricks() {
+                /* if (!this.restarting) */ this.veilUnveilBricks('veil')
+            }
 
-                // https://css-tricks.com/why-using-reduce-to-sequentially-resolve-promises-works/
-                function methodThatReturnsAPromise(tbody, veilOrUnveil) {
+            unveilBricks() {
+                if (!this.restarting) this.veilUnveilBricks('unveil')
+            }
+
+            async veilUnveilBricks(veilParam) {
+                const veil = veilParam === 'veil';
+
+                function methodThatReturnsAPromise(tbody, veil) {
                     return new Promise((resolve) => {
                         const tds = tbody.querySelectorAll('td')
-                        if (veilOrUnveil) {
+                        if (veil) {
                             tds.forEach(td => { td.classList.add('translucent') })
                         } else {
                             tds.forEach(td => {
@@ -771,15 +790,11 @@
                     })
                 }
 
-                const result = Array.from(document.querySelectorAll('#tables tbody')).reduce((accumulatorPromise, tbody) => {
-                    return accumulatorPromise.then(() => {
-                        return methodThatReturnsAPromise(tbody, veilOrUnveil)
-                    });
-                }, Promise.resolve());
+                for (const tbody of document.querySelectorAll('#tables tbody')) {
+                    await methodThatReturnsAPromise(tbody, veil);
+                }
 
-                result.then(e => {
-                    console.log("'unveil scores complete")
-                });
+                // console.log(`${veilParam} scores complete`);
             }
 
             async start() {
@@ -792,13 +807,14 @@
                 this._timer.start(totalTime)
                 document.getElementById("shuffle-all").disabled = true
                 document.getElementById("paragraph-breaks").disabled = true
-                await player.veilUnveilBricks(true)
+                await this.veilBricks()
                 document.getElementById('tortoise-hare-achilles').style.opacity = '.5'
                 document.querySelectorAll('#tortoise-hare-achilles button').forEach(button => {
                     button.disabled = true
                 })
                 this.results.reset()
                 this.playing = true
+                this.restarting = false
             }
 
             stop() {
@@ -1325,11 +1341,14 @@
             document.getElementById("play-again").addEventListener('click', clickEvent => {
                 clickEvent.preventDefault()
                 clickEvent.stopPropagation()
-                player.stop()
-                mega_shuffle()
+
+                player.restarting = true
+                player.veilBricks()
                 let resultsModal = document.getElementById('resultsModal')
                 resultsModal.addEventListener('hidden.bs.modal', event => {
                     setTimeout(() => {
+                        player.stop()
+                        mega_shuffle()
                         player.start()
                     }, 100)
                 }, { once: true, })
