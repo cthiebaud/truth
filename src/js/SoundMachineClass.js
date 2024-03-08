@@ -53,7 +53,7 @@ export class SoundMachine {
         this.gong = SoundMachine.newHowl({ src: ['/assets/audio/gong.mp3'], loop: false, volume: 0.67 });
         this.abort = SoundMachine.newHowl({ src: ['/assets/audio/short-whoosh.mp3'] });
         this.riser = SoundMachine.newHowl({ src: ['/assets/audio/scary-riser-v2.mp3'], loop: false, volume: 0.67 });
-        this.achilles = SoundMachine.newHowl({ src: ['/assets/audio/achilles-v5.mp3'], loop: false, volume: .8 });
+        this.achilles = SoundMachine.newHowl({ src: ['/assets/audio/achilles-v6.mp3'], loop: false, volume: .8 });
     }
 
 }

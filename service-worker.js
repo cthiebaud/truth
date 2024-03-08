@@ -61,7 +61,7 @@ if (workbox) {
     { revision: 'b055684d475bb1c505e9877b4abd0fc9', url: 'dist/css/index.min.css' },
     { revision: '476c9c641caca3b8fa3dcfe0a18e83a9', url: 'dist/css/timer.min.css' },
     { revision: '0a08a79b4a51df549d3899c972cdce07', url: 'dist/js/ColorsClass.min.js' },
-    { revision: 'e004461aa70b79ea5e7812ffa76fd4e4', url: 'dist/js/SoundMachineClass.min.js' },
+    { revision: '8a21a18b37665c0bd9ded3d41ad28372', url: 'dist/js/SoundMachineClass.min.js' },
     { revision: 'a565cd491139c222f0575de62868e028', url: 'dist/js/TimerClass.min.js' },
   ])
 
