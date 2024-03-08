@@ -151,11 +151,9 @@
     <div id="con" class="container">
         <div id="alpha-beta" class="p-2 d-flex justify-content-between align-items-start">
             <div style="display: flex; align-items: end;">
-                <button id="canonical-or-javascript" type="button" class="btn my-button shadow" aria-label="canonical-or-javascript" style="padding: 0;">
-                    <div id="αβ" style="display: flex; align-items: end; height: 48px;">
-                        <span style="width: 120px; font-size: 36px;">(𝖠,𝖡)</span>
-                    </div>
-                </button>
+                <div id="αβ" style="display: flex; align-items: end; height: 48px;">
+                    <span style="font-size: 36px;">(𝖠,𝖡)</span>
+                </div>
                 <svg width="32" height="32" preserveAspectRatio="none" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M4 6L10.4 6C13.4928 6 16 8.50721 16 11.6L16 18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                     <path d="M16 18.6L12 15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -211,18 +209,24 @@
 
         <div id="tables" class="transparent-border center-children" data-scrambled="false"></div>
 
-        <h1 id="aletheia" class="text-center p-2 mb-0 d-flex justify-content-between align-items-end">
+        <div id="aletheia" class="text-center p-2 mb-0 d-flex justify-content-between align-items-end">
             <div id="copyright">
                 ©&nbsp;CT
             </div>
             <a href="https://en.wikipedia.org/wiki/Aletheia" target="_wikipedia">ἀλήθεια</a>
-            <button id="infos" type="button" class="btn btn-sm my-button shadow float-end" aria-label="infos" style="line-height: 1;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32" style="vertical-align: bottom;">
-                    <path
-                        d="M18 23h-1v-8.938c0-.011-.003-.021-.003-.031S17 14.011 17 14a1 1 0 0 0-1-1h-2a1 1 0 0 0 0 2h1v8h-1a1 1 0 0 0 0 2h4a1 1 0 0 0 0-2zm-2-12a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm0-11C7.164 0 0 7.163 0 16s7.163 16 16 16 16-7.163 16-16S24.837 0 16 0zm0 30.031c-7.72 0-14-6.312-14-14.032s6.28-14 14-14 14 6.28 14 14-6.28 14.032-14 14.032z" />
-                </svg>
-            </button>
-        </h1>
+            <div id="buttons2" class="d-flex flex-column btn-group-vertical shadow" role="group">
+                <input type="checkbox" class="btn-check" id="canonical-or-javascript" autocomplete="off" aria-label="canonical / javascript toggle">
+                <label id="canonical-or-javascript.label" class="btn btn-sm my-button" for="canonical-or-javascript">
+                    A
+                </label>
+                <button id="infos" type="button" class="btn btn-sm my-button" aria-label="infos" style="line-height: 1;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="20" viewBox="0 -2 32 34" style="vertical-align: bottom;">
+                        <path
+                            d="M18 23h-1v-8.938c0-.011-.003-.021-.003-.031S17 14.011 17 14a1 1 0 0 0-1-1h-2a1 1 0 0 0 0 2h1v8h-1a1 1 0 0 0 0 2h4a1 1 0 0 0 0-2zm-2-12a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm0-11C7.164 0 0 7.163 0 16s7.163 16 16 16 16-7.163 16-16S24.837 0 16 0zm0 30.031c-7.72 0-14-6.312-14-14.032s6.28-14 14-14 14 6.28 14 14-6.28 14.032-14 14.032z" />
+                    </svg>
+                </button>
+            </div>
+        </div>
         <style>
             #nav.navbar {
                 height: 3rem;
@@ -1230,20 +1234,6 @@
                 mega_reorder()
             })
 
-            document.getElementById("canonical-or-javascript").addEventListener('click', clickEvent => {
-                clickEvent.stopPropagation()
-                functions.toggleDisplay()
-                if (functions.currentDisplayKey == 'canonical') {
-                    document.getElementById('tables').classList.remove('javascript')
-                } else {
-                    document.getElementById('tables').classList.add('javascript')
-                }
-                document.querySelector('#αβ > span').innerHTML = functions.display.title
-                document.querySelectorAll('[data-function] caption').forEach((c) => {
-                    c.innerHTML = functions.display[c.parentNode.parentNode.dataset.function]
-                })
-            })
-
             document.getElementById("table-borders").addEventListener('click', clickEvent => {
                 clickEvent.stopPropagation()
                 if (theTables.classList.contains("transparent-border")) {
@@ -1276,6 +1266,22 @@
                 clickEvent.preventDefault()
                 clickEvent.stopPropagation()
                 mega_shuffle()
+            })
+
+            document.getElementById("canonical-or-javascript")?.addEventListener('click', clickEvent => {
+                clickEvent.stopPropagation()
+                functions.toggleDisplay()
+                if (functions.currentDisplayKey == 'canonical') {
+                    document.getElementById('tables').classList.remove('javascript')
+                    document.getElementById('canonical-or-javascript.label').innerHTML = '𝖠'
+                } else {
+                    document.getElementById('tables').classList.add('javascript')
+                    document.getElementById('canonical-or-javascript.label').innerHTML = 'α'
+                }
+                document.querySelector('#αβ > span').innerHTML = functions.display.title
+                document.querySelectorAll('[data-function] caption').forEach((c) => {
+                    c.innerHTML = functions.display[c.parentNode.parentNode.dataset.function]
+                })
             })
 
             document.getElementById("infos").addEventListener('click', clickEvent => {

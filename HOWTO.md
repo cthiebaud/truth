@@ -1,7 +1,7 @@
 [![WWW](assets/svg/internet-svgrepo-com.svg)](https://aletheia.cthiebaud.com/) 
 [![Android App Store](assets/svg/android-svgrepo-com.svg)](https://play.google.com/apps/testing/com.cthiebaud.aletheia.twa)
 [![Apple App Store](assets/svg/Apple_logo_grey.svg)](https://apps.apple.com/us/app/aletheia-by-%C3%A6quologica/id6476017817)
-[![Github](assets/svg/github.svg)](https://github.com/cthiebaud/truth/commit/0721e502014680515aea527fed2cef89d0ac1f29)
+[![Github](assets/svg/github.svg)](https://github.com/cthiebaud/truth/commit/6f51ad38029e0636b0c1b216692f73f2a4415987)
 
 # ἀλήθεια
 
@@ -9,7 +9,7 @@ The objective of the game is to unconceal the 'truth' - inside a ['truth table']
 
 The header of each square box provides a clue that can be decoded into bricks filling none, some or all of the 4 cells within the box.
 
-The presence or absence of a brick within a cell is fully determined by the values of A and B as inferred from the clue (expressed with [logic symbols](https://en.wikipedia.org/wiki/List_of_logic_symbols)) provided by the square box header:
+The presence or absence of a brick within a cell is fully determined by the values of A and B as inferred from the clue, expressed with [logic symbols](https://en.wikipedia.org/wiki/List_of_logic_symbols) (𝖠 ∧ 𝖡)</strong>, or javascript (α & β), as illustrated below:
 
 ![example](/HOWTO-example.jpg)
 

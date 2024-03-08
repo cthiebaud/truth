@@ -296,5 +296,5 @@ nav#nav {
   border-top: 2px solid #173f35;
 }
 .negation.canonical:before {
-  content: ' ¬';
+  content: '¬';
 }
