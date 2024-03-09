@@ -36,7 +36,7 @@ Les raccourcis claviers sont :
 
 --- 
 
-La musique du niveau <img src="/cthiebaud/truth/raw/main/svg/ancient-greek-helmet-1-svgrepo-com.svg" alt="ἀλήθεια" style="width: 24px; height: 24px;">
+La musique du niveau <img src="svg/ancient-greek-helmet-1-svgrepo-com.svg" alt="Achilles" style="width: 24px; height: 24px;">
 est sur [SoundCloud](https://soundcloud.com/christophe-thiebaud/aletheia?si=83569a3c774e4cdf84c684e74478af34&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing)
 
 ![ἀλήθεια](screenshots/iPad10th.png)
