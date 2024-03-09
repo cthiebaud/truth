@@ -11,7 +11,7 @@ Il s'agit donc de dévoiler les petites briques colorées pour faire apparaître
 6 résultats sont possibles:
 
 1. `You won!` : toutes les briques (32) sont dévoilées dans le temps imparti, sans erreurs.
-2. `You <i>quasi</i> won&hellip;` : toutes les briques sont dévoilées dans le temps imparti, avec erreurs.
+2. `You - quasi - won…` : toutes les briques sont dévoilées dans le temps imparti, avec erreurs.
 3. `Oops! Time's up!` : le temps imparti est écoulé, et il reste au moins une brique à dévoiler.
 4. `Rather quiet today, isn't it?` : le temps imparti est écoulé et le joueur s'est endormi sans cliquer nulle part.
 5. `You cheated?!` : le joueur a cliqué sur **toutes** les cases sans distinction. OK, toutes les briques ont été dévoilées dans le temps imparti, mais le nombre d'erreurs est énorme (>=28), il a triché!
