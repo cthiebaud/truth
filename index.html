@@ -607,7 +607,7 @@
                 document.getElementById('result-display-mode-symbol').innerHTML = result.displayModeSymbol
 
                 Array.from(document.querySelectorAll('#result-level > div')).forEach(rl => {
-                    console.log(rl)
+                    // console.log(rl)
                     rl.style.display = 'none'
                 })
                 document.getElementById(`result-level-${result.level}`).style.display = 'block'
@@ -1377,7 +1377,7 @@
                         const element = document.getElementById("result-modal");
                         const computedStyle = window.getComputedStyle(element);
                         const displayValue = computedStyle.getPropertyValue("display");
-                        // console.log('modal', displayValue)
+                        // console.log('modal', displayValue, 'event.code', event.code)
                         if (displayValue !== 'none') {
                             if (event.code === 'Space') {
                                 playAgain()
@@ -1385,24 +1385,43 @@
                             return
                         }
                     }
-                    if (event.code === 'Space') {
-                        playToggle(keyboardEvent)
-                    } else if (event.code === 'Escape') {
-                        if (player.isPlaying) {
-                            player.stop()
-                        }
-                    } if (event.code === 'KeyS') {
-                        mega_shuffle()
-                    } if (event.code === 'KeyO') {
-                        mega_reorder()
-                    } if (event.code === 'KeyQ') {
-                        toggle_borders()
-                    } if (event.code === 'KeyW') {
-                        axes.toggleVisibility()
-                    } if (event.code === 'KeyE') {
-                        toggle_paragraphs()
-                    } if (event.code === 'KeyA') {
-                        toggle_displayMode()
+                    switch (event.code) {
+                        case 'Space':
+                            playToggle(keyboardEvent);
+                            break;
+                        case 'Escape':
+                            if (player.isPlaying) {
+                                player.stop();
+                            }
+                            break;
+                        case 'KeyS':
+                            mega_shuffle();
+                            break;
+                        case 'KeyO':
+                            mega_reorder();
+                            break;
+                        case 'KeyQ':
+                            toggle_borders();
+                            break;
+                        case 'KeyW':
+                            axes.toggleVisibility();
+                            break;
+                        case 'KeyE':
+                            toggle_paragraphs();
+                            break;
+                        case 'KeyA':
+                            toggle_displayMode();
+                            break;
+                        case 'ArrowRight':
+                            if (!player.isPlaying) {
+                                player.tortoiseHareAchilles.next();
+                            }
+                            break;
+                        case 'ArrowLeft':
+                            if (!player.isPlaying) {
+                                player.tortoiseHareAchilles.prev();
+                            }
+                            break;
                     }
                 })
 
@@ -1413,14 +1432,15 @@
                 })
             }
 
+            // BEGIN CAROUSEL
             ;[...document.getElementsByClassName('carousel-item')].forEach(carouselItem => {
                 carouselItem.addEventListener('click', clickEvent => {
                     clickEvent.preventDefault()
                     clickEvent.stopPropagation()
+
                     if (player.isPlaying) return
 
                     const target = clickEvent.target;
-                    // Check if the clicked element is the desired DIV
                     const rect = target.getBoundingClientRect();
                     const clickX = event.clientX - rect.left;
                     const midpoint = rect.width / 2;
@@ -1434,6 +1454,8 @@
                     }
                 })
             });
+            // END CAROUSEL
+
 
         })
 
