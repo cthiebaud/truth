@@ -10,29 +10,45 @@ Il s'agit donc de dévoiler les petites briques colorées pour faire apparaître
 
 --- 
 
+3 niveaux existent :
+
+* Tortue 
+<img src="svg/tortoise-fill-svgrepo-com.svg" alt="Tortoise" style="width: 24px; height: 24px;"> 
+Le joueur a 2 minutes pour dévoiler les briques.
+
+* Lièvre 
+<img src="svg/hare-fill-svgrepo-com.svg" alt="Hare" style="width: 24px; height: 24px;"> 
+Le joueur a 1 minute pour dévoiler les briques.
+
+* Casque Corinthien 
+<img src="svg/ancient-greek-helmet-1-svgrepo-com.svg" alt="Achilles" style="width: 24px; height: 24px;"> 
+Ce pourrait être celui d'Achille - référence en matière de super-héros, mais aussi Hermès, le messager des dieux, réputé pour sa vitesse. Il va en avoir besoin, car il ne reste plus que 30 secondes pour dévoiler les briques.
+
+--- 
+
 6 résultats sont possibles :
 
-1. `You won!` : toutes les briques (32) sont dévoilées dans le temps imparti, sans erreurs.
-2. `You - quasi - won…` : toutes les briques sont dévoilées dans le temps imparti, avec erreurs.
-3. `Time's up!` : le temps imparti est écoulé, et il reste au moins une brique à dévoiler.
-4. `Rather quiet today, isn't it?` : le temps imparti est écoulé et le joueur s'est endormi sans cliquer nulle part.
-5. `You cheated?!` : le joueur a cliqué sur toutes les cases sans distinction. Bien que toutes les briques ont été dévoilées dans le temps imparti, ce qui pourrait être considéré comme une victoire, le nombre d'erreurs est énorme (>=28), il a triché! C'est mal.
-6. `Ooooh… Subtle!` : le joueur a joué au qui-perd-gagne. Toutes les erreurs possibles (32) ont été faites, tout en évitant soigneusement de dévoiler la moindre brique. Très fort.
+1. `You won!` Toutes les briques (32) sont dévoilées dans le temps imparti, sans erreurs.
+2. `You - quasi - won…` Toutes les briques sont dévoilées dans le temps imparti, avec erreurs.
+3. `Time's up!` Le temps imparti est écoulé, et il reste au moins une brique à dévoiler.
+4. `Rather quiet today, isn't it?` Le temps imparti est écoulé et le joueur s'est endormi sans cliquer nulle part.
+5. `You cheated?!` Le joueur a cliqué sur toutes les cases sans distinction. Bien que toutes les briques ont été dévoilées dans le temps imparti, ce qui pourrait être considéré comme une victoire, le nombre d'erreurs est énorme (>=28), il a triché! C'est mal.
+6. `Ooooh… Subtle!` Le joueur a joué au qui-perd-gagne. Toutes les erreurs possibles (32) ont été faites, tout en évitant soigneusement de dévoiler la moindre brique. Très fort.
 
 Le son qui accompagne chaque résultat est différent, bien sûr.
 
 --- 
 
-Les raccourcis claviers sont :
+Les raccourcis clavier sont :
 
-* `Space` : démarre (re-démarre quand les résultats de la partie précédente sont affichés dans une boite de dialogue) ou arrête une partie
-* `Escape` : 'tue' une partie (i.e. sans afficher les résultats)
-* `S` : mélange les tables
-* `O` : trie les tables, ou mélange les couleurs si les tables sont déjà triées
-* `A` : change le style des entêtes des tables, e.g. `𝖠 ∧ 𝖡` ou `α & β`
-* `Q` : affiche ou non les bords des tables
-* `W` : affiche ou non les axes des tables
-* `E` : affiche les table classées par ordre croissant de nombre de briques
+* `Space` Démarre (re-démarre quand les résultats de la partie précédente sont affichés dans une boite de dialogue) ou arrête une partie.
+* `Escape` 'Tue' une partie (i.e. sans afficher les résultats).
+* `S` Mélange les tables aléatoirement.
+* `O` Trie les tables par nombre de briques en ordre croissant, ou mélange les couleurs si les tables sont déjà triées.
+* `A` Change le style des entêtes des tables, entre `𝖠 ∧ 𝖡` et `α & β`.
+* `Q` Affiche ou non les bords des tables et des celulles.
+* `W` Affiche ou non les entêtes des axes des tables.
+* `E` Affiche les tables triées par nombre de briques en ordre croissant et groupées selon le même critère.
 
 --- 
 
