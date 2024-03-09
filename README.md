@@ -40,7 +40,7 @@ Chaque résultat est accompagné d'un son différent.
 
 * `Space` Démarre (re-démarre quand les résultats de la partie précédente sont affichés dans une boite de dialogue) ou arrête une partie.
 * `Escape` 'Tue' une partie (i.e. sans afficher les résultats).
-* `S` Mélange les tables aléatoirement.
+* `S` <img src="svg/b-shuffle.svg" class="qwe" alt="Tortoise" style="width: auto; height: 16px;">&nbsp;&nbsp;&nbsp;Mélange les tables aléatoirement.
 * `O` Trie les tables par nombre de briques en ordre croissant, ou mélange les couleurs si les tables sont déjà triées.
 * `A` Change le style des entêtes des tables, entre `𝖠 ∧ 𝖡` et `α & β`.
 * `Q` Affiche ou non les bords des tables et des celulles.
