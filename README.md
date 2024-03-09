@@ -49,6 +49,6 @@ Chaque résultat est accompagné d'un son différent.
 
 --- 
 
-![ἀλήθεια](screenshots/iPad10th.png)
+![ἀλήθεια](screenshots/2024_03_09-1824x1824.jpg)
 
 
