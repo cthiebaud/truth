@@ -109,23 +109,23 @@
     <div id="resultModal" class="modal fade" tabindex="-1" aria-labelledby="resultModalLabel" aria-hidden="true">
 
         <style>
-            #modal-body #result-display {
+            #modal-body #result-summary {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
             }
 
-            #modal-body #result-display table {
+            #modal-body #result-summary table {
                 margin: auto;
                 /* Center the table within the container */
             }
 
-            #modal-body #result-display table td:first-child {
+            #modal-body #result-summary table td:first-child {
                 text-align: right;
                 padding-right: 5px;
             }
 
-            #modal-body #result-display table td:last-child {
+            #modal-body #result-summary table td:last-child {
                 text-align: left;
                 padding-left: 5px;
             }
@@ -139,9 +139,9 @@
                 </div>
                 <div id="modal-body" class="modal-body">
                     <h1 id="result-msg"></h1>
-                    <div id="result-display">
+                    <div id="result-summary">
                         <style>
-                            #result-display table tbody tr td {
+                            #result-summary table tbody tr td {
                                 width: 50%;
                             }
                         </style>
@@ -217,6 +217,7 @@
                             </svg>
                         </div>
                     </div>
+                    <div id="result-display-mode"></div>
                     <div id="result-timestamp" class="ms-auto"></div>
                 </div>
             </div>
@@ -603,6 +604,8 @@
                 // stop timer
                 player.result.timerDuration = player._timer.stop()
                 document.getElementById('result-msg').innerHTML = msg
+                document.getElementById('result-display-mode').innerHTML = result.displayMode
+                
                 Array.from(document.querySelectorAll('#result-level > div')).forEach(rl => {
                     console.log(rl)
                     rl.style.display = 'none'
@@ -806,7 +809,7 @@
                     return
                 }
                 this.isPlaying = true
-                this.result = new Result(this.level)
+                this.result = new Result(this.level, functions.displayMode.name)
                 window.scrollTo({
                     top: 0,
                     behavior: 'smooth' // Use 'smooth' for smooth scrolling
@@ -875,14 +878,14 @@
         }
 
         function toggleElementsVisibility(elements, displayValueWhenVisible) {
-            let display = null
+            let displayStyle = null
             for (let tag of elements) {
-                if (display == null) {
-                    display = tag.style.display !== displayValueWhenVisible ? displayValueWhenVisible : 'none'
+                if (displayStyle == null) {
+                    displayStyle = tag.style.display !== displayValueWhenVisible ? displayValueWhenVisible : 'none'
                 }
-                tag.style.display = display
+                tag.style.display = displayStyle
             }
-            return display
+            return displayStyle
         }
 
         class Axes {
@@ -902,8 +905,8 @@
                 })(document.getElementsByTagName('th'))
             }
             toggleVisibility() {
-                const display = toggleElementsVisibility(document.getElementsByTagName('th'), 'table-cell')
-                this.visible = display === 'table-cell'
+                const displayStyle = toggleElementsVisibility(document.getElementsByTagName('th'), 'table-cell')
+                this.visible = displayStyle === 'table-cell'
                 setCellWidth(!this.visible)
             }
         }
@@ -949,15 +952,15 @@
                 4,
                 'true',
             ]
-            #display = {
+            #displayMode = {
                 'canonical': {
-                    title: "(𝖠,𝖡)"
+                    name: "(𝖠,𝖡)"
                 },
                 'javascript': {
-                    title: "(α,β)"
+                    name: "(α,β)"
                 }
             }
-            #currentDisplayKey = 'canonical'
+            #currentDisplayModeKey = 'canonical'
             constructor() {
                 const negationMap = {
                     '!α': "<span class='negation canonical'>𝖠</span>",
@@ -968,7 +971,7 @@
                         const key = item
                         // javascript
                         {
-                            this.#display.javascript[key] = item.replace(/α & β \| !α & !β/g, "α == β").replace(/!α & β \| α & !β/g, "α != β")
+                            this.#displayMode.javascript[key] = item.replace(/α & β \| !α & !β/g, "α == β").replace(/!α & β \| α & !β/g, "α != β")
                         }
                         // canonical 
                         {
@@ -982,7 +985,7 @@
                                     return match === 'α' ? '𝖠' : '𝖡';
                                 }
                             });
-                            this.#display.canonical[item] = tmp.replace(/&/g, "∧").replace(/\|/g, "∨").replace(/true/, "⊤").replace(/false/, "⊥")
+                            this.#displayMode.canonical[item] = tmp.replace(/&/g, "∧").replace(/\|/g, "∨").replace(/true/, "⊤").replace(/false/, "⊥")
                         }
                     }
                 });
@@ -1005,17 +1008,17 @@
                 return new OneOrTwoColors(colors.nextColor())
             }
             toggleDisplay() {
-                this.#currentDisplayKey = this.#currentDisplayKey === 'canonical' ? 'javascript' : 'canonical'
+                this.#currentDisplayModeKey = this.#currentDisplayModeKey === 'canonical' ? 'javascript' : 'canonical'
             }
-            get display() {
-                return this.#display[this.#currentDisplayKey]
+            get displayMode() {
+                return this.#displayMode[this.#currentDisplayModeKey]
             }
-            get currentDisplayKey() {
-                return this.#currentDisplayKey
+            get currentDisplayModeKey() {
+                return this.#currentDisplayModeKey
             }
         }
         const functions = new Functions()
-        document.querySelector('#αβ > span').innerHTML = functions.display.title
+        document.querySelector('#αβ > span').innerHTML = functions.displayMode.name
 
         class Blender {
             constructor() {
@@ -1089,7 +1092,7 @@
                     const tbodyID = `tbody${index}`
                     const template = `<div id="${elementID}" data-function="${func}">
         <table class="table inline table-sm caption-top table-borderless">
-            <caption class="text-center">${functions.display[func]}</caption>
+            <caption class="text-center">${functions.displayMode[func]}</caption>
             <thead id="${theadID}"></thead>
             <tbody id="${tbodyID}"></tbody>
         </table>
@@ -1307,16 +1310,16 @@
             document.getElementById("canonical-or-javascript")?.addEventListener('click', clickEvent => {
                 clickEvent.stopPropagation()
                 functions.toggleDisplay()
-                if (functions.currentDisplayKey == 'canonical') {
+                if (functions.currentDisplayModeKey == 'canonical') {
                     document.getElementById('tables').classList.remove('javascript')
                     document.getElementById('canonical-or-javascript.label').innerHTML = '𝖠'
                 } else {
                     document.getElementById('tables').classList.add('javascript')
                     document.getElementById('canonical-or-javascript.label').innerHTML = 'α'
                 }
-                document.querySelector('#αβ > span').innerHTML = functions.display.title
+                document.querySelector('#αβ > span').innerHTML = functions.displayMode.name
                 document.querySelectorAll('[data-function] caption').forEach((c) => {
-                    c.innerHTML = functions.display[c.parentNode.parentNode.dataset.function]
+                    c.innerHTML = functions.displayMode[c.parentNode.parentNode.dataset.function]
                 })
             })
 
