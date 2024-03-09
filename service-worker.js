@@ -43,7 +43,7 @@ if (workbox) {
     { revision: 'e7e93808bde4ceead0f0bb8727c817fa', url: 'favicons/mstile-150x150.png' },
     { revision: '2f7e34960fd437beaa92f3b04c5c3050', url: 'favicons/README.md' },
     { revision: 'c9ce66f4033637c701aba2c5f3ca112c', url: 'favicons/safari-pinned-tab.svg' },
-    { revision: '4985a5afb13da0e1d8b2e0a5a257a485', url: 'HOWTO-template.md' },
+    { revision: '395791c0ce3ab1cadc6114c0ab93c656', url: 'HOWTO-template.md' },
     { revision: 'aa4d48274a6e0adb49e8fe8ce9f89245', url: 'HOWTO.md' },
     { revision: '318f1210aabf904c588a8cbb2b30c571', url: 'icon.png' },
     { revision: '5ca35952e03f6b381dc92b93a4d1430a', url: 'icon2.png' },
