@@ -12,11 +12,11 @@ Il s'agit donc de dévoiler les petites briques colorées pour faire apparaître
 
 3 niveaux existent :
 
-* <img src="svg/tortoise-fill-svgrepo-com.svg" alt="Tortoise" style="width: 24px; height: 24px;"> Tortue. Le joueur a 2 minutes pour dévoiler les briques.
+<img src="svg/tortoise-fill-svgrepo-com.svg" alt="Tortoise" style="width: 24px; height: 24px;"> Tortue. Le joueur a 2 minutes pour dévoiler les briques.
 
-* <img src="svg/hare-fill-svgrepo-com.svg" alt="Hare" style="width: 24px; height: 24px;"> Lièvre. Le joueur a 1 minute pour dévoiler les briques.
+<img src="svg/hare-fill-svgrepo-com.svg" alt="Hare" style="width: 24px; height: 24px;"> Lièvre. Le joueur a 1 minute pour dévoiler les briques.
 
-* <img src="svg/ancient-greek-helmet-1-svgrepo-com.svg" alt="Achilles" style="width: 24px; height: 24px;"> Casque Corinthien. Ce pourrait être celui d'Achille - référence en matière de super-héros, mais aussi Hermès, le messager des dieux, réputé pour sa vitesse. Il va en avoir besoin, car il ne reste plus que 30 secondes pour dévoiler les briques.
+<img src="svg/ancient-greek-helmet-1-svgrepo-com.svg" alt="Achilles" style="width: 24px; height: 24px;"> Casque Corinthien. Ce pourrait être celui d'Achille - référence en matière de super-héros, mais aussi Hermès, le messager des dieux, réputé pour sa vitesse. Il va en avoir besoin, car il ne reste plus que 30 secondes pour dévoiler les briques.
 
 --- 
 
