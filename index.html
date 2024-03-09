@@ -117,19 +117,27 @@
                 <div id="modal-body" class="modal-body">
                     <h1 id="result-msg"></h1>
                     <div id="result-display">
+                        <style>
+                            #result-display table tbody tr td {
+                                width: 50%;
+                            }
+                        </style>
                         <table>
-                            <tr>
-                                <td>Elapsed</td>
-                                <td><span id="result-elapsed"></span></td>
-                            </tr>
-                            <tr>
-                                <td>Unconcealed</td>
-                                <td><span id="result-unconcealed"></span> out of 32</td>
-                            </tr>
-                            <tr>
-                                <td>Erred</td>
-                                <td><span id="result-erred"></span></td>
-                            </tr>
+                            <tbody>
+                                <tr>
+                                    <td>Elapsed Time </td>
+                                    <td><span id="result-elapsed"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>Unconcealed Bricks</td>
+                                    <td><span id="result-unconcealed"></span> out of 32</td>
+                                </tr>
+                                <tr>
+                                    <td>Erred Clicks</td>
+                                    <td><span id="result-erred"></span></td>
+                                </tr>
+
+                            </tbody>
                         </table>
                     </div>
                     <div id="play-again" class="float-end">
@@ -621,7 +629,7 @@
                 document.getElementById('result-msg').innerHTML = msg
                 document.getElementById('result-elapsed').innerHTML = CompteARebours.formatDuration(result.timerDuration, 'milliseconds')
                 document.getElementById('result-unconcealed').innerHTML = result.unconcealed.value
-                document.getElementById('result-erred').innerHTML = result.erred.value !== 0 ? result.erred.value : '∅'
+                document.getElementById('result-erred').innerHTML = result.erred.value !== 0 ? `<span style="color:red;">${result.erred.value}</span>` : '∅'
                 const currentDate = new Date()
                 const options = {
                     weekday: 'long',
@@ -663,7 +671,7 @@
                         msg = `Rather quiet today, isn't it?`
                     } else {
                         player.fail()
-                        msg = `Oops! Time's up!`
+                        msg = `Time's up!`
                     }
                     player.stopTimerShowResultThenCloseTimer(msg, player.result)
                 }, 100)
@@ -705,7 +713,7 @@
                     let msg
                     if (player.result.erred.value === 32 && player.result.unconcealed.value === 0) {
                         player.guitar()
-                        msg = `Ooooh ... Subtle!`
+                        msg = `Ooooh&hellip; Subtle!`
                     } else if (player.result.erred.value === 0 && player.result.unconcealed.value === 32) {
                         if (player.level != 'achilles' || !player.result.victory) {
                             player.tada()
@@ -718,7 +726,7 @@
                         msg = `You cheated?!`
                     } else {
                         player.completed_with_errors()
-                        msg = `Nicely done, but you can do better.`
+                        msg = `You <i>quasi</i> won&hellip;`
                     }
                     player.stopTimerShowResultThenCloseTimer(msg, player.result)
                 }, 100)

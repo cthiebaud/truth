@@ -12,10 +12,10 @@ Il s'agit donc de dévoiler les petites briques colorées pour faire apparaître
 
 1. `You won!` : toutes les briques (32) sont dévoilées dans le temps imparti, sans erreurs.
 2. `You - quasi - won…` : toutes les briques sont dévoilées dans le temps imparti, avec erreurs.
-3. `Oops! Time's up!` : le temps imparti est écoulé, et il reste au moins une brique à dévoiler.
+3. `Time's up!` : le temps imparti est écoulé, et il reste au moins une brique à dévoiler.
 4. `Rather quiet today, isn't it?` : le temps imparti est écoulé et le joueur s'est endormi sans cliquer nulle part.
-5. `You cheated?!` : le joueur a cliqué sur **toutes** les cases sans distinction. OK, toutes les briques ont été dévoilées dans le temps imparti, mais le nombre d'erreurs est énorme (>=28), il a triché!
-6. `Ooooh … Subtle!` : le joueur a joué au qui-perd-gagne, toutes les erreurs possibles (32) ont été faites, et il a soigneusement évité de dévoiler la moindre brique. Très fort.
+5. `You cheated?!` : le joueur a cliqué sur **toutes** les cases sans distinction. Soit, toutes les briques ont été dévoilées dans le temps imparti; en ce sens il aurait gagné, mais le nombre d'erreurs est énorme (>=28), il a triché!
+6. `Ooooh… Subtle!` : le joueur a joué au qui-perd-gagne, toutes les erreurs possibles (32) ont été faites, et il a soigneusement évité de dévoiler la moindre brique. Très fort.
 
 Le son qui accompagne chaque résultat est différent, bien sûr.
 
