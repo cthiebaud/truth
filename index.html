@@ -106,7 +106,7 @@
     </svg>
 
     <!-- Modal -->
-    <div id="resultModal" class="modal fade" tabindex="-1" aria-labelledby="resultModalLabel" aria-hidden="true">
+    <div id="result-modal" class="modal fade" tabindex="-1" aria-labelledby="resultModalLabel" aria-hidden="true">
 
         <style>
             #modal-body #result-summary {
@@ -239,8 +239,8 @@
             <div id="buttons" class="btn-group btn-group-sm shadow" role="group">
 
                 <!-- BEGIN Button trigger modal for test - - >
-                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#resultModal">
-                    ·
+                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#result-modal">
+                    M
                 </button>
                 < ! - - END Button trigger modal for test -->
 
@@ -540,7 +540,7 @@
         class Player {
             #restarting
             constructor() {
-                const resultModal = document.getElementById('resultModal')
+                const resultModal = document.getElementById("result-modal")
                 resultModal.addEventListener('hidden.bs.modal', event => {
                     player.stop()
                 })
@@ -628,7 +628,7 @@
                 const formattedDate = currentDate.toLocaleString('en-US', options)
                 document.getElementById('result-timestamp').innerHTML = formattedDate
                 // show result
-                let resultModal = new bsModal(document.getElementById('resultModal'))
+                let resultModal = new bsModal(document.getElementById("result-modal"))
                 resultModal.show() // will close timer when dismissed
             }
 
@@ -1264,6 +1264,42 @@
                 }
             }
 
+            function toggle_borders() {
+                if (theTables.classList.contains("transparent-border")) {
+                    theTables.classList.remove("transparent-border")
+                } else {
+                    theTables.classList.add("transparent-border")
+                }
+            }
+
+            function toggle_paragraphs() {
+                if (player.isPlaying) return
+                paragraphBreaks = !paragraphBreaks
+                toggleElementsVisibility(document.querySelectorAll('div.separator-container'), 'flex')
+                if (paragraphBreaks) {
+                    document.getElementById("shuffle-all").disabled = true
+                    theTables.classList.remove("center-children")
+                    scrambleIt(originalElementsArray, false)
+                } else {
+                    theTables.classList.add("center-children")
+                    document.getElementById("shuffle-all").disabled = false
+                }
+            }
+
+            function toggle_displayMode() {
+                functions.toggleDisplay()
+                if (functions.displayMode.key === 'canonical') {
+                    document.getElementById('tables').classList.remove('javascript')
+                } else {
+                    document.getElementById('tables').classList.add('javascript')
+                }
+                document.getElementById('canonical-or-javascript.label').innerHTML = functions.displayMode.symbol
+                document.querySelector('#αβ > span').innerHTML = functions.displayMode.facade
+                document.querySelectorAll('[data-function] caption').forEach((c) => {
+                    c.innerHTML = functions.displayMode[c.parentNode.parentNode.dataset.function]
+                })
+            }
+
             const theTables = document.getElementById("tables")
             const hammertime = new hammerjs(theTables)
 
@@ -1276,11 +1312,7 @@
 
             document.getElementById("table-borders").addEventListener('click', clickEvent => {
                 clickEvent.stopPropagation()
-                if (theTables.classList.contains("transparent-border")) {
-                    theTables.classList.remove("transparent-border")
-                } else {
-                    theTables.classList.add("transparent-border")
-                }
+                toggle_borders()
             })
 
             document.getElementById("ab-axes").addEventListener('click', clickEvent => {
@@ -1290,16 +1322,7 @@
 
             document.getElementById("paragraph-breaks").addEventListener('click', clickEvent => {
                 clickEvent.stopPropagation()
-                paragraphBreaks = !paragraphBreaks
-                toggleElementsVisibility(document.querySelectorAll('div.separator-container'), 'flex')
-                if (paragraphBreaks) {
-                    document.getElementById("shuffle-all").disabled = true
-                    theTables.classList.remove("center-children")
-                    scrambleIt(originalElementsArray, false)
-                } else {
-                    theTables.classList.add("center-children")
-                    document.getElementById("shuffle-all").disabled = false
-                }
+                toggle_paragraphs()
             })
 
             document.getElementById("shuffle-all").addEventListener('click', clickEvent => {
@@ -1310,17 +1333,7 @@
 
             document.getElementById("canonical-or-javascript")?.addEventListener('click', clickEvent => {
                 clickEvent.stopPropagation()
-                functions.toggleDisplay()
-                if (functions.displayMode.key === 'canonical') {
-                    document.getElementById('tables').classList.remove('javascript')
-                } else {
-                    document.getElementById('tables').classList.add('javascript')
-                }
-                document.getElementById('canonical-or-javascript.label').innerHTML = functions.displayMode.symbol
-                document.querySelector('#αβ > span').innerHTML = functions.displayMode.facade
-                document.querySelectorAll('[data-function] caption').forEach((c) => {
-                    c.innerHTML = functions.displayMode[c.parentNode.parentNode.dataset.function]
-                })
+                toggle_displayMode()
             })
 
             document.getElementById("infos").addEventListener('click', clickEvent => {
@@ -1345,13 +1358,33 @@
                     document.activeElement?.blur()
                 })
                 document.addEventListener('keydown', function (keyboardEvent) {
+                    {
+                        const element = document.getElementById("result-modal");
+                        const computedStyle = window.getComputedStyle(element);
+                        const displayValue = computedStyle.getPropertyValue("display");
+                        // console.log('modal', displayValue)
+                        if (displayValue !== 'none') {
+                            return
+                        }
+                    }
                     if (event.code === 'Space') {
                         playToggle(keyboardEvent)
-                    }
-                    if (event.code === 'Escape') {
+                    } else if (event.code === 'Escape') {
                         if (player.isPlaying) {
                             player.stop()
                         }
+                    } if (event.code === 'KeyS') {
+                        mega_shuffle()
+                    } if (event.code === 'KeyO') {
+                        mega_reorder()
+                    } if (event.code === 'KeyQ') {
+                        toggle_borders()
+                    } if (event.code === 'KeyW') {
+                        axes.toggleVisibility()
+                    } if (event.code === 'KeyE') {
+                        toggle_paragraphs()
+                    } if (event.code === 'KeyA') {
+                        toggle_displayMode()
                     }
                 })
             }
@@ -1362,7 +1395,7 @@
 
                 player.restarting = true
                 player.veilBricks()
-                let resultModal = document.getElementById('resultModal')
+                let resultModal = document.getElementById("result-modal")
                 resultModal.addEventListener('hidden.bs.modal', event => {
                     setTimeout(() => {
                         // player.stop() // already in initial hidden.bs.modal event
