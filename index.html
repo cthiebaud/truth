@@ -83,26 +83,26 @@
     </svg>
 
     <!-- Modal -->
-    <div id="resultsModal" class="modal fade" tabindex="-1" aria-labelledby="resultsModalLabel" aria-hidden="true">
+    <div id="resultModal" class="modal fade" tabindex="-1" aria-labelledby="resultModalLabel" aria-hidden="true">
 
         <style>
-            #modal-body #results-display {
+            #modal-body #result-display {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
             }
 
-            #modal-body #results-display table {
+            #modal-body #result-display table {
                 margin: auto;
                 /* Center the table within the container */
             }
 
-            #modal-body #results-display table td:first-child {
+            #modal-body #result-display table td:first-child {
                 text-align: right;
                 padding-right: 5px;
             }
 
-            #modal-body #results-display table td:last-child {
+            #modal-body #result-display table td:last-child {
                 text-align: left;
                 padding-left: 5px;
             }
@@ -111,24 +111,24 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="resultsModalLabel">The Unconcealment of Truths</h1>
+                    <h1 class="modal-title fs-5" id="resultModalLabel">The Unconcealment of Truths</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div id="modal-body" class="modal-body">
-                    <h1 id="results-msg"></h1>
-                    <div id="results-display">
+                    <h1 id="result-msg"></h1>
+                    <div id="result-display">
                         <table>
                             <tr>
                                 <td>Elapsed</td>
-                                <td><span id="results-elapsed"></span> seconds</td>
+                                <td><span id="result-elapsed"></span> seconds</td>
                             </tr>
                             <tr>
                                 <td>Unconcealed</td>
-                                <td><span id="results-unconcealed"></span> out of 32</td>
+                                <td><span id="result-unconcealed"></span> out of 32</td>
                             </tr>
                             <tr>
                                 <td>Erred</td>
-                                <td><span id="results-erred"></span></td>
+                                <td><span id="result-erred"></span></td>
                             </tr>
                         </table>
                     </div>
@@ -163,7 +163,7 @@
             <div id="buttons" class="btn-group btn-group-sm shadow" role="group">
 
                 <!-- BEGIN Button trigger modal for test - - >
-                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#resultsModal">
+                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#resultModal">
                     ·
                 </button>
                 < ! - - END Button trigger modal for test -->
@@ -411,7 +411,7 @@
             }
         }
 
-        class Results {
+        class Result {
             constructor() {
                 this.reset()
             }
@@ -438,9 +438,7 @@
             }
 
             get victory() {
-                const vic = this.erred.value === 0 && this.unconcealed.value === 32
-                // console.log(`this.erred ${this.erred.value}, this.unconcealed ${this.unconcealed.value}, victory: ${vic}`)
-                return vic
+                return this.erred.value === 0 && this.unconcealed.value === 32
             }
         }
 
@@ -534,9 +532,9 @@
         class Player {
             #restarting 
             constructor() {
-                this.results = new Results()
-                const resultsModal = document.getElementById('resultsModal')
-                resultsModal.addEventListener('hidden.bs.modal', event => {
+                this.result = new Result()
+                const resultModal = document.getElementById('resultModal')
+                resultModal.addEventListener('hidden.bs.modal', event => {
                     player.stop()
                 })
                 this._playing = false
@@ -596,13 +594,13 @@
                 return document.querySelector('.carousel-item.active').dataset.sound
             }
 
-            stopTimerShowResultsThenCloseTimer(msg, results) {
+            stopTimerShowResultThenCloseTimer(msg, result) {
                 // stop timer
                 player._timer.stop()
-                document.getElementById('results-msg').innerHTML = msg
-                document.getElementById('results-elapsed').innerHTML = results.elapsed.value - 2
-                document.getElementById('results-unconcealed').innerHTML = results.unconcealed.value
-                document.getElementById('results-erred').innerHTML = results.erred.value !== 0 ? results.erred.value : '∅'
+                document.getElementById('result-msg').innerHTML = msg
+                document.getElementById('result-elapsed').innerHTML = result.elapsed.value - 2
+                document.getElementById('result-unconcealed').innerHTML = result.unconcealed.value
+                document.getElementById('result-erred').innerHTML = result.erred.value !== 0 ? result.erred.value : '∅'
                 const currentDate = new Date()
                 const options = {
                     weekday: 'long',
@@ -616,9 +614,9 @@
                 }
                 const formattedDate = currentDate.toLocaleString('en-US', options)
                 document.getElementById('modal-footer').innerHTML = formattedDate
-                // show results
-                let resultsModal = new bsModal(document.getElementById('resultsModal'))
-                resultsModal.show() // will close timer when dismissed
+                // show result
+                let resultModal = new bsModal(document.getElementById('resultModal'))
+                resultModal.show() // will close timer when dismissed
             }
 
             onTimerStart() {
@@ -628,7 +626,7 @@
 
             onTimerTick(totalTime, ticks) {
                 player.compteARebours.duration = (totalTime - ticks)
-                player.results.elapsed.increment()
+                player.result.elapsed.increment()
 
                 if (player.compteARebours.duration <= 17 && !player._soundMachine.riser.playing()) {
                     // console.log(`${player.compteARebours.duration} : play riser`)
@@ -639,21 +637,21 @@
             onTimerExpired() {
                 setTimeout(() => {
                     let msg
-                    if (player.results.erred.value === 0 && player.results.unconcealed.value === 0) {
+                    if (player.result.erred.value === 0 && player.result.unconcealed.value === 0) {
                         player.boredom()
                         msg = `Rather quiet today, isn't it?`
                     } else {
                         player.fail()
                         msg = `Oops! Time's up!`
                     }
-                    player.stopTimerShowResultsThenCloseTimer(msg, player.results)
+                    player.stopTimerShowResultThenCloseTimer(msg, player.result)
                 }, 100)
             }
 
             onTimerStop() {
                 if (player.level === 'achilles') {
                     // can listen to the complete warrior music only when victory, otherwise, fade !
-                    if (!player.results.victory) {
+                    if (!player.result.victory) {
                         player._soundMachine[player.level].fade(undefined, 0.001, 2500);
                     }
                 } else {
@@ -677,31 +675,31 @@
                 setTimeout(() => {
                     player.abortSound()
                     let msg = `You stopped!`
-                    player.stopTimerShowResultsThenCloseTimer(msg, player.results)
+                    player.stopTimerShowResultThenCloseTimer(msg, player.result)
                 }, 100)
             }
 
             victory() {
                 setTimeout(() => {
                     let msg
-                    if (player.results.erred.value === 32 && player.results.unconcealed.value === 0) {
+                    if (player.result.erred.value === 32 && player.result.unconcealed.value === 0) {
                         player.guitar()
                         msg = `Ooooh ... Subtle!`
-                    } else if (player.results.erred.value === 0 && player.results.unconcealed.value === 32) {
-                        if (player.level != 'achilles' || !player.results.victory) {
+                    } else if (player.result.erred.value === 0 && player.result.unconcealed.value === 32) {
+                        if (player.level != 'achilles' || !player.result.victory) {
                             player.tada()
                         } else {
                             player.gong()
                         }
                         msg = `You won!`
-                    } else if (player.results.erred.value >= 28 && player.results.unconcealed.value === 32) {
+                    } else if (player.result.erred.value >= 28 && player.result.unconcealed.value === 32) {
                         player.boo()
                         msg = `You cheated?!`
                     } else {
                         player.completed_with_errors()
                         msg = `Nicely done, but you can do better.`
                     }
-                    player.stopTimerShowResultsThenCloseTimer(msg, player.results)
+                    player.stopTimerShowResultThenCloseTimer(msg, player.result)
                 }, 100)
             }
 
@@ -732,7 +730,7 @@
 
             laughs() {
                 this._soundMachine.laughs.play()
-                this.results.erred.increment()
+                this.result.erred.increment()
             }
 
             fail() {
@@ -812,7 +810,7 @@
                 document.querySelectorAll('#tortoise-hare-achilles button').forEach(button => {
                     button.disabled = true
                 })
-                this.results.reset()
+                this.result.reset()
                 this.playing = true
                 this.restarting = false
             }
@@ -1131,7 +1129,7 @@
                         if (elem.classList.contains('translucent')) {
                             elem.classList.remove('translucent')
                             if (elem.classList.contains('true')) {
-                                player.results.unconcealed.increment()
+                                player.result.unconcealed.increment()
 
                                 function checkDescendantsClasses(element, classA, classX, classY) {
                                     // Find the nearest ancestor with class A
@@ -1344,15 +1342,15 @@
 
                 player.restarting = true
                 player.veilBricks()
-                let resultsModal = document.getElementById('resultsModal')
-                resultsModal.addEventListener('hidden.bs.modal', event => {
+                let resultModal = document.getElementById('resultModal')
+                resultModal.addEventListener('hidden.bs.modal', event => {
                     setTimeout(() => {
                         player.stop()
                         mega_shuffle()
                         player.start()
                     }, 100)
                 }, { once: true, })
-                let modal = bsModal.getInstance(resultsModal)
+                let modal = bsModal.getInstance(resultModal)
                 modal.hide()
             })
                 /*
