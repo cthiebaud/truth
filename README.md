@@ -40,12 +40,12 @@ Chaque résultat est accompagné d'un son différent.
 
 * `Space` Démarre (re-démarre quand les résultats de la partie précédente sont affichés dans une boite de dialogue) ou arrête une partie.
 * `Escape` 'Tue' une partie (i.e. sans afficher les résultats).
-* `S` <img src="svg/b-shuffle.svg" class="qwe" alt="Tortoise" style="width: auto; height: 16px;">&nbsp;&nbsp;&nbsp;Mélange les tables aléatoirement.
+* `S` <img src="svg/b-shuffle.svg" class="qwe" style="width: auto; height: 16px;">&nbsp;&nbsp;&nbsp;Mélange les tables aléatoirement.
 * `O` Trie les tables par nombre de briques en ordre croissant, ou mélange les couleurs si les tables sont déjà triées.
 * `A` Change le style des entêtes des tables, entre `𝖠 ∧ 𝖡` et `α & β`.
-* `Q` Affiche ou non les bords des tables et des celulles.
-* `W` Affiche ou non les entêtes des axes des tables.
-* `E` Affiche les tables triées par nombre de briques en ordre croissant et groupées selon le même critère.
+* `Q` <img src="svg/b-grid.svg" class="qwe" style="width: auto; height: 16px;">&nbsp;&nbsp;&nbsp;Affiche ou non les bords des tables et des celulles.
+* `W` <img src="svg/b-axes.svg" class="qwe" style="width: auto; height: 16px;">&nbsp;&nbsp;&nbsp;Affiche ou non les entêtes des axes des tables.
+* `E` <img src="svg/b-group.svg" class="qwe" style="width: auto; height: 16px;">&nbsp;&nbsp;&nbsp;Affiche les tables triées par nombre de briques en ordre croissant et groupées selon le même critère.
 
 --- 
 
