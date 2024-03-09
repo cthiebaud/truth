@@ -33,11 +33,11 @@ export class Result {
     #erred
     #revealed
     #level
-    #displayMode
+    #displayModeSymbol
 
-    constructor(level, displayMode = '𝖠') {
+    constructor(level, displayModeSymbol = '𝖠') {
         this.#level = level
-        this.#displayMode = displayMode
+        this.#displayModeSymbol = displayModeSymbol
         this.reset()
     }
 
@@ -53,9 +53,9 @@ export class Result {
         return this.#level
     }
 
-    // Getter for displayMode
-    get displayMode() {
-        return this.#displayMode
+    // Getter for displayModeSymbol
+    get displayModeSymbol() {
+        return this.#displayModeSymbol
     }
 
     // Getter for elapsed

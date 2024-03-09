@@ -200,6 +200,7 @@
                     </div>
                 </div>
                 <div id="modal-footer" class="modal-footer d-flex justify-content-between" style="font-size: smaller;">
+                    <div id="result-display-mode-symbol"></div>
                     <div id="result-level">
                         <div id="result-level-tortoise">
                             <svg xmlns="http://www.w3.org/2000/svg">
@@ -217,7 +218,6 @@
                             </svg>
                         </div>
                     </div>
-                    <div id="result-display-mode"></div>
                     <div id="result-timestamp" class="ms-auto"></div>
                 </div>
             </div>
@@ -604,8 +604,8 @@
                 // stop timer
                 player.result.timerDuration = player._timer.stop()
                 document.getElementById('result-msg').innerHTML = msg
-                document.getElementById('result-display-mode').innerHTML = result.displayMode
-                
+                document.getElementById('result-display-mode-symbol').innerHTML = result.displayModeSymbol
+
                 Array.from(document.querySelectorAll('#result-level > div')).forEach(rl => {
                     console.log(rl)
                     rl.style.display = 'none'
@@ -809,7 +809,7 @@
                     return
                 }
                 this.isPlaying = true
-                this.result = new Result(this.level, functions.displayMode.name)
+                this.result = new Result(this.level, functions.displayMode.symbol)
                 window.scrollTo({
                     top: 0,
                     behavior: 'smooth' // Use 'smooth' for smooth scrolling
@@ -954,10 +954,14 @@
             ]
             #displayMode = {
                 'canonical': {
-                    name: "(𝖠,𝖡)"
+                    symbol: '𝖠',
+                    facade: "(𝖠,𝖡)",
+                    key: 'canonical'
                 },
                 'javascript': {
-                    name: "(α,β)"
+                    symbol: 'α',
+                    facade: "(α,β)",
+                    key: 'javascript'
                 }
             }
             #currentDisplayModeKey = 'canonical'
@@ -1013,12 +1017,9 @@
             get displayMode() {
                 return this.#displayMode[this.#currentDisplayModeKey]
             }
-            get currentDisplayModeKey() {
-                return this.#currentDisplayModeKey
-            }
         }
         const functions = new Functions()
-        document.querySelector('#αβ > span').innerHTML = functions.displayMode.name
+        document.querySelector('#αβ > span').innerHTML = functions.displayMode.facade
 
         class Blender {
             constructor() {
@@ -1310,14 +1311,13 @@
             document.getElementById("canonical-or-javascript")?.addEventListener('click', clickEvent => {
                 clickEvent.stopPropagation()
                 functions.toggleDisplay()
-                if (functions.currentDisplayModeKey == 'canonical') {
+                if (functions.displayMode.key === 'canonical') {
                     document.getElementById('tables').classList.remove('javascript')
-                    document.getElementById('canonical-or-javascript.label').innerHTML = '𝖠'
                 } else {
                     document.getElementById('tables').classList.add('javascript')
-                    document.getElementById('canonical-or-javascript.label').innerHTML = 'α'
                 }
-                document.querySelector('#αβ > span').innerHTML = functions.displayMode.name
+                document.getElementById('canonical-or-javascript.label').innerHTML = functions.displayMode.symbol
+                document.querySelector('#αβ > span').innerHTML = functions.displayMode.facade
                 document.querySelectorAll('[data-function] caption').forEach((c) => {
                     c.innerHTML = functions.displayMode[c.parentNode.parentNode.dataset.function]
                 })
