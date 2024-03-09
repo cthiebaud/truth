@@ -12,11 +12,11 @@ Il s'agit donc de dévoiler les petites briques colorées pour faire apparaître
 
 ### Niveaux
 
-<img src="svg/tortoise-fill-svgrepo-com.svg" class="qwe" alt="Tortoise" style="width: 24px; height: 24px;">&nbsp;&nbsp;&nbsp;`Tortue` Le joueur a 2 minutes pour dévoiler les briques.
+<img src="svg/tortoise-fill-svgrepo-com.svg" style="width: 24px; height: 24px;">&nbsp;&nbsp;&nbsp;`Tortue` Le joueur a 2 minutes pour dévoiler les briques.
 
-<img src="svg/hare-fill-svgrepo-com.svg" class="qwe" alt="Hare" style="width: 24px; height: 24px;">&nbsp;&nbsp;&nbsp;`Lièvre` Le joueur a 1 minute pour dévoiler les briques.
+<img src="svg/hare-fill-svgrepo-com.svg" style="width: 24px; height: 24px;">&nbsp;&nbsp;&nbsp;`Lièvre` Le joueur a 1 minute pour dévoiler les briques.
 
-<img src="svg/ancient-greek-helmet-1-svgrepo-com.svg" class="qwe" alt="Achilles" style="width: 24px; height: 24px;">&nbsp;&nbsp;&nbsp;`Casque Corinthien` Ce pourrait être celui d'Achille - la référence en matière de super-héros - mais aussi celui d'Hermès, le messager des dieux, réputé pour sa vitesse. Il va en avoir besoin, car il ne reste plus que 30 secondes pour dévoiler les briques.
+<img src="svg/ancient-greek-helmet-1-svgrepo-com.svg" style="width: 24px; height: 24px;">&nbsp;&nbsp;&nbsp;`Casque Corinthien` Ce pourrait être celui d'Achille - la référence en matière de super-héros - mais aussi celui d'Hermès, le messager des dieux, réputé pour sa vitesse. Il va en avoir besoin, car il ne reste plus que 30 secondes pour dévoiler les briques.
 
 La musique du niveau <img src="svg/ancient-greek-helmet-1-svgrepo-com.svg" alt="Achilles" style="width: 24px; height: 24px;">
 est sur [SoundCloud](https://soundcloud.com/christophe-thiebaud/aletheia?si=83569a3c774e4cdf84c684e74478af34&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing)
@@ -38,13 +38,13 @@ Chaque résultat est accompagné d'un son différent.
 
 ### Raccourcis clavier
 
-* `Space` Démarre (re-démarre quand les résultats de la partie précédente sont affichés dans une boite de dialogue) ou arrête une partie.
+* `Space` Démarre <img src="svg/b-start.svg" style="width: auto; height: 16px;">&nbsp; (redémarre quand les résultats de la partie précédente sont affichés dans une boite de dialogue) ou arrête <img src="svg/b-stop.svg" style="width: auto; height: 16px;">&nbsp; une partie.
 * `Escape` 'Tue' une partie (i.e. sans afficher les résultats).
-* `Q` <img src="svg/b-grid.svg" class="qwe" style="width: auto; height: 16px;"   >&nbsp; Affiche ou non les bords des tables et des celulles.
-* `W` <img src="svg/b-axes.svg" class="qwe" style="width: auto; height: 16px;"   >&nbsp; Affiche ou non les entêtes des axes des tables.
-* `E` <img src="svg/b-group.svg" class="qwe" style="width: auto; height: 16px;"  >&nbsp; Affiche ou non les tables triées par nombre de briques en ordre croissant et groupées selon le même critère.
-* `S` <img src="svg/b-shuffle.svg" class="qwe" style="width: auto; height: 16px;">&nbsp; *swipe right* Mélange les tables aléatoirement.
-* `O` *swipe left* > Trie les tables par nombre de briques en ordre croissant, ou mélange les couleurs si les tables sont déjà triées.
+* `Q` <img src="svg/b-grid.svg" style="width: auto; height: 16px;"   >&nbsp; Affiche ou non les bords des tables et des celulles.
+* `W` <img src="svg/b-axes.svg" style="width: auto; height: 16px;"   >&nbsp; Affiche ou non les entêtes des axes des tables.
+* `E` <img src="svg/b-group.svg" style="width: auto; height: 16px;"  >&nbsp; Affiche ou non les tables triées par nombre de briques en ordre croissant et groupées selon le même critère.
+* `S` <img src="svg/b-shuffle.svg" style="width: auto; height: 16px;">&nbsp; *[swipe right]* Mélange les tables aléatoirement.
+* `O` *[swipe left]* Trie les tables par nombre de briques en ordre croissant, ou mélange les couleurs si les tables sont déjà triées.
 * `A` Change le style des entêtes des tables, entre `𝖠 ∧ 𝖡` ('canonical')  et `α & β` ('javascript').
 
 --- 
