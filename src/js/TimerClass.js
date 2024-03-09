@@ -17,6 +17,8 @@ export class Timer {
             this.centerX = this.timerElementPlaying.width / 2;
             this.centerY = this.timerElementPlaying.height / 2;
             this.timerId = null;
+            this.startTime = null;
+            this.stopTime = null;
             this.totalTime = totalTime;
             this.callbacks = {
                 onStart: () => { },
@@ -52,13 +54,13 @@ export class Timer {
         }
     }
 
-    updateTimer(timestamp, startTime) {
-        const progress = (timestamp - startTime) / 1000;
+    updateTimer(timestamp) {
+        const progress = (timestamp - this.startTime) / 1000;
         const timeRemaining = Math.max(this.totalTime - progress, 0);
 
         if (timeRemaining > 0) {
             this.drawTimer(timeRemaining);
-            this.timerId = requestAnimationFrame((timestamp) => this.updateTimer(timestamp, startTime));
+            this.timerId = requestAnimationFrame((timestamp) => this.updateTimer(timestamp));
         } else {
             clearInterval(this.showNumber)
             this.callbacks.onExpired();
@@ -72,8 +74,9 @@ export class Timer {
         this.timerElementPlaying.style.display = 'block';
         this.timerElementNotPlaying.style.display = 'none';
         this.ticks = 0
-        const startTime = performance.now();
-        this.timerId = requestAnimationFrame((timestamp) => this.updateTimer(timestamp, startTime));
+        this.stopTime = null
+        this.startTime = performance.now();
+        this.timerId = requestAnimationFrame((timestamp) => this.updateTimer(timestamp, this.startTime));
         this.callbacks.onStart()
         this.callbacks.onTick(this.totalTime, this.ticks)
         this.showNumber = setInterval(() => {
@@ -83,13 +86,18 @@ export class Timer {
         /* console.log('timer started') */
     }
     stop() {
-        clearInterval(this.showNumber)
+        if (this.stopTime !== null) {
+            console.log("timer.stop() called while timer is already stopped. Doing nothing. Returning last stopTime.", this.stopTime)
+            return this.stopTime
+        }
 
-        // this.clearTimer()
+        clearInterval(this.showNumber)
         cancelAnimationFrame(this.timerId);
         this.timerId = null
         this.callbacks.onStop()
-        // console.log('timer stopped')
+        this.stopTime = performance.now() - this.startTime
+        console.log('timer stopped', this.stopTime)
+        return this.stopTime
     }
     close() {
         this.callbacks.onClose();

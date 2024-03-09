@@ -120,7 +120,7 @@
                         <table>
                             <tr>
                                 <td>Elapsed</td>
-                                <td><span id="result-elapsed"></span> seconds</td>
+                                <td><span id="result-elapsed"></span></td>
                             </tr>
                             <tr>
                                 <td>Unconcealed</td>
@@ -417,6 +417,7 @@
             }
 
             reset() {
+                this._timerDuration = undefined
                 this._elapsed = new ResultProperty(1)
                 this._erred = new ResultProperty(0)
                 this._revealed = new ResultProperty(0)
@@ -435,6 +436,14 @@
             // Getter for unconcealed
             get unconcealed() {
                 return this._revealed
+            }
+
+            get timerDuration() {
+                return this._timerDuration
+            }
+
+            set timerDuration(timerDuration) {
+                this._timerDuration = timerDuration
             }
 
             get victory() {
@@ -509,20 +518,32 @@
                 this.#duration = durationParam;
                 const gradientizedColor = Colors.mapNumberToColor(this.#duration);
                 const element = document.querySelector(".compte-à-rebours");
-                element.innerHTML = `<span style="color: ${gradientizedColor}">${this.formatDuration(this.#duration)}</span>`;
+                element.innerHTML = `<span style="color: ${gradientizedColor}"><span style="color: transparent">00</span>${CompteARebours.formatDuration(this.#duration)}</span>`;
             };
 
-            formatDuration(durationInSeconds) {
-                if (durationInSeconds >= 540) { // 10 minutes
+            static formatDuration(duration, type = 'seconds') {
+                if (type !== 'seconds' && type !== 'milliseconds') {
+                    throw new Error("Invalid 'type' parameter. 'type' must be either 'seconds' or 'milliseconds'.");
+                }
+
+                if (type === 'seconds') {
+                    duration *= 1000; // Convert seconds to milliseconds
+                }
+
+                if (duration >= 540000 && type === 'milliseconds') { // 9 minutes in milliseconds
                     throw new Error('Duration must be under 9′59″');
                 }
 
-                // Calculate minutes and seconds
-                var minutes = Math.floor(durationInSeconds / 60);
-                var seconds = Math.floor(durationInSeconds % 60);
+                const minutes = Math.floor(duration / 60000); // Calculate minutes
+                const seconds = Math.floor(duration / 1000) % 60; // Calculate seconds
 
                 // Format the time
-                var formattedTime = '<span style="color: transparent">00</span>' + minutes + '′' + (seconds < 10 ? '0' : '') + seconds + '″';
+                let formattedTime = minutes + '′' + String(seconds).padStart(2, '0') + '″';
+
+                if (type === 'milliseconds') {
+                    const milliseconds = Math.round(duration % 1000); // Round milliseconds
+                    formattedTime += String(milliseconds).padStart(4, '0'); // Ensure 4-digit representation
+                }
 
                 return formattedTime;
             }
@@ -530,7 +551,7 @@
 
         let player = null
         class Player {
-            #restarting 
+            #restarting
             constructor() {
                 this.result = new Result()
                 const resultModal = document.getElementById('resultModal')
@@ -596,9 +617,9 @@
 
             stopTimerShowResultThenCloseTimer(msg, result) {
                 // stop timer
-                player._timer.stop()
+                player.result.timerDuration = player._timer.stop()
                 document.getElementById('result-msg').innerHTML = msg
-                document.getElementById('result-elapsed').innerHTML = result.elapsed.value - 2
+                document.getElementById('result-elapsed').innerHTML = CompteARebours.formatDuration(result.timerDuration, 'milliseconds')
                 document.getElementById('result-unconcealed').innerHTML = result.unconcealed.value
                 document.getElementById('result-erred').innerHTML = result.erred.value !== 0 ? result.erred.value : '∅'
                 const currentDate = new Date()
@@ -830,7 +851,7 @@
                     carousel.querySelector('.carousel-control-next').disabled = true
                 }
                 // END CAROUSEL
-                this._timer.stop()
+                this.result.timerDuration = this._timer.stop()
                 this._timer.close()
                 this.playing = false
             }
@@ -1345,7 +1366,7 @@
                 let resultModal = document.getElementById('resultModal')
                 resultModal.addEventListener('hidden.bs.modal', event => {
                     setTimeout(() => {
-                        player.stop()
+                        // player.stop() // already in initial hidden.bs.modal event
                         mega_shuffle()
                         player.start()
                     }, 100)
@@ -1368,11 +1389,11 @@
                         clickEvent.stopPropagation()
                         if (player.playing) return
 
-                        var target = clickEvent.target;
+                        const target = clickEvent.target;
                         // Check if the clicked element is the desired DIV
-                        var rect = target.getBoundingClientRect();
-                        var clickX = event.clientX - rect.left;
-                        var midpoint = rect.width / 2;
+                        const rect = target.getBoundingClientRect();
+                        const clickX = event.clientX - rect.left;
+                        const midpoint = rect.width / 2;
 
                         if (clickX < midpoint) {
                             // Clicked on the left half
