@@ -15,7 +15,9 @@ The presence or absence of a brick within a cell is fully determined by the valu
 
 The aim of the game is to unconceal all the true values ​​by clicking only on the cells containing a colored brick.
 
+<!---
 Making mistakes doesn't hurt, but striving for accuracy enhances the overall enjoyment of the game, particularly with the textual and auditory rewards when finished.
+-->
 
 More info on [Github](https://github.com/cthiebaud/truth/blob/main/README.md)
 
