@@ -8,7 +8,7 @@ La référence à Martin Heidegger est flagrante : « <i>En traduisant ἀλήθ
 
 Il s'agit donc de dévoiler les petites briques colorées pour faire apparaître ce que l'on appelle les tables de vérité [⁽²⁾](https://fr.wikipedia.org/wiki/Table_de_v%C3%A9rit%C3%A9) en jargon mathématique.
 
-6 résultats sont possibles:
+6 résultats sont possibles :
 
 1. `You won!` : toutes les briques (32) sont dévoilées dans le temps imparti, sans erreurs.
 2. `You - quasi - won…` : toutes les briques sont dévoilées dans le temps imparti, avec erreurs.
@@ -18,6 +18,17 @@ Il s'agit donc de dévoiler les petites briques colorées pour faire apparaître
 6. `Ooooh… Subtle!` : le joueur a joué au qui-perd-gagne. Toutes les erreurs possibles (32) ont été faites, tout en évitant soigneusement de dévoiler la moindre brique. Très fort.
 
 Le son qui accompagne chaque résultat est différent, bien sûr.
+
+Les raccourcis claviers sont :
+
+* `Space` : démarre (re-démarre quand les résultats de la partie précédente sont affichés dans un eboite de dialogue) ou arrête une partie
+* `Escape` : 'tue' une partie (i.e. sans afficher les résultats)
+* `S` : mélange les tables
+* `O` : trie les tables, ou mélange les couleurs si les tables sont déjà triées
+* `A` : change le style des entêtes des tables, e.g. `𝖠 ∧ 𝖡` ou `α & β`
+* `Q` : affiche ou non les bords des tables
+* `W` : affiche ou non les axes des tables
+* `E` : affiche les table classées par ordre croissant de cellules contenant un e brique (0, q1, 2, 3 ou 4)
 
 ![ἀλήθεια](screenshots/iPad10th.png)
 

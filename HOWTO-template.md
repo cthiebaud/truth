@@ -17,6 +17,8 @@ The aim of the game is to unconceal all the true values ​​by clicking only o
 
 Making mistakes doesn't hurt, but striving for accuracy enhances the overall enjoyment of the game, particularly with the textual and auditory rewards when finished.
 
+More info on [Github](https://github.com/cthiebaud/truth/blob/main/README.md)
+
 [Christophe Thiebaud](https://cthiebaud.com/) ©
 
 *Initial version of this short description by Deepak Gangadhar* 🙏

@@ -1,7 +1,7 @@
 [![WWW](assets/svg/internet-svgrepo-com.svg)](https://aletheia.cthiebaud.com/) 
 [![Android App Store](assets/svg/android-svgrepo-com.svg)](https://play.google.com/apps/testing/com.cthiebaud.aletheia.twa)
 [![Apple App Store](assets/svg/Apple_logo_grey.svg)](https://apps.apple.com/us/app/aletheia-by-%C3%A6quologica/id6476017817)
-[![Github](assets/svg/github.svg)](https://github.com/cthiebaud/truth/commit/2dc5ee544f896a585a5eea9bd4e899a91340e6a4)
+[![Github](assets/svg/github.svg)](https://github.com/cthiebaud/truth/commit/51ddb661f9871d3231453f4b7d3376ac7375b54e)
 
 # ἀλήθεια [![aletheia](assets/svg/external-link-svgrepo-com.svg)](https://en.wikipedia.org/wiki/Aletheia) 
 
@@ -16,6 +16,8 @@ The presence or absence of a brick within a cell is fully determined by the valu
 The aim of the game is to unconceal all the true values ​​by clicking only on the cells containing a colored brick.
 
 Making mistakes doesn't hurt, but striving for accuracy enhances the overall enjoyment of the game, particularly with the textual and auditory rewards when finished.
+
+More info on [Github](https://github.com/cthiebaud/truth/blob/main/README.md)
 
 [Christophe Thiebaud](https://cthiebaud.com/) ©
 
