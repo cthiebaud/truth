@@ -1,6 +1,7 @@
 module.exports = {
     safelist: {
         greedy: [
+            /modal-backdrop/,
             /carousel$/,
             /carousel-item$/,
             /carousel-item-next$/,
