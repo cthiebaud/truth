@@ -140,12 +140,19 @@ nav#nav {
   border-top: 0.75px dashed var(--border-color);
 }
 
-#tables table:not(.hint) td.true.translucent {
-  opacity: 0;
+#tables table td,
+#tables table tbody {
+  opacity: 1;
+  filter: blur(0);
+  transition: opacity .3s ease-in-out, filter .3s ease-in-out;
 }
 #tables table.hint tbody {
-  filter: blur(3px);
+  filter: blur(4px);
   opacity: 0.8;
+}
+
+#tables table:not(.hint) td.true.translucent {
+  opacity: 0;
 }
 #tables table td.false.translucent {
   opacity: 0;
