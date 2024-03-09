@@ -1352,18 +1352,36 @@
                         player.start()
                     }
                 }
+                function playAgain() {
+                    player.restarting = true
+                    player.veilBricks()
+                    let resultModal = document.getElementById("result-modal")
+                    resultModal.addEventListener('hidden.bs.modal', event => {
+                        setTimeout(() => {
+                            // player.stop() // already in initial hidden.bs.modal event
+                            mega_shuffle()
+                            player.start()
+                        }, 100)
+                    }, { once: true, })
+                    let modal = bsModal.getInstance(resultModal)
+                    modal.hide()
+                }
+
                 document.getElementById("play").addEventListener('click', clickEvent => {
                     playToggle(clickEvent)
                     // remove focus from element
                     document.activeElement?.blur()
                 })
-                document.addEventListener('keydown', function (keyboardEvent) {
+                document.addEventListener('keyup', function (keyboardEvent) {
                     {
                         const element = document.getElementById("result-modal");
                         const computedStyle = window.getComputedStyle(element);
                         const displayValue = computedStyle.getPropertyValue("display");
                         // console.log('modal', displayValue)
                         if (displayValue !== 'none') {
+                            if (event.code === 'Space') {
+                                playAgain()
+                            }
                             return
                         }
                     }
@@ -1387,55 +1405,35 @@
                         toggle_displayMode()
                     }
                 })
+
+                document.getElementById("play-again").addEventListener('click', clickEvent => {
+                    clickEvent.preventDefault()
+                    clickEvent.stopPropagation()
+                    playAgain()
+                })
             }
 
-            document.getElementById("play-again").addEventListener('click', clickEvent => {
-                clickEvent.preventDefault()
-                clickEvent.stopPropagation()
+            ;[...document.getElementsByClassName('carousel-item')].forEach(carouselItem => {
+                carouselItem.addEventListener('click', clickEvent => {
+                    clickEvent.preventDefault()
+                    clickEvent.stopPropagation()
+                    if (player.isPlaying) return
 
-                player.restarting = true
-                player.veilBricks()
-                let resultModal = document.getElementById("result-modal")
-                resultModal.addEventListener('hidden.bs.modal', event => {
-                    setTimeout(() => {
-                        // player.stop() // already in initial hidden.bs.modal event
-                        mega_shuffle()
-                        player.start()
-                    }, 100)
-                }, { once: true, })
-                let modal = bsModal.getInstance(resultModal)
-                modal.hide()
-            })
-                /*
-                ;[...document.getElementsByClassName('btn')].forEach(btn => {
-                    btn.addEventListener('click', clickEvent => {
-                        btn.blur()
-                        console.log('blur active element if any', btn, clickEvent.target, clickEvent.currentTarget)
-                    })
+                    const target = clickEvent.target;
+                    // Check if the clicked element is the desired DIV
+                    const rect = target.getBoundingClientRect();
+                    const clickX = event.clientX - rect.left;
+                    const midpoint = rect.width / 2;
+
+                    if (clickX < midpoint) {
+                        // Clicked on the left half
+                        player.tortoiseHareAchilles.prev()
+                    } else {
+                        // Clicked on the right half
+                        player.tortoiseHareAchilles.next()
+                    }
                 })
-                */
-
-                ;[...document.getElementsByClassName('carousel-item')].forEach(carouselItem => {
-                    carouselItem.addEventListener('click', clickEvent => {
-                        clickEvent.preventDefault()
-                        clickEvent.stopPropagation()
-                        if (player.isPlaying) return
-
-                        const target = clickEvent.target;
-                        // Check if the clicked element is the desired DIV
-                        const rect = target.getBoundingClientRect();
-                        const clickX = event.clientX - rect.left;
-                        const midpoint = rect.width / 2;
-
-                        if (clickX < midpoint) {
-                            // Clicked on the left half
-                            player.tortoiseHareAchilles.prev()
-                        } else {
-                            // Clicked on the right half
-                            player.tortoiseHareAchilles.next()
-                        }
-                    })
-                });
+            });
 
         })
 
