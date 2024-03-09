@@ -566,7 +566,6 @@
                 resultModal.addEventListener('hidden.bs.modal', event => {
                     player.stop()
                 })
-                this._playing = false
                 this.restarting = false
 
                 this._soundMachine = new SoundMachine()
@@ -694,18 +693,9 @@
             onTimerClose() {
                 document.getElementById("shuffle-all").disabled = false
                 document.getElementById("paragraph-breaks").disabled = false
-                document.getElementById('play').classList.remove('playing')
                 player.unveilBricks()
                 player._soundMachine[player.level].stop()
                 player._soundMachine.underwater.stop()
-            }
-
-            abort() {
-                setTimeout(() => {
-                    player.abortSound()
-                    let msg = `You stopped!`
-                    player.stopTimerShowResultThenCloseTimer(msg, player.result)
-                }, 100)
             }
 
             victory() {
@@ -732,16 +722,21 @@
                 }, 100)
             }
 
-            get playing() {
-                return this._playing && this._timer.timerId != null
+            get isPlaying() {
+                const currentIsPlaying = document.getElementById('play').classList.contains('playing')
+                // console.log("GET document.getElementById('play').classList.contains('playing')?", currentIsPlaying)
+                return currentIsPlaying
             }
 
-            set playing(value) {
-                this._playing = value
-                if (this._playing) {
-                    document.getElementById('play').classList.add('playing')
-                } else {
-                    document.getElementById('play').classList.remove('playing')
+            set isPlaying(newIsPlaying) {
+                const currentIsPlaying = this.isPlaying
+                if (currentIsPlaying !== newIsPlaying) {
+                    if (newIsPlaying) {
+                        document.getElementById('play').classList.add('playing')
+                    } else {
+                        document.getElementById('play').classList.remove('playing')
+                    }
+                    // console.log("TOGGLE document.getElementById('play').classList.contains('playing')?", newIsPlaying)
                 }
             }
 
@@ -825,7 +820,10 @@
             }
 
             async start() {
-                if (this.playing) return
+                if (this.isPlaying) {
+                    return
+                }
+                this.isPlaying = true
                 window.scrollTo({
                     top: 0,
                     behavior: 'smooth' // Use 'smooth' for smooth scrolling
@@ -835,17 +833,27 @@
                 document.getElementById("shuffle-all").disabled = true
                 document.getElementById("paragraph-breaks").disabled = true
                 await this.veilBricks()
+                // BEGIN CAROUSEL
                 document.getElementById('tortoise-hare-achilles').style.opacity = '.5'
                 document.querySelectorAll('#tortoise-hare-achilles button').forEach(button => {
                     button.disabled = true
                 })
+                // END CAROUSEL
                 this.result.reset()
-                this.playing = true
                 this.restarting = false
+            }
+
+            abort() {
+                setTimeout(() => {
+                    player.abortSound()
+                    let msg = `You stopped!`
+                    player.stopTimerShowResultThenCloseTimer(msg, player.result)
+                }, 100)
             }
 
             stop() {
                 // if (!this.playing) return
+                this.isPlaying = false
                 this.compteARebours.duration = Number(document.querySelector('.carousel-item.active').dataset.time)
                 // BEGIN CAROUSEL
                 const carousel = document.getElementById('tortoise-hare-achilles')
@@ -861,7 +869,6 @@
                 // END CAROUSEL
                 this.result.timerDuration = this._timer.stop()
                 this._timer.close()
-                this.playing = false
             }
         }
         player = new Player()
@@ -1078,7 +1085,7 @@
 
         function doIt() {
 
-            if (player.playing) return
+            if (player.isPlaying) return
 
             const blender = new Blender()
 
@@ -1153,51 +1160,49 @@
                 elem.addEventListener('click', clickEvent => {
                     clickEvent.preventDefault()
                     clickEvent.stopPropagation()
-                    if (!player.playing) return
-                    if (player.playing) {
-                        if (elem.classList.contains('translucent')) {
-                            elem.classList.remove('translucent')
-                            if (elem.classList.contains('true')) {
-                                player.result.unconcealed.increment()
+                    if (!player.isPlaying) return
+                    if (elem.classList.contains('translucent')) {
+                        elem.classList.remove('translucent')
+                        if (elem.classList.contains('true')) {
+                            player.result.unconcealed.increment()
 
-                                function checkDescendantsClasses(element, classA, classX, classY) {
-                                    // Find the nearest ancestor with class A
-                                    let ancestorWithClassA = findAncestor(element, classA)
+                            function checkDescendantsClasses(element, classA, classX, classY) {
+                                // Find the nearest ancestor with class A
+                                let ancestorWithClassA = findAncestor(element, classA)
 
-                                    if (!ancestorWithClassA) {
-                                        return false
-                                    }
-
-                                    // Find all descendants of the ancestor with class X
-                                    let elementsWithClassX = ancestorWithClassA.getElementsByClassName(classX)
-
-                                    // Convert the HTMLCollection to an array for easier iteration
-                                    let elementsArray = Array.from(elementsWithClassX)
-
-                                    // Check if all descendants with class X also have class Y
-                                    let allDescendantsHaveClassY = elementsArray.every(function (descendant) {
-                                        return !descendant.classList.contains(classY)
-                                    })
-
-                                    return allDescendantsHaveClassY
+                                if (!ancestorWithClassA) {
+                                    return false
                                 }
 
-                                // Helper function to find the nearest ancestor with a specific class
-                                function findAncestor(element, className) {
-                                    while ((element = element.parentElement)) {
-                                        if (element.classList.contains(className)) {
-                                            return element
-                                        }
-                                    }
-                                    return null
-                                }
+                                // Find all descendants of the ancestor with class X
+                                let elementsWithClassX = ancestorWithClassA.getElementsByClassName(classX)
 
-                                if (checkDescendantsClasses(elem, 'table', 'true', 'translucent')) {
-                                    player.coin()
-                                }
-                            } else {
-                                player.laughs()
+                                // Convert the HTMLCollection to an array for easier iteration
+                                let elementsArray = Array.from(elementsWithClassX)
+
+                                // Check if all descendants with class X also have class Y
+                                let allDescendantsHaveClassY = elementsArray.every(function (descendant) {
+                                    return !descendant.classList.contains(classY)
+                                })
+
+                                return allDescendantsHaveClassY
                             }
+
+                            // Helper function to find the nearest ancestor with a specific class
+                            function findAncestor(element, className) {
+                                while ((element = element.parentElement)) {
+                                    if (element.classList.contains(className)) {
+                                        return element
+                                    }
+                                }
+                                return null
+                            }
+
+                            if (checkDescendantsClasses(elem, 'table', 'true', 'translucent')) {
+                                player.coin()
+                            }
+                        } else {
+                            player.laughs()
                         }
                     }
                     let remainingTrue = document.querySelectorAll('#tables td.true.translucent').length
@@ -1233,7 +1238,7 @@
             const captions = document.getElementsByTagName('caption')
             Array.from(captions).forEach((caption) => {
                 caption.addEventListener('pointerdown', (e) => {
-                    if (!player.playing) return
+                    if (!player.isPlaying) return
                     caption.setPointerCapture(e.pointerId);
                     player._soundMachine.underwater.fade(undefined, 0.33)
 
@@ -1258,13 +1263,13 @@
             const originalElementsArray = doIt()
 
             function mega_shuffle() {
-                if (player.playing) return
+                if (player.isPlaying) return
                 if (paragraphBreaks) return
                 scrambleIt(originalElementsArray)
             }
 
             function mega_reorder() {
-                if (player.playing) return
+                if (player.isPlaying) return
                 if (tables.dataset.scrambled === 'false') {
                     shuffleBrickColors(originalElementsArray)
                 } else {
@@ -1342,7 +1347,7 @@
                 function playToggle(event) {
                     event.preventDefault()
                     event.stopPropagation()
-                    if (player.playing) {
+                    if (player.isPlaying) {
                         player.abort()
                     } else {
                         player.start()
@@ -1358,7 +1363,7 @@
                         playToggle(keyboardEvent)
                     }
                     if (event.code === 'Escape') {
-                        if (player.playing) {
+                        if (player.isPlaying) {
                             player.stop()
                         }
                     }
@@ -1395,7 +1400,7 @@
                     carouselItem.addEventListener('click', clickEvent => {
                         clickEvent.preventDefault()
                         clickEvent.stopPropagation()
-                        if (player.playing) return
+                        if (player.isPlaying) return
 
                         const target = clickEvent.target;
                         // Check if the clicked element is the desired DIV
