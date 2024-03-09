@@ -109,6 +109,10 @@
     <div id="result-modal" class="modal fade" tabindex="-1" aria-labelledby="resultModalLabel" aria-hidden="true">
 
         <style>
+            #modal-body {
+                padding-bottom: 0.67rem;
+            }
+
             #modal-body #result-summary {
                 display: flex;
                 flex-direction: column;
@@ -128,6 +132,12 @@
             #modal-body #result-summary table td:last-child {
                 text-align: left;
                 padding-left: 5px;
+            }
+
+            #modal-footer {
+                font-size: smaller;
+                padding-top: .67rem;
+                padding-bottom: .67rem;
             }
         </style>
 
@@ -164,8 +174,10 @@
                         </table>
                     </div>
                     <style>
+                        #result-display-mode-symbol,
                         #result-level {
-                            opacity: .5;
+                            opacity: .67;
+                            text-align: center;
                         }
 
                         #result-level>* {
@@ -187,11 +199,43 @@
                         #play-again label {
                             margin-right: 0.376rem;
                         }
+
+                        #play-again button {
+                            width: 36px;
+                            height: 36px;
+                        }
+
+                        #cloche {
+                            border: .5px dashed grey;
+                            padding: 0 .5rem .1rem .5rem;
+                            border-top-left-radius: 2rem;
+                            border-top-right-radius: 2rem;
+                        }
                     </style>
                     <div class="d-flex justify-content-between align-items-center mt-3">
+                        <div id="cloche" class="d-flex flex-column justify-content-between align-item-center">
+                            <div id="result-display-mode-symbol"></div>
+                            <div id="result-level">
+                                <div id="result-level-tortoise">
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <use xlink:href="#svg-tortoise"></use>
+                                    </svg>
+                                </div>
+                                <div id="result-level-hare">
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <use xlink:href="#svg-hare"></use>
+                                    </svg>
+                                </div>
+                                <div id="result-level-achilles">
+                                    <svg xmlns="http://www.w3.org/2000/svg">
+                                        <use xlink:href="#svg-achilles"></use>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
                         <div id="play-again" class="ms-auto">
                             <label for="playAgainButton">Start another game</label>
-                            <button id="playAgainButton" type="button" class="btn btn-outline-secondary timer-container" aria-label="play-again" style="width:36px; height: 36px;">
+                            <button id="playAgainButton" type="button" class="btn btn-outline-secondary timer-container" aria-label="play-again">
                                 <svg class="timer-not-playing" xmlns="http://www.w3.org/2000/svg">
                                     <use xlink:href="#svg-play"></use>
                                 </svg>
@@ -199,25 +243,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="modal-footer" class="modal-footer d-flex justify-content-between" style="font-size: smaller;">
-                    <div id="result-display-mode-symbol"></div>
-                    <div id="result-level">
-                        <div id="result-level-tortoise">
-                            <svg xmlns="http://www.w3.org/2000/svg">
-                                <use xlink:href="#svg-tortoise"></use>
-                            </svg>
-                        </div>
-                        <div id="result-level-hare" style="display:none;">
-                            <svg xmlns="http://www.w3.org/2000/svg">
-                                <use xlink:href="#svg-hare"></use>
-                            </svg>
-                        </div>
-                        <div id="result-level-achilles" style="display:none;">
-                            <svg xmlns="http://www.w3.org/2000/svg">
-                                <use xlink:href="#svg-achilles"></use>
-                            </svg>
-                        </div>
-                    </div>
+                <div id="modal-footer" class="modal-footer d-flex justify-content-between">
                     <div id="result-timestamp" class="ms-auto"></div>
                 </div>
             </div>
