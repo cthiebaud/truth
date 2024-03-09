@@ -32,7 +32,7 @@ est sur [SoundCloud](https://soundcloud.com/christophe-thiebaud/aletheia?si=8356
 5. `You cheated?!` Le joueur a cliqué sur toutes les cases sans distinction. Bien que toutes les briques ont été dévoilées dans le temps imparti, ce qui pourrait être considéré comme une victoire, le nombre d'erreurs est énorme (>=28), il a triché! C'est mal.
 6. `Ooooh… Subtle!` Le joueur a joué au qui-perd-gagne. Toutes les erreurs possibles (32) ont été faites, tout en évitant soigneusement de dévoiler la moindre brique. Très fort.
 
-Le son qui accompagne chaque résultat est différent, bien sûr.
+Chaque résultat est accompagné d'un son différent.
 
 --- 
 
