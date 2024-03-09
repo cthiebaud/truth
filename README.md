@@ -10,19 +10,20 @@ Il s'agit donc de dévoiler les petites briques colorées pour faire apparaître
 
 --- 
 
-3 niveaux existent :
-<img src="svg/tortoise-fill-svgrepo-com.svg" class="qwe" alt="Tortoise" style="width: 24px; height: 24px;">&nbsp;&nbsp;&nbsp;Tortue. Le joueur a 2 minutes pour dévoiler les briques.
+### Niveaux
 
-<img src="svg/hare-fill-svgrepo-com.svg" class="qwe" alt="Hare" style="width: 24px; height: 24px;">&nbsp;&nbsp;&nbsp;Lièvre. Le joueur a 1 minute pour dévoiler les briques.
+<img src="svg/tortoise-fill-svgrepo-com.svg" class="qwe" alt="Tortoise" style="width: 24px; height: 24px;">&nbsp;&nbsp;&nbsp;`Tortue`. Le joueur a 2 minutes pour dévoiler les briques.
 
-<img src="svg/ancient-greek-helmet-1-svgrepo-com.svg" class="qwe" alt="Achilles" style="width: 24px; height: 24px;">&nbsp;&nbsp;&nbsp;Casque Corinthien. Ce pourrait être celui d'Achille - THE référence en matière de super-héros, mais aussi celui d'Hermès, le messager des dieux, réputé pour sa vitesse. Il va en avoir besoin, car il ne reste plus que 30 secondes pour dévoiler les briques.
+<img src="svg/hare-fill-svgrepo-com.svg" class="qwe" alt="Hare" style="width: 24px; height: 24px;">&nbsp;&nbsp;&nbsp;`Lièvre`. Le joueur a 1 minute pour dévoiler les briques.
+
+<img src="svg/ancient-greek-helmet-1-svgrepo-com.svg" class="qwe" alt="Achilles" style="width: 24px; height: 24px;">&nbsp;&nbsp;&nbsp;`Casque Corinthien`. Ce pourrait être celui d'Achille - la référence en matière de super-héros - mais aussi celui d'Hermès, le messager des dieux, réputé pour sa vitesse. Il va en avoir besoin, car il ne reste plus que 30 secondes pour dévoiler les briques.
 
 La musique du niveau <img src="svg/ancient-greek-helmet-1-svgrepo-com.svg" alt="Achilles" style="width: 24px; height: 24px;">
 est sur [SoundCloud](https://soundcloud.com/christophe-thiebaud/aletheia?si=83569a3c774e4cdf84c684e74478af34&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing)
 
 --- 
 
-6 résultats sont possibles :
+### Résultats
 
 1. `You won!` Toutes les briques (32) sont dévoilées dans le temps imparti, sans erreurs.
 2. `You - quasi - won…` Toutes les briques sont dévoilées dans le temps imparti, avec erreurs.
@@ -35,7 +36,7 @@ Le son qui accompagne chaque résultat est différent, bien sûr.
 
 --- 
 
-Les raccourcis clavier sont :
+### Raccourcis clavier
 
 * `Space` Démarre (re-démarre quand les résultats de la partie précédente sont affichés dans une boite de dialogue) ou arrête une partie.
 * `Escape` 'Tue' une partie (i.e. sans afficher les résultats).
