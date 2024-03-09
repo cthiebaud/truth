@@ -11,14 +11,13 @@ Il s'agit donc de dévoiler les petites briques colorées pour faire apparaître
 --- 
 
 3 niveaux existent :
-
 <style>
     img.qwe {
          margin-right: 1rem;
     }
 </style>
 
-<img src="svg/tortoise-fill-svgrepo-com.svg" class="qwe" alt="Tortoise" style="width: 24px; height: 24px;"> Tortue. Le joueur a 2 minutes pour dévoiler les briques.
+<img src="svg/tortoise-fill-svgrepo-com.svg" class="qwe" alt="Tortoise" style="width: 24px; height: 24px;"> &nbsp;&nbsp;&nbsp;&nbsp;Tortue. Le joueur a 2 minutes pour dévoiler les briques.
 
 <img src="svg/hare-fill-svgrepo-com.svg" class="qwe" alt="Hare" style="width: 24px; height: 24px;"> Lièvre. Le joueur a 1 minute pour dévoiler les briques.
 
