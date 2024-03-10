@@ -59,7 +59,7 @@ if (workbox) {
     { revision: '9b179f93bb00dfa436d3cb8d836ff1f4', url: 'screenshots/iPhone15.png' },
     { revision: 'abf15913f3920d1a68ae587e4b8e6226', url: 'screenshots/output.png' },
     { revision: 'edbb528afa3eb52ff0599a96e2b3af59', url: 'showdown.html' },
-    { revision: '6235428fc4f442fd8aadaaba3f6e26d3', url: 'dist/css/bootstrap.min.css' },
+    { revision: '5d9f3de2cc118e223a47bae5000fbc37', url: 'dist/css/bootstrap.min.css' },
     { revision: '75e25859e2679053e3548a9daeec7f38', url: 'dist/css/index.min.css' },
     { revision: '476c9c641caca3b8fa3dcfe0a18e83a9', url: 'dist/css/timer.min.css' },
     { revision: '0a08a79b4a51df549d3899c972cdce07', url: 'dist/js/ColorsClass.min.js' },
