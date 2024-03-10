@@ -4,6 +4,7 @@ const toProduction = process.env.NODE_ENV === 'production';
 
 // Define the paths for production and development
 const productionPaths = [
+    "'./dist/js/UtilsClass.min.js'",
     "'./dist/js/ColorsClass.min.js'",
     "'./dist/js/TimerClass.min.js'",
     "'./dist/js/SoundMachineClass.min.js'",
@@ -21,6 +22,7 @@ const productionPaths = [
     "<!-- END Google tag (gtag.js) -->",
 ];
 const developmentPaths = [
+    "'./src/js/UtilsClass.js'",
     "'./src/js/ColorsClass.js'",
     "'./src/js/TimerClass.js'",
     "'./src/js/SoundMachineClass.js'",
