@@ -38,10 +38,10 @@ Chaque résultat est accompagné d'un son différent.
 
 ### Raccourcis clavier
 
-* `Space` Démarre <img src="svg/b-start.svg" style="width: auto; height: 16px;">&nbsp; (redémarre quand les résultats de la partie précédente sont affichés dans une boite de dialogue) ou arrête <img src="svg/b-stop.svg" style="width: auto; height: 16px;">&nbsp; une partie.
-* `Escape` 'Tue' une partie (i.e. sans afficher les résultats).
-* `Q` <img src="svg/b-grid.svg" style="width: auto; height: 16px;"   >&nbsp; Affiche ou non les bords des tables et des celulles.
-* `W` <img src="svg/b-axes.svg" style="width: auto; height: 16px;"   >&nbsp; Affiche ou non les en-têtes des axes des tables.
+* `Space` Démarre <img src="svg/b-start.svg" style="width: auto; height: 16px;">&nbsp; ou arrête <img src="svg/b-stop.svg" style="width: auto; height: 16px;">&nbsp; une partie. Si les résultats de la partie précédente sont encore affichés, redémarre une nouvelle partie après avoir mélangé les tables aléatoirement. 
+* `Escape` 'Tue' une partie (i.e. sans afficher les résultats). 
+* `Q` <img src="svg/b-grid.svg" style="width: auto; height: 16px;"   >&nbsp; Affiche les bords des tables et des celulles.
+* `W` <img src="svg/b-axes.svg" style="width: auto; height: 16px;"   >&nbsp; Affiche les en-têtes des axes des tables.
 * `E` <img src="svg/b-group.svg" style="width: auto; height: 16px;"  >&nbsp; Groupe les tables par nombre de briques en ordre croissant.
 * `S` <img src="svg/b-shuffle.svg" style="width: auto; height: 16px;">&nbsp; *[swipe right]* Mélange les tables aléatoirement.
 * `O` *[swipe left]* Trie les tables par nombre de briques en ordre croissant, ou mélange les couleurs si les tables sont déjà triées.
