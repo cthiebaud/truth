@@ -1,5 +1,5 @@
 export class ResultProperty {
-    #value 
+    #value
 
     constructor(value) {
         this.#value = value
@@ -34,9 +34,11 @@ export class Result {
     #revealed
     #level
     #displayModeSymbol
+    #scrambled
 
-    constructor(level, displayModeSymbol = '𝖠') {
+    constructor(level, scrambled, displayModeSymbol) {
         this.#level = level
+        this.#scrambled = scrambled
         this.#displayModeSymbol = displayModeSymbol
         this.reset()
     }
@@ -51,6 +53,11 @@ export class Result {
     // Getter for level
     get level() {
         return this.#level
+    }
+
+    // Getter for isOrdered
+    get scrambled() {
+        return this.#scrambled
     }
 
     // Getter for displayModeSymbol
@@ -92,9 +99,9 @@ export class Scores {
         this.#taxonomy = {
             shuffled: [true, false],
             level: ['tortoise', 'hare', 'achilles'],
-            unconcealed: [0,32],
-            erred: [0,32],
-            timerDuration: [0,120],
+            unconcealed: [0, 32],
+            erred: [0, 32],
+            timerDuration: [0, 120],
         }
     }
 
