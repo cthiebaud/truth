@@ -5,3 +5,4 @@ packages/
 .ssh/
 *.csv
 .node_env
+firebase/
