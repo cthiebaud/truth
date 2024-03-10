@@ -9,8 +9,9 @@ export class Utils {
         return y
     }
 
-    static isNumber(value) {
-        return !Number.isNaN(parseFloat(value)) && Number.isFinite(value);
+    // https://stackoverflow.com/q/5690071/1070215
+    static isFiniteNumber(num) {
+        return isFinite(num) && !isNaN(num);
     }
 
     static formatDuration(duration, type = 'seconds') {
@@ -22,18 +23,18 @@ export class Utils {
             duration *= 1000; // Convert seconds to milliseconds
         }
 
-        if (duration >= 540000 && type === 'milliseconds') { // 9 minutes in milliseconds
-            throw new Error('Duration must be under 9′59″');
+        if (600000 <= duration) { // 10 minutes
+            throw new Error(`Duration ${duration} must be under 9′59″9999`);
         }
 
         const minutes = Math.floor(duration / 60000); // Calculate minutes
         const seconds = Math.floor(duration / 1000) % 60; // Calculate seconds
 
         // Format the time
-        let formattedTime = minutes + '′' + String(seconds).padStart(2, '0') + '″';
+        let formattedTime = '' + minutes + '′' + String(seconds).padStart(2, '0') + '″';
 
         if (type === 'milliseconds') {
-            const milliseconds = Math.round(duration % 1000); // Round milliseconds
+            const milliseconds = Math.floor(duration % 1000); // Round milliseconds
             formattedTime += String(milliseconds).padStart(4, '0'); // Ensure 4-digit representation
         }
 
@@ -51,12 +52,11 @@ export class Utils {
         let displayStyle = null
         for (let tag of elements) {
             if (displayStyle == null) {
-                displayStyle = tag.style.display !== displayValueWhenVisible ? displayValueWhenVisible : 'none'
+                displayStyle = (tag.style.display !== displayValueWhenVisible ? displayValueWhenVisible : 'none')
             }
             tag.style.display = displayStyle
         }
         return displayStyle
     }
-
 
 }

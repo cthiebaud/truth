@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <!-- BEGIN Google tag (gtag.js) -->
+    <!-- BEGIN Google tag (gtag.js) - - >
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-TPVM6DVS53"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -11,7 +11,7 @@
 
         gtag('config', 'G-TPVM6DVS53');
     </script>
-    <!-- END Google tag (gtag.js) -->
+    < ! - - END Google tag (gtag.js) -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Unconcealing of Truths</title>
@@ -56,16 +56,16 @@
     <meta name="theme-color" content="#f8f7ef">
 
     <!-- /* changed by "NODE_ENV=<development|production> node dev-oder-prod.mjs" or "npm run <dev\prod>" */ -->
-    <link rel="stylesheet" href='/dist/css/bootstrap.min.css'>
-    <link rel="stylesheet" href='/dist/css/index.min.css'>
-    <link rel="stylesheet" href='/dist/css/timer.min.css'>
+    <link rel="stylesheet" href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css'>
+    <link rel="stylesheet" href='/src/css/index.css'>
+    <link rel="stylesheet" href='/src/css/timer.css'>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&family=Victor+Mono&display=swap" rel="stylesheet">
-    <!-- BEGIN livejs for test - - >
+    <!-- BEGIN livejs for test -->
     <script type="text/javascript" src="https://livejs.com/live.js"></script>
-    < ! - - END livejs for test -->
+    <!-- END livejs for test -->
 </head>
 
 <body class="">
@@ -314,11 +314,11 @@
             </div>
             <div id="buttons" class="btn-group btn-group-sm shadow" role="group">
 
-                <!-- BEGIN Button trigger modal for test - - >
+                <!-- BEGIN Button trigger modal for test -->
                 <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#result-modal">
                     M
                 </button>
-                < ! - - END Button trigger modal for test -->
+                <!-- END Button trigger modal for test -->
 
                 <input type="checkbox" class="btn-check" id="table-borders" autocomplete="off" aria-label="table-borders toggle">
                 <label class="btn my-button" for="table-borders">
@@ -478,7 +478,7 @@
 
     </div>
     <script>
-        /* BEGIN comment for dev */
+        /* BEGIN comment for dev * /
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('/service-worker.js')
                 .then((registration) => {
@@ -488,7 +488,7 @@
                     console.error('Service Worker registration failed:', error)
                 })
         }
-        /* END comment for dev */
+        / * END comment for dev */
     </script>
     <script type="module">
         import { Modal as bsModal, Carousel as bsCarousel } from 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/+esm'
@@ -496,11 +496,11 @@
         import bezierEasing from 'https://cdn.jsdelivr.net/npm/bezier-easing@2.1.0/+esm'
 
         /* changed by "NODE_ENV=<development|production> node dev-oder-prod.mjs" or "npm run <dev|prod>" */
-        import { Utils } from './dist/js/UtilsClass.min.js'
-        import { Colors } from './dist/js/ColorsClass.min.js'
-        import { Timer } from './dist/js/TimerClass.min.js'
-        import { SoundMachine } from './dist/js/SoundMachineClass.min.js'
-        import { Result, ResultProperty } from './dist/js/ScoresClass.min.js'
+        import { Utils } from './src/js/UtilsClass.js'
+        import { Colors } from './src/js/ColorsClass.js'
+        import { Timer } from './src/js/TimerClass.js'
+        import { SoundMachine } from './src/js/SoundMachineClass.js'
+        import { Result, ResultProperty } from './src/js/ScoresClass.js'
 
         let paragraphBreaks = false // true //
 
@@ -554,7 +554,7 @@
             }
 
             set _duration_(durationParam) {
-                if (!Utils.isNumber(durationParam)) throw new Error(`not a number: ${durationParam} !`)
+                if (!Utils.isFiniteNumber(durationParam)) throw new Error(`not a finite number: ${durationParam} !`)
                 this.#duration = durationParam;
                 const gradientizedColor = Colors.mapNumberToColor(this.#duration);
                 const element = document.querySelector(".compte-à-rebours");
@@ -641,7 +641,7 @@
 
                 document.getElementById('result-elapsed').innerHTML = Utils.formatDuration(result.timerDuration, 'milliseconds')
                 document.getElementById('result-unconcealed').innerHTML = result.unconcealed.value
-                if (result.erred.value !== 0 ) {
+                if (result.erred.value !== 0) {
                     document.getElementById('empty-set').style.display = 'none'
                     document.getElementById('result-erred').innerHTML = result.erred.value
                 } else {
@@ -679,13 +679,12 @@
                 player.result.elapsed.increment()
 
                 if (player.compteARebours.duration <= 17 && !player._soundMachine.riser.playing()) {
-                    // console.log(`${player.compteARebours.duration} : play riser`)
                     player._soundMachine.riser.play()
                 }
             }
 
             onTimerExpired() {
-                setTimeout(() => {
+                requestAnimationFrame(() => { // let the javascript paint everything it needs to paint before brining the modal
                     let msg
                     if (player.result.erred.value === 0 && player.result.unconcealed.value === 0) {
                         player.boredom()
@@ -695,7 +694,7 @@
                         msg = `Time's up!`
                     }
                     player.stopTimerShowResultThenCloseTimer(msg, player.result)
-                }, 100)
+                })
             }
 
             onTimerStop() {
@@ -721,7 +720,7 @@
             }
 
             victory() {
-                setTimeout(() => {
+                requestAnimationFrame(() => { // let the javascript paint everything it needs to paint before brining the modal
                     let msg
                     if (player.result.erred.value === 32 && player.result.unconcealed.value === 0) {
                         player.guitar()
@@ -741,13 +740,11 @@
                         msg = `You <i>quasi</i> won&hellip;`
                     }
                     player.stopTimerShowResultThenCloseTimer(msg, player.result)
-                }, 100)
+                })
             }
 
             get isPlaying() {
-                const currentIsPlaying = document.getElementById('play').classList.contains('playing')
-                // console.log("GET document.getElementById('play').classList.contains('playing')?", currentIsPlaying)
-                return currentIsPlaying
+                return document.getElementById('play').classList.contains('playing')
             }
 
             set isPlaying(newIsPlaying) {
@@ -758,7 +755,6 @@
                     } else {
                         document.getElementById('play').classList.remove('playing')
                     }
-                    // console.log("TOGGLE document.getElementById('play').classList.contains('playing')?", newIsPlaying)
                 }
             }
 
@@ -804,7 +800,7 @@
             }
 
             veilBricks() {
-                /* if (!this.restarting) */ this.veilUnveilBricks('veil')
+                this.veilUnveilBricks('veil')
             }
 
             unveilBricks() {
@@ -840,8 +836,6 @@
                     const tbody = tbodies[index]
                     await methodThatReturnsAPromise(tbody, veil);
                 }
-
-                // console.log(`${veilParam} scores complete`);
             }
 
             async start() {
@@ -854,11 +848,11 @@
                     top: 0,
                     behavior: 'smooth' // Use 'smooth' for smooth scrolling
                 })
+                await this.veilBricks()
                 const totalTime = Number(document.querySelector('.carousel-item.active').dataset.time)
                 this._timer.start(totalTime)
                 document.getElementById("shuffle-all").disabled = true
                 document.getElementById("paragraph-breaks").disabled = true
-                await this.veilBricks()
                 // BEGIN CAROUSEL
                 document.getElementById('tortoise-hare-achilles').style.opacity = '.5'
                 document.querySelectorAll('#tortoise-hare-achilles button').forEach(button => {
@@ -870,11 +864,11 @@
             }
 
             abort() {
-                setTimeout(() => {
+                requestAnimationFrame(() => { // let the javascript paint everything it needs to paint before brining the modal
                     player.abortSound()
                     let msg = `You stopped!`
                     player.stopTimerShowResultThenCloseTimer(msg, player.result)
-                }, 100)
+                })
             }
 
             stop() {
@@ -1087,7 +1081,6 @@
                         trueTD.style.backgroundColor = backgroundcolors.next()
                         trueTD.style.color = colors.bg2color(trueTD.style.backgroundColor)
                     })
-                    // console.log(backgroundcolors)
                 }
             })
         }
@@ -1263,7 +1256,7 @@
             })
             // END HINTS 
 
-            // Get all elements with the selector 'table.table'
+            // Get all elements with the selector '#tables>div'
             return Array.from(document.querySelectorAll('#tables>div'))
         }
 
@@ -1378,11 +1371,11 @@
                     player.veilBricks()
                     let resultModal = document.getElementById("result-modal")
                     resultModal.addEventListener('hidden.bs.modal', event => {
-                        setTimeout(() => {
+                        requestAnimationFrame(() => { // let the javascript paint everything it needs to paint before brining the modal
                             // player.stop() // already in initial hidden.bs.modal event
                             mega_shuffle()
                             player.start()
-                        }, 100)
+                        })
                     }, { once: true, })
                     let modal = bsModal.getInstance(resultModal)
                     modal.hide()
