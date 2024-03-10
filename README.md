@@ -18,7 +18,7 @@ Il s'agit donc de dévoiler les petites briques colorées pour faire apparaître
 
 <img src="svg/ancient-greek-helmet-1-svgrepo-com.svg" style="width: 24px; height: 24px;">&nbsp;&nbsp;&nbsp;`Casque Corinthien` Ce pourrait être celui d'Achille - **la** référence en matière de super-héros - mais aussi celui d'Hermès, le messager des dieux, réputé pour sa vitesse. On va en avoir besoin, car il ne reste plus que 30 secondes pour dévoiler les briques.
 
-La musique du niveau <img src="svg/ancient-greek-helmet-1-svgrepo-com.svg" alt="Achilles" style="width: 24px; height: 24px;">
+La 𝅘𝅥𝅯 musique du niveau <img src="svg/ancient-greek-helmet-1-svgrepo-com.svg" alt="Achilles" style="width: 24px; height: 24px;">
 est sur [SoundCloud](https://soundcloud.com/christophe-thiebaud/aletheia?si=83569a3c774e4cdf84c684e74478af34&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing)
 
 --- 
