@@ -166,28 +166,51 @@
                 </div>
                 <div id="modal-body" class="modal-body">
                     <h1 id="result-msg"></h1>
+                    <style>
+                        #result-summary .nowrap-overflow {
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            height: 30px;
+                        }
+
+                        #result-summary>*>:first-child>* {
+                            padding-right: 24px;
+                            position: relative;
+                        }
+
+                        #result-summary>*>:last-child>* {
+                            margin-left: 4px;
+                        }
+
+                        #result-summary>*>:first-child>*::after {
+                            content: '';
+                            position: absolute;
+                            bottom: 40%;
+                            right: 0;
+                            width: 20px;
+                            border-top: 1px dotted gray;
+                        }
+                    </style>
                     <div id="result-summary">
-                        <style>
-                            #result-summary table tbody tr td {
-                                width: 50%;
-                            }
-                        </style>
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td>Elapsed Time </td>
-                                    <td><span id="result-elapsed"></span></td>
-                                </tr>
-                                <tr>
-                                    <td>Unconcealed Bricks</td>
-                                    <td><span id="result-unconcealed"></span> out of 32</td>
-                                </tr>
-                                <tr>
-                                    <td>Erred Clicks</td>
-                                    <td><span id="result-erred"></span></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="d-flex flex-row">
+                            <div class="d-flex flex-column justify-content-between text-end">
+                                <div class="nowrap-overflow">Elapsed Time</div>
+                                <div class="nowrap-overflow">Unconcealed Bricks</div>
+                                <div class="nowrap-overflow">Erred Clicks</div>
+                            </div>
+                            <div class="d-flex flex-column justify-content-between">
+                                <div class="nowrap-overflow victor-mono-400" id="result-elapsed">0′00″0000</div>
+                                <div class="nowrap-overflow"><span id="result-unconcealed" class="victor-mono-400">0</span> out of <span class="victor-mono-400">32</span></div>
+                                <div class="nowrap-overflow victor-mono-400">
+                                    <svg id="empty-set" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="16" height="16" viewBox="0 0 142.916 142.916">
+                                        <path
+                                            d="m32.901 114.799-12.015 16.507a7.308 7.308 0 0 0 5.903 11.61 7.301 7.301 0 0 0 5.917-3.006l12.11-16.638a56.47 56.47 0 0 0 26.644 6.651c31.342 0 56.84-25.499 56.84-56.842 0-15.979-6.636-30.427-17.283-40.764l15.074-20.709a7.31 7.31 0 0 0-1.607-10.21c-3.273-2.377-7.84-1.651-10.209 1.608L99.313 23.562a56.458 56.458 0 0 0-27.856-7.323c-31.343 0-56.842 25.499-56.842 56.841 0 16.477 7.05 31.329 18.286 41.719zm80.781-41.719c0 23.284-18.94 42.226-42.226 42.226-6.407 0-12.461-1.477-17.905-4.039l48.729-66.951c7.051 7.548 11.402 17.648 11.402 28.764zM71.457 30.856c6.901 0 13.403 1.698 19.159 4.646l-49.043 67.381C33.95 95.24 29.229 84.702 29.229 73.082c.003-23.284 18.944-42.226 42.228-42.226z" />
+                                    </svg>
+                                    <span id="result-erred" style="color:red;"></span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <style>
                         #cloche {
@@ -620,7 +643,14 @@
 
                 document.getElementById('result-elapsed').innerHTML = Utils.formatDuration(result.timerDuration, 'milliseconds')
                 document.getElementById('result-unconcealed').innerHTML = result.unconcealed.value
-                document.getElementById('result-erred').innerHTML = result.erred.value !== 0 ? `<span style="color:red;">${result.erred.value}</span>` : '∅'
+                if (result.erred.value !== 0 ) {
+                    document.getElementById('empty-set').style.display = 'none'
+                    document.getElementById('result-erred').innerHTML = result.erred.value
+                } else {
+                    document.getElementById('result-erred').innerHTML = ''
+                    document.getElementById('empty-set').style.display = 'block'
+
+                }
 
                 const currentDate = new Date()
                 const options = {
