@@ -822,8 +822,11 @@
                         }, 25);
                     })
                 }
-
-                for (const tbody of document.querySelectorAll('#tables tbody')) {
+                
+                const tbodies = Array.from(document.querySelectorAll('#tables tbody'))
+                for (let i = 0; i < tbodies.length; i++) {
+                    const index = veil ? i : tbodies.length - 1 - i
+                    const tbody = tbodies[index]
                     await methodThatReturnsAPromise(tbody, veil);
                 }
 
