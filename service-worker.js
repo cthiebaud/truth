@@ -61,7 +61,7 @@ if (workbox) {
     { revision: 'abf15913f3920d1a68ae587e4b8e6226', url: 'screenshots/output.png' },
     { revision: 'edbb528afa3eb52ff0599a96e2b3af59', url: 'showdown.html' },
     { revision: '6235428fc4f442fd8aadaaba3f6e26d3', url: 'dist/css/bootstrap.min.css' },
-    { revision: '3fe05bffa4ede6f9664b54cdcdcdd412', url: 'dist/css/index.min.css' },
+    { revision: '76a4e92d252f5050154043b0235771b0', url: 'dist/css/index.min.css' },
     { revision: '476c9c641caca3b8fa3dcfe0a18e83a9', url: 'dist/css/timer.min.css' },
     { revision: '96294d6952e58982411d496de65f3628', url: 'dist/js/ColorsClass.min.js' },
     { revision: 'fae6035bc0fd3ec5be29255ac74c86ae', url: 'dist/js/GameClass.min.js' },
