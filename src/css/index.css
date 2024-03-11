@@ -140,16 +140,47 @@ nav#nav {
   border-top: 0.75px dashed var(--border-color);
 }
 
-#tables table td,
+#tables table {
+  border-collapse: collapse;
+}
+
 #tables table tbody {
   opacity: 1;
   filter: blur(0);
-  transition: opacity .3s ease-in-out, filter .3s ease-in-out;
+  transition:
+    opacity 0.3s ease-in-out,
+    filter 0.3s ease-in-out,
+    transform 0.3s ease-in-out;
 }
-#tables table.hint tbody {
-  filter: blur(4px);
-  opacity: 0.8;
+
+#tables table.hint tbody tr:nth-child(1) > td:nth-child(2).translucent {
+  transform: scale(0.5) translateY(50%) translateX(50%);
 }
+#tables table.hint tbody tr:nth-child(1) > td:nth-child(3).translucent {
+  transform: scale(0.5) translateY(50%) translateX(-50%);
+}
+#tables table.hint tbody tr:nth-child(2) > td:nth-child(2).translucent {
+  transform: scale(0.5) translateY(-50%) translateX(50%);
+}
+#tables table.hint tbody tr:nth-child(2) > td:nth-child(3).translucent {
+  transform: scale(0.5) translateY(-50%) translateX(-50%);
+}
+
+.overlay {
+  position: absolute;
+  background-color: transparent;
+  pointer-events: none; /* Allows mouse events to pass through */
+  z-index: 1;
+  /* backdrop-filter: blur(6px); */
+  backdrop-filter: blur(3px);
+  /* display: block; */
+}
+
+/* 
+#tables table:not(.hint) .overlay {
+  display: none; 
+}
+*/
 
 #tables table:not(.hint) td.true.translucent {
   opacity: 0;
@@ -245,6 +276,7 @@ nav#nav {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   font-size: 25px;
   padding: 0 1px 4px 0 !important;
+  transform: none;
 }
 
 #tables table td {

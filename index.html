@@ -332,7 +332,7 @@
 
                 <!-- BEGIN Button trigger modal for test - - >
                 <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#result-modal">
-                    M
+                    result
                 </button>
                 < ! - - END Button trigger modal for test -->
 
@@ -513,7 +513,7 @@
 
         /* changed by "NODE_ENV=<development|production> node dev-oder-prod.mjs" or "npm run <dev|prod>" */
         import { Utils } from './dist/js/UtilsClass.min.js'
-        import { Colors } from './dist/js/ColorsClass.min.js'
+        import { Colors, BlurOverlay } from './dist/js/ColorsClass.min.js'
         import { Timer } from './dist/js/TimerClass.min.js'
         import { SoundMachine } from './dist/js/SoundMachineClass.min.js'
         import { Game, Action, Result, ResultProperty } from './dist/js/GameClass.min.js'
@@ -792,7 +792,7 @@
             victory() {
                 requestAnimationFrame(() => { // let the javascript paint everything it needs to paint before brining the modal
                     let msg
-                    if (player.result.erred.value === 32 && player.result.unconcealed.value === 0) {
+                    if (player.result.erred.value >= 32 && player.result.unconcealed.value === 0) {
                         player.guitar()
                         msg = `Ooooh&hellip; Subtle!`
                     } else if (player.result.erred.value === 0 && player.result.unconcealed.value === 32) {
@@ -884,7 +884,10 @@
                     return new Promise((resolve) => {
                         const tds = tbody.querySelectorAll('td')
                         if (veil) {
-                            tds.forEach(td => { td.classList.add('translucent') })
+                            tds.forEach(td => { 
+                                td.classList.add('translucent') 
+                                td.classList.remove('clicked') 
+                        })
                         } else {
                             tds.forEach(td => {
                                 if (td.classList.contains('true')) {
@@ -1286,13 +1289,17 @@
                             }
                         } else {
                             player.laughs()
+                            elem.classList.add('clicked')
+                            setTimeout(() => {
+                                elem.classList.add('translucent')
+                            }, 1000)
                         }
                     }
                     let remainingTrue = document.querySelectorAll('#tables td.true.translucent').length
-                    let remainingFalse = document.querySelectorAll('#tables td.false.translucent').length
+                    let falseClicked = document.querySelectorAll('#tables td.false.clicked').length
                     if ((remainingTrue === 0)
                         ||
-                        (remainingFalse === 0 && remainingTrue === 32)) {
+                        (falseClicked === 32 && remainingTrue === 32)) {
                         player.victory()
                     }
                 })
@@ -1301,6 +1308,7 @@
 
             // BEGIN HINTS 
             let timout = null
+            let overlay = new BlurOverlay('td')
             function clearHints() {
                 if (timout) {
                     clearTimeout(timout)
@@ -1310,6 +1318,7 @@
                 Array.from(hints).forEach((hint) => {
                     hint.classList.remove("hint")
                 })
+                overlay.hide()
                 player._soundMachine.underwater.fade(undefined, 0.001, 1500)
             }
             window.addEventListener("scroll", function (e) {
@@ -1321,7 +1330,12 @@
             const captions = document.getElementsByTagName('caption')
             Array.from(captions).forEach((caption) => {
                 caption.addEventListener('pointerdown', (e) => {
+                    
                     if (!player.isPlaying) return
+
+                    overlay.move(caption.parentNode)
+                    overlay.show()
+
                     caption.setPointerCapture(e.pointerId);
                     player._soundMachine.underwater.fade(undefined, 0.33)
 

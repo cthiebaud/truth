@@ -130,3 +130,75 @@ export class Colors {
         return tinycolor2(bg).darken(3).toString("hex6")
     }
 }
+
+export class BlurOverlay {
+    static overlaySingleton = null;
+
+    static getOrCreateOverlaySingleton() {
+        if (BlurOverlay.overlaySingleton == null) {
+            BlurOverlay.overlaySingleton = document.createElement('div');
+            BlurOverlay.overlaySingleton.classList.add('overlay');
+            BlurOverlay.overlaySingleton.style.display = 'none'
+            document.body.appendChild(BlurOverlay.overlaySingleton);
+            window.addEventListener('resize', () => {
+                new BlurOverlay().updateOverlayPosition()
+            });
+        }
+        return BlurOverlay.overlaySingleton
+    }
+
+    #overlay
+    #targetSelector
+    constructor(targetSelector) {
+        this.#targetSelector = targetSelector;
+        this.#overlay = BlurOverlay.getOrCreateOverlaySingleton();
+    }
+
+    show() {
+        this.#overlay.style.display = 'block'
+    }
+
+    move(elementCoveredByOverlay) {
+        this.elementCoveredByOverlay = elementCoveredByOverlay;
+        this.updateOverlayPosition();
+    }
+
+    hide() {
+        this.#overlay.style.display = 'none'
+    }
+
+    clear() {
+        this.#overlay.style.display = 'none'
+        this.elementCoveredByOverlay = null
+    }
+
+    updateOverlayPosition() {
+        if (this.elementCoveredByOverlay == null) return;
+
+        const targetElements = this.elementCoveredByOverlay.querySelectorAll(this.#targetSelector);
+        if (targetElements.length === 0) return;
+
+        let minTop = Number.MAX_SAFE_INTEGER;
+        let minLeft = Number.MAX_SAFE_INTEGER;
+        let maxBottom = Number.MIN_SAFE_INTEGER;
+        let maxRight = Number.MIN_SAFE_INTEGER;
+
+        targetElements.forEach(element => {
+            const rect = element.getBoundingClientRect();
+            minTop = Math.min(minTop, rect.top);
+            minLeft = Math.min(minLeft, rect.left);
+            maxBottom = Math.max(maxBottom, rect.bottom);
+            maxRight = Math.max(maxRight, rect.right);
+        });
+
+        const parentRect = this.#overlay.parentElement.getBoundingClientRect();
+        const elementRect = this.elementCoveredByOverlay.getBoundingClientRect();
+
+        const overlayStyle = this.#overlay.style;
+        overlayStyle.position = 'absolute';
+        overlayStyle.top = (minTop - parentRect.top    /* + elementRect.top  */) + 'px';
+        overlayStyle.left = (minLeft - parentRect.left /* + elementRect.left */) + 'px';
+        overlayStyle.width = (maxRight - minLeft) + 'px';
+        overlayStyle.height = (maxBottom - minTop) + 'px';
+    }
+}
