@@ -22,11 +22,6 @@ body {
   font-family: var(--bs-body-font-family);
 }
 
-nav#nav {
-  border-top: 0.75px solid var(--border-color);
-  background-color: #f1efe0; /* f8f7ef; /* e9e6ce; */
-}
-
 /* BEGIN prise de tête */
 
 /* Apply styles for touch devices */
@@ -171,16 +166,8 @@ nav#nav {
   background-color: transparent;
   pointer-events: none; /* Allows mouse events to pass through */
   z-index: 1;
-  /* backdrop-filter: blur(6px); */
   backdrop-filter: blur(3px);
-  /* display: block; */
 }
-
-/* 
-#tables table:not(.hint) .overlay {
-  display: none; 
-}
-*/
 
 #tables table:not(.hint) td.true.translucent {
   opacity: 0;
@@ -314,7 +301,7 @@ nav#nav {
   display: inline-block;
 }
 
-.negation:not.canonical:after {
+.negation:not(.canonical):after {
   content: '';
   position: absolute;
   top: 3px;
@@ -323,6 +310,7 @@ nav#nav {
   width: 100%;
   border-top: 2px solid #173f35;
 }
+
 .negation.canonical:before {
   content: '¬';
 }
