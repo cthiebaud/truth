@@ -1240,8 +1240,10 @@
                     clickEvent.preventDefault()
                     clickEvent.stopPropagation()
                     if (!player.isPlaying) return
+
                     // action
-                    player.game.addAction(new Action(clickEvent))
+                    player.currentGame?.addAction(new Action(clickEvent))
+                    
                     if (elem.classList.contains('translucent')) {
                         elem.classList.remove('translucent')
                         if (elem.classList.contains('true')) {
