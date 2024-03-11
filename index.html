@@ -281,8 +281,8 @@
                                     <use xlink:href="#svg-achilles"></use>
                                 </svg>
                             </div>
-                            <div id="result-others" class="d-flex justify-content-between align-items-center"> <!-- -->
-                                <div id="result-display-mode-symbol">𝖠</div>
+                            <div id="result-others" class="d-flex justify-content-center align-items-center"> <!-- -->
+                                <div id="result-display-mode-symbol" style="display: none;">𝖠</div>
                                 <div id="result-scrambled">
                                     <svg id="result-scrambled-false" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
                                         <use xlink:href="#svg-scrambled-false"></use>
@@ -704,8 +704,14 @@
 
                 Array.from(document.querySelectorAll('#cloche svg')).forEach(elem => {
                     elem.style.display = 'none'
-                })
-                document.getElementById('result-display-mode-symbol').innerHTML = result.displayModeSymbol
+                });
+
+                (((resultDisplayModeSymbol) => {
+                    if (resultDisplayModeSymbol) {
+                        resultDisplayModeSymbol.innerHTML = result.displayModeSymbol
+                    }
+                })(document.getElementById('result-display-mode-symbol')))
+
                 document.getElementById(`result-level-${result.level}`).style.display = 'block'
                 document.getElementById(`result-scrambled-${result.scrambled}`).style.display = 'block'
 
