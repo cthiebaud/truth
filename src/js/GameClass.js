@@ -92,7 +92,7 @@ export class Result {
         return this.erred.value === 0 && this.unconcealed.value === 32
     }
 }
-
+/*
 export class Scores {
     #taxonomy
     constructor() {
@@ -107,5 +107,45 @@ export class Scores {
 
     add(result) {
     }
+}
+*/
 
+export class Action {
+    #when
+    #what
+    constructor(what) {
+        this.#when = performance.now()
+        this.#what = what
+    }
+}
+
+export class Game {
+    #actions
+    #screenshot
+    #level
+    constructor(screenshot, level) {
+        this.#screenshot = screenshot
+        this.#level = level
+        this.#actions = []
+    }
+    addAction(action) {
+        this.#actions.push(action)
+    }
+    clear() {
+        this.#actions = []
+    }
+    dump() {
+        console.log("##################")
+        console.log("------------------ level")
+        console.log(this.#level)
+        console.log("------------------ screenshot")
+        this.#screenshot.forEach(f => {
+            console.log(f)
+        })
+        console.log("------------------ actions")
+        this.#actions.forEach(a => {
+            console.log(a)
+        })
+        console.log("//////////////////")
+    }
 }
