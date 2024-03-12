@@ -38,28 +38,31 @@ Chaque résultat est accompagné d'un son différent.
 
 ### Représentations
 
-'𝖠' ou 'α'
+□■<br>□■
+□□<br>□□
 
-La formule peut être exprimée soit sous forme de [symboles logiques](https://fr.wikipedia.org/wiki/Liste_de_symboles_logiques), soit par une expression javascript. Il est intéressant de noter que cette denière forme est factuellement interprétée par le moteur javascript de l'application. 
+`𝖠` ou `α`
 
-|  | symboles logiques | javascript | *alternate* |
+La formule peut être exprimée soit sous forme de [symboles logiques](https://fr.wikipedia.org/wiki/Liste_de_symboles_logiques) `𝖠`, soit par une expression javascript `α`. Il est intéressant de noter que cette denière forme est factuellement interprétée par le moteur javascript de l'application. 
+
+|  | symboles logiques | javascript | |
 |---|---|---|---|
-| TOUJOURS FAUX       | `⊥`       | `false`    |     |
-| A ET B              | `𝖠 ∧ 𝖡`   | `α & β`    |     |
-| A ET NON N          | `𝖠 ∧ ¬𝖡`  | `α & !β`   |     |
-| NON A ET B          | `¬𝖠 ∧ ¬𝖡` | `!α & !β`  |     |
-| NON A ET NON B      | `¬𝖠 ∧ 𝖡`  | `!α & β`   |     |
-| A                   | `𝖠`       | `α`        |     |
-| B                   | `𝖡`       | `β`        |     |
-| NON A               | `¬𝖠`      | `!α`       |     |
-| NON B               | `¬𝖡`      | `!β`       |     |
-| A OU EXCLUSIF B     | `𝖠 ⊻ 𝖡`   | `α == β` |  `α & β \| !α & !β` |
-| A OU EXCLUSIF NON B | `𝖠 ⊻ ¬𝖡`  | `α != β` |  `!α & β \| α & !β` |
-| A OU B              | `𝖠 ∨ 𝖡`   | `α \| β`   |     |
-| A OU NON B          | `𝖠 ∨ ¬𝖡`  | `α \| !β`  |     |
-| NON A OU NON B      | `¬𝖠 ∨ ¬𝖡` | `!α \| !β` |     |
-| NON A OU B          | `¬𝖠 ∨ 𝖡`  | `!α \| β`  |     |
-| TOUJOURS VRAI       | `⊤`       | `true`     |     |
+| TOUJOURS FAUX       | `⊥`       | `false`                      |  □ □<br>□ □  |
+| A ET B              | `𝖠 ∧ 𝖡`   | `α & β`                      |  ■ □<br>□ □   |
+| A ET NON B          | `𝖠 ∧ ¬𝖡`  | `α & !β`                     |  □ ■<br>□ □   |
+| NON A ET B          | `¬𝖠 ∧ ¬𝖡` | `!α & !β`                    |  □ □<br>□ ■   |
+| NON A ET NON B      | `¬𝖠 ∧ 𝖡`  | `!α & β`                     |  □ □<br>■ □   |
+| A                   | `𝖠`       | `α`                          |  ■ ■<br>□ □   |
+| B                   | `𝖡`       | `β`                          |  ■ □<br>■ □   |
+| NON A               | `¬𝖠`      | `!α`                         |  □ □<br>■ ■   |
+| NON B               | `¬𝖡`      | `!β`                         |  □ ■<br>□ ■   |
+| A OU EXCLUSIF B     | `𝖠 ⊻ 𝖡`   | `α == β` /`α & β \| !α & !β` |  ■ □<br>□ ■ |
+| A OU EXCLUSIF NON B | `𝖠 ⊻ ¬𝖡`  | `α != β` /`!α & β \| α & !β` |  □ ■<br>■ □ |
+| A OU B              | `𝖠 ∨ 𝖡`   | `α \| β`                     |  ■ ■<br>■ □   |
+| A OU NON B          | `𝖠 ∨ ¬𝖡`  | `α \| !β`                    |  ■ ■<br>□ ■   |
+| NON A OU NON B      | `¬𝖠 ∨ ¬𝖡` | `!α \| !β`                   |  ■ □<br>■ ■   |
+| NON A OU B          | `¬𝖠 ∨ 𝖡`  | `!α \| β`                    |  □ ■<br>■ ■   |
+| TOUJOURS VRAI       | `⊤`       | `true`                       |  ■ ■<br>■ ■   |
 
 
 --- 
@@ -73,7 +76,7 @@ La formule peut être exprimée soit sous forme de [symboles logiques](https://f
 * `E` <img src="svg/b-group.svg" style="width: auto; height: 16px;"  >&nbsp; Groupe les tables par nombre de briques en ordre croissant.
 * `S` <img src="svg/b-shuffle.svg" style="width: auto; height: 16px;">&nbsp; *[swipe right]* Mélange les tables aléatoirement.
 * `O` *[swipe left]* Trie les tables par nombre de briques en ordre croissant, ou mélange les couleurs si les tables sont déjà triées.
-* `A` Change la représentation des en-têtes des tableaux.
+* `A` Change la représentation des en-têtes des tableaux (symboles logiques / javascript).
 
 --- 
 
