@@ -1081,6 +1081,12 @@
 
                         // canonical 
                         this.#displayMode.canonical[key] = item
+                            .replace(/&/g, "∧")
+                            .replace(/\|/g, "∨")
+                            .replace(new RegExp(`^${Functions.trueFunc}$`), "⊤")
+                            .replace(new RegExp(`^${Functions.falseFunc}$`), "⊥")
+                            .replace(/==/g, "⊻")
+                            .replace(/!= β/g, "⊻ !β")
                             .replace(/(!?)α|(!?)β/g, (match, negationA, negationB) => {
                                 if (negationA === '!') {
                                     return negationMap['!α'];
@@ -1089,11 +1095,7 @@
                                 } else {
                                     return match === 'α' ? '𝖠' : '𝖡';
                                 }
-                            }).replace(/==|!=/g, "⊻")
-                            .replace(/&/g, "∧")
-                            .replace(/\|/g, "∨")
-                            .replace(new RegExp(`^${Functions.trueFunc}$`), "⊤")
-                            .replace(new RegExp(`^${Functions.falseFunc}$`), "⊥")
+                            })
                     }
                 });
             }
