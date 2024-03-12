@@ -36,6 +36,34 @@ Chaque résultat est accompagné d'un son différent.
 
 --- 
 
+### Représentations
+
+'𝖠' ou 'α'
+
+La formule peut être exprimée soit sous forme de [symboles logiques](https://fr.wikipedia.org/wiki/Liste_de_symboles_logiques), soit par une expression javascript. Il est intéressant de noter que cette denière forme est factuellement interprétée par le moteur javascript de l'application. 
+
+| | symboles logiques | javascript |
+|---|---|---|
+| TOUJOURS FAUX           | `⊥       `       |   `false                         `  |
+| A ET B                  | `𝖠 ∧ 𝖡   `       |   `α & β                         `  |
+| A ET NON N              | `𝖠 ∧ ¬𝖡  `       |   `α & !β                        `  |
+| NON A ET B              | `¬𝖠 ∧ ¬𝖡 `       |   `!α & !β                       `  |
+| NON A ET NON B          | `¬𝖠 ∧ 𝖡  `       |   `!α & β                        `  |
+| A                       | `𝖠       `       |   `α                             `  |
+| B                       | `𝖡       `       |   `β                             `  |
+| NON A                   | `¬𝖠      `       |   `α | !β                        `  |
+| NON B                   | `¬𝖡      `       |   `!β                            `  |
+| A OU EXCLUSIF B         | `𝖠 ⊻ 𝖡   `       |   `α == β` càd `α & β | !α & !β`    |
+| A OU EXCLUSIF NON B     | `𝖠 ⊻ 𝖡   `       |   `α != β` càd `!α & β | α & !β`    |
+| A OU B                  | `𝖠 ∨ 𝖡   `       |   `α | β                         `  |
+| A OU NON B              | `𝖠 ∨ ¬𝖡  `       |   `α | !β                        `  |
+| NON A OU NON B          | `¬𝖠 ∨ ¬𝖡 `       |   `!α | !β                       `  |
+| NON A OU B              | `¬𝖠 ∨ 𝖡  `       |   `!α | β                        `  |
+| TOUJOURS VRAI           | `⊤       `       |   `true                          `  |
+
+
+--- 
+
 ### Raccourcis clavier
 
 * `Space` Démarre <img src="svg/b-start.svg" style="width: auto; height: 16px;">&nbsp; ou arrête <img src="svg/b-stop.svg" style="width: auto; height: 16px;">&nbsp; une partie. Si les résultats de la partie précédente sont encore affichés, redémarre une nouvelle partie après avoir mélangé les tables aléatoirement. 
@@ -45,15 +73,7 @@ Chaque résultat est accompagné d'un son différent.
 * `E` <img src="svg/b-group.svg" style="width: auto; height: 16px;"  >&nbsp; Groupe les tables par nombre de briques en ordre croissant.
 * `S` <img src="svg/b-shuffle.svg" style="width: auto; height: 16px;">&nbsp; *[swipe right]* Mélange les tables aléatoirement.
 * `O` *[swipe left]* Trie les tables par nombre de briques en ordre croissant, ou mélange les couleurs si les tables sont déjà triées.
-* `A` Change le langage des en-têtes des tableaux, au choix entre les [<u>symboles logiques</u>](https://fr.wikipedia.org/wiki/Liste_de_symboles_logiques), par exemple `𝖠 ∧ 𝖡`, ou les <u>expressions JavaScript</u> (*nb. interprétées de manière factuelle par le moteur de l'application*), comme `α & β`.
-
---- 
-
-### Représentation
-
-'𝖠' ou 'α'
-
-La formule peut être exprimée soit sous forme de [symboles logiques](https://fr.wikipedia.org/wiki/Liste_de_symboles_logiques), tels que `𝖠 ∧ 𝖡` ou `¬𝖠 ∨ ¬𝖡`, soit par une expression JavaScript, par exemple `α & β`, resp. `!α | !β`. Il est intéressant de noter que cette denière forme est factuellement interprétée par le moteur javascript de l'application. 
+* `A` Change la représentation des en-têtes des tableaux.
 
 --- 
 
@@ -66,6 +86,8 @@ La formule peut être exprimée soit sous forme de [symboles logiques](https://f
 <img src="svg/b-axes.svg"> Les en-têtes des axes
 
 <img src="svg/b-sort.svg"> Les groupes de tables
+
+`𝖠`ou `α` - Les représentations des formules
 
 --- 
 
