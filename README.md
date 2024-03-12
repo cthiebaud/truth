@@ -70,7 +70,8 @@ La formule qui donne la clé de chaque de table de vérité peut être exprimée
 * <kbd>W</kbd> &nbsp;&nbsp;&nbsp;<img src="svg/b-axes.svg" style="width: auto; height: 16px;"   >&nbsp;&nbsp;&nbsp; Affiche les en-têtes des axes des tables.
 * <kbd>E</kbd> &nbsp;&nbsp;&nbsp;<img src="svg/b-group.svg" style="width: auto; height: 16px;"  >&nbsp;&nbsp;&nbsp; Groupe les tables par nombre de briques en ordre croissant.
 * <kbd>S</kbd> &nbsp;&nbsp;&nbsp;<img src="svg/b-shuffle.svg" style="width: auto; height: 16px;">&nbsp;&nbsp;&nbsp; Mélange les tables aléatoirement.
-* <kbd>O</kbd> Trie les tables par nombre de briques en ordre croissant, ou mélange les couleurs si les tables sont déjà triées.
+* <kbd>C</kbd> Mélange les couleurs des briques aléatoirement.
+* <kbd>O</kbd> Retour à l'ordre initial des tables.
 * <kbd>A</kbd> Change la représentation des en-têtes des tableaux entre symboles logiques ou javascript.
 
 --- 
