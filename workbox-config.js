@@ -10,6 +10,8 @@ module.exports = {
     "assets/audio/sources/**",
     "audio-samples/**",
     "deprecated/**",
+    "firebase/**",
+    "node_modules/**",
     "packages/**",
     "screenshots/**",
     "service-worker-src.js",
