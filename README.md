@@ -59,13 +59,13 @@ La formule peut être exprimée soit sous forme de [symboles logiques](https://f
 
 ### Bascules 
 
-'Bascule' est le mot français offciellement utilisé pour traduire l'anglais 'Toggle'
+'Bascule' est le mot français offciellement utilisé pour traduire l'anglais 'Toggle':
 
-<img src="svg/b-grid.svg"> les bords des tables
+<img src="svg/b-grid.svg"> Les bords des tables
 
-<img src="svg/b-axes.svg"> les en-têtes des axes
+<img src="svg/b-axes.svg"> Les en-têtes des axes
 
-<img src="svg/b-sort.svg"> les groupe de tables
+<img src="svg/b-sort.svg"> Les groupes de tables
 
 --- 
 
