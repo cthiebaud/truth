@@ -44,7 +44,7 @@ La formule qui donne la clé de chaque de table de vérité peut être exprimée
 
 |  | symboles logiques | javascript | |
 |---|---|---|---|
-| TOUJOURS FAUX       | `⊥`       | ` `                          |  <span style="white-space: nowrap;">□ □</span><br>□ □  |
+| TOUJOURS FAUX       | `⊥`       | ` `                          |  □&nbsp;□<br>□&nbsp;□  |
 | A ET B              | `𝖠 ∧ 𝖡`   | `α & β`                      |  ■ □<br>□ □   |
 | A ET NON B          | `𝖠 ∧ ¬𝖡`  | `α & !β`                     |  □ ■<br>□ □   |
 | NON A ET B          | `¬𝖠 ∧ ¬𝖡` | `!α & !β`                    |  □ □<br>□ ■   |
