@@ -219,6 +219,7 @@ body.javascript #aletheia #logo:before {
   margin-bottom: 0.25rem;
   padding: 0.25rem 0;
   color: inherit;
+  height: 38px;
 }
 
 #tables table thead th:nth-child(2):after {

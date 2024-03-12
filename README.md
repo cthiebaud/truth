@@ -57,21 +57,21 @@ La formule qui donne la clé de chaque de table de vérité peut être exprimée
 | A OU NON B          | `𝖠 ∨ ¬𝖡`  | `α \| !β`                    |  ■ ■<br>□ ■   |
 | NON A OU NON B      | `¬𝖠 ∨ ¬𝖡` | `!α \| !β`                   |  ■ □<br>■ ■   |
 | NON A OU B          | `¬𝖠 ∨ 𝖡`  | `!α \| β`                    |  □ ■<br>■ ■   |
-| TOUJOURS VRAI       | `⊤`       | `T`, pour 'true'             |  ■ ■<br>■ ■   |
+| TOUJOURS VRAI       | `⊤`       | `true`                       |  ■ ■<br>■ ■   |
 
 
 --- 
 
 ### Raccourcis clavier
 
-* <kbd>Space</kbd> Démarre <img src="svg/b-start.svg" style="width: auto; height: 16px;">&nbsp; ou arrête <img src="svg/b-stop.svg" style="width: auto; height: 16px;">&nbsp; une partie. Si les résultats de la partie précédente sont encore affichés, redémarre une nouvelle partie après avoir mélangé les tables aléatoirement. 
+* <kbd>Space</kbd> Démarre &nbsp;<img src="svg/b-start.svg" style="width: auto; height: 16px;">&nbsp; ou arrête &nbsp;<img src="svg/b-stop.svg" style="width: auto; height: 16px;">&nbsp; une partie. Si les résultats de la partie précédente sont encore affichés dans la boite de dialogue, mélange les tables avant de redémarrer. 
 * <kbd>Escape</kbd> 'Tue' une partie (i.e. sans afficher les résultats). 
-* <kbd>Q</kbd>&nbsp;&nbsp;&nbsp;&nbsp;<img src="svg/b-grid.svg" style="width: auto; height: 16px;"   >&nbsp;&nbsp;&nbsp; Affiche les bords des tables et des celulles.
-* <kbd>W</kbd>&nbsp;&nbsp;&nbsp;&nbsp;<img src="svg/b-axes.svg" style="width: auto; height: 16px;"   >&nbsp;&nbsp;&nbsp; Affiche les en-têtes des axes des tables.
-* <kbd>E</kbd>&nbsp;&nbsp;&nbsp;&nbsp;<img src="svg/b-group.svg" style="width: auto; height: 16px;"  >&nbsp;&nbsp;&nbsp; Groupe les tables par nombre de briques en ordre croissant.
-* <kbd>S</kbd>&nbsp;&nbsp;&nbsp;&nbsp;<img src="svg/b-shuffle.svg" style="width: auto; height: 16px;">&nbsp;&nbsp;&nbsp; Mélange les tables aléatoirement.
+* <kbd>Q</kbd> &nbsp;&nbsp;&nbsp;<img src="svg/b-grid.svg" style="width: auto; height: 16px;"   >&nbsp;&nbsp;&nbsp; Affiche les bords des tables et des celulles.
+* <kbd>W</kbd> &nbsp;&nbsp;&nbsp;<img src="svg/b-axes.svg" style="width: auto; height: 16px;"   >&nbsp;&nbsp;&nbsp; Affiche les en-têtes des axes des tables.
+* <kbd>E</kbd> &nbsp;&nbsp;&nbsp;<img src="svg/b-group.svg" style="width: auto; height: 16px;"  >&nbsp;&nbsp;&nbsp; Groupe les tables par nombre de briques en ordre croissant.
+* <kbd>S</kbd> &nbsp;&nbsp;&nbsp;<img src="svg/b-shuffle.svg" style="width: auto; height: 16px;">&nbsp;&nbsp;&nbsp; Mélange les tables aléatoirement.
 * <kbd>O</kbd> Trie les tables par nombre de briques en ordre croissant, ou mélange les couleurs si les tables sont déjà triées.
-* <kbd>A</kbd> Change la représentation des en-têtes des tableaux (symboles logiques / javascript).
+* <kbd>A</kbd> Change la représentation des en-têtes des tableaux entre symboles logiques ou javascript.
 
 --- 
 
@@ -79,10 +79,10 @@ La formule qui donne la clé de chaque de table de vérité peut être exprimée
 
 'Bascule' est le mot français officiellement utilisé pour traduire l'anglais 'Toggle':
 
-* <img src="svg/b-grid.svg" style="width: auto; height: 16px;"   >&nbsp;&nbsp;&nbsp; Affiche les bords des tables et des celulles.
-* <img src="svg/b-axes.svg" style="width: auto; height: 16px;"   >&nbsp;&nbsp;&nbsp; Affiche les en-têtes des axes des tables.
-* <img src="svg/b-group.svg" style="width: auto; height: 16px;"  >&nbsp;&nbsp;&nbsp; Groupe les tables par nombre de briques en ordre croissant.
-* `𝖠` ou `α` Change la représentation des en-têtes des tableaux (symboles logiques / javascript).
+* <img src="svg/b-grid.svg" style="width: auto; height: 16px;" >&nbsp;&nbsp;&nbsp; Affiche les bords des tables et des celulles.
+* <img src="svg/b-axes.svg" style="width: auto; height: 16px;" >&nbsp;&nbsp;&nbsp; Affiche les en-têtes des axes des tables.
+* <img src="svg/b-group.svg" style="width: auto; height: 16px;">&nbsp;&nbsp;&nbsp; Groupe les tables par nombre de briques en ordre croissant.
+* `𝖠` ou `α` Change la représentation des en-têtes des tableaux entre symboles logiques ou javascript.
 
 --- 
 

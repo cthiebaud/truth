@@ -1028,9 +1028,11 @@
         }
 
         class Functions {
+            static falseFunc = ''
+            static trueFunc = 'true'
             #functionArray = [
                 0,
-                'false',
+                Functions.falseFunc,
                 1,
                 'α & β',
                 'α & !β',
@@ -1049,7 +1051,7 @@
                 '!α | !β',
                 '!α | β',
                 4,
-                'true',
+                Functions.trueFunc,
             ]
             #displayMode = {
                 'canonical': {
@@ -1065,6 +1067,7 @@
             }
             #currentDisplayModeKey = 'canonical'
             constructor() {
+                // cf. CSS rule for .negation.canonical:before (¬)
                 const negationMap = {
                     '!α': "<span class='negation canonical'>𝖠</span>",
                     '!β': "<span class='negation canonical'>𝖡</span>"
@@ -1073,25 +1076,11 @@
                     if (typeof item === 'string') {
                         const key = item
                         // javascript
-                        {
-                            this.#displayMode.javascript[key] = item
-                                /*
-                                .replace(/α & β \| !α & !β/g, "α == β")
-                                .replace(/!α & β \| α & !β/g, "α != β")
-                                */
-                                .replace(/true/g, "Τ")
-                                .replace(/false/g, "&nbsp;")
-                        }
+                        this.#displayMode.javascript[key] = item
+
                         // canonical 
-                        {
-                            let tmp = item
-                                .replace(/α == β/g, "α ⊻ β")
-                                .replace(/α != β/g, "α ⊻ !β")
-                            /*
-                            cf. CSS rule for .negation.canonical:before
-                            ¬
-                            */
-                            tmp = tmp.replace(/(!?)α|(!?)β/g, (match, negationA, negationB) => {
+                        this.#displayMode.canonical[key] = item
+                            .replace(/(!?)α|(!?)β/g, (match, negationA, negationB) => {
                                 if (negationA === '!') {
                                     return negationMap['!α'];
                                 } else if (negationB === '!') {
@@ -1099,13 +1088,11 @@
                                 } else {
                                     return match === 'α' ? '𝖠' : '𝖡';
                                 }
-                            });
-                            this.#displayMode.canonical[item] = tmp
-                                .replace(/&/g, "∧")
-                                .replace(/\|/g, "∨")
-                                .replace(/true/, "⊤")
-                                .replace(/false/, "⊥")
-                        }
+                            }).replace(/==|!=/g, "⊻")
+                            .replace(/&/g, "∧")
+                            .replace(/\|/g, "∨")
+                            .replace(new RegExp(`^${Functions.trueFunc}$`), "⊤")
+                            .replace(new RegExp(`^${Functions.falseFunc}$`), "⊥")
                     }
                 });
             }
@@ -1115,10 +1102,10 @@
             }
 
             getOneOrTwoColors(f) {
-                if (f === 'false') {
+                if (f === Functions.falseFunc) {
                     return new OneOrTwoColors(colors.colorFalse)
                 }
-                if (f === 'true') {
+                if (f === Functions.trueFunc) {
                     return new OneOrTwoColors(colors.colorTrue)
                 }
                 if (f.includes('!=') || f.includes('==')) {
