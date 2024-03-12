@@ -40,7 +40,7 @@ Chaque résultat est accompagné d'un son différent.
 
 `𝖠` ou `α`
 
-La formule peut être exprimée soit sous forme de [symboles logiques](https://fr.wikipedia.org/wiki/Liste_de_symboles_logiques) (`𝖠`), soit par une expression javascript (`α`). Il est intéressant de noter que cette denière forme est factuellement interprétée par le moteur javascript de l'application. 
+La formule qui donne la clé de chaque de table de vérité peut être exprimée, soit avec des [symboles logiques](https://fr.wikipedia.org/wiki/Liste_de_symboles_logiques), par exemple `𝖠 ∧ 𝖡`, soit par une expression javascript, comme `α & β` . Il est intéressant de noter que c'est cette denière forme qui est factuellement interprétée par le moteur javascript de l'application comme une "fonction flèche" (arrow function): `(α,β) => α & β`.
 
 |  | symboles logiques | javascript | |
 |---|---|---|---|
@@ -53,7 +53,7 @@ La formule peut être exprimée soit sous forme de [symboles logiques](https://f
 | B                   | `𝖡`       | `β`                          |  ■ □<br>■ □   |
 | NON A               | `¬𝖠`      | `!α`                         |  □ □<br>■ ■   |
 | NON B               | `¬𝖡`      | `!β`                         |  □ ■<br>□ ■   |
-| A OU EXCLUSIF B     | `𝖠 ⊻ 𝖡`   | `α == β`, an astute workaround for  <br>`α & β \| !α & !β` |  ■ □<br>□ ■ |
+| A OU EXCLUSIF B     | `𝖠 ⊻ 𝖡`   | `α == β`, une astuce pour contourner<br>`α & β \| !α & !β` |  ■ □<br>□ ■ |
 | A OU EXCLUSIF NON B | `𝖠 ⊻ ¬𝖡`  | `α != β`, idem <br>`α & !β \| !α & β` |  □ ■<br>■ □ |
 | A OU B              | `𝖠 ∨ 𝖡`   | `α \| β`                     |  ■ ■<br>■ □   |
 | A OU NON B          | `𝖠 ∨ ¬𝖡`  | `α \| !β`                    |  ■ ■<br>□ ■   |
@@ -79,7 +79,7 @@ La formule peut être exprimée soit sous forme de [symboles logiques](https://f
 
 ### Bascules 
 
-'Bascule' est le mot français offciellement utilisé pour traduire l'anglais 'Toggle':
+'Bascule' est le mot français officiellement utilisé pour traduire l'anglais 'Toggle':
 
 <img src="svg/b-grid.svg"> Les bords des tables
 
@@ -87,7 +87,7 @@ La formule peut être exprimée soit sous forme de [symboles logiques](https://f
 
 <img src="svg/b-sort.svg"> Les groupes de tables
 
-`𝖠`ou `α` - Les représentations des formules
+`𝖠` ou `α` - Les représentations des formules
 
 --- 
 
