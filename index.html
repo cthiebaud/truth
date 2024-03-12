@@ -1041,8 +1041,8 @@
                 'β',
                 '!α',
                 '!β',
-                'α & β | !α & !β', // look for new RegExp('α', ...) ~40 lines below before changing these two lines. 
-                '!α & β | α & !β', // It assumes there are 2 'α' chars to enable various colors for the bricks.
+                'α == β',
+                'α != β',
                 3,
                 'α | β',
                 'α | !β',
@@ -1075,14 +1075,22 @@
                         // javascript
                         {
                             this.#displayMode.javascript[key] = item
+                                /*
                                 .replace(/α & β \| !α & !β/g, "α == β")
                                 .replace(/!α & β \| α & !β/g, "α != β")
+                                */
                                 .replace(/true/g, "Τ")
                                 .replace(/false/g, "&nbsp;")
                         }
                         // canonical 
                         {
-                            let tmp = item.replace(/α & β \| !α & !β/g, "α ⊻ β").replace(/!α & β \| α & !β/g, "α ⊻ !β")
+                            let tmp = item
+                                .replace(/α == β/g, "α ⊻ β")
+                                .replace(/α != β/g, "α ⊻ !β")
+                            /*
+                            cf. CSS rule for .negation.canonical:before
+                            ¬
+                            */
                             tmp = tmp.replace(/(!?)α|(!?)β/g, (match, negationA, negationB) => {
                                 if (negationA === '!') {
                                     return negationMap['!α'];
@@ -1092,11 +1100,11 @@
                                     return match === 'α' ? '𝖠' : '𝖡';
                                 }
                             });
-                            /*
-                            cf. CSS rule for .negation.canonical:before
-                            ¬
-                            */
-                            this.#displayMode.canonical[item] = tmp.replace(/&/g, "∧").replace(/\|/g, "∨").replace(/true/, "⊤").replace(/false/, "⊥")
+                            this.#displayMode.canonical[item] = tmp
+                                .replace(/&/g, "∧")
+                                .replace(/\|/g, "∨")
+                                .replace(/true/, "⊤")
+                                .replace(/false/, "⊥")
                         }
                     }
                 });
@@ -1113,7 +1121,7 @@
                 if (f === 'true') {
                     return new OneOrTwoColors(colors.colorTrue)
                 }
-                if ((f.match(new RegExp('α', "g")) || []).length === 2) {
+                if (f.includes('!=') || f.includes('==')) {
                     return new OneOrTwoColors(colors.nextColor(), colors.nextColor())
                 }
                 return new OneOrTwoColors(colors.nextColor())

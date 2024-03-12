@@ -59,7 +59,7 @@ La formule qui donne la clé de chaque de table de vérité peut être exprimée
 | A OU NON B          | `𝖠 ∨ ¬𝖡`  | `α \| !β`                    |  ■ ■<br>□ ■   |
 | NON A OU NON B      | `¬𝖠 ∨ ¬𝖡` | `!α \| !β`                   |  ■ □<br>■ ■   |
 | NON A OU B          | `¬𝖠 ∨ 𝖡`  | `!α \| β`                    |  □ ■<br>■ ■   |
-| TOUJOURS VRAI       | `⊤`       | `true`                       |  ■ ■<br>■ ■   |
+| TOUJOURS VRAI       | `⊤`       | `T`, pour 'true'             |  ■ ■<br>■ ■   |
 
 
 --- 
