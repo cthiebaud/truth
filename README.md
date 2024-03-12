@@ -38,13 +38,11 @@ Chaque résultat est accompagné d'un son différent.
 
 ### Représentations
 
-`𝖠` ou `α`
-
-La formule qui donne la clé de chaque de table de vérité peut être exprimée, soit avec des [symboles logiques](https://fr.wikipedia.org/wiki/Liste_de_symboles_logiques), par exemple `𝖠 ∧ 𝖡`, soit par une expression javascript, comme `α & β` . Il est intéressant de noter que c'est cette denière forme qui est factuellement interprétée par le moteur javascript de l'application, comme une "fonction flèche" ([arrow function](https://en.wikipedia.org/wiki/Anonymous_function) en anglais): `(α, β) => α & β`.
+La formule qui donne la clé de chaque de table de vérité peut être exprimée, soit avec des [symboles logiques](https://fr.wikipedia.org/wiki/Liste_de_symboles_logiques), par exemple `𝖠 ∧ 𝖡`, soit par une expression javascript, comme `α & β` . Il est intéressant de noter que dans ce dernier cas, l'expression est factuellement interprétée dans une [fonction anonyme](https://fr.wikipedia.org/wiki/Fonction_anonyme) par le moteur javascript de l'application: <span style="font-family:monospace; color:#d63384;">(α, β) => **α & β**</span>.
 
 |  | symboles logiques | javascript | |
 |---|---|---|---|
-| TOUJOURS FAUX       | `⊥`       | ` `                          |  □&nbsp;□<br>□&nbsp;□  |
+| TOUJOURS FAUX       | `⊥`       | ` `                          |  □&nbsp;□<br>□&nbsp;□</kbd>  |
 | A ET B              | `𝖠 ∧ 𝖡`   | `α & β`                      |  ■ □<br>□ □   |
 | A ET NON B          | `𝖠 ∧ ¬𝖡`  | `α & !β`                     |  □ ■<br>□ □   |
 | NON A ET B          | `¬𝖠 ∧ ¬𝖡` | `!α & !β`                    |  □ □<br>□ ■   |
@@ -66,14 +64,14 @@ La formule qui donne la clé de chaque de table de vérité peut être exprimée
 
 ### Raccourcis clavier
 
-* `Space` Démarre <img src="svg/b-start.svg" style="width: auto; height: 16px;">&nbsp; ou arrête <img src="svg/b-stop.svg" style="width: auto; height: 16px;">&nbsp; une partie. Si les résultats de la partie précédente sont encore affichés, redémarre une nouvelle partie après avoir mélangé les tables aléatoirement. 
-* `Escape` 'Tue' une partie (i.e. sans afficher les résultats). 
-* `Q` <img src="svg/b-grid.svg" style="width: auto; height: 16px;"   >&nbsp; Affiche les bords des tables et des celulles.
-* `W` <img src="svg/b-axes.svg" style="width: auto; height: 16px;"   >&nbsp; Affiche les en-têtes des axes des tables.
-* `E` <img src="svg/b-group.svg" style="width: auto; height: 16px;"  >&nbsp; Groupe les tables par nombre de briques en ordre croissant.
-* `S` <img src="svg/b-shuffle.svg" style="width: auto; height: 16px;">&nbsp; *[swipe right]* Mélange les tables aléatoirement.
-* `O` *[swipe left]* Trie les tables par nombre de briques en ordre croissant, ou mélange les couleurs si les tables sont déjà triées.
-* `A` Change la représentation des en-têtes des tableaux (symboles logiques / javascript).
+* <kbd>Space</kbd> Démarre <img src="svg/b-start.svg" style="width: auto; height: 16px;">&nbsp; ou arrête <img src="svg/b-stop.svg" style="width: auto; height: 16px;">&nbsp; une partie. Si les résultats de la partie précédente sont encore affichés, redémarre une nouvelle partie après avoir mélangé les tables aléatoirement. 
+* <kbd>Escape</kbd> 'Tue' une partie (i.e. sans afficher les résultats). 
+* <kbd>Q</kbd>&nbsp;&nbsp;&nbsp;&nbsp;<img src="svg/b-grid.svg" style="width: auto; height: 16px;"   >&nbsp;&nbsp;&nbsp; Affiche les bords des tables et des celulles.
+* <kbd>W</kbd>&nbsp;&nbsp;&nbsp;&nbsp;<img src="svg/b-axes.svg" style="width: auto; height: 16px;"   >&nbsp;&nbsp;&nbsp; Affiche les en-têtes des axes des tables.
+* <kbd>E</kbd>&nbsp;&nbsp;&nbsp;&nbsp;<img src="svg/b-group.svg" style="width: auto; height: 16px;"  >&nbsp;&nbsp;&nbsp; Groupe les tables par nombre de briques en ordre croissant.
+* <kbd>S</kbd>&nbsp;&nbsp;&nbsp;&nbsp;<img src="svg/b-shuffle.svg" style="width: auto; height: 16px;">&nbsp;&nbsp;&nbsp; Mélange les tables aléatoirement.
+* <kbd>O</kbd> Trie les tables par nombre de briques en ordre croissant, ou mélange les couleurs si les tables sont déjà triées.
+* <kbd>A</kbd> Change la représentation des en-têtes des tableaux (symboles logiques / javascript).
 
 --- 
 
@@ -81,13 +79,10 @@ La formule qui donne la clé de chaque de table de vérité peut être exprimée
 
 'Bascule' est le mot français officiellement utilisé pour traduire l'anglais 'Toggle':
 
-<img src="svg/b-grid.svg"> Les bords des tables
-
-<img src="svg/b-axes.svg"> Les en-têtes des axes
-
-<img src="svg/b-sort.svg"> Les groupes de tables
-
-`𝖠` ou `α` - Les représentations des formules
+* <img src="svg/b-grid.svg" style="width: auto; height: 16px;"   >&nbsp;&nbsp;&nbsp; Affiche les bords des tables et des celulles.
+* <img src="svg/b-axes.svg" style="width: auto; height: 16px;"   >&nbsp;&nbsp;&nbsp; Affiche les en-têtes des axes des tables.
+* <img src="svg/b-group.svg" style="width: auto; height: 16px;"  >&nbsp;&nbsp;&nbsp; Groupe les tables par nombre de briques en ordre croissant.
+* `𝖠` ou `α` Change la représentation des en-têtes des tableaux (symboles logiques / javascript).
 
 --- 
 
