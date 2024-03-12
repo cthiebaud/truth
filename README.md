@@ -40,7 +40,7 @@ Chaque résultat est accompagné d'un son différent.
 
 `𝖠` ou `α`
 
-La formule peut être exprimée soit sous forme de [symboles logiques](https://fr.wikipedia.org/wiki/Liste_de_symboles_logiques) `𝖠`, soit par une expression javascript `α`. Il est intéressant de noter que cette denière forme est factuellement interprétée par le moteur javascript de l'application. 
+La formule peut être exprimée soit sous forme de [symboles logiques](https://fr.wikipedia.org/wiki/Liste_de_symboles_logiques) (`𝖠`), soit par une expression javascript (`α`). Il est intéressant de noter que cette denière forme est factuellement interprétée par le moteur javascript de l'application. 
 
 |  | symboles logiques | javascript | |
 |---|---|---|---|
@@ -53,8 +53,8 @@ La formule peut être exprimée soit sous forme de [symboles logiques](https://f
 | B                   | `𝖡`       | `β`                          |  ■ □<br>■ □   |
 | NON A               | `¬𝖠`      | `!α`                         |  □ □<br>■ ■   |
 | NON B               | `¬𝖡`      | `!β`                         |  □ ■<br>□ ■   |
-| A OU EXCLUSIF B     | `𝖠 ⊻ 𝖡`   | `α == β` /`α & β \| !α & !β` |  ■ □<br>□ ■ |
-| A OU EXCLUSIF NON B | `𝖠 ⊻ ¬𝖡`  | `α != β` /`!α & β \| α & !β` |  □ ■<br>■ □ |
+| A OU EXCLUSIF B     | `𝖠 ⊻ 𝖡`   | `α == β`, an astute workaround for  <br>`α & β \| !α & !β` |  ■ □<br>□ ■ |
+| A OU EXCLUSIF NON B | `𝖠 ⊻ ¬𝖡`  | `α != β`, idem <br>`!α & β \| α & !β` |  □ ■<br>■ □ |
 | A OU B              | `𝖠 ∨ 𝖡`   | `α \| β`                     |  ■ ■<br>■ □   |
 | A OU NON B          | `𝖠 ∨ ¬𝖡`  | `α \| !β`                    |  ■ ■<br>□ ■   |
 | NON A OU NON B      | `¬𝖠 ∨ ¬𝖡` | `!α \| !β`                   |  ■ □<br>■ ■   |
