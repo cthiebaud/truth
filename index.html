@@ -1092,6 +1092,10 @@
                                     return match === 'α' ? '𝖠' : '𝖡';
                                 }
                             });
+                            /*
+                            cf. CSS rule for .negation.canonical:before
+                            ¬
+                            */
                             this.#displayMode.canonical[item] = tmp.replace(/&/g, "∧").replace(/\|/g, "∨").replace(/true/, "⊤").replace(/false/, "⊥")
                         }
                     }

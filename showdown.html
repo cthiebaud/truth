@@ -61,7 +61,7 @@
             }
 
             function displayResult(text) {
-                const converter = new showdown.Converter({ strikethrough: true })
+                const converter = new showdown.Converter({ tables: true, strikethrough: true })
                 const html = converter.makeHtml(text)
                 document.querySelector(".container :first-child").insertAdjacentHTML('beforebegin', html);
                 const h1 = document.querySelector("h1")
@@ -70,6 +70,11 @@
                     titleElement.textContent = h1.textContent
                     document.head.prepend(titleElement)
                 }
+
+                document.querySelectorAll('table').forEach(table => {
+                    table.classList.add('table', 'table-light', 'table-sm', 'table-borderless');
+                });
+
                 /*
                 const images = document.querySelectorAll("img")
                 images.forEach(function (img) {

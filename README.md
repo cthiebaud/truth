@@ -49,6 +49,26 @@ Chaque résultat est accompagné d'un son différent.
 
 --- 
 
+### Représentation
+
+#### 𝖠 | α
+
+La formule peut être exprimée soit sous forme de [symboles logiques](https://fr.wikipedia.org/wiki/Liste_de_symboles_logiques), tels que `𝖠 ∧ 𝖡` ou `¬𝖠 ∨ ¬𝖡`d'expressions JavaScript, par exemple `α & β`, resp. `!α | !β`. Il est intéressant de noter que cette denière forme est factuellement interprétée par le moteur javascript de l'application. LA checkbox 
+
+--- 
+
+### Bascules 
+
+'Bascule' est le mot français offciellement utilisé pour traduire l'anglais 'Toggle'
+
+<img src="svg/b-grid.svg"> les bords des tables
+
+<img src="svg/b-axes.svg"> les en-têtes des axes
+
+<img src="svg/b-sort.svg"> les groupe de tables
+
+--- 
+
 ![ἀλήθεια](screenshots/2024_03_09-1824x1824.jpg)
 
 
