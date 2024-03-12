@@ -44,22 +44,22 @@ La formule peut être exprimée soit sous forme de [symboles logiques](https://f
 
 | | symboles logiques | javascript |
 |---|---|---|
-| TOUJOURS FAUX           | `⊥       `       |   `false                         `  |
-| A ET B                  | `𝖠 ∧ 𝖡   `       |   `α & β                         `  |
-| A ET NON N              | `𝖠 ∧ ¬𝖡  `       |   `α & !β                        `  |
-| NON A ET B              | `¬𝖠 ∧ ¬𝖡 `       |   `!α & !β                       `  |
-| NON A ET NON B          | `¬𝖠 ∧ 𝖡  `       |   `!α & β                        `  |
-| A                       | `𝖠       `       |   `α                             `  |
-| B                       | `𝖡       `       |   `β                             `  |
-| NON A                   | `¬𝖠      `       |   `α | !β                        `  |
-| NON B                   | `¬𝖡      `       |   `!β                            `  |
-| A OU EXCLUSIF B         | `𝖠 ⊻ 𝖡   `       |   `α == β` càd `α & β | !α & !β`    |
-| A OU EXCLUSIF NON B     | `𝖠 ⊻ 𝖡   `       |   `α != β` càd `!α & β | α & !β`    |
-| A OU B                  | `𝖠 ∨ 𝖡   `       |   `α | β                         `  |
-| A OU NON B              | `𝖠 ∨ ¬𝖡  `       |   `α | !β                        `  |
-| NON A OU NON B          | `¬𝖠 ∨ ¬𝖡 `       |   `!α | !β                       `  |
-| NON A OU B              | `¬𝖠 ∨ 𝖡  `       |   `!α | β                        `  |
-| TOUJOURS VRAI           | `⊤       `       |   `true                          `  |
+| TOUJOURS FAUX           | `⊥`              |   `false`                           |
+| A ET B                  | `𝖠 ∧ 𝖡`          |   `α & β`                           |
+| A ET NON N              | `𝖠 ∧ ¬𝖡`         |   `α & !β`                          |
+| NON A ET B              | `¬𝖠 ∧ ¬𝖡`        |   `!α & !β`                         |
+| NON A ET NON B          | `¬𝖠 ∧ 𝖡`         |   `!α & β`                          |
+| A                       | `𝖠`              |   `α`                               |
+| B                       | `𝖡`              |   `β`                               |
+| NON A                   | `¬𝖠`             |   `α | !β`                          |
+| NON B                   | `¬𝖡`             |   `!β`                              |
+| A OU EXCLUSIF B         | `𝖠 ⊻ 𝖡`          |   `α == β`                          |
+| A OU EXCLUSIF NON B     | `𝖠 ⊻ 𝖡`          |   `α != β`                          |
+| A OU B                  | `𝖠 ∨ 𝖡`          |   `α | β`                           |
+| A OU NON B              | `𝖠 ∨ ¬𝖡`         |   `α | !β`                          |
+| NON A OU NON B          | `¬𝖠 ∨ ¬𝖡`        |   `!α | !β`                         |
+| NON A OU B              | `¬𝖠 ∨ 𝖡`         |   `!α | β`                          |
+| TOUJOURS VRAI           | `⊤`              |   `true`                            |
 
 
 --- 
