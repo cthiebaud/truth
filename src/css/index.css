@@ -11,6 +11,12 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+body.javascript {
+  font-family: 'GFS Didot', 'Times New Roman', Times, serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
 #copyright {
   visibility: hidden;
   overflow: hidden;
@@ -59,7 +65,7 @@ body {
 }
 
 .btn.my-button svg {
-  vertical-align: text-bottom;  
+  vertical-align: text-bottom;
 }
 /* FIN prise de tête */
 
@@ -80,11 +86,25 @@ body {
   margin-bottom: 3rem !important;
 }
 
+.gfs-didot-regular {
+  font-family: 'GFS Didot', 'Times New Roman', Times, serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+body:not(.javascript) #aletheia #logo:before {
+  content: "Aletheia"
+}
+
+body.javascript #aletheia #logo:before {
+  content: "ἀλήθεια"
+}
+
 #aletheia #logo {
-  font-family: Georgia, 'Times New Roman', Times, serif;
   font-size: 64px;
   text-decoration: none;
   color: inherit;
+  user-select: none;
 }
 
 #tables > div:not(.separator-container) {

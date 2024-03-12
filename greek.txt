@@ -1,0 +1,6 @@
+false: ψευδής
+true: ἀληθής
+and: ϗ
+or: ή
+xor ?
+T:  Τ

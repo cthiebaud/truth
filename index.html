@@ -62,7 +62,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&family=Victor+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Victor+Mono&family=GFS+Didot&display=swap" rel="stylesheet">
     <!-- BEGIN livejs for test - - >
     <script type="text/javascript" src="https://livejs.com/live.js"></script>
     < ! - - END livejs for test -->
@@ -321,7 +321,7 @@
     <div id="con" class="container">
         <div id="alpha-beta" class="p-2 d-flex justify-content-between align-items-start">
             <div style="display: flex; align-items: end;">
-                <div id="αβ" style="display: flex; align-items: end; height: 48px;">
+                <div id="αβ" style="display: flex; align-items: end; height: 48px; user-select: none;">
                     <span style="font-size: 36px;">(𝖠,𝖡)</span>
                 </div>
                 <svg width="32" height="32" preserveAspectRatio="none" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -371,7 +371,7 @@
             <div id="copyright">
                 ©&nbsp;CT
             </div>
-            <div id="logo" href="https://en.wikipedia.org/wiki/Aletheia" target="_wikipedia">ἀλήθεια</div>
+            <div id="logo" href="https://en.wikipedia.org/wiki/Aletheia" target="_wikipedia"></div>
             <div id="buttons2" class="d-flex flex-column btn-group-vertical shadow" role="group">
                 <button id="infos" type="button" class="btn btn-sm my-button" aria-label="infos" style="line-height: 1;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="20" viewBox="0 -2 32 34" style="vertical-align: bottom;">
@@ -1074,7 +1074,11 @@
                         const key = item
                         // javascript
                         {
-                            this.#displayMode.javascript[key] = item.replace(/α & β \| !α & !β/g, "α == β").replace(/!α & β \| α & !β/g, "α != β")
+                            this.#displayMode.javascript[key] = item
+                                .replace(/α & β \| !α & !β/g, "α == β")
+                                .replace(/!α & β \| α & !β/g, "α != β")
+                                .replace(/true/g, "Τ")
+                                .replace(/false/g, "&nbsp;")
                         }
                         // canonical 
                         {
@@ -1408,9 +1412,9 @@
             function toggle_displayMode() {
                 functions.toggleDisplay()
                 if (functions.displayMode.key === 'canonical') {
-                    document.getElementById('tables').classList.remove('javascript')
+                    document.getElementsByTagName('body')[0].classList.remove('javascript')
                 } else {
-                    document.getElementById('tables').classList.add('javascript')
+                    document.getElementsByTagName('body')[0].classList.add('javascript')
                 }
                 document.getElementById('canonical-or-javascript.label').innerHTML = functions.displayMode.symbol
                 document.querySelector('#αβ > span').innerHTML = functions.displayMode.facade
