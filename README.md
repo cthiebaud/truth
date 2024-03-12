@@ -51,9 +51,9 @@ Chaque résultat est accompagné d'un son différent.
 
 ### Représentation
 
-#### 𝖠 | α
+'𝖠' ou 'α'
 
-La formule peut être exprimée soit sous forme de [symboles logiques](https://fr.wikipedia.org/wiki/Liste_de_symboles_logiques), tels que `𝖠 ∧ 𝖡` ou `¬𝖠 ∨ ¬𝖡`d'expressions JavaScript, par exemple `α & β`, resp. `!α | !β`. Il est intéressant de noter que cette denière forme est factuellement interprétée par le moteur javascript de l'application. LA checkbox 
+La formule peut être exprimée soit sous forme de [symboles logiques](https://fr.wikipedia.org/wiki/Liste_de_symboles_logiques), tels que `𝖠 ∧ 𝖡` ou `¬𝖠 ∨ ¬𝖡`, soit par une expression JavaScript, par exemple `α & β`, resp. `!α | !β`. Il est intéressant de noter que cette denière forme est factuellement interprétée par le moteur javascript de l'application. 
 
 --- 
 
