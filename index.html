@@ -1007,6 +1007,7 @@
                 const displayStyle = Utils.toggleElementsVisibility(document.getElementsByTagName('th'), 'table-cell')
                 this.visible = displayStyle === 'table-cell'
                 Axes.setCellWidth(!this.visible)
+                return this.visible
             }
         }
         const axes = new Axes()
@@ -1113,8 +1114,9 @@
                 }
                 return new OneOrTwoColors(colors.nextColor())
             }
-            toggleDisplay() {
+            toggleDisplayMode() {
                 this.#currentDisplayModeKey = this.#currentDisplayModeKey === 'canonical' ? 'javascript' : 'canonical'
+                return this.#currentDisplayModeKey
             }
             get displayMode() {
                 return this.#displayMode[this.#currentDisplayModeKey]
@@ -1389,8 +1391,10 @@
             function toggle_borders() {
                 if (document.getElementById("tables").classList.contains("transparent-border")) {
                     document.getElementById("tables").classList.remove("transparent-border")
+                    return false
                 } else {
                     document.getElementById("tables").classList.add("transparent-border")
+                    return true
                 }
             }
 
@@ -1406,10 +1410,11 @@
                     document.getElementById("tables").classList.add("center-children")
                     document.getElementById("shuffle-all").disabled = false
                 }
+                return paragraphBreaks
             }
 
             function toggle_displayMode() {
-                functions.toggleDisplay()
+                functions.toggleDisplayMode()
                 if (functions.displayMode.key === 'canonical') {
                     document.getElementsByTagName('body')[0].classList.remove('javascript')
                 } else {
@@ -1420,6 +1425,7 @@
                 document.querySelectorAll('[data-function] caption').forEach((c) => {
                     c.innerHTML = functions.displayMode[c.parentNode.parentNode.dataset.function]
                 })
+                return functions.displayMode.key !== 'canonical'
             }
 
             const hammertime = new hammerjs(document.getElementById("tables"))
@@ -1524,16 +1530,16 @@
                             mega_reorder();
                             break;
                         case 'KeyQ':
-                            toggle_borders();
+                            document.getElementById("table-borders").checked = !toggle_borders();
                             break;
                         case 'KeyW':
-                            axes.toggleVisibility();
+                            document.getElementById("ab-axes").checked = axes.toggleVisibility();
                             break;
                         case 'KeyE':
-                            toggle_paragraphs();
+                            document.getElementById("paragraph-breaks").checked = toggle_paragraphs();
                             break;
                         case 'KeyA':
-                            toggle_displayMode();
+                            document.getElementById("canonical-or-javascript").checked = toggle_displayMode();
                             break;
                         case 'ArrowRight':
                             if (!player.isPlaying) {

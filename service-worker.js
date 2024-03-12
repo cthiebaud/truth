@@ -50,7 +50,7 @@ if (workbox) {
     { revision: '6ba7ba800500d84debbac5d168a0fe3c', url: 'HOWTO.md' },
     { revision: '318f1210aabf904c588a8cbb2b30c571', url: 'icon.png' },
     { revision: '5ca35952e03f6b381dc92b93a4d1430a', url: 'icon2.png' },
-    { revision: '7651a761eb7619e255c3412f306aab23', url: 'index.html' },
+    { revision: '6b14436f97b2f271f14627d453a36f26', url: 'index.html' },
     { revision: '229f9bd3bd97d27d3d947eae6dffd9b7', url: 'README.md' },
     { revision: '116f32b33817a41a6dea393a7e96b96c', url: 'screenshots/1024x500-screenshot.png' },
     { revision: '4628442658184696eb42308be406a20d', url: 'screenshots/1280x800-screenshot.png' },
