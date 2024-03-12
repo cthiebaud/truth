@@ -303,15 +303,17 @@
                         </div>
                     </div>
                 </div>
-                <div id="modal-footer" class="modal-footer d-flex justify-content-between">
-                    <div id="result-timestamp" class="ms-auto" style="margin-right: 1rem;"></div>
-                    <button disabled id="replayButton" type="button" class="btn btn-sm my-button btn-outline-secondary" aria-label="re-again"
-                        style="margin: 0; padding: 0; display: none;">
-                        <svg id="replay" xmlns="http://www.w3.org/2000/svg" style="width: 30px; height: 30px;">
-                            <use xlink:href="#svg-replay"></use>
-                        </svg>
-                    </button>
-                </div>
+                <!-- 
+                    <div id="modal-footer" class="modal-footer d-flex justify-content-between">
+                        <div id="result-timestamp" class="ms-auto" style="margin-right: 1rem;"></div>
+                            <button disabled id="replayButton" type="button" class="btn btn-sm my-button btn-outline-secondary" aria-label="re-again"
+                            style="margin: 0; padding: 0; display: none;">
+                            <svg id="replay" xmlns="http://www.w3.org/2000/svg" style="width: 30px; height: 30px;">
+                                <use xlink:href="#svg-replay"></use>
+                            </svg>
+                        </button>
+                    </div>
+                -->
             </div>
         </div>
     </div>
@@ -391,15 +393,16 @@
                 display: flex;
                 justify-content: space-around;
                 align-items: center;
+                white-space: nowrap;
             }
 
             nav#nav.navbar #controls>* {
-                width: 80px;
+                text-align: center;
                 background-color: transparent;
             }
 
-            nav#nav.navbar #controls .center {
-                text-align: center;
+            nav#nav.navbar #controls>*:not(:first-child):not(:last-child) {
+                width: 80px;
             }
 
             nav#nav.navbar #controls #tortoise-hare-achilles.carousel {
@@ -429,14 +432,16 @@
         </style>
         <nav id="nav" class="navbar fixed-bottom align-item-center">
             <div id="controls" class="container" style="visibility: hidden">
-                <div class="center">
-                    <button id="shuffle-all" type="button" class="leftleft btn btn-outline-secondary" aria-label="shuffle-all"
+                <!-- scramble -->
+                <div>
+                    <button id="shuffle-all" type="button" class="btn btn-outline-secondary" aria-label="shuffle-all"
                         style="width: 36px; height:36px; border-radius: 3rem; background-color: white; position: relative;">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 49.7 49.7" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
                             <use xlink:href="#svg-scrambled-true"></use>
                         </svg>
+                    </button>
                 </div>
-                </button>
+                <!-- carousel -->
                 <div id="tortoise-hare-achilles" class="left carousel slide" data-bs-wrap="false">
                     <div class="carousel-inner">
                         <div id="tortoise" data-time="120" class="carousel-item active" data-sound="tortoise"><!-- data-bs-interval="0" -->
@@ -470,10 +475,10 @@
                         <span class="visually-hidden">Next</span>
                     </button>
                 </div>
-                <!-- ########################## -->
-                <div class="center compte-à-rebours victor-mono-400"></div>
-                <!-- ########################## -->
-                <div class="right" style="width: 80px;">
+                <!-- compte à rebours -->
+                <div class="compte-à-rebours victor-mono-400"></div>
+                <!-- action! -->
+                <div>
                     <button id="play" type="button" class="btn btn-outline-secondary timer-container" aria-label="play"
                         style="width:36px; height: 36px; margin: auto; background-color: white !important;">
                         <svg class="timer-not-playing" xmlns="http://www.w3.org/2000/svg">
@@ -704,13 +709,9 @@
 
                 Array.from(document.querySelectorAll('#cloche svg')).forEach(elem => {
                     elem.style.display = 'none'
-                });
+                })
 
-                (((resultDisplayModeSymbol) => {
-                    if (resultDisplayModeSymbol) {
-                        resultDisplayModeSymbol.innerHTML = result.displayModeSymbol
-                    }
-                })(document.getElementById('result-display-mode-symbol')))
+                Utils.safeGetElementByIdThen('result-display-mode-symbol', (element, arg) => { element.innerHTML = arg }, result.displayModeSymbol);
 
                 document.getElementById(`result-level-${result.level}`).style.display = 'block'
                 document.getElementById(`result-scrambled-${result.scrambled}`).style.display = 'block'
@@ -737,8 +738,8 @@
                     // second: 'numeric',
                     // timeZoneName: 'short',
                 }
-                const formattedDate = currentDate.toLocaleString('en-US', options)
-                document.getElementById('result-timestamp').innerHTML = formattedDate
+
+                Utils.safeGetElementByIdThen('result-timestamp', (element, arg) => { element.innerHTML = arg }, currentDate.toLocaleString('en-US', options));
 
                 games.currentGame()?.dump()
 

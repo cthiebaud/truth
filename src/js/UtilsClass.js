@@ -1,5 +1,15 @@
 export class Utils {
 
+    static safeGetElementByIdThen(id, func, ...args) {
+        if (id) {
+            const element = document.getElementById(id)
+            if (element) {
+                return func(element, ...args)
+            }
+        }
+        return undefined
+    }
+
     static normalizeVraiment(x, srcmin, srcmax, dstmin, dstmax) {
         if (srcmax === srcmin) return 0
         if (Math.abs(x - srcmax) < Number.EPSILON) {
