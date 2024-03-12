@@ -1373,19 +1373,20 @@
 
             const originalElementsArray = doIt()
 
-            function mega_shuffle() {
+            function safe_shuffle() {
                 if (player.isPlaying) return
                 if (paragraphBreaks) return
                 scrambleIt(originalElementsArray)
             }
 
-            function mega_reorder() {
+            function safe_reorder() {
                 if (player.isPlaying) return
-                if (document.getElementById('tables').dataset.scrambled === 'false') {
-                    shuffleBrickColors(originalElementsArray)
-                } else {
-                    scrambleIt(originalElementsArray, false)
-                }
+                scrambleIt(originalElementsArray, false)
+            }
+
+            function safe_recolor() {
+                if (player.isPlaying) return
+                shuffleBrickColors(originalElementsArray)
             }
 
             function toggle_borders() {
@@ -1431,11 +1432,9 @@
             const hammertime = new hammerjs(document.getElementById("tables"))
 
             hammertime.on('swiperight', function () {
-                // mega_shuffle()
                 games.prev()
             })
             hammertime.on('swipeleft', function () {
-                // mega_reorder()
                 games.next()
             })
 
@@ -1457,7 +1456,7 @@
             document.getElementById("shuffle-all").addEventListener('click', clickEvent => {
                 clickEvent.preventDefault()
                 clickEvent.stopPropagation()
-                mega_shuffle()
+                safe_shuffle()
             })
 
             document.getElementById("canonical-or-javascript")?.addEventListener('click', clickEvent => {
@@ -1488,7 +1487,7 @@
                     resultModal.addEventListener('hidden.bs.modal', event => {
                         requestAnimationFrame(() => { // let the javascript paint everything it needs to paint before brining the modal
                             // player.stop() // already in initial hidden.bs.modal event
-                            mega_shuffle()
+                            safe_shuffle()
                             player.start()
                         })
                     }, { once: true, })
@@ -1524,10 +1523,13 @@
                             }
                             break;
                         case 'KeyS':
-                            mega_shuffle();
+                            safe_shuffle();
                             break;
                         case 'KeyO':
-                            mega_reorder();
+                            safe_reorder();
+                            break;
+                        case 'KeyC':
+                            safe_recolor();
                             break;
                         case 'KeyQ':
                             document.getElementById("table-borders").checked = !toggle_borders();
