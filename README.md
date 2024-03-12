@@ -40,7 +40,7 @@ Chaque résultat est accompagné d'un son différent.
 
 `𝖠` ou `α`
 
-La formule qui donne la clé de chaque de table de vérité peut être exprimée, soit avec des [symboles logiques](https://fr.wikipedia.org/wiki/Liste_de_symboles_logiques), par exemple `𝖠 ∧ 𝖡`, soit par une expression javascript, comme `α & β` . Il est intéressant de noter que c'est cette denière forme qui est factuellement interprétée par le moteur javascript de l'application comme une "fonction flèche" (arrow function): `(α,β) => α & β`.
+La formule qui donne la clé de chaque de table de vérité peut être exprimée, soit avec des [symboles logiques](https://fr.wikipedia.org/wiki/Liste_de_symboles_logiques), par exemple `𝖠 ∧ 𝖡`, soit par une expression javascript, comme `α & β` . Il est intéressant de noter que c'est cette denière forme qui est factuellement interprétée par le moteur javascript de l'application, comme une "fonction flèche" ([arrow function](https://en.wikipedia.org/wiki/Anonymous_function) en anglais): `(α, β) => α & β`.
 
 |  | symboles logiques | javascript | |
 |---|---|---|---|
@@ -91,6 +91,6 @@ La formule qui donne la clé de chaque de table de vérité peut être exprimée
 
 --- 
 
-![ἀλήθεια](screenshots/2024_03_09-1824x1824.jpg)
+![ἀλήθεια](screenshots/2024_03_12-2322×1826.jpg)
 
 
