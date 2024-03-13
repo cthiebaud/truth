@@ -1,18 +1,41 @@
 body {
   background-color: #f8f7ef;
-  /* f1efe0 */
-  /* #f1efe0; */
   color: #173f35;
   stroke: #173f35;
   fill: #0d221d;
-  /* font-family: Georgia, 'Times New Roman', Times, serif; 
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  */
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+body:not(.javascript) .the-font-for-titles {
+  font-family: inherit;
 }
 
-body.javascript {
+body.javascript .the-font-for-titles,
+body.javascript .the-font-for-tables,
+  .gfs-didot-regular {
   font-family: 'GFS Didot', 'Times New Roman', Times, serif;
+  font-weight: 400;
+  font-style: normal;
+}
+/*
+body.javascript .the-font-for-tables {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: 400;
+  font-style: normal;
+}
+*/
+
+body:not(.javascript) .the-font-for-tables,
+.noto-sans math-regular {
+  font-family: 'Noto Sans Math', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.the-font-monospaced,
+.victor-mono-400 {
+  font-family: 'Victor Mono', 'Courier New', Courier, monospace;
+  font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
 }
@@ -22,10 +45,6 @@ body.javascript {
   overflow: hidden;
   width: 33px;
   font-size: 10px;
-}
-
-.modal {
-  font-family: var(--bs-body-font-family);
 }
 
 /* BEGIN prise de tête */
@@ -86,18 +105,12 @@ body.javascript {
   margin-bottom: 3rem !important;
 }
 
-.gfs-didot-regular {
-  font-family: 'GFS Didot', 'Times New Roman', Times, serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
 body:not(.javascript) #aletheia #logo:before {
-  content: "Aletheia"
+  content: 'Aletheia';
 }
 
 body.javascript #aletheia #logo:before {
-  content: "ἀλήθεια"
+  content: 'ἀλήθεια';
 }
 
 #aletheia #logo {
@@ -214,12 +227,11 @@ body.javascript #aletheia #logo:before {
 
 #tables table caption {
   white-space: nowrap;
-  font-size: 20px;
+  font-size: 22px;
   background-color: #ffffffa0;
-  margin-bottom: 0.25rem;
-  padding: 0.25rem 0;
+  margin-bottom: 0.375rem;
+  padding: 0;
   color: inherit;
-  height: 38px;
 }
 
 #tables table thead th:nth-child(2):after {
@@ -227,14 +239,15 @@ body.javascript #aletheia #logo:before {
   width: 100%;
   overflow: visible;
   position: absolute;
-  top: -2px;
+  top: -4px;
   left: 0;
   transform: translateX(50%);
   white-space: nowrap;
   text-align: center;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Noto Sans Math', sans-serif;
+  font-size: 12px;  
 }
-#tables.javascript table thead th:nth-child(2):after {
+body.javascript #tables table thead th:nth-child(2):after {
   content: 'β';
 }
 #tables table tbody tr:nth-child(1) th:after {
@@ -249,9 +262,11 @@ body.javascript #aletheia #logo:before {
   /* Vertical writing mode, right to left */
   transform: rotate(180deg) translateY(-50%);
   /* Rotate the text 180 degrees */
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Noto Sans Math', sans-serif;
+  font-size: 12px;  
 }
-#tables.javascript table tbody tr:nth-child(1) th:after {
+
+body.javascript #tables table tbody tr:nth-child(1) th:after {
   content: 'α';
 }
 
@@ -259,17 +274,16 @@ body.javascript #aletheia #logo:before {
   display: none;
   text-align: center;
   vertical-align: middle;
-  font-weight: normal;
-  font-size: 10px;
   padding: 1px !important;
   background-color: transparent !important;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Victor Mono', 'Courier New', Courier, monospace;
+  font-size: 8px;
   position: relative;
   min-width: var(--header-width_and_height);
   min-height: var(--header-width_and_height);
   /* https://stackoverflow.com/a/11275916/1070215 !!! */
   height: var(--header-width_and_height);
-  color: inherit;
+  color: gray;
 }
 
 #tables table thead tr th:not(:first-child) {

@@ -36,13 +36,6 @@
   left: 0;
 }
 
-.victor-mono-400 {
-  font-family: "Victor Mono", 'Courier New', Courier, monospace;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-}
-
 #play.btn:hover {
   background-color: white;
 }
