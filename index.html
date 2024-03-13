@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <!-- BEGIN Google tag (gtag.js) -->
+    <!-- BEGIN Google tag (gtag.js) - - >
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-TPVM6DVS53"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -11,7 +11,7 @@
 
         gtag('config', 'G-TPVM6DVS53');
     </script>
-    <!-- END Google tag (gtag.js) -->
+    < ! - - END Google tag (gtag.js) -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Unconcealing of Truths</title>
@@ -56,16 +56,17 @@
     <meta name="theme-color" content="#f8f7ef">
 
     <!-- /* changed by "NODE_ENV=<development|production> node dev-oder-prod.mjs" or "npm run <dev\prod>" */ -->
-    <link rel="stylesheet" href='/dist/css/bootstrap.min.css'>
-    <link rel="stylesheet" href='/dist/css/index.min.css'>
-    <link rel="stylesheet" href='/dist/css/timer.min.css'>
+    <link rel="stylesheet" href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css'>
+    <link rel="stylesheet" href='/src/css/index.css'>
+    <link rel="stylesheet" href='/src/css/timer.css'>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Victor+Mono&family=GFS+Didot&display=swap" rel="stylesheet">
-    <!-- BEGIN livejs for test - - >
+    <link href="https://fonts.googleapis.com/css2?family=Victor+Mono&family=Noto+Sans+Math&family=GFS+Didot&display=swap" rel="stylesheet">
+    
+    <!-- BEGIN livejs for test -->
     <script type="text/javascript" src="https://livejs.com/live.js"></script>
-    < ! - - END livejs for test -->
+    <!-- END livejs for test -->
 </head>
 
 <body class="">
@@ -134,6 +135,10 @@
     <div id="result-modal" class="modal fade" tabindex="-1" aria-labelledby="resultModalLabel" aria-hidden="true">
 
         <style>
+            #result-modal {
+                font-family: inherit;
+            }
+
             #modal-body {
                 padding-bottom: 0.67rem;
             }
@@ -208,9 +213,9 @@
                                 <div class="nowrap-overflow">Erred Clicks</div>
                             </div>
                             <div class="d-flex flex-column justify-content-between">
-                                <div class="nowrap-overflow victor-mono-400" id="result-elapsed">0′00″0000</div>
-                                <div class="nowrap-overflow"><span id="result-unconcealed" class="victor-mono-400">0</span> out of <span class="victor-mono-400">32</span></div>
-                                <div class="nowrap-overflow victor-mono-400">
+                                <div class="nowrap-overflow the-font-monospaced" id="result-elapsed">0′00″0000</div>
+                                <div class="nowrap-overflow"><span id="result-unconcealed" class="the-font-monospaced">0</span> out of <span class="the-font-monospaced">32</span></div>
+                                <div class="nowrap-overflow the-font-monospaced">
                                     <svg id="empty-set" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="16" height="16" viewBox="0 0 142.916 142.916">
                                         <path
                                             d="m32.901 114.799-12.015 16.507a7.308 7.308 0 0 0 5.903 11.61 7.301 7.301 0 0 0 5.917-3.006l12.11-16.638a56.47 56.47 0 0 0 26.644 6.651c31.342 0 56.84-25.499 56.84-56.842 0-15.979-6.636-30.427-17.283-40.764l15.074-20.709a7.31 7.31 0 0 0-1.607-10.21c-3.273-2.377-7.84-1.651-10.209 1.608L99.313 23.562a56.458 56.458 0 0 0-27.856-7.323c-31.343 0-56.842 25.499-56.842 56.841 0 16.477 7.05 31.329 18.286 41.719zm80.781-41.719c0 23.284-18.94 42.226-42.226 42.226-6.407 0-12.461-1.477-17.905-4.039l48.729-66.951c7.051 7.548 11.402 17.648 11.402 28.764zM71.457 30.856c6.901 0 13.403 1.698 19.159 4.646l-49.043 67.381C33.95 95.24 29.229 84.702 29.229 73.082c.003-23.284 18.944-42.226 42.228-42.226z" />
@@ -322,7 +327,7 @@
         <div id="alpha-beta" class="p-2 d-flex justify-content-between align-items-start">
             <div style="display: flex; align-items: end;">
                 <div id="αβ" style="display: flex; align-items: end; height: 48px; user-select: none;">
-                    <span style="font-size: 36px;">(𝖠,𝖡)</span>
+                    <span class="the-font-for-titles" style="font-size: 36px;">(𝖠,𝖡)</span>
                 </div>
                 <svg width="32" height="32" preserveAspectRatio="none" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M4 6L10.4 6C13.4928 6 16 8.50721 16 11.6L16 18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -332,11 +337,11 @@
             </div>
             <div id="buttons" class="btn-group btn-group-sm shadow" role="group">
 
-                <!-- BEGIN Button trigger modal for test - - >
+                <!-- BEGIN Button trigger modal for test -->
                 <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#result-modal">
                     result
                 </button>
-                < ! - - END Button trigger modal for test -->
+                <!-- END Button trigger modal for test -->
 
                 <input type="checkbox" class="btn-check" id="table-borders" autocomplete="off" aria-label="table-borders toggle">
                 <label class="btn my-button" for="table-borders">
@@ -365,13 +370,13 @@
             </div>
         </div>
 
-        <div id="tables" class="transparent-border center-children" data-scrambled="false"></div>
+        <div id="tables" class="transparent-border center-children the-font-for-tables" data-scrambled="false"></div>
 
         <div id="aletheia" class="text-center p-2 mb-0 d-flex justify-content-between align-items-end">
             <div id="copyright">
                 ©&nbsp;CT
             </div>
-            <div id="logo" href="https://en.wikipedia.org/wiki/Aletheia" target="_wikipedia"></div>
+            <div id="logo" class="the-font-for-titles"></div>
             <div id="buttons2" class="d-flex flex-column btn-group-vertical shadow" role="group">
                 <button id="infos" type="button" class="btn btn-sm my-button" aria-label="infos" style="line-height: 1;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="20" viewBox="0 -2 32 34" style="vertical-align: bottom;">
@@ -475,7 +480,7 @@
                     </button>
                 </div>
                 <!-- compte à rebours -->
-                <div class="compte-à-rebours victor-mono-400"></div>
+                <div class="compte-à-rebours the-font-monospaced"></div>
                 <!-- action! -->
                 <div>
                     <button id="play" type="button" class="btn btn-outline-secondary timer-container" aria-label="play"
@@ -500,7 +505,7 @@
 
     </div>
     <script>
-        /* BEGIN comment for dev */
+        /* BEGIN comment for dev * /
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('/service-worker.js')
                 .then((registration) => {
@@ -510,7 +515,7 @@
                     console.error('Service Worker registration failed:', error)
                 })
         }
-        /* END comment for dev */
+        / * END comment for dev */
     </script>
     <script type="module">
         import { Modal as bsModal, Carousel as bsCarousel } from 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/+esm'
@@ -518,11 +523,11 @@
         import bezierEasing from 'https://cdn.jsdelivr.net/npm/bezier-easing@2.1.0/+esm'
 
         /* changed by "NODE_ENV=<development|production> node dev-oder-prod.mjs" or "npm run <dev|prod>" */
-        import { Utils } from './dist/js/UtilsClass.min.js'
-        import { Colors, BlurOverlay } from './dist/js/ColorsClass.min.js'
-        import { Timer } from './dist/js/TimerClass.min.js'
-        import { SoundMachine } from './dist/js/SoundMachineClass.min.js'
-        import { Game, Action, Result, ResultProperty } from './dist/js/GameClass.min.js'
+        import { Utils } from './src/js/UtilsClass.js'
+        import { Colors, BlurOverlay } from './src/js/ColorsClass.js'
+        import { Timer } from './src/js/TimerClass.js'
+        import { SoundMachine } from './src/js/SoundMachineClass.js'
+        import { Game, Action, Result, ResultProperty } from './src/js/GameClass.js'
 
         let paragraphBreaks = false // true //
 
@@ -1086,7 +1091,7 @@
                     if (typeof item === 'string') {
                         const key = item
                         // javascript
-                        this.#displayMode.javascript[key] = item
+                        this.#displayMode.javascript[key] = item.replace(/^$/g, "&nbsp;")
 
                         // canonical 
                         this.#displayMode.canonical[key] = item
