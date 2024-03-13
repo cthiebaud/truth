@@ -24,10 +24,10 @@ More info on [github](https://github.com/cthiebaud/truth/blob/main/README.md)
 
 | | |
 |:------|:--------|
-| ![Apple App Store](assets/svg/Apple_logo_grey.svg) | [iPhone/iPad](https://apps.apple.com/us/app/aletheia-by-%C3%A6quologica/id6476017817) |
+| ![Apple App Store](assets/svg/Apple_logo_grey.svg) | [iPhone and iPad](https://apps.apple.com/us/app/aletheia-by-%C3%A6quologica/id6476017817) |
 | ![Android App Store](assets/svg/android-svgrepo-com.svg) | [Android](https://play.google.com/apps/testing/com.cthiebaud.aletheia.twa) |
 | ![WWW](assets/svg/internet-svgrepo-com.svg) | [www](https://aletheia.cthiebaud.com/) |
-| ![aletheia](assets/svg/Wikipedia's_W.svg) |  [Aletheia as philosophical term on Wikipedia ](https://en.wikipedia.org/wiki/Aletheia) |
+| ![aletheia](assets/svg/Wikipedia's_W.svg) |  [Aletheia (Ancient Greek: ἀλήθεια) as philosophical term on Wikipedia ](https://en.wikipedia.org/wiki/Aletheia) |
 | ![Github](assets/svg/github.svg) | [The github commit of this version](https://github.com/cthiebaud/truth/commit/{{commit_hash}}) |
 
 

@@ -1,10 +1,10 @@
-# ἀλήθεια
+# Alètheia
 
 [![WWW](assets/svg/internet-svgrepo-com.svg)](https://aletheia.cthiebaud.com/) 
 [![Android App Store](assets/svg/android-svgrepo-com.svg)](https://play.google.com/apps/testing/com.cthiebaud.aletheia.twa)
 [![Apple App Store](assets/svg/Apple_logo_grey.svg)](https://apps.apple.com/us/app/aletheia-by-%C3%A6quologica/id6476017817)
 
-La référence à Martin Heidegger est flagrante : « <i>En traduisant ἀλήθεια par Unverborgenheit, dévoilement ou plutôt non-voilement, et non plus simplement par “Vérité”, Heidegger s'efforce de faire entendre quelque chose du sens, de ce vers quoi ἀλήθεια faisait signe, même à l'insu des Grecs, et à partir duquel ils déployaient leur monde.</i> » [⁽¹⁾](https://fr.wikipedia.org/wiki/Al%C3%A8theia_dans_la_philosophie_de_Martin_Heidegger).
+La référence à Martin Heidegger est flagrante : « <i>En traduisant alètheia par Unverborgenheit, dévoilement ou plutôt non-voilement, et non plus simplement par “Vérité”, Heidegger s'efforce de faire entendre quelque chose du sens, de ce vers quoi alètheia faisait signe, même à l'insu des Grecs, et à partir duquel ils déployaient leur monde.</i> » [⁽¹⁾](https://fr.wikipedia.org/wiki/Al%C3%A8theia_dans_la_philosophie_de_Martin_Heidegger).
 
 Il s'agit donc de dévoiler les petites briques colorées pour faire apparaître ce que l'on appelle les tables de vérité [⁽²⁾](https://fr.wikipedia.org/wiki/Table_de_v%C3%A9rit%C3%A9) en jargon mathématique.
 
@@ -12,14 +12,14 @@ Il s'agit donc de dévoiler les petites briques colorées pour faire apparaître
 
 ### Niveaux
 
-<img src="svg/tortoise-fill-svgrepo-com.svg" style="width: 24px; height: 24px;">&nbsp;&nbsp;&nbsp;`Tortue` Le joueur a 2 minutes pour dévoiler les briques.
+<img src="svg/tortoise-fill-svgrepo-com.svg" style="width: 24px; height: 24px;">&nbsp; `Tortue` Le joueur a 2 minutes pour dévoiler les briques.
 
-<img src="svg/hare-fill-svgrepo-com.svg" style="width: 24px; height: 24px;">&nbsp;&nbsp;&nbsp;`Lièvre` Le joueur a 1 minute pour dévoiler les briques.
+<img src="svg/hare-fill-svgrepo-com.svg" style="width: 24px; height: 24px;">&nbsp; `Lièvre` Le joueur a 1 minute pour dévoiler les briques.
 
-<img src="svg/ancient-greek-helmet-1-svgrepo-com.svg" style="width: 24px; height: 24px;">&nbsp;&nbsp;&nbsp;`Casque Corinthien` Ce pourrait être celui d'Achille - **la** référence en matière de super-héros - mais aussi celui d'Hermès, le messager des dieux, réputé pour sa vitesse. On va en avoir besoin, car il ne reste plus que 30 secondes pour dévoiler les briques.
+<img src="svg/ancient-greek-helmet-1-svgrepo-com.svg" style="width: 24px; height: 24px;">&nbsp; `Casque Corinthien` Ce pourrait être celui d'Achille - **la** référence en matière de super-héros - mais aussi celui d'Hermès, le messager des dieux, réputé pour sa vitesse. On va en avoir besoin, car il ne reste plus que 30 secondes pour dévoiler les briques.
 
-La 🎵musique🎶 du niveau <img src="svg/ancient-greek-helmet-1-svgrepo-com.svg" alt="Achilles" style="width: 24px; height: 24px;">
-est sur [SoundCloud](https://soundcloud.com/christophe-thiebaud/aletheia?si=83569a3c774e4cdf84c684e74478af34&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing)
+*La 🎵musique🎶 du niveau <img src="svg/ancient-greek-helmet-1-svgrepo-com.svg" alt="Achilles" style="width: 24px; height: 24px;">
+est sur [SoundCloud](https://soundcloud.com/christophe-thiebaud/aletheia?si=83569a3c774e4cdf84c684e74478af34&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing)*
 
 --- 
 
@@ -80,10 +80,10 @@ La formule qui donne la clé de chaque de table de vérité peut être exprimée
 
 'Bascule' est le mot français officiellement utilisé pour traduire l'anglais 'Toggle':
 
-* <img src="svg/b-grid.svg" style="width: auto; height: 16px;" >&nbsp;&nbsp;&nbsp; Affiche les bords des tables et des celulles.
-* <img src="svg/b-axes.svg" style="width: auto; height: 16px;" >&nbsp;&nbsp;&nbsp; Affiche les en-têtes des axes des tables.
-* <img src="svg/b-group.svg" style="width: auto; height: 16px;">&nbsp;&nbsp;&nbsp; Groupe les tables par nombre de briques en ordre croissant.
-* `𝖠` ou `α` Change la représentation des en-têtes des tableaux entre symboles logiques ou javascript.
+* <img src="svg/b-grid.svg" style="width: auto; height: 16px;" >&nbsp; Affiche les bords des tables et des celulles.
+* <img src="svg/b-axes.svg" style="width: auto; height: 16px;" >&nbsp; Affiche les en-têtes des axes des tables.
+* <img src="svg/b-group.svg" style="width: auto; height: 16px;">&nbsp; Groupe les tables par nombre de briques en ordre croissant.
+* `𝖠` ou `α`&nbsp; Change la représentation des en-têtes des tableaux entre symboles logiques ou javascript.
 
 --- 
 
