@@ -83,7 +83,7 @@ La formule qui donne la clé de chaque de table de vérité peut être exprimée
 * <img src="svg/b-grid.svg" style="width: auto; height: 16px;" >&nbsp; Affiche les bords des tables et des celulles.
 * <img src="svg/b-axes.svg" style="width: auto; height: 16px;" >&nbsp; Affiche les en-têtes des axes des tables.
 * <img src="svg/b-group.svg" style="width: auto; height: 16px;">&nbsp; Groupe les tables par nombre de briques en ordre croissant.
-* `𝖠` ou `α`&nbsp; Change la représentation des en-têtes des tableaux entre symboles logiques ou javascript.
+* `𝖠` ou `α`&nbsp; Change la représentation des en-têtes des tableaux entre symboles logiques et javascript.
 
 --- 
 
