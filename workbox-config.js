@@ -19,6 +19,7 @@ module.exports = {
     "svg/**",
     "test/**",
     "video/**",
+    "HOWTO-template.md",
   ],
   swSrc: 'service-worker-src.js',
   swDest: 'service-worker.js',

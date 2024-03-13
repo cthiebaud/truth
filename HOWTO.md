@@ -18,7 +18,7 @@ Making mistakes doesn't hurt, but striving for accuracy enhances the overall enj
 
 More info on [github](https://github.com/cthiebaud/truth/blob/main/README.md)
 
-[Christophe Thiebaud](https://cthiebaud.com/) © <br>_Initial version of this short description by Deepak Gangadhar_ 🙏
+[Christophe Thiebaud](https://cthiebaud.com/) ©
 
 ---
 
@@ -28,7 +28,7 @@ More info on [github](https://github.com/cthiebaud/truth/blob/main/README.md)
 | ![Android App Store](assets/svg/android-svgrepo-com.svg) | [Android](https://play.google.com/apps/testing/com.cthiebaud.aletheia.twa) |
 | ![WWW](assets/svg/internet-svgrepo-com.svg) | [www](https://aletheia.cthiebaud.com/) |
 | ![aletheia](assets/svg/Wikipedia's_W.svg) |  [Aletheia (Ancient Greek: ἀλήθεια) as philosophical term on Wikipedia ](https://en.wikipedia.org/wiki/Aletheia) |
-| ![Github](assets/svg/github.svg) | [The github commit of this version](https://github.com/cthiebaud/truth/commit/120861099e1baa09c9d101a28cbd50709e2576c7) |
+| ![Github](assets/svg/github.svg) | [The github commit of this version](https://github.com/cthiebaud/truth/commit/21285e389c1f69956f99f0f74db80b3b0c1ce35b) |
 
 
 

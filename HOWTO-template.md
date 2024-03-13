@@ -18,7 +18,7 @@ Making mistakes doesn't hurt, but striving for accuracy enhances the overall enj
 
 More info on [github](https://github.com/cthiebaud/truth/blob/main/README.md)
 
-[Christophe Thiebaud](https://cthiebaud.com/) © <br>_Initial version of this short description by Deepak Gangadhar_ 🙏
+[Christophe Thiebaud](https://cthiebaud.com/) ©
 
 ---
 
