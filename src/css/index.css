@@ -6,38 +6,21 @@ body {
   font-weight: 400;
   font-style: normal;
 }
-body:not(.javascript) .the-font-for-titles {
-  font-family: inherit;
-}
 
-body.javascript .the-font-for-titles,
-body.javascript .the-font-for-tables,
-  .gfs-didot-regular {
-  font-family: 'GFS Didot', 'Times New Roman', Times, serif;
-  font-weight: 400;
-  font-style: normal;
+.the-font-for-titles,
+.cochin-regular {
+  font-family: Cochin, Georgia, Times, 'Times New Roman', serif;
 }
-/*
-body.javascript .the-font-for-tables {
-  font-family: Georgia, 'Times New Roman', Times, serif;
-  font-weight: 400;
-  font-style: normal;
-}
-*/
 
 body:not(.javascript) .the-font-for-tables,
 .noto-sans math-regular {
   font-family: 'Noto Sans Math', sans-serif;
-  font-weight: 400;
-  font-style: normal;
 }
 
 .the-font-monospaced,
-.victor-mono-400 {
+.victor-mono {
   font-family: 'Victor Mono', 'Courier New', Courier, monospace;
   font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
 }
 
 #copyright {
@@ -245,7 +228,7 @@ body.javascript #aletheia #logo:before {
   white-space: nowrap;
   text-align: center;
   font-family: 'Noto Sans Math', sans-serif;
-  font-size: 12px;  
+  font-size: 11px;
 }
 body.javascript #tables table thead th:nth-child(2):after {
   content: 'β';
@@ -263,7 +246,7 @@ body.javascript #tables table thead th:nth-child(2):after {
   transform: rotate(180deg) translateY(-50%);
   /* Rotate the text 180 degrees */
   font-family: 'Noto Sans Math', sans-serif;
-  font-size: 12px;  
+  font-size: 11px;
 }
 
 body.javascript #tables table tbody tr:nth-child(1) th:after {
