@@ -11,6 +11,7 @@ module.exports = {
     "audio-samples/**",
     "deprecated/**",
     "firebase/**",
+    "music/**",
     "node_modules/**",
     "packages/**",
     "screenshots/**",

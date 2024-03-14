@@ -23,7 +23,7 @@ if (workbox) {
   // Use __WB_MANIFEST for precaching with revision info
   workbox.precaching.cleanupOutdatedCaches()
   workbox.precaching.precacheAndRoute([
-    { revision: 'c4a6bb5679417671f3333c07d7cf8e13', url: 'assets/audio/achilles-v6.mp3' },
+    { revision: 'c0ca48b529c300122f8b51450e2af8a6', url: 'assets/audio/achilles-v7.mp3' },
     { revision: '852654ffdad5aac86bfdfddf2a416aaa', url: 'assets/audio/boo.mp3' },
     { revision: '018f56c4570fa54cf7b7391d4ac22ceb', url: 'assets/audio/boredom.mp3' },
     { revision: '20d2db44eeddc41588b5deff851261b3', url: 'assets/audio/coin.mp3' },
@@ -72,7 +72,7 @@ if (workbox) {
     { revision: '0373d0a2c49b253c3bd232129592df01', url: 'dist/css/timer.min.css' },
     { revision: '96294d6952e58982411d496de65f3628', url: 'dist/js/ColorsClass.min.js' },
     { revision: 'fae6035bc0fd3ec5be29255ac74c86ae', url: 'dist/js/GameClass.min.js' },
-    { revision: '13ec2bc45c54d75634326b857c0f16bf', url: 'dist/js/SoundMachineClass.min.js' },
+    { revision: 'd4237f39b1007038bea80a06c2d5f41a', url: 'dist/js/SoundMachineClass.min.js' },
     { revision: '1597d5c9aec92d9b41b09fb8821c9745', url: 'dist/js/TimerClass.min.js' },
     { revision: 'b162abaf7871ba19a471a1630615af82', url: 'dist/js/UtilsClass.min.js' },
   ])
