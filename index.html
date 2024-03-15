@@ -62,7 +62,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Noto+Sans+Math&family=Victor+Mono&display=swap" rel="stylesheet">    
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Noto+Sans+Math&family=Victor+Mono&display=swap" rel="stylesheet">
     <!-- BEGIN livejs for test - - >
     <script type="text/javascript" src="https://livejs.com/live.js"></script>
     < ! - - END livejs for test -->
@@ -213,7 +213,8 @@
                             </div>
                             <div class="d-flex flex-column justify-content-between">
                                 <div class="nowrap-overflow the-font-monospaced" id="result-elapsed">0′00″0000</div>
-                                <div class="nowrap-overflow"><span id="result-unconcealed" class="the-font-monospaced">0</span> out of <span class="the-font-monospaced">32</span></div>
+                                <div class="nowrap-overflow"><span id="result-unconcealed" class="the-font-monospaced">0</span> out of <span class="the-font-monospaced">32</span>
+                                </div>
                                 <div class="nowrap-overflow the-font-monospaced">
                                     <svg id="empty-set" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="16" height="16" viewBox="0 0 142.916 142.916">
                                         <path
@@ -439,7 +440,8 @@
                 <!-- scramble -->
                 <div>
                     <button id="shuffle-all" type="button" class="btn btn-outline-secondary" aria-label="shuffle-all" style="width: 32px; height:32px; position: relative;">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 49.7 49.7" style="width: 16px; height: 16px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 49.7 49.7"
+                            style="width: 16px; height: 16px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
                             <use xlink:href="#svg-scrambled-true"></use>
                         </svg>
                     </button>
@@ -518,7 +520,7 @@
     </script>
     <script type="module">
         import { Modal as bsModal, Carousel as bsCarousel } from 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/+esm'
-        import hammerjs from 'https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/+esm'
+        // import hammerjs from 'https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/+esm'
         import bezierEasing from 'https://cdn.jsdelivr.net/npm/bezier-easing@2.1.0/+esm'
 
         /* changed by "NODE_ENV=<development|production> node dev-oder-prod.mjs" or "npm run <dev|prod>" */
@@ -928,66 +930,66 @@
                         const index = veil ? i : tbodies.length - 1 - i
                 */
                 for (const index of indexes) {
-                        const tbody = tbodies[index]
-                        await methodThatReturnsAPromise(tbody, veil);
-                    }
-                }
-
-            async start() {
-                    if (this.isPlaying) {
-                        return
-                    }
-                    this.isPlaying = true
-                    games.newGame(screenshot(), this.level)
-                    this.result = new Result(this.level, document.getElementById('tables').dataset.scrambled, functions.displayMode.symbol)
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth' // Use 'smooth' for smooth scrolling
-                    })
-                    await this.veilBricks()
-                    const totalTime = Number(document.querySelector('.carousel-item.active').dataset.time)
-                    this._timer.start(totalTime)
-                    document.getElementById("shuffle-all").disabled = true
-                    document.getElementById("paragraph-breaks").disabled = true
-                    // BEGIN CAROUSEL
-                    document.getElementById('tortoise-hare-achilles').style.opacity = '.5'
-                    document.querySelectorAll('#tortoise-hare-achilles button').forEach(button => {
-                        button.disabled = true
-                    })
-                    // END CAROUSEL
-                    this.result.reset()
-                    this.restarting = false
-                }
-
-                abort() {
-                    requestAnimationFrame(() => { // let the javascript paint everything it needs to paint before brining the modal
-                        player.abortSound()
-                        let msg = `You stopped!`
-                        player.stopTimerShowResultThenCloseTimer(msg, player.result)
-                    })
-                }
-
-                stop() {
-                    // if (!this.playing) return
-                    this.isPlaying = false
-                    this.compteARebours.duration = Number(document.querySelector('.carousel-item.active').dataset.time)
-                    // BEGIN CAROUSEL
-                    const carousel = document.getElementById('tortoise-hare-achilles')
-                    const active = carousel.querySelector('.carousel-item.active')
-                    carousel.style.opacity = '1'
-                    carousel.querySelector('.carousel-control-next').disabled = false
-                    carousel.querySelector('.carousel-control-prev').disabled = false
-                    if (active.id === 'tortoise') {
-                        carousel.querySelector('.carousel-control-prev').disabled = true
-                    } else if (active.id === 'achilles') {
-                        carousel.querySelector('.carousel-control-next').disabled = true
-                    }
-                    // END CAROUSEL
-                    if (this.result) this.result.timerDuration = this._timer.stop()
-                    this._timer.close()
+                    const tbody = tbodies[index]
+                    await methodThatReturnsAPromise(tbody, veil);
                 }
             }
-            player = new Player()
+
+            async start() {
+                if (this.isPlaying) {
+                    return
+                }
+                this.isPlaying = true
+                games.newGame(screenshot(), this.level)
+                this.result = new Result(this.level, document.getElementById('tables').dataset.scrambled, functions.displayMode.symbol)
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth' // Use 'smooth' for smooth scrolling
+                })
+                await this.veilBricks()
+                const totalTime = Number(document.querySelector('.carousel-item.active').dataset.time)
+                this._timer.start(totalTime)
+                document.getElementById("shuffle-all").disabled = true
+                document.getElementById("paragraph-breaks").disabled = true
+                // BEGIN CAROUSEL
+                document.getElementById('tortoise-hare-achilles').style.opacity = '.5'
+                document.querySelectorAll('#tortoise-hare-achilles button').forEach(button => {
+                    button.disabled = true
+                })
+                // END CAROUSEL
+                this.result.reset()
+                this.restarting = false
+            }
+
+            abort() {
+                requestAnimationFrame(() => { // let the javascript paint everything it needs to paint before brining the modal
+                    player.abortSound()
+                    let msg = `You stopped!`
+                    player.stopTimerShowResultThenCloseTimer(msg, player.result)
+                })
+            }
+
+            stop() {
+                // if (!this.playing) return
+                this.isPlaying = false
+                this.compteARebours.duration = Number(document.querySelector('.carousel-item.active').dataset.time)
+                // BEGIN CAROUSEL
+                const carousel = document.getElementById('tortoise-hare-achilles')
+                const active = carousel.querySelector('.carousel-item.active')
+                carousel.style.opacity = '1'
+                carousel.querySelector('.carousel-control-next').disabled = false
+                carousel.querySelector('.carousel-control-prev').disabled = false
+                if (active.id === 'tortoise') {
+                    carousel.querySelector('.carousel-control-prev').disabled = true
+                } else if (active.id === 'achilles') {
+                    carousel.querySelector('.carousel-control-next').disabled = true
+                }
+                // END CAROUSEL
+                if (this.result) this.result.timerDuration = this._timer.stop()
+                this._timer.close()
+            }
+        }
+        player = new Player()
 
         class Axes {
             static setCellWidth(larger) {
@@ -1443,14 +1445,16 @@
                 return functions.displayMode.key !== 'canonical'
             }
 
+            /*
             const hammertime = new hammerjs(document.getElementById("tables"))
-
+            hammertime.get('pinch').set({ enable: true });
             hammertime.on('swiperight', function () {
                 games.prev()
             })
             hammertime.on('swipeleft', function () {
                 games.next()
             })
+            */
 
             document.getElementById("table-borders").addEventListener('click', clickEvent => {
                 clickEvent.stopPropagation()
