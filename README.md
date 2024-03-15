@@ -38,26 +38,26 @@ Chaque résultat est accompagné d'un son différent.
 
 ### Représentations
 
-La formule qui donne la clé de chaque de table de vérité peut être exprimée, soit avec des [symboles logiques](https://fr.wikipedia.org/wiki/Liste_de_symboles_logiques), par exemple `𝖠 ∧ 𝖡`, soit par une expression javascript, comme `α & β`. Il est intéressant de noter que dans ce dernier cas, l'expression est factuellement interprétée dans une [fonction anonyme](https://fr.wikipedia.org/wiki/Fonction_anonyme) par le moteur javascript de l'application, par exemple `(α, β) => α & β`.
+La formule qui donne la clé de chaque de table de vérité peut être exprimée, soit avec des [symboles logiques](https://fr.wikipedia.org/wiki/Liste_de_symboles_logiques), par exemple `𝖠 ∧ 𝖡`, soit par une expression javascript, comme `α & β`. Il est intéressant de noter que dans ce dernier cas, l'expression est factuellement interprétée dans une [fonction anonyme](https://fr.wikipedia.org/wiki/Fonction_anonyme) par le moteur javascript de l'application, par exemple `(α, β) => α & β`. (nb. `&`, `|` et `^` sont des [opérateurs binaires](https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Expressions_and_operators#op%C3%A9rateurs_binaires), '!' et un [opérateur logique](https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Expressions_and_operators#op%C3%A9rateurs_logiques))
 
 |  | symboles logiques | javascript | |
 |---|---|---|---|
-| TOUJOURS FAUX       | `⊥`       | ` `                                                        | □ □<br>□ □ |
-| A ET B              | `𝖠 ∧ 𝖡`   | `α & β`                                                    | ■ □<br>□ □ |
-| A ET NON B          | `𝖠 ∧ ¬𝖡`  | `α & !β`                                                   | □ ■<br>□ □ |
-| NON A ET B          | `¬𝖠 ∧ ¬𝖡` | `!α & !β`                                                  | □ □<br>□ ■ |
-| NON A ET NON B      | `¬𝖠 ∧ 𝖡`  | `!α & β`                                                   | □ □<br>■ □ |
-| A                   | `𝖠`       | `α`                                                        | ■ ■<br>□ □ |
-| B                   | `𝖡`       | `β`                                                        | ■ □<br>■ □ |
-| NON A               | `¬𝖠`      | `!α`                                                       | □ □<br>■ ■ |
-| NON B               | `¬𝖡`      | `!β`                                                       | □ ■<br>□ ■ |
-| A OU EXCLUSIF B     | `𝖠 ⊻ 𝖡`   | `α == β`, une astuce pour contourner<br>`α & β \| !α & !β` | ■ □<br>□ ■ | 
-| A OU EXCLUSIF NON B | `𝖠 ⊻ ¬𝖡`  | `α != β`, idem <br>`α & !β \| !α & β`                      | □ ■<br>■ □ |
-| A OU B              | `𝖠 ∨ 𝖡`   | `α \| β`                                                   | ■ ■<br>■ □ |
-| A OU NON B          | `𝖠 ∨ ¬𝖡`  | `α \| !β`                                                  | ■ ■<br>□ ■ |
-| NON A OU NON B      | `¬𝖠 ∨ ¬𝖡` | `!α \| !β`                                                 | □ ■<br>■ ■ |
-| NON A OU B          | `¬𝖠 ∨ 𝖡`  | `!α \| β`                                                  | ■ □<br>■ ■ |
-| TOUJOURS VRAI       | `⊤`       | `true`                                                     | ■ ■<br>■ ■ |
+| TOUJOURS FAUX       | `⊥`       | ` `        | □ □<br>□ □ |
+| A ET B              | `𝖠 ∧ 𝖡`   | `α & β`    | ■ □<br>□ □ |
+| A ET NON B          | `𝖠 ∧ ¬𝖡`  | `α & ~β`   | □ ■<br>□ □ |
+| NON A ET B          | `¬𝖠 ∧ ¬𝖡` | `~α & ~β`  | □ □<br>□ ■ |
+| NON A ET NON B      | `¬𝖠 ∧ 𝖡`  | `~α & β`   | □ □<br>■ □ |
+| A                   | `𝖠`       | `α`        | ■ ■<br>□ □ |
+| B                   | `𝖡`       | `β`        | ■ □<br>■ □ |
+| NON A               | `¬𝖠`      | `~α`       | □ □<br>■ ■ |
+| NON B               | `¬𝖡`      | `~β`       | □ ■<br>□ ■ |
+| A OU EXCLUSIF B     | `𝖠 ⊻ 𝖡`   | `α ^ β`    | ■ □<br>□ ■ | 
+| A OU EXCLUSIF NON B | `𝖠 ⊻ ¬𝖡`  | `α ^ ~β`   | □ ■<br>■ □ |
+| A OU B              | `𝖠 ∨ 𝖡`   | `α \| β`   | ■ ■<br>■ □ |
+| A OU NON B          | `𝖠 ∨ ¬𝖡`  | `α \| ~β`  | ■ ■<br>□ ■ |
+| NON A OU NON B      | `¬𝖠 ∨ ¬𝖡` | `~α \| ~β` | □ ■<br>■ ■ |
+| NON A OU B          | `¬𝖠 ∨ 𝖡`  | `~α \| β`  | ■ □<br>■ ■ |
+| TOUJOURS VRAI       | `⊤`       | `true`     | ■ ■<br>■ ■ |
 
 
 --- 
