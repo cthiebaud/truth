@@ -28,7 +28,7 @@ fi
 latest_commit_hash=$(git rev-parse --short main)
 
 # Inject the commit hash into the HOWTO
-./inject_commit_hash.sh
+scripts/inject_commit_hash.sh
 
 # Commit changes
 git add HOWTO.md
