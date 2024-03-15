@@ -87,4 +87,4 @@ La formule qui donne la clé de chaque de table de vérité peut être exprimée
 
 --- 
 
-![ἀλήθεια](screenshots/2024-03-15_2313×1492.jpg)
+![ἀλήθεια](screenshots/2024-03-15_2322x1532.jpg)
