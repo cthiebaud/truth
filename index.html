@@ -1057,8 +1057,8 @@
                 'β',
                 '!α',
                 '!β',
-                'α == β',
-                'α != β',
+                'α ^ β',
+                'α ^ !β',
                 3,
                 'α | β',
                 'α | !β',
@@ -1098,8 +1098,7 @@
                             .replace(/\|/g, "∨")
                             .replace(new RegExp(`^${Functions.trueFunc}$`), "⊤")
                             .replace(new RegExp(`^${Functions.falseFunc}$`), "⊥")
-                            .replace(/==/g, "⊻")
-                            .replace(/!= β/g, "⊻ !β")
+                            .replace(/\^/g, "⊻")
                             .replace(/(!?)α|(!?)β/g, (match, negationA, negationB) => {
                                 if (negationA === '!') {
                                     return negationMap['!α'];
@@ -1124,7 +1123,7 @@
                 if (f === Functions.trueFunc) {
                     return new OneOrTwoColors(colors.colorTrue)
                 }
-                if (f.includes('!=') || f.includes('==')) {
+                if (f.includes('^')) {
                     return new OneOrTwoColors(colors.nextColor(), colors.nextColor())
                 }
                 return new OneOrTwoColors(colors.nextColor())
