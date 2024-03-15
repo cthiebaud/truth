@@ -51,8 +51,8 @@ La formule qui donne la clé de chaque de table de vérité peut être exprimée
 | B                   | `𝖡`       | `β`        | ■ □<br>■ □ |
 | NON A               | `¬𝖠`      | `!α`       | □ □<br>■ ■ |
 | NON B               | `¬𝖡`      | `!β`       | □ ■<br>□ ■ |
-| A OU EXCLUSIF B     | `𝖠 ⊻ 𝖡`   | `α ^ β`    | ■ □<br>□ ■ | 
-| A OU EXCLUSIF NON B | `𝖠 ⊻ ¬𝖡`  | `α ^ !β`   | □ ■<br>■ □ |
+| A OU EXCLUSIF B     | `𝖠 ⊻ 𝖡`   | `α ^ β`    | □ ■<br>■ □ | 
+| A OU EXCLUSIF NON B | `𝖠 ⊻ ¬𝖡`  | `α ^ !β`   | ■ □<br>□ ■ |
 | A OU B              | `𝖠 ∨ 𝖡`   | `α \| β`   | ■ ■<br>■ □ |
 | A OU NON B          | `𝖠 ∨ ¬𝖡`  | `α \| !β`  | ■ ■<br>□ ■ |
 | NON A OU NON B      | `¬𝖠 ∨ ¬𝖡` | `!α \| !β` | □ ■<br>■ ■ |
@@ -87,4 +87,4 @@ La formule qui donne la clé de chaque de table de vérité peut être exprimée
 
 --- 
 
-![ἀλήθεια](screenshots/iPad_2024-03-15_08-28-21_2224x1668.jpg)
+![ἀλήθεια](screenshots/2024-03-15_2313×1492.jpg)
