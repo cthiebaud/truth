@@ -63,7 +63,7 @@ if (workbox) {
     { revision: '477297aa0ecbbbc693b351d5cf618ffe', url: 'HOWTO-example.jpg' },
     { revision: '38e67bffc6eb961e28cb838ebc1e0e7d', url: 'HOWTO.md' },
     { revision: 'eba2bdf57a7030b77ac37b32912038e1', url: 'index.html' },
-    { revision: '2180f67d979c7b51c18ce7b847e2e34e', url: 'README.md' },
+    { revision: '0871529caf4479d003b9b1eb5aaff939', url: 'README.md' },
     { revision: 'cdb6ed786836dcc459888ae19a13e33b', url: 'screenshots/2024-03-15_2322x1532.jpg' },
     { revision: '5a828ecec729c7f9b18b09245c0710b1', url: 'screenshots/iPad_2024-03-15_08-28-21_2224x1668.jpg' },
     { revision: 'ff1b40ee6c42fb747e9b0663c0ff483a', url: 'showdown.html' },
