@@ -128,7 +128,7 @@ More at [github&hellip;](https://github.com/cthiebaud/truth/blob/main/README.md)
 |                                                          |                                                                                                                 |
 | :------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------- |
 | ![Apple App Store](assets/svg/Apple_logo_grey.svg)       | [iPhone and iPad](https://apps.apple.com/us/app/aletheia-by-%C3%A6quologica/id6476017817)                       |
-| ![Android App Store](assets/svg/android-svgrepo-com.svg) | [Android](https://play.google.com/apps/testing/com.cthiebaud.aletheia.twa)                                      |
+| ![Android App Store](assets/svg/android-svgrepo-com.svg) | [Android](https://play.google.com/store/apps/details?id=com.cthiebaud.aletheia.twa)                                      |
 | ![WWW](assets/svg/internet-svgrepo-com.svg)              | [www](https://aletheia.cthiebaud.com/)                                                                          |
 | ![aletheia](assets/svg/Wikipedia's_W.svg)                | [Aletheia (Ancient Greek: ἀλήθεια) as philosophical term on Wikipedia ](https://en.wikipedia.org/wiki/Aletheia) |
-| ![Github](assets/svg/github.svg)                         | [The github commit of this version](https://github.com/cthiebaud/truth/commit/f43d132d5624857dcbc99235fd8b5bee18f91bc2)                  |
+| ![Github](assets/svg/github.svg)                         | [The github commit of this version](https://github.com/cthiebaud/truth/commit/57670a8072e41fded0607cc4356a0da40d51da5b)                  |

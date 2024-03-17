@@ -1,7 +1,7 @@
 # Alètheia
 
 [![WWW](assets/svg/internet-svgrepo-com.svg)](https://aletheia.cthiebaud.com/) 
-[![Android App Store](assets/svg/android-svgrepo-com.svg)](https://play.google.com/apps/testing/com.cthiebaud.aletheia.twa)
+[![Android App Store](assets/svg/android-svgrepo-com.svg)](https://play.google.com/store/apps/details?id=com.cthiebaud.aletheia.twa)
 [![Apple App Store](assets/svg/Apple_logo_grey.svg)](https://apps.apple.com/us/app/aletheia-by-%C3%A6quologica/id6476017817)
 
 La référence à Martin Heidegger est flagrante : « <i>En traduisant alètheia par Unverborgenheit, dévoilement ou plutôt non-voilement, et non plus simplement par “Vérité”, Heidegger s'efforce de faire entendre quelque chose du sens, de ce vers quoi alètheia faisait signe, même à l'insu des Grecs, et à partir duquel ils déployaient leur monde.</i> » [⁽¹⁾](https://fr.wikipedia.org/wiki/Al%C3%A8theia_dans_la_philosophie_de_Martin_Heidegger).
