@@ -9,7 +9,7 @@ The presence or absence of a brick within a cell is fully determined by the valu
 <div id="tables" class="center-children the-font-for-tables d-flex justify-content-around">
     <div id="element3" data-function="α &amp; β">
         <table class="table inline table-sm caption-top table-borderless">
-            <caption class="text-center">𝖠 ∧ 𝖡</caption>
+            <caption id="AetB" class="text-center">𝖠 ∧ 𝖡</caption>
             <thead id="thead3">
                 <tr>
                     <th style="display: table-cell;">
@@ -39,7 +39,7 @@ The presence or absence of a brick within a cell is fully determined by the valu
     </div>
     <div id="element15" data-function="α | β">
         <table class="table inline table-sm caption-top table-borderless">
-            <caption class="text-center">𝖠 ∨ 𝖡</caption>
+            <caption id="AouB" class="text-center">𝖠 ∨ 𝖡</caption>
             <thead id="thead15">
                 <tr>
                     <th style="display: table-cell;">
@@ -69,7 +69,7 @@ The presence or absence of a brick within a cell is fully determined by the valu
     </div>
     <div id="element17" data-function="!α | !β">
         <table class="table inline table-sm caption-top table-borderless">
-            <caption class="text-center"><span class="negation canonical">𝖠</span> ∨ <span class="negation canonical">𝖡</span></caption>
+            <caption id="nonAounonB" class="text-center"><span class="negation canonical">𝖠</span> ∨ <span class="negation canonical">𝖡</span></caption>
             <thead id="thead17">
                 <tr>
                     <th style="display: table-cell;">
@@ -101,9 +101,16 @@ The presence or absence of a brick within a cell is fully determined by the valu
 
 <!--
 ![example](/HOWTO-example.jpg)
+[logic symbols](https://en.wikipedia.org/wiki/List_of_logic_symbols)
+[javascript expressions](https://en.wikipedia.org/wiki/List_of_logic_symbols)
 -->
 
-<sub>_NB. The clue is stated as [logic symbols](https://en.wikipedia.org/wiki/List_of_logic_symbols)_</sub>
+<sub><i>NB. The clue can be stated as 
+<a id="logic_symbols" href="#">logic symbols</a>
+or 
+<a id="javascript_expressions" href="#">javascript expressions</a>
+</i>
+</sub>
 
 The aim of the game is to unconceal all the true values ​​by clicking only on the cells containing a colored brick.
 
@@ -124,4 +131,4 @@ More at [github&hellip;](https://github.com/cthiebaud/truth/blob/main/README.md)
 | ![Android App Store](assets/svg/android-svgrepo-com.svg) | [Android](https://play.google.com/apps/testing/com.cthiebaud.aletheia.twa)                                      |
 | ![WWW](assets/svg/internet-svgrepo-com.svg)              | [www](https://aletheia.cthiebaud.com/)                                                                          |
 | ![aletheia](assets/svg/Wikipedia's_W.svg)                | [Aletheia (Ancient Greek: ἀλήθεια) as philosophical term on Wikipedia ](https://en.wikipedia.org/wiki/Aletheia) |
-| ![Github](assets/svg/github.svg)                         | [The github commit of this version](https://github.com/cthiebaud/truth/commit/0f36c744b111f61b3bc98b657b15ec7ca9cf11f8)                  |
+| ![Github](assets/svg/github.svg)                         | [The github commit of this version](https://github.com/cthiebaud/truth/commit/f43d132d5624857dcbc99235fd8b5bee18f91bc2)                  |
