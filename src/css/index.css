@@ -61,9 +61,10 @@ body:not(.javascript) .the-font-for-tables,
 }
 
 .btn.my-button,
-.btn-check:not(checked) + .btn.my-button .btn.my-button.disabled {
-  background-color: transparent !important;
-  border-color: lightgrey !important;
+.btn-check:not(checked) + .btn.my-button /*.btn.my-button.disabled */ {
+  background-color: #f8f7ef !important;
+  border-color: var(--bs-btn-border-color);
+  /* border-color: lightgrey !important; */
 }
 
 .btn.my-button svg {
@@ -211,7 +212,7 @@ body.javascript #aletheia #logo:before {
 #tables table caption {
   white-space: nowrap;
   font-size: 20px;
-  background-color: #ffffffa0;
+  background-color: #fdfdfb;
   margin-bottom: 0.375rem;
   padding: 0;
   color: inherit;
