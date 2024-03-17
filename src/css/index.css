@@ -80,10 +80,10 @@ body:not(.javascript) .the-font-for-tables,
 /* BEGIN aletheia zone at bottom of container */
 #aletheia {
   visibility: hidden;
-  margin-bottom: 3rem !important;  /* height of navbar */
+  margin-bottom: 3rem !important; /* height of navbar */
 }
 
-#aletheia #copyright, 
+#aletheia #copyright,
 #aletheia #infos {
   overflow: hidden;
   width: 26px;
@@ -230,6 +230,10 @@ body.javascript #aletheia #logo:before {
   margin-bottom: 0.375rem;
   padding: 0;
   color: inherit;
+  user-select: none;
+}
+
+#tables table th {
   user-select: none;
 }
 

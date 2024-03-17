@@ -87,7 +87,7 @@ if (workbox) {
     { revision: '90f63624f850b37fd78f30b59acada16', url: 'svg/replay-svgrepo-com.svg' },
     { revision: '6265318b781ebfd6c44790284fc1eea6', url: 'svg/tortoise-fill-svgrepo-com.svg' },
     { revision: '6235428fc4f442fd8aadaaba3f6e26d3', url: 'dist/css/bootstrap.min.css' },
-    { revision: 'f48f70378116780c5c6e096e90004706', url: 'dist/css/index.min.css' },
+    { revision: 'e60d3f737e8f30f2d08fb08b39f2e2ed', url: 'dist/css/index.min.css' },
     { revision: '0373d0a2c49b253c3bd232129592df01', url: 'dist/css/timer.min.css' },
     { revision: '96294d6952e58982411d496de65f3628', url: 'dist/js/ColorsClass.min.js' },
     { revision: 'fae6035bc0fd3ec5be29255ac74c86ae', url: 'dist/js/GameClass.min.js' },
