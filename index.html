@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <!-- BEGIN Google tag (gtag.js) -->
+    <!-- BEGIN Google tag (gtag.js) - - >
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-TPVM6DVS53"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -11,7 +11,7 @@
 
         gtag('config', 'G-TPVM6DVS53');
     </script>
-    <!-- END Google tag (gtag.js) -->
+    < ! - - END Google tag (gtag.js) -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Unconcealing of Truths</title>
@@ -56,17 +56,17 @@
     <meta name="theme-color" content="#f8f7ef">
 
     <!-- /* changed by "NODE_ENV=<development|production> node dev-oder-prod.mjs" or "npm run <dev\prod>" */ -->
-    <link rel="stylesheet" href='/dist/css/bootstrap.min.css'>
-    <link rel="stylesheet" href='/dist/css/index.min.css'>
-    <link rel="stylesheet" href='/dist/css/tables.min.css'>
-    <link rel="stylesheet" href='/dist/css/timer.min.css'>
+    <link rel="stylesheet" href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css'>
+    <link rel="stylesheet" href='/src/css/index.css'>
+    <link rel="stylesheet" href='/src/css/tables.css'>
+    <link rel="stylesheet" href='/src/css/timer.css'>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Noto+Sans+Math&family=Victor+Mono&display=swap" rel="stylesheet">
-    <!-- BEGIN livejs for test - - >
+    <!-- BEGIN livejs for test -->
     <script type="text/javascript" src="https://livejs.com/live.js"></script>
-    < ! - - END livejs for test -->
+    <!-- END livejs for test -->
 </head>
 
 <body class="">
@@ -331,11 +331,11 @@
             </div>
             <div id="buttons" class="btn-group btn-group-sm shadow" role="group">
 
-                <!-- BEGIN Button trigger modal for test - - >
+                <!-- BEGIN Button trigger modal for test -->
                 <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#result-modal">
                     result
                 </button>
-                < ! - - END Button trigger modal for test -->
+                <!-- END Button trigger modal for test -->
 
                 <input type="checkbox" class="btn-check" id="table-borders" autocomplete="off" aria-label="table-borders toggle">
                 <label class="btn my-button" for="table-borders">
@@ -503,7 +503,7 @@
     </div>
 
     <script>
-        /* BEGIN comment for dev */
+        /* BEGIN comment for dev * /
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('/service-worker.js')
                 .then((registration) => {
@@ -513,7 +513,7 @@
                     console.error('Service Worker registration failed:', error)
                 })
         }
-        /* END comment for dev */
+        / * END comment for dev */
     </script>
 
     <script type="module">
@@ -523,11 +523,11 @@
         import isotopeLayout from 'https://cdn.jsdelivr.net/npm/isotope-layout@3.0.6/+esm' // ISOTOPE 
 
         /* changed by "NODE_ENV=<development|production> node dev-oder-prod.mjs" or "npm run <dev|prod>" */
-        import { Utils } from './dist/js/UtilsClass.min.js'
-        import { Colors, BlurOverlay } from './dist/js/ColorsClass.min.js'
-        import { Timer } from './dist/js/TimerClass.min.js'
-        import { SoundMachine } from './dist/js/SoundMachineClass.min.js'
-        import { Game, Action, Result, ResultProperty } from './dist/js/GameClass.min.js'
+        import { Utils } from './src/js/UtilsClass.js'
+        import { Colors, BlurOverlay } from './src/js/ColorsClass.js'
+        import { Timer } from './src/js/TimerClass.js'
+        import { SoundMachine } from './src/js/SoundMachineClass.js'
+        import { Game, Action, Result, ResultProperty } from './src/js/GameClass.js'
 
         let paragraphBreaks = false // true // 
 
@@ -620,21 +620,21 @@
                     this.#currentGame -= 1
                     return this.#callbacks.onPrev(this.#currentGame)
                 }
-                console.log("cannot prev", this.#currentGame)
+                // console.log("cannot prev", this.#currentGame)
             }
             next() {
                 if (this.#currentGame < this.#games.length - 1) {
                     this.#currentGame += 1
                     return this.#callbacks.onNext(this.#currentGame)
                 }
-                console.log("cannot next", this.#currentGame)
+                // console.log("cannot next", this.#currentGame)
             }
         }
         function onNextGame(gameIndex) {
-            console.log("onNextGame", gameIndex, games.games.length)
+            // console.log("onNextGame", gameIndex, games.games.length)
         }
         function onPrevGame(gameIndex) {
-            console.log("onPrevGame", gameIndex, games.games.length)
+            // console.log("onPrevGame", gameIndex, games.games.length)
         }
         const games = new Games({
             onPrev: onPrevGame,
@@ -900,14 +900,18 @@
             }
 
             veilBricks() {
-                this.veilUnveilBricks('veil')
+                this.#veilOrUnveilBricks('veil')
+                console.log('ENDED veil', performance.now())
             }
 
             unveilBricks() {
-                if (!this.restarting) this.veilUnveilBricks('unveil')
+                if (!this.restarting) {
+                    this.#veilOrUnveilBricks('unveil')
+                    console.log('ENDED unveil', performance.now())
+                }
             }
 
-            async veilUnveilBricks(veilParam) {
+            #veilOrUnveilBricks(veilParam) {
                 const veil = veilParam === 'veil';
 
                 function methodThatReturnsAPromise(tbody, veil) {
@@ -919,16 +923,19 @@
                                 td.classList.remove('clicked')
                             })
                         } else {
-                            tds.forEach(td => {
-                                if (td.classList.contains('true')) {
-                                    td.classList.remove('translucent')
-                                } else if (td.classList.contains('false')) {
-                                    td.classList.add('translucent')
-                                }
-                            })
+                            if (player.isPlaying != true) {
+                                tds.forEach(td => {
+                                    if (td.classList.contains('true')) {
+                                        td.classList.remove('translucent')
+                                    } else if (td.classList.contains('false')) {
+                                        td.classList.add('translucent')
+                                    }
+                                })
+                            }
                         }
                         setTimeout(() => {
                             resolve(tbody)
+                            console.log('veil?', veil, performance.now(), tbody.parentNode.parentNode.dataset.function)
                         }, 20);
                     })
                 }
@@ -941,17 +948,13 @@
                 Utils.shuffleArray(indexes);
 
                 // Iterate over the shuffled indexes and access the corresponding tbodies
-                /*
-                for (let i = 0; i < tbodies.length; i++) {
-                        const index = veil ? i : tbodies.length - 1 - i
-                */
                 for (const index of indexes) {
                     const tbody = tbodies[index]
-                    await methodThatReturnsAPromise(tbody, veil);
+                    methodThatReturnsAPromise(tbody, veil);
                 }
             }
 
-            async start() {
+            start() {
                 if (this.isPlaying) {
                     return
                 }
@@ -962,7 +965,7 @@
                     top: 0,
                     behavior: 'smooth' // Use 'smooth' for smooth scrolling
                 })
-                await this.veilBricks()
+                this.veilBricks()
                 const totalTime = Number(document.querySelector('.carousel-item.active').dataset.time)
                 this._timer.start(totalTime)
                 document.getElementById("shuffle-all").disabled = true
@@ -1063,26 +1066,26 @@
             static falseFunc = ''
             static trueFunc = 'true'
             #functionArray = [
-                0,
+                /* 0, */
                 Functions.falseFunc,
-                1,
+                /* 1, */
                 'α & β',
                 'α & !β',
                 '!α & !β',
                 '!α & β',
-                2,
+                /* 2, */
                 'α',
                 'β',
                 '!α',
                 '!β',
                 'α ^ β',
                 'α ^ !β',
-                3,
+                /* 3, */
                 'α | β',
                 'α | !β',
                 '!α | !β',
                 '!α | β',
-                4,
+                /* 4, */
                 Functions.trueFunc,
             ]
             #displayMode = {

@@ -135,6 +135,7 @@ export class Game {
         this.#actions = []
     }
     dump() {
+        /*
         console.log("##################")
         console.log("------------------ level")
         console.log(this.#level)
@@ -147,5 +148,6 @@ export class Game {
             console.log(a)
         })
         console.log("//////////////////")
+        */
     }
 }

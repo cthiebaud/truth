@@ -25,7 +25,7 @@
         let visible2 = percentElapsed * circonf2
         let hidden2 = circonf2 - visible2
 
-        console.log(percentElapsed + '%', angleInRadian, hidden1, visible1, hidden2, visible2)
+        // console.log(percentElapsed + '%', angleInRadian, hidden1, visible1, hidden2, visible2)
         innerCircle1.setAttribute('stroke-dasharray', `0 ${hidden1} ${visible1}`);
         if (visible2 - 4 >= 0) {
             innerCircle2.setAttribute('stroke-dasharray', `0 2 ${visible2 - 4} ${hidden2 + 2}`);
@@ -37,7 +37,7 @@
         const progress = (timestamp - startTime) / 1000;
         const timeRemaining = Math.max(10 - progress, 0);
 
-        console.log(timeRemaining)
+        // console.log(timeRemaining)
         drawTimer(timeRemaining);
 
         if (timeRemaining > 0) {

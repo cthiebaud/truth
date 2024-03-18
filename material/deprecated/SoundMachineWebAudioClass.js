@@ -28,10 +28,10 @@ class Sound {
         soundSource.loop = this._loop
         soundSource.connect(this.gainNode)
         soundSource.onended = () => {
-            console.log(`${this.file} sound has ended`, this.audioContext.currentTime)
+            // console.log(`${this.file} sound has ended`, this.audioContext.currentTime)
             if (!this._loop) {
                 soundSource.disconnect()
-                console.log(`${this.file} sound has been disconnected`, this.audioContext.currentTime)
+                // console.log(`${this.file} sound has been disconnected`, this.audioContext.currentTime)
             }
         }
         return soundSource
@@ -65,7 +65,7 @@ class Sound {
         }
         const ramp = (prevVolume < nextVolume ? "up": "down")
 
-        console.log(`ramp ${ramp} ${this.file} sound volume from ${prevVolume} to ${nextVolume}`)
+        // console.log(`ramp ${ramp} ${this.file} sound volume from ${prevVolume} to ${nextVolume}`)
         this.gainNode.gain.exponentialRampToValueAtTime(
             nextVolume,
             this.audioContext.currentTime + (ramp === "up" ? 1 : 6)
@@ -122,7 +122,7 @@ export class SoundMachine {
                 await this.abort.decode(this.audioContext), ++resourceCounter
                 await this.underwater.decode(this.audioContext), ++resourceCounter
 
-                console.log(`Audio context initialized successfully, ${resourceCounter} sound sources connected`)
+                // console.log(`Audio context initialized successfully, ${resourceCounter} sound sources connected`)
                 resolve() // Resolve the promise on success
 
             } catch (error) {

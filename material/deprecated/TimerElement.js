@@ -15,7 +15,7 @@ export class TimerElement extends HTMLElement {
         fetch('/src/css/timer.css')
             .then(response => response.text())
             .then(cssText => {
-                console.log("Custom element added to page.");
+                // console.log("Custom element added to page.");
                 const sheet = new CSSStyleSheet();
                 sheet.replaceSync(cssText)
                 // Append the style element to the shadow root
@@ -42,15 +42,15 @@ export class TimerElement extends HTMLElement {
     }
 
     disconnectedCallback() {
-        console.log("Custom element removed from page.");
+        // console.log("Custom element removed from page.");
     }
 
     adoptedCallback() {
-        console.log("Custom element moved to new page.");
+        // console.log("Custom element moved to new page.");
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
-        console.log(`Attribute ${name} has changed.`);
+        // console.log(`Attribute ${name} has changed.`);
         this._size = newValue;
     }
 

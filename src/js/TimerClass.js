@@ -87,7 +87,7 @@ export class Timer {
     }
     stop() {
         if (this.stopTime !== null) {
-            console.log("timer.stop() called while timer is already stopped. Doing nothing. Returning last stopTime.", this.stopTime)
+            // console.log("timer.stop() called while timer is already stopped. Doing nothing. Returning last stopTime.", this.stopTime)
             return this.stopTime
         }
 
@@ -96,7 +96,7 @@ export class Timer {
         this.timerId = null
         this.callbacks.onStop()
         this.stopTime = performance.now() - this.startTime
-        console.log('timer stopped', this.stopTime)
+        // console.log('timer stopped', this.stopTime)
         return this.stopTime
     }
     close() {
