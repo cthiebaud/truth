@@ -45,8 +45,8 @@ La formule qui donne la clé de chaque de table de vérité peut être exprimée
 | TOUJOURS FAUX       | `⊥`       | ` `        | □ □<br>□ □ |
 | A ET B              | `𝖠 ∧ 𝖡`   | `α & β`    | ■ □<br>□ □ |
 | A ET NON B          | `𝖠 ∧ ¬𝖡`  | `α & !β`   | □ ■<br>□ □ |
-| NON A ET B          | `¬𝖠 ∧ ¬𝖡` | `!α & !β`  | □ □<br>□ ■ |
-| NON A ET NON B      | `¬𝖠 ∧ 𝖡`  | `!α & β`   | □ □<br>■ □ |
+| NON A ET NON B      | `¬𝖠 ∧ ¬𝖡` | `!α & !β`  | □ □<br>□ ■ |
+| NON A ET B          | `¬𝖠 ∧ 𝖡`  | `!α & β`   | □ □<br>■ □ |
 | A                   | `𝖠`       | `α`        | ■ ■<br>□ □ |
 | B                   | `𝖡`       | `β`        | ■ □<br>■ □ |
 | NON A               | `¬𝖠`      | `!α`       | □ □<br>■ ■ |
@@ -68,7 +68,7 @@ La formule qui donne la clé de chaque de table de vérité peut être exprimée
 * <kbd>Q</kbd> &nbsp;&nbsp;&nbsp;<img src="svg/b-grid.svg"   >&nbsp;&nbsp;&nbsp; Affiche les bords des tables et des celulles.
 * <kbd>W</kbd> &nbsp;&nbsp;&nbsp;<img src="svg/b-axes.svg"   >&nbsp;&nbsp;&nbsp; Affiche les en-têtes des axes des tables.
 * <kbd>S</kbd> &nbsp;&nbsp;&nbsp;<img src="svg/b-shuffle.svg">&nbsp;&nbsp;&nbsp; Mélange les tables aléatoirement.
-* <kbd>A</kbd> &nbsp;&nbsp;&nbsp;`𝖠`/`α`&nbsp;&nbsp;&nbsp; Change la représentation des en-têtes des tableaux entre symboles logiques et javascript.
+* <kbd>A</kbd> &nbsp;&nbsp;&nbsp;`𝖠`/`α`&nbsp;&nbsp;&nbsp; Change la représentation des en-têtes des tables entre symboles logiques et javascript.
 * ------- *les raccourcis suivants sont sans équivalents graphiques, et de ce fait disponibles uniquement dans la version web* --------
 * <kbd>Escape</kbd> 'Tue' une partie (i.e. sans afficher les résultats). 
 * <kbd>C</kbd> Mélange les couleurs des briques aléatoirement.
@@ -82,7 +82,7 @@ La formule qui donne la clé de chaque de table de vérité peut être exprimée
 
 * <img src="svg/b-grid.svg" >&nbsp; Affiche les bords des tables et des celulles.
 * <img src="svg/b-axes.svg" >&nbsp; Affiche les en-têtes des axes des tables.
-* `𝖠`/`α`&nbsp; Change la représentation des en-têtes des tableaux entre symboles logiques et javascript.
+* `𝖠`/`α`&nbsp; Change la représentation des en-têtes des tables entre symboles logiques et javascript.
 
 --- 
 
