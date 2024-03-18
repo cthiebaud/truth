@@ -17,7 +17,7 @@
     <title>The Unconcealing of Truths</title>
     <meta name="description" content="Unconceal the colored bricks to reveal the truth tables.">
 
-    <meta name="version" content="13">
+    <meta name="version" content="14">
 
     <!-- Open Graph data -->
     <!-- https://yoast.com/help/fb-app-id-warnings/
@@ -351,14 +351,6 @@
                             d="M487.9 40.927c-2.35 9.897-13.446 14.868-19.292 22.693-8.157 6.418-16.073 22.787-28.015 13.913-11.227-11.134 11.485-21.639 12.022-27.506H50.433v403.485c7.839-7.427 20.099-25.259 29.798-10.102 2.235 12.49-12.18 18.605-18.785 27.395-7.671 5.32-12.84 18.958-23.914 16.414-11.894-7.987-20.681-20.27-31.428-29.828-17.476-14.372 9.54-28.283 17.755-10.45 8.926 12.934 6.328-1.958 6.57-9.992V40.027c2.392-14.958 20.102-8.657 30.706-10.002h392.76C446.513 22.197 428.589 9.94 443.819.32c12.549-2.226 18.67 12.156 27.468 18.793 5.017 7.223 17.043 11.935 16.613 21.815z" />
                     </svg>
                 </label>
-                <!-- 
-                    <input type="checkbox" class="btn-check" id="paragraph-breaks" autocomplete="off" aria-label="paragraph-breaks toggle">
-                    <label class="btn my-button" for="paragraph-breaks">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16">
-                            <use xlink:href="#svg-scrambled-false"></use>
-                        </svg>
-                    </label>
-                -->
                 <input type="checkbox" class="btn-check" id="canonical-or-javascript" autocomplete="off" aria-label="canonical / javascript toggle">
                 <label id="canonical-or-javascript.label" class="btn btn-sm my-button" for="canonical-or-javascript">
                     𝖠
@@ -549,9 +541,7 @@
         import { Colors, BlurOverlay } from './dist/js/ColorsClass.min.js'
         import { Timer } from './dist/js/TimerClass.min.js'
         import { SoundMachine } from './dist/js/SoundMachineClass.min.js'
-        import { Game, Action, Result, ResultProperty } from './dist/js/GameClass.min.js'
-
-        let paragraphBreaks = false // true // 
+        import { Result, ResultProperty } from './dist/js/GameClass.min.js'
 
         function safeById(id, func) {
             if (!id) return
@@ -559,7 +549,6 @@
             if (!elem) return
             return func(elem)
         }
-
 
         class CompteARebours {
             #bezierEasing = bezierEasing(0.50, 0.20, 0.50, 1.00)
@@ -618,58 +607,6 @@
                 element.innerHTML = `<span style="color: ${gradientizedColor}">${Utils.formatDuration(this.#duration)}</span>`;
             };
         }
-
-        class Games {
-            #currentGame = undefined
-            #games = []
-            #callbacks
-            constructor(callbacks) {
-                this.#callbacks = {
-                    onNext: () => { },
-                    onPrev: () => { },
-                };
-
-                // Override default callbacks with provided callbacks
-                this.#callbacks = Object.assign(this.#callbacks, callbacks);
-            }
-            get games() {
-                return this.#games
-            }
-            newGame(screenshot, level) {
-                this.#games.push(new Game(screenshot, level))
-                this.#currentGame = this.#games.length - 1
-            }
-            currentGame() {
-                if (0 <= this.#currentGame && this.#currentGame < this.#games.length) {
-                    return this.#games[this.#currentGame]
-                }
-                return undefined
-            }
-            prev() {
-                if (0 < this.#currentGame) {
-                    this.#currentGame -= 1
-                    return this.#callbacks.onPrev(this.#currentGame)
-                }
-                // console.log("cannot prev", this.#currentGame)
-            }
-            next() {
-                if (this.#currentGame < this.#games.length - 1) {
-                    this.#currentGame += 1
-                    return this.#callbacks.onNext(this.#currentGame)
-                }
-                // console.log("cannot next", this.#currentGame)
-            }
-        }
-        function onNextGame(gameIndex) {
-            // console.log("onNextGame", gameIndex, games.games.length)
-        }
-        function onPrevGame(gameIndex) {
-            // console.log("onPrevGame", gameIndex, games.games.length)
-        }
-        const games = new Games({
-            onPrev: onPrevGame,
-            onNext: onNextGame,
-        })
 
         let theTables = null
         class Tables {
@@ -792,8 +729,6 @@
 
                 Utils.safeGetElementByIdThen('result-timestamp', (element, arg) => { element.innerHTML = arg }, currentDate.toLocaleString('en-US', options));
 
-                games.currentGame()?.dump()
-
                 // show result
                 let resultModal = new bsModal(document.getElementById("result-modal"))
                 resultModal.show() // will close timer when dismissed
@@ -843,7 +778,6 @@
 
             onTimerClose() {
                 document.getElementById("shuffle-all").disabled = false
-                safeById('paragraph-breaks', paragraphBreaks => paragraphBreaks.disabled = false)
                 player.unveilBricks()
                 player._soundMachine[player.level].stop()
                 player._soundMachine.underwater.stop()
@@ -986,7 +920,6 @@
                     return
                 }
                 this.isPlaying = true
-                games.newGame(screenshot(), this.level)
                 this.result = new Result(this.level, theTables.element.dataset.scrambled, functions.displayMode.symbol)
                 window.scrollTo({
                     top: 0,
@@ -996,7 +929,6 @@
                 const totalTime = Number(document.querySelector('.carousel-item.active').dataset.time)
                 this._timer.start(totalTime)
                 document.getElementById("shuffle-all").disabled = true
-                safeById('paragraph-breaks', paragraphBreaks => paragraphBreaks.disabled = true)
                 // BEGIN CAROUSEL
                 document.getElementById('tortoise-hare-achilles').style.opacity = '.5'
                 document.querySelectorAll('#tortoise-hare-achilles button').forEach(button => {
@@ -1187,21 +1119,6 @@
         const functions = new Functions()
         document.querySelector('#αβ > span').innerHTML = functions.displayMode.facade
 
-        class Blender {
-            constructor() {
-                this.previousElement = null
-            }
-
-            blend(html, elementID) {
-                if (this.previousElement === null) {
-                    theTables.innerHTML = html
-                } else {
-                    this.previousElement.insertAdjacentHTML("afterend", html)
-                }
-                this.previousElement = document.getElementById(elementID)
-            }
-        }
-
         function screenshot() {
             return Array.from(document.querySelectorAll('#tables>div')).map(element => {
                 return element.dataset.function;
@@ -1215,14 +1132,12 @@
             // Shuffle the order if shuffleParam is true
             if (shuffleParam) {
                 theTables.element.dataset.scrambled = true
-                iso.shuffle({ filter: '' })
+                iso.shuffle()
             } else {
                 theTables.element.dataset.scrambled = false
-                iso.arrange({ sortBy: 'original-order', filter: ':not(.separator-container)' })
+                iso.arrange({ sortBy: 'original-order' })
             }
-            setTimeout(function () {
-                iso.layout();
-            }, 100);
+            iso.layout();
         }
 
 
@@ -1259,74 +1174,82 @@
             })
         }
 
+        class Blender {
+            #container = undefined
+            #previousElement = null
+            constructor(container) {
+                this.#container = container
+                this.#previousElement = null
+            }
+
+            blend(html, elementID) {
+                if (this.#previousElement === null) {
+                    this.#container.innerHTML = html
+                } else {
+                    this.#previousElement.insertAdjacentHTML("afterend", html)
+                }
+                this.#previousElement = document.getElementById(elementID)
+            }
+        }
+
         function doIt() {
 
             if (player.isPlaying) return
 
-            const blender = new Blender()
+            const blender = new Blender(theTables)
 
             functions.iterate((func, index) => {
 
                 const elementID = `element${index}`
-                if (typeof func === 'number') {
-                    const html = `<div id="${elementID}" class="ISOTOPE separator-container" style="display: ${paragraphBreaks ? 'flex' : 'none'};"> <!--  -->
-        <span class="separator-line separator-line-left"></span>
-        <span class="separator-text">${func}</span>
-        <span class="separator-line separator-line-right"></span>
-    </div>
-    `
-                    blender.blend(html, elementID)
 
-                } else {
-                    const theadID = `thead${index}`
-                    const tbodyID = `tbody${index}`
-                    const template = `<div id="${elementID}" class="ISOTOPE" data-function="${func}">
-        <table class="table inline table-sm caption-top table-borderless">
-            <caption class="text-center">${functions.displayMode[func]}</caption>
-            <thead id="${theadID}"></thead>
-            <tbody id="${tbodyID}"></tbody>
-        </table>
-    </div>
-    `
-                    blender.blend(template, elementID)
+                const theadID = `thead${index}`
+                const tbodyID = `tbody${index}`
+                const template = `<div id="${elementID}" class="ISOTOPE" data-function="${func}">
+    <table class="table inline table-sm caption-top table-borderless">
+        <caption class="text-center">${functions.displayMode[func]}</caption>
+        <thead id="${theadID}"></thead>
+        <tbody id="${tbodyID}"></tbody>
+    </table>
+</div>
+`
+                blender.blend(template, elementID)
 
-                    let backgroundcolors = functions.getOneOrTwoColors(func)
+                let backgroundcolors = functions.getOneOrTwoColors(func)
 
-                    axes.iterate(rowElem => {
-                        const row = document.createElement("tr")
-                        axes.iterate(colElem => {
-                            const col = document.createElement(rowElem === null || colElem === null ? "th" : "td")
-                            if (colElem === null) {
-                                if (rowElem === null) {
-                                    col.innerHTML = '<div class="diagonal-line">&nbsp;</div>'
-                                } else {
-                                    col.innerHTML = `<div class="vertical-text">${rowElem}</div>`
-                                }
+                axes.iterate(rowElem => {
+                    const row = document.createElement("tr")
+                    axes.iterate(colElem => {
+                        const col = document.createElement(rowElem === null || colElem === null ? "th" : "td")
+                        if (colElem === null) {
+                            if (rowElem === null) {
+                                col.innerHTML = '<div class="diagonal-line">&nbsp;</div>'
                             } else {
-                                if (rowElem === null) {
-                                    col.innerHTML = `${colElem}`
+                                col.innerHTML = `<div class="vertical-text">${rowElem}</div>`
+                            }
+                        } else {
+                            if (rowElem === null) {
+                                col.innerHTML = `${colElem}`
+                            } else {
+                                const α = rowElem
+                                const β = colElem
+                                const result = eval(func)
+                                col.classList.add(result ? 'true' : 'false')
+                                if (result) {
+                                    col.style.backgroundColor = backgroundcolors.next()
+                                    col.style.color = colors.bg2color(col.style.backgroundColor)
+                                    col.innerHTML = '●' // '○' // 
                                 } else {
-                                    const α = rowElem
-                                    const β = colElem
-                                    const result = eval(func)
-                                    col.classList.add(result ? 'true' : 'false')
-                                    if (result) {
-                                        col.style.backgroundColor = backgroundcolors.next()
-                                        col.style.color = colors.bg2color(col.style.backgroundColor)
-                                        col.innerHTML = '●' // '○' // 
-                                    } else {
-                                        col.style.backgroundColor = colors.colorFalse
-                                        col.innerHTML = '❌'
-                                        col.classList.add('translucent')
-                                    }
+                                    col.style.backgroundColor = colors.colorFalse
+                                    col.innerHTML = '❌'
+                                    col.classList.add('translucent')
                                 }
                             }
-                            row.appendChild(col)
-                        })
-                        document.getElementById(rowElem === null ? theadID : tbodyID).appendChild(row)
+                        }
+                        row.appendChild(col)
                     })
-                    axes.applyVisibility()
-                }
+                    document.getElementById(rowElem === null ? theadID : tbodyID).appendChild(row)
+                })
+                axes.applyVisibility()
             })
 
             document.getElementById("aletheia").style.visibility = 'visible'
@@ -1337,9 +1260,6 @@
                     clickEvent.preventDefault()
                     clickEvent.stopPropagation()
                     if (!player.isPlaying) return
-
-                    // action
-                    player.currentGame?.addAction(new Action(clickEvent))
 
                     if (elem.classList.contains('translucent')) {
                         elem.classList.remove('translucent')
@@ -1393,7 +1313,7 @@
                     let falseClicked = document.querySelectorAll('#tables td.false.clicked').length
                     if ((remainingTrue === 0)
                         ||
-                        (falseClicked === 32 && remainingTrue === 32)) {
+                        (falseClicked >= 32 && remainingTrue === 32)) {
                         player.victory()
                     }
                 })
@@ -1431,37 +1351,34 @@
                     overlay.show()
 
                     caption.setPointerCapture(e.pointerId);
-                    player._soundMachine.underwater.fade(undefined, 0.33)
+                    player._soundMachine.underwater.fade(undefined, 0.4)
 
                     timout = setTimeout(() => {
                         e.target.parentNode.classList.add("hint")
                         e.target.parentNode.parentNode.classList.add("hint")
-                    }, 300);
+                    }, 300)
                 })
                 caption.addEventListener('pointerup', (e) => {
                     clearHints()
-                    caption.releasePointerCapture(e.pointerId);
+                    caption.releasePointerCapture(e.pointerId)
                 })
             })
             // END HINTS 
 
-            // Get all elements with the selector '#tables>div'
-            const qwe = Array.from(document.querySelectorAll('#tables>div'))
-
-            /*
             // ISOTOPE Initialize Isotope
-            // ISOTOPE  */
             iso = new isotopeLayout(theTables.element, {
-                itemSelector: 'div.ISOTOPE', // Replace '.ISOTOPE' with your actual selector
-                layoutMode: 'masonry', // Adjust layout mode as needed
-                filter: paragraphBreaks ? '' : ':not(.separator-container)',
+                itemSelector: 'div.ISOTOPE',
+                layoutMode: 'masonry',
                 masonry: {
                     columnWidth: 10,
                     fitWidth: true,
                 }
+            })
 
-            });
-            return qwe
+            // Get all elements with the selector '#tables>div'
+            const originalElementsArray = Array.from(document.querySelectorAll('#tables>div'))
+
+            return originalElementsArray
 
         }
 
@@ -1471,7 +1388,6 @@
 
             function safe_shuffle() {
                 if (player.isPlaying) return
-                if (paragraphBreaks) return
                 scrambleIt(originalElementsArray)
             }
 
@@ -1497,23 +1413,6 @@
                 })
             }
 
-            function toggle_paragraphs() {
-                return false
-                if (player.isPlaying) return
-                paragraphBreaks = !paragraphBreaks
-                Utils.toggleElementsVisibility(document.querySelectorAll('div.separator-container'), 'flex')
-                if (paragraphBreaks) {
-                    document.getElementById("shuffle-all").disabled = true
-                    document.getElementById("tables").classList.remove("center-children")
-                    scrambleIt(originalElementsArray, false)
-                } else {
-                    document.getElementById("tables").classList.add("center-children")
-                    document.getElementById("shuffle-all").disabled = false
-                    // scrambleIt(originalElementsArray, true)
-                }
-                return paragraphBreaks
-            }
-
             function toggle_displayMode() {
                 functions.toggleDisplayMode()
                 if (functions.displayMode.key === 'canonical') {
@@ -1529,17 +1428,6 @@
                 return functions.displayMode.key !== 'canonical'
             }
 
-            /*
-            const hammertime = new hammerjs(document.getElementById("tables"))
-            hammertime.get('pinch').set({ enable: true });
-            hammertime.on('swiperight', function () {
-                games.prev()
-            })
-            hammertime.on('swipeleft', function () {
-                games.next()
-            })
-            */
-
             document.getElementById("table-borders").addEventListener('click', clickEvent => {
                 clickEvent.stopPropagation()
                 toggle_borders()
@@ -1548,19 +1436,6 @@
             document.getElementById("ab-axes").addEventListener('click', clickEvent => {
                 clickEvent.stopPropagation()
                 axes.toggleVisibility()
-            })
-
-            safeById('paragraph-breaks', paragraphBreaks =>
-                paragraphBreaks.addEventListener('click', clickEvent => {
-                    clickEvent.stopPropagation()
-                    toggle_paragraphs()
-                })
-            )
-
-            document.getElementById("shuffle-all").addEventListener('click', clickEvent => {
-                clickEvent.preventDefault()
-                clickEvent.stopPropagation()
-                safe_shuffle()
             })
 
             document.getElementById("canonical-or-javascript")?.addEventListener('click', clickEvent => {
@@ -1574,131 +1449,129 @@
                 window.open("/showdown.html?/HOWTO.md", "_howto")
             })
 
-            {
-                function playToggle(event) {
-                    event.preventDefault()
-                    event.stopPropagation()
-                    if (player.isPlaying) {
-                        player.abort()
-                    } else {
-                        player.start()
-                    }
-                }
-                function playAgain() {
-                    player.restarting = true
-                    player.veilBricks()
-                    let resultModal = document.getElementById("result-modal")
-                    resultModal.addEventListener('hidden.bs.modal', event => {
-                        requestAnimationFrame(() => { // let the javascript paint everything it needs to paint before brining the modal
-                            // player.stop() // already in initial hidden.bs.modal event
-                            safe_shuffle()
-                            player.start()
-                        })
-                    }, { once: true, })
-                    let modal = bsModal.getInstance(resultModal)
-                    modal.hide()
-                }
+            document.getElementById("shuffle-all").addEventListener('click', clickEvent => {
+                clickEvent.preventDefault()
+                clickEvent.stopPropagation()
+                safe_shuffle()
+            })
 
-                document.getElementById("play").addEventListener('click', clickEvent => {
-                    playToggle(clickEvent)
-                    // remove focus from element
-                    document.activeElement?.blur()
-                })
-                document.addEventListener('keyup', function (keyboardEvent) {
-                    {
-                        const element = document.getElementById("result-modal");
-                        const computedStyle = window.getComputedStyle(element);
-                        const displayValue = computedStyle.getPropertyValue("display");
-                        // console.log('modal', displayValue, 'event.code', event.code)
-                        if (displayValue !== 'none') {
-                            if (event.code === 'Space') {
-                                playAgain()
-                            }
-                            return
-                        }
-                    }
-                    switch (event.code) {
-                        case 'Space':
-                            playToggle(keyboardEvent);
-                            break;
-                        case 'Escape':
-                            if (player.isPlaying) {
-                                player.stop();
-                            }
-                            break;
-                        case 'KeyS':
-                            safe_shuffle();
-                            break;
-                        case 'KeyO':
-                            safe_reorder();
-                            break;
-                        case 'KeyC':
-                            safe_recolor();
-                            break;
-                        case 'KeyQ':
-                            document.getElementById("table-borders").checked = !toggle_borders();
-                            break;
-                        case 'KeyW':
-                            document.getElementById("ab-axes").checked = axes.toggleVisibility();
-                            break;
-                        case 'KeyE':
-                            safeById('paragraph-breaks', paragraphBreaks => paragraphBreaks.checked = toggle_paragraphs())
-                            break;
-                        case 'KeyA':
-                            document.getElementById("canonical-or-javascript").checked = toggle_displayMode();
-                            break;
-                        case 'ArrowRight':
-                            if (!player.isPlaying) {
-                                if (keyboardEvent.altKey) {
-                                    player.tortoiseHareAchilles.next();
-                                } else {
-                                    games.next()
-                                }
-                            }
-                            break;
-                        case 'ArrowLeft':
-                            if (!player.isPlaying) {
-                                if (keyboardEvent.altKey) {
-                                    player.tortoiseHareAchilles.prev();
-                                } else {
-                                    games.prev()
-                                }
-                            }
-                            break;
-                    }
-                })
-
-                document.getElementById("play-again").addEventListener('click', clickEvent => {
-                    clickEvent.preventDefault()
-                    clickEvent.stopPropagation()
-                    playAgain()
-                })
+            function playToggle(event) {
+                event.preventDefault()
+                event.stopPropagation()
+                if (player.isPlaying) {
+                    player.abort()
+                } else {
+                    player.start()
+                }
             }
 
-            // BEGIN CAROUSEL
-            ;[...document.getElementsByClassName('carousel-item')].forEach(carouselItem => {
-                carouselItem.addEventListener('click', clickEvent => {
-                    clickEvent.preventDefault()
-                    clickEvent.stopPropagation()
+            function playAgain() {
+                player.restarting = true
+                player.veilBricks()
+                let resultModal = document.getElementById("result-modal")
+                resultModal.addEventListener('hidden.bs.modal', event => {
+                    requestAnimationFrame(() => { // let the javascript paint everything it needs to paint before brining the modal
+                        // player.stop() // already in initial hidden.bs.modal event
+                        safe_shuffle()
+                        player.start()
+                    })
+                }, { once: true, })
+                let modal = bsModal.getInstance(resultModal)
+                modal.hide()
+            }
 
-                    if (player.isPlaying) return
+            document.getElementById("play").addEventListener('click', clickEvent => {
+                playToggle(clickEvent)
+                // remove focus from element
+                document.activeElement?.blur()
+            })
 
-                    const target = clickEvent.target;
-                    const rect = target.getBoundingClientRect();
-                    const clickX = event.clientX - rect.left;
-                    const midpoint = rect.width / 2;
-
-                    if (clickX < midpoint) {
-                        // Clicked on the left half
-                        player.tortoiseHareAchilles.prev()
-                    } else {
-                        // Clicked on the right half
-                        player.tortoiseHareAchilles.next()
+            document.addEventListener('keyup', function (keyboardEvent) {
+                // is modal visible ?
+                {
+                    const element = document.getElementById("result-modal");
+                    const computedStyle = window.getComputedStyle(element);
+                    const displayValue = computedStyle.getPropertyValue("display");
+                    if (displayValue !== 'none') {
+                        // edge case when space is pushed
+                        if (event.code === 'Space') {
+                            playAgain()
+                        }
+                        return // mute every other keypress when modal is visible
                     }
-                })
-            });
-            // END CAROUSEL
+                }
+                //  others
+                switch (event.code) {
+                    case 'Space':
+                        playToggle(keyboardEvent);
+                        break;
+                    case 'Escape':
+                        if (player.isPlaying) {
+                            player.stop();
+                        }
+                        break;
+                    case 'KeyS':
+                        safe_shuffle();
+                        break;
+                    case 'KeyO':
+                        safe_reorder();
+                        break;
+                    case 'KeyC':
+                        safe_recolor();
+                        break;
+                    case 'KeyQ':
+                        document.getElementById("table-borders").checked = !toggle_borders();
+                        break;
+                    case 'KeyW':
+                        document.getElementById("ab-axes").checked = axes.toggleVisibility();
+                        break;
+                    case 'KeyA':
+                        document.getElementById("canonical-or-javascript").checked = toggle_displayMode();
+                        break;
+                    case 'ArrowRight':
+                        if (!player.isPlaying) {
+                            player.tortoiseHareAchilles.next();
+                        }
+                        break;
+                    case 'ArrowLeft':
+                        if (!player.isPlaying) {
+                            player.tortoiseHareAchilles.prev();
+                        }
+                        break;
+                }
+            })
 
+            document.getElementById("play-again").addEventListener('click', clickEvent => {
+                clickEvent.preventDefault()
+                clickEvent.stopPropagation()
+                playAgain()
+            })
+
+            // BEGIN CAROUSEL
+            {
+                [...document.getElementsByClassName('carousel-item')].forEach(carouselItem => {
+                    carouselItem.addEventListener('click', clickEvent => {
+                        clickEvent.preventDefault()
+                        clickEvent.stopPropagation()
+
+                        if (player.isPlaying) return
+
+                        const target = clickEvent.target
+                        const rect = target.getBoundingClientRect()
+                        const clickX = event.clientX - rect.left
+                        const midpoint = rect.width / 2
+
+                        if (clickX < midpoint) {
+                            // Clicked on the left half
+                            player.tortoiseHareAchilles.prev()
+                        } else {
+                            // Clicked on the right half
+                            player.tortoiseHareAchilles.next()
+                        }
+                    })
+                })
+            }
+            // END CAROUSEL
 
         })
 

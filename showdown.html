@@ -116,7 +116,8 @@
                 }
 
                 safeById('logic_symbols', elem =>
-                    elem.addEventListener('click', () => {
+                    elem.addEventListener('click', (clickEvent) => {
+                        clickEvent.preventDefault()
                         safeById('qwe', qwe => qwe.classList.remove('javascript'))
                         safeById('AetB', AetB => AetB.innerHTML = "𝖠 ∧ 𝖡")
                         safeById('AouB', AouB => AouB.innerHTML = "𝖠 ∨ 𝖡")
@@ -125,7 +126,8 @@
                 )
 
                 safeById ('javascript_expressions', elem => 
-                    elem.addEventListener('click', () => {
+                    elem.addEventListener('click', (clickEvent) => {
+                        clickEvent.preventDefault()
                         safeById('qwe', qwe => qwe.classList.add('javascript'))
                         safeById('AetB', AetB => AetB.innerHTML = "α & β")
                         safeById('AouB', AouB => AouB.innerHTML = "α | β")

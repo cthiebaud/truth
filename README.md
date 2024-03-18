@@ -18,7 +18,7 @@ Il s'agit donc de dévoiler les petites briques colorées pour faire apparaître
 
 <img src="svg/ancient-greek-helmet-1-svgrepo-com.svg" style="width: 24px; height: 24px;">&nbsp; `Casque Corinthien` Ce pourrait être celui d'Achille - **la** référence en matière de super-héros - mais aussi celui d'Hermès, le messager des dieux, réputé pour sa vitesse. On va en avoir besoin, car il ne reste plus que 30 secondes pour dévoiler les briques.
 
-*La 🎵musique🎶 du niveau <img src="svg/ancient-greek-helmet-1-svgrepo-com.svg" alt="Achilles" style="width: 24px; height: 24px;">
+*La 🎵 musique 🎶 du niveau <img src="svg/ancient-greek-helmet-1-svgrepo-com.svg" alt="Achilles" style="width: 24px; height: 24px;">
 est sur [SoundCloud](https://soundcloud.com/christophe-thiebaud/aletheia?si=83569a3c774e4cdf84c684e74478af34&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing)*
 
 --- 
@@ -75,6 +75,7 @@ On peut tricher en appuyant sur les entêtes des tables pendant une partie.
 * <kbd>W</kbd> &nbsp;&nbsp;&nbsp;<img src="svg/b-axes.svg"   >&nbsp;&nbsp;&nbsp; Affiche les en-têtes des axes des tables.
 * <kbd>S</kbd> &nbsp;&nbsp;&nbsp;<img src="svg/b-shuffle.svg">&nbsp;&nbsp;&nbsp; Mélange les tables aléatoirement.
 * <kbd>A</kbd> &nbsp;&nbsp;&nbsp;`𝖠`/`α`&nbsp;&nbsp;&nbsp; Change la représentation des en-têtes des tables entre symboles logiques et javascript.
+* <kbd>←</kbd> and <kbd>→</kbd> Change de niveau : <img src="svg/tortoise-fill-svgrepo-com.svg" style="width: 24px; height: 24px;"> ⇆ <img src="svg/hare-fill-svgrepo-com.svg" style="width: 24px; height: 24px;"> ⇆ <img src="svg/ancient-greek-helmet-1-svgrepo-com.svg" style="width: 24px; height: 24px;">
 * ------- *les raccourcis suivants sont sans équivalents graphiques, et de ce fait disponibles uniquement dans la version web* --------
 * <kbd>Escape</kbd> 'Tue' une partie (i.e. sans afficher les résultats). 
 * <kbd>C</kbd> Mélange les couleurs des briques aléatoirement.
