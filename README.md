@@ -65,13 +65,14 @@ La formule qui donne la clé de chaque de table de vérité peut être exprimée
 ### Raccourcis clavier
 
 * <kbd>Space</kbd> Démarre <img src="svg/b-start.svg" style="width: auto; height: 16px;"> ou arrête <img src="svg/b-stop.svg" style="width: auto; height: 16px;"> une partie. Si les résultats de la partie précédente sont encore affichés dans la boite de dialogue, mélange les tables avant de redémarrer. 
-* <kbd>Escape</kbd> 'Tue' une partie (i.e. sans afficher les résultats). 
 * <kbd>Q</kbd> &nbsp;&nbsp;&nbsp;<img src="svg/b-grid.svg" style="width: auto; height: 16px;"   >&nbsp;&nbsp;&nbsp; Affiche les bords des tables et des celulles.
 * <kbd>W</kbd> &nbsp;&nbsp;&nbsp;<img src="svg/b-axes.svg" style="width: auto; height: 16px;"   >&nbsp;&nbsp;&nbsp; Affiche les en-têtes des axes des tables.
 * <kbd>S</kbd> &nbsp;&nbsp;&nbsp;<img src="svg/b-shuffle.svg" style="width: auto; height: 16px;">&nbsp;&nbsp;&nbsp; Mélange les tables aléatoirement.
+* <kbd>A</kbd> &nbsp;&nbsp;&nbsp;`𝖠`/`α`&nbsp;&nbsp;&nbsp; Change la représentation des en-têtes des tableaux entre symboles logiques et javascript.
+* ------- *les raccourcis suivants sont sans équivalents graphiques, et de ce fait disponibles uniquement dans la version web* --------
+* <kbd>Escape</kbd> 'Tue' une partie (i.e. sans afficher les résultats). 
 * <kbd>C</kbd> Mélange les couleurs des briques aléatoirement.
 * <kbd>O</kbd> Retour à l'ordre initial des tables.
-* <kbd>A</kbd> Change la représentation des en-têtes des tableaux entre symboles logiques et javascript.
 
 --- 
 
