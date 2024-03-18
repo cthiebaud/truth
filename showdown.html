@@ -101,32 +101,37 @@
                     table.classList.add('table', 'table-light', 'table-sm', 'table-borderless');
                 });
 
-                const images = document.querySelectorAll("img") 
+                const images = document.querySelectorAll("img")
                 images.forEach(function (img) {
                     if (img.alt && !(img.alt.includes('Android') || img.alt.includes('Apple') || img.alt.includes('example') || img.alt.includes('github'))) {
                         img.classList.add("img-fluid")
                     }
                 })
 
-                if (document.getElementById('logic_symbols')) {
-                    document.getElementById('logic_symbols').addEventListener('click', () => {
-                        document.getElementById('qwe').classList.remove('javascript')
-                        document.getElementById('AetB').innerHTML = "𝖠 ∧ 𝖡"
-                        document.getElementById('AouB').innerHTML = "𝖠 ∨ 𝖡"
-                        document.getElementById('nonAounonB').innerHTML = "¬𝖠 ∨ ¬𝖡"
-                        // console.log('logic_symbols')
-                    })
+                const safeById = (id, func) => {
+                    if (!id) return
+                    const elem = document.getElementById(id)
+                    if (!elem) return
+                    return func(elem)
                 }
 
-                if (document.getElementById('javascript_expressions')) {
-                    document.getElementById('javascript_expressions').addEventListener('click', () => {
-                        document.getElementById('qwe').classList.add('javascript')
-                        document.getElementById('AetB').innerHTML = "α & β"
-                        document.getElementById('AouB').innerHTML = "α | β"
-                        document.getElementById('nonAounonB').innerHTML = "!α | !β"
-                        // console.log('javascript_expressions')
+                safeById('logic_symbols', elem =>
+                    elem.addEventListener('click', () => {
+                        safeById('qwe', qwe => qwe.classList.remove('javascript'))
+                        safeById('AetB', AetB => AetB.innerHTML = "𝖠 ∧ 𝖡")
+                        safeById('AouB', AouB => AouB.innerHTML = "𝖠 ∨ 𝖡")
+                        safeById('nonAounonB', nonAounonB => nonAounonB.innerHTML = "¬𝖠 ∨ ¬𝖡")
                     })
-                }
+                )
+
+                safeById ('javascript_expressions', elem => 
+                    elem.addEventListener('click', () => {
+                        safeById('qwe', qwe => qwe.classList.add('javascript'))
+                        safeById('AetB', AetB => AetB.innerHTML = "α & β")
+                        safeById('AouB', AouB => AouB.innerHTML = "α | β")
+                        safeById('nonAounonB', nonAounonB => nonAounonB.innerHTML = "!α | !β")
+                    })
+        )
             }
 
             const xhr = new XMLHttpRequest()
@@ -136,7 +141,6 @@
                     if (xhr.status === 200) {
                         displayResult(xhr.responseText)
                     } else {
-
                         document.querySelector(".container").innerHTML += '<div class="alert alert-warning mt-2"><span class="italic">' + location.search.substring(1) + '</span> not found 🙁 </div>'
                     }
                 }
