@@ -64,7 +64,7 @@ La formule qui donne la clé de chaque de table de vérité peut être exprimée
 
 ### Tricherie
 
-On peut tricher en appuyant sur les entêtes des tables pendant une parite.
+On peut tricher en appuyant sur les entêtes des tables pendant une partie.
 
 --- 
 
