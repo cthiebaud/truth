@@ -64,7 +64,7 @@ La formule qui donne la clé de chaque de table de vérité peut être exprimée
 
 ### Raccourcis clavier
 
-* <kbd>Space</kbd> &nbsp;&nbsp;&nbsp;<img src="svg/b-start.svg">/<img src="svg/b-stop.svg" >&nbsp;&nbsp;&nbsp; Démarre ou arrête une partie. Si les résultats de la partie précédente sont encore affichés dans la boite de dialogue, mélange les tables avant de redémarrer. 
+* <kbd>Space</kbd> &nbsp;&nbsp;&nbsp;<img src="svg/b-start.svg">/<img src="svg/b-stop.svg" >&nbsp;&nbsp;&nbsp; Démarre ou arrête une partie. Si la boite de dialogue qui affiche les résultats de la partie précédente est visible, mélange les tables aléatoirement avant de démarrer une nouvelle partie.
 * <kbd>Q</kbd> &nbsp;&nbsp;&nbsp;<img src="svg/b-grid.svg"   >&nbsp;&nbsp;&nbsp; Affiche les bords des tables et des celulles.
 * <kbd>W</kbd> &nbsp;&nbsp;&nbsp;<img src="svg/b-axes.svg"   >&nbsp;&nbsp;&nbsp; Affiche les en-têtes des axes des tables.
 * <kbd>S</kbd> &nbsp;&nbsp;&nbsp;<img src="svg/b-shuffle.svg">&nbsp;&nbsp;&nbsp; Mélange les tables aléatoirement.
@@ -78,7 +78,7 @@ La formule qui donne la clé de chaque de table de vérité peut être exprimée
 
 ### Bascules 
 
-'Bascule' est le mot français officiellement utilisé pour traduire l'anglais 'Toggle':
+*'Bascule' est le mot français officiellement utilisé pour traduire l'anglais 'Toggle'.*
 
 * <img src="svg/b-grid.svg" >&nbsp; Affiche les bords des tables et des celulles.
 * <img src="svg/b-axes.svg" >&nbsp; Affiche les en-têtes des axes des tables.

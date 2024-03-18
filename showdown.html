@@ -101,28 +101,32 @@
                     table.classList.add('table', 'table-light', 'table-sm', 'table-borderless');
                 });
 
-                const images = document.querySelectorAll("img")
+                const images = document.querySelectorAll("img") 
                 images.forEach(function (img) {
                     if (img.alt && !(img.alt.includes('Android') || img.alt.includes('Apple') || img.alt.includes('example') || img.alt.includes('github'))) {
                         img.classList.add("img-fluid")
                     }
                 })
 
-                document.getElementById('logic_symbols').addEventListener('click', () => {
-                    document.getElementById('qwe').classList.remove('javascript')
-                    document.getElementById('AetB').innerHTML = "𝖠 ∧ 𝖡"
-                    document.getElementById('AouB').innerHTML = "𝖠 ∨ 𝖡"
-                    document.getElementById('nonAounonB').innerHTML = "¬𝖠 ∨ ¬𝖡"
-                    // console.log('logic_symbols')
-                })
+                if (document.getElementById('logic_symbols')) {
+                    document.getElementById('logic_symbols').addEventListener('click', () => {
+                        document.getElementById('qwe').classList.remove('javascript')
+                        document.getElementById('AetB').innerHTML = "𝖠 ∧ 𝖡"
+                        document.getElementById('AouB').innerHTML = "𝖠 ∨ 𝖡"
+                        document.getElementById('nonAounonB').innerHTML = "¬𝖠 ∨ ¬𝖡"
+                        // console.log('logic_symbols')
+                    })
+                }
 
-                document.getElementById('javascript_expressions').addEventListener('click', () => {
-                    document.getElementById('qwe').classList.add('javascript')
-                    document.getElementById('AetB').innerHTML = "α & β"
-                    document.getElementById('AouB').innerHTML = "α | β"
-                    document.getElementById('nonAounonB').innerHTML = "!α | !β"
-                    // console.log('javascript_expressions')
-                })
+                if (document.getElementById('javascript_expressions')) {
+                    document.getElementById('javascript_expressions').addEventListener('click', () => {
+                        document.getElementById('qwe').classList.add('javascript')
+                        document.getElementById('AetB').innerHTML = "α & β"
+                        document.getElementById('AouB').innerHTML = "α | β"
+                        document.getElementById('nonAounonB').innerHTML = "!α | !β"
+                        // console.log('javascript_expressions')
+                    })
+                }
             }
 
             const xhr = new XMLHttpRequest()
