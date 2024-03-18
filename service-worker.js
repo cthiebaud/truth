@@ -37,6 +37,7 @@ if (workbox) {
     { revision: '51e5adb6686dd4494c62e0215bf63d66', url: 'assets/audio/short-whoosh.mp3' },
     { revision: '680e993dde5168775f0e7c0b5adf6d99', url: 'assets/audio/tada.mp3' },
     { revision: '607a87857f704bb0fab7447bc204e09e', url: 'assets/audio/ticking.mp3' },
+    { revision: '6dab39cf554c9b6d2018fd14ff543927', url: 'assets/audio/underwater-v2.mp3' },
     { revision: '17eeed991e17c12d3a1b4bf4799db708', url: 'assets/audio/underwater.mp3' },
     { revision: '2d61758262742f8dc77cef03f417ddb9', url: 'assets/png/apple-icon-180.png' },
     { revision: '87f79b3cc6bf9a7e5357be5270a4cb5e', url: 'assets/png/manifest-icon-192.maskable.png' },
@@ -90,7 +91,7 @@ if (workbox) {
     { revision: '0373d0a2c49b253c3bd232129592df01', url: 'dist/css/timer.min.css' },
     { revision: '96294d6952e58982411d496de65f3628', url: 'dist/js/ColorsClass.min.js' },
     { revision: '4ae879285db2e52c80b93a97b8a40632', url: 'dist/js/GameClass.min.js' },
-    { revision: '6bc094f37699a9288bf99d70a7f5178c', url: 'dist/js/SoundMachineClass.min.js' },
+    { revision: 'bb7eb51a4eec82646365d519b1b6a61d', url: 'dist/js/SoundMachineClass.min.js' },
     { revision: '5a062f58bdab5c6fd02876459accca95', url: 'dist/js/TimerClass.min.js' },
     { revision: 'b162abaf7871ba19a471a1630615af82', url: 'dist/js/UtilsClass.min.js' },
   ])
