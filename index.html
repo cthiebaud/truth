@@ -395,9 +395,29 @@
                 white-space: nowrap;
             }
 
+            nav#nav.navbar #controls #tortoise-hare-achilles {
+                min-width: 80px;
+                max-width: 100px;
+                flex-grow: 1;
+            }
+
+            /*
+            nav#nav.navbar #controls .compte-à-rebours {
+                flex-grow: 1;
+            }
+            */
+
             nav#nav.navbar #controls>* {
                 text-align: center;
                 background-color: transparent;
+            }
+
+            nav#nav.navbar #controls #tortoise-hare-achilles_and_compte-à-rebours {
+                display: flex;
+                justify-content: space-evenly;
+                flex-grow: 1;
+                white-space: nowrap;
+                max-width: 300px;
             }
 
             nav#nav.navbar #controls>*:not(:first-child):not(:last-child) {
@@ -443,41 +463,43 @@
                     </button>
                 </div>
                 <!-- carousel -->
-                <div id="tortoise-hare-achilles" class="left carousel slide" data-bs-wrap="false">
-                    <div class="carousel-inner">
-                        <div id="tortoise" data-time="120" class="carousel-item active" data-sound="tortoise"><!-- data-bs-interval="0" -->
-                            <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30">
-                                    <use xlink:href="#svg-tortoise"></use>
-                                </svg>
+                <div id="tortoise-hare-achilles_and_compte-à-rebours">
+                    <div id="tortoise-hare-achilles" class="left carousel slide" data-bs-wrap="false">
+                        <div class="carousel-inner">
+                            <div id="tortoise" data-time="120" class="carousel-item active" data-sound="tortoise"><!-- data-bs-interval="0" -->
+                                <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30">
+                                        <use xlink:href="#svg-tortoise"></use>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div id="hare" data-time="60" class="carousel-item" data-sound="hare"><!-- data-bs-interval="0" -->
+                                <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30">
+                                        <use xlink:href="#svg-hare"></use>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div id="achilles" data-time="30" class="carousel-item" data-sound="achilles"><!-- data-bs-interval="0" -->
+                                <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30">
+                                        <use xlink:href="#svg-achilles"></use>
+                                    </svg>
+                                </div>
                             </div>
                         </div>
-                        <div id="hare" data-time="60" class="carousel-item" data-sound="hare"><!-- data-bs-interval="0" -->
-                            <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30">
-                                    <use xlink:href="#svg-hare"></use>
-                                </svg>
-                            </div>
-                        </div>
-                        <div id="achilles" data-time="30" class="carousel-item" data-sound="achilles"><!-- data-bs-interval="0" -->
-                            <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30">
-                                    <use xlink:href="#svg-achilles"></use>
-                                </svg>
-                            </div>
-                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#tortoise-hare-achilles" data-bs-slide="prev" disabled>
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#tortoise-hare-achilles" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#tortoise-hare-achilles" data-bs-slide="prev" disabled>
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#tortoise-hare-achilles" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
+                    <!-- compte à rebours -->
+                    <div class="compte-à-rebours the-font-monospaced"></div>
                 </div>
-                <!-- compte à rebours -->
-                <div class="compte-à-rebours the-font-monospaced"></div>
                 <!-- action! -->
                 <div>
                     <button id="play" type="button" class="btn btn-outline-secondary timer-container" aria-label="play"
@@ -530,6 +552,14 @@
         import { Game, Action, Result, ResultProperty } from './dist/js/GameClass.min.js'
 
         let paragraphBreaks = false // true // 
+
+        function safeById(id, func) {
+            if (!id) return
+            const elem = document.getElementById(id)
+            if (!elem) return
+            return func(elem)
+        }
+
 
         class CompteARebours {
             #bezierEasing = bezierEasing(0.50, 0.20, 0.50, 1.00)
@@ -813,7 +843,7 @@
 
             onTimerClose() {
                 document.getElementById("shuffle-all").disabled = false
-                if (document.getElementById("paragraph-breaks")) document.getElementById("paragraph-breaks").disabled = false
+                safeById('paragraph-breaks', paragraphBreaks => paragraphBreaks.disabled = false)
                 player.unveilBricks()
                 player._soundMachine[player.level].stop()
                 player._soundMachine.underwater.stop()
@@ -960,7 +990,7 @@
                 }
                 this.isPlaying = true
                 games.newGame(screenshot(), this.level)
-                this.result = new Result(this.level, theTables.element?.dataset.scrambled, functions.displayMode.symbol)
+                this.result = new Result(this.level, theTables.element.dataset.scrambled, functions.displayMode.symbol)
                 window.scrollTo({
                     top: 0,
                     behavior: 'smooth' // Use 'smooth' for smooth scrolling
@@ -969,7 +999,7 @@
                 const totalTime = Number(document.querySelector('.carousel-item.active').dataset.time)
                 this._timer.start(totalTime)
                 document.getElementById("shuffle-all").disabled = true
-                if (document.getElementById("paragraph-breaks")) document.getElementById("paragraph-breaks").disabled = true
+                safeById('paragraph-breaks', paragraphBreaks => paragraphBreaks.disabled = true)
                 // BEGIN CAROUSEL
                 document.getElementById('tortoise-hare-achilles').style.opacity = '.5'
                 document.querySelectorAll('#tortoise-hare-achilles button').forEach(button => {
@@ -1187,8 +1217,10 @@
         function scrambleIt(originalElementsArray, shuffleParam = true) {
             // Shuffle the order if shuffleParam is true
             if (shuffleParam) {
+                theTables.element.dataset.scrambled = true
                 iso.shuffle({ filter: '' })
             } else {
+                theTables.element.dataset.scrambled = false
                 iso.arrange({ sortBy: 'original-order', filter: ':not(.separator-container)' })
             }
             setTimeout(function () {
@@ -1457,13 +1489,15 @@
             }
 
             function toggle_borders() {
-                if (document.getElementById("tables").classList.contains("transparent-border")) {
-                    document.getElementById("tables").classList.remove("transparent-border")
-                    return false
-                } else {
-                    document.getElementById("tables").classList.add("transparent-border")
-                    return true
-                }
+                return safeById('tables', tables => {
+                    if (tables.classList.contains("transparent-border")) {
+                        tables.classList.remove("transparent-border")
+                        return false
+                    } else {
+                        tables.classList.add("transparent-border")
+                        return true
+                    }
+                })
             }
 
             function toggle_paragraphs() {
@@ -1519,12 +1553,12 @@
                 axes.toggleVisibility()
             })
 
-            if (document.getElementById("paragraph-breaks")) {
-                document.getElementById("paragraph-breaks").addEventListener('click', clickEvent => {
+            safeById('paragraph-breaks', paragraphBreaks =>
+                paragraphBreaks.addEventListener('click', clickEvent => {
                     clickEvent.stopPropagation()
                     toggle_paragraphs()
                 })
-            }
+            )
 
             document.getElementById("shuffle-all").addEventListener('click', clickEvent => {
                 clickEvent.preventDefault()
@@ -1611,9 +1645,7 @@
                             document.getElementById("ab-axes").checked = axes.toggleVisibility();
                             break;
                         case 'KeyE':
-                            if (document.getElementById("paragraph-breaks")) {
-                                document.getElementById("paragraph-breaks").checked = toggle_paragraphs();
-                            }
+                            safeById('paragraph-breaks', paragraphBreaks => paragraphBreaks.checked = toggle_paragraphs())
                             break;
                         case 'KeyA':
                             document.getElementById("canonical-or-javascript").checked = toggle_displayMode();
