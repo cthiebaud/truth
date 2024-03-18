@@ -62,6 +62,12 @@ La formule qui donne la clé de chaque de table de vérité peut être exprimée
 
 --- 
 
+### Tricherie
+
+On peut tricher en appuyant sur les entêtes des tables pendant une parite.
+
+--- 
+
 ### Raccourcis clavier
 
 * <kbd>Space</kbd> &nbsp;&nbsp;&nbsp;<img src="svg/b-start.svg">/<img src="svg/b-stop.svg" >&nbsp;&nbsp;&nbsp; Démarre ou arrête une partie. Si la boite de dialogue qui affiche les résultats de la partie précédente est visible, mélange les tables aléatoirement avant de démarrer une nouvelle partie.
