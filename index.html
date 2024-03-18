@@ -931,13 +931,11 @@
 
             veilBricks() {
                 this.#veilOrUnveilBricks('veil')
-                console.log('ENDED veil', performance.now())
             }
 
             unveilBricks() {
                 if (!this.restarting) {
                     this.#veilOrUnveilBricks('unveil')
-                    console.log('ENDED unveil', performance.now())
                 }
             }
 
@@ -965,7 +963,6 @@
                         }
                         setTimeout(() => {
                             resolve(tbody)
-                            console.log('veil?', veil, performance.now(), tbody.parentNode.parentNode.dataset.function)
                         }, 20);
                     })
                 }
