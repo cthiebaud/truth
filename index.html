@@ -58,6 +58,7 @@
     <!-- /* changed by "NODE_ENV=<development|production> node dev-oder-prod.mjs" or "npm run <dev\prod>" */ -->
     <link rel="stylesheet" href='/dist/css/bootstrap.min.css'>
     <link rel="stylesheet" href='/dist/css/index.min.css'>
+    <link rel="stylesheet" href='/dist/css/tables.min.css'>
     <link rel="stylesheet" href='/dist/css/timer.min.css'>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -350,12 +351,14 @@
                             d="M487.9 40.927c-2.35 9.897-13.446 14.868-19.292 22.693-8.157 6.418-16.073 22.787-28.015 13.913-11.227-11.134 11.485-21.639 12.022-27.506H50.433v403.485c7.839-7.427 20.099-25.259 29.798-10.102 2.235 12.49-12.18 18.605-18.785 27.395-7.671 5.32-12.84 18.958-23.914 16.414-11.894-7.987-20.681-20.27-31.428-29.828-17.476-14.372 9.54-28.283 17.755-10.45 8.926 12.934 6.328-1.958 6.57-9.992V40.027c2.392-14.958 20.102-8.657 30.706-10.002h392.76C446.513 22.197 428.589 9.94 443.819.32c12.549-2.226 18.67 12.156 27.468 18.793 5.017 7.223 17.043 11.935 16.613 21.815z" />
                     </svg>
                 </label>
-                <input type="checkbox" class="btn-check" id="paragraph-breaks" autocomplete="off" aria-label="paragraph-breaks toggle">
-                <label class="btn my-button" for="paragraph-breaks">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16">
-                        <use xlink:href="#svg-scrambled-false"></use>
-                    </svg>
-                </label>
+                <!-- 
+                    <input type="checkbox" class="btn-check" id="paragraph-breaks" autocomplete="off" aria-label="paragraph-breaks toggle">
+                    <label class="btn my-button" for="paragraph-breaks">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16">
+                            <use xlink:href="#svg-scrambled-false"></use>
+                        </svg>
+                    </label>
+                -->
                 <input type="checkbox" class="btn-check" id="canonical-or-javascript" autocomplete="off" aria-label="canonical / javascript toggle">
                 <label id="canonical-or-javascript.label" class="btn btn-sm my-button" for="canonical-or-javascript">
                     𝖠
@@ -363,6 +366,8 @@
             </div>
         </div>
 
+        <!-- 
+        -->
         <div id="tables" class="transparent-border center-children the-font-for-tables" data-scrambled="false"></div>
 
         <div id="aletheia" class="text-center p-2 mb-0 d-flex justify-content-between align-items-end">
@@ -515,7 +520,7 @@
         import { Modal as bsModal, Carousel as bsCarousel } from 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/+esm'
         // import hammerjs from 'https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/+esm'
         import bezierEasing from 'https://cdn.jsdelivr.net/npm/bezier-easing@2.1.0/+esm'
-        // ISOTOPE import isotopeLayout from 'https://cdn.jsdelivr.net/npm/isotope-layout@3.0.6/+esm'
+        import isotopeLayout from 'https://cdn.jsdelivr.net/npm/isotope-layout@3.0.6/+esm' // ISOTOPE 
 
         /* changed by "NODE_ENV=<development|production> node dev-oder-prod.mjs" or "npm run <dev|prod>" */
         import { Utils } from './dist/js/UtilsClass.min.js'
@@ -524,7 +529,7 @@
         import { SoundMachine } from './dist/js/SoundMachineClass.min.js'
         import { Game, Action, Result, ResultProperty } from './dist/js/GameClass.min.js'
 
-        let paragraphBreaks = false // true //
+        let paragraphBreaks = false // true // 
 
         class CompteARebours {
             #bezierEasing = bezierEasing(0.50, 0.20, 0.50, 1.00)
@@ -635,6 +640,23 @@
             onPrev: onPrevGame,
             onNext: onNextGame,
         })
+
+        let theTables = null
+        class Tables {
+            #tablesElement
+            constructor(id) {
+                this.#tablesElement = document.getElementById(id)
+            }
+            get element() {
+                return this.#tablesElement
+            }
+            set innerHTML(innerHTML) {
+                if (this.#tablesElement) {
+                    this.#tablesElement.innerHTML = innerHTML
+                }
+            }
+        }
+        theTables = new Tables('tables')
 
         let player = null
         class Player {
@@ -791,7 +813,7 @@
 
             onTimerClose() {
                 document.getElementById("shuffle-all").disabled = false
-                document.getElementById("paragraph-breaks").disabled = false
+                if (document.getElementById("paragraph-breaks")) document.getElementById("paragraph-breaks").disabled = false
                 player.unveilBricks()
                 player._soundMachine[player.level].stop()
                 player._soundMachine.underwater.stop()
@@ -935,7 +957,7 @@
                 }
                 this.isPlaying = true
                 games.newGame(screenshot(), this.level)
-                this.result = new Result(this.level, document.getElementById('tables').dataset.scrambled, functions.displayMode.symbol)
+                this.result = new Result(this.level, theTables.element?.dataset.scrambled, functions.displayMode.symbol)
                 window.scrollTo({
                     top: 0,
                     behavior: 'smooth' // Use 'smooth' for smooth scrolling
@@ -944,7 +966,7 @@
                 const totalTime = Number(document.querySelector('.carousel-item.active').dataset.time)
                 this._timer.start(totalTime)
                 document.getElementById("shuffle-all").disabled = true
-                document.getElementById("paragraph-breaks").disabled = true
+                if (document.getElementById("paragraph-breaks")) document.getElementById("paragraph-breaks").disabled = true
                 // BEGIN CAROUSEL
                 document.getElementById('tortoise-hare-achilles').style.opacity = '.5'
                 document.querySelectorAll('#tortoise-hare-achilles button').forEach(button => {
@@ -986,10 +1008,10 @@
         player = new Player()
 
         class Axes {
-            static setCellWidth(larger) {
+            setCellWidth() {
                 /* 2*52 + 18 == 2*61 == 122 */
                 let cellWidth = '61px'
-                if (!larger) {
+                if (this.visible) {
                     cellWidth = '52px'
                 }
                 document.documentElement.style.setProperty('--cell-width_and_height', cellWidth)
@@ -1000,7 +1022,7 @@
             constructor() {
                 this.axesArray = [null, true, false]
                 this.visible = false
-                Axes.setCellWidth(!this.visible)
+                this.setCellWidth()
             }
             iterate(iterator) {
                 this.axesArray.forEach(iterator)
@@ -1014,8 +1036,8 @@
             }
             toggleVisibility() {
                 const displayStyle = Utils.toggleElementsVisibility(document.getElementsByTagName('th'), 'table-cell')
-                this.visible = displayStyle === 'table-cell'
-                Axes.setCellWidth(!this.visible)
+                this.visible = displayStyle !== 'none'
+                this.setCellWidth()
                 return this.visible
             }
         }
@@ -1142,7 +1164,7 @@
 
             blend(html, elementID) {
                 if (this.previousElement === null) {
-                    document.getElementById('tables').innerHTML = html
+                    theTables.innerHTML = html
                 } else {
                     this.previousElement.insertAdjacentHTML("afterend", html)
                 }
@@ -1157,19 +1179,22 @@
         }
 
         /* ISOTOPE
+        ISOTOPE */
         let iso = undefined
-        function scrambleIt1(originalElementsArray, shuffleParam = true) {
+        function scrambleIt(originalElementsArray, shuffleParam = true) {
             // Shuffle the order if shuffleParam is true
             if (shuffleParam) {
-                iso.shuffle();
+                iso.shuffle({ filter: '' })
             } else {
-                iso.layout();
+                iso.arrange({ sortBy: 'original-order', filter: ':not(.separator-container)' })
             }
+            setTimeout(function () {
+                iso.layout();
+            }, 100);
         }
-        ISOTOPE */
 
 
-        function scrambleIt(originalElementsArray, shuffleParam = true) {
+        function scrambleIt0(originalElementsArray, shuffleParam = true) {
             // Detach each element with an ID
             const detachedElements = originalElementsArray.map(element => {
                 const parent = element.parentNode;
@@ -1178,15 +1203,15 @@
             });
 
             // Shuffle the detached elements
-            document.getElementById('tables').dataset.scrambled = false
+            theTables.element.dataset.scrambled = false
             if (shuffleParam) {
                 Utils.shuffleArray(detachedElements);
-                document.getElementById('tables').dataset.scrambled = true
+                theTables.element.dataset.scrambled = true
             }
 
             // Reattach the shuffled elements
             detachedElements.forEach(element => {
-                document.getElementById('tables').appendChild(element);
+                theTables.element.appendChild(element);
             });
         }
 
@@ -1212,7 +1237,7 @@
 
                 const elementID = `element${index}`
                 if (typeof func === 'number') {
-                    const html = `<div id="${elementID}" class="ISOTOPE separator-container" style="display: ${paragraphBreaks ? 'flex' : 'none'};">
+                    const html = `<div id="${elementID}" class="ISOTOPE separator-container" style="display: ${paragraphBreaks ? 'flex' : 'none'};"> <!--  -->
         <span class="separator-line separator-line-left"></span>
         <span class="separator-text">${func}</span>
         <span class="separator-line separator-line-right"></span>
@@ -1392,13 +1417,18 @@
             const qwe = Array.from(document.querySelectorAll('#tables>div'))
 
             /*
-            // Initialize Isotope
-            const tablesContainer = document.getElementById('tables')
-            iso = new isotopeLayout(tablesContainer, {
+            // ISOTOPE Initialize Isotope
+            // ISOTOPE  */
+            iso = new isotopeLayout(theTables.element, {
                 itemSelector: 'div.ISOTOPE', // Replace '.ISOTOPE' with your actual selector
-                layoutMode: 'fitRows' // Adjust layout mode as needed
+                layoutMode: 'masonry', // Adjust layout mode as needed
+                filter: paragraphBreaks ? '' : ':not(.separator-container)',
+                masonry: {
+                    columnWidth: 10,
+                    fitWidth: true,
+                }
+
             });
-            */
             return qwe
 
         }
@@ -1434,6 +1464,7 @@
             }
 
             function toggle_paragraphs() {
+                return false
                 if (player.isPlaying) return
                 paragraphBreaks = !paragraphBreaks
                 Utils.toggleElementsVisibility(document.querySelectorAll('div.separator-container'), 'flex')
@@ -1444,6 +1475,7 @@
                 } else {
                     document.getElementById("tables").classList.add("center-children")
                     document.getElementById("shuffle-all").disabled = false
+                    // scrambleIt(originalElementsArray, true)
                 }
                 return paragraphBreaks
             }
@@ -1484,10 +1516,12 @@
                 axes.toggleVisibility()
             })
 
-            document.getElementById("paragraph-breaks").addEventListener('click', clickEvent => {
-                clickEvent.stopPropagation()
-                toggle_paragraphs()
-            })
+            if (document.getElementById("paragraph-breaks")) {
+                document.getElementById("paragraph-breaks").addEventListener('click', clickEvent => {
+                    clickEvent.stopPropagation()
+                    toggle_paragraphs()
+                })
+            }
 
             document.getElementById("shuffle-all").addEventListener('click', clickEvent => {
                 clickEvent.preventDefault()
@@ -1574,7 +1608,9 @@
                             document.getElementById("ab-axes").checked = axes.toggleVisibility();
                             break;
                         case 'KeyE':
-                            document.getElementById("paragraph-breaks").checked = toggle_paragraphs();
+                            if (document.getElementById("paragraph-breaks")) {
+                                document.getElementById("paragraph-breaks").checked = toggle_paragraphs();
+                            }
                             break;
                         case 'KeyA':
                             document.getElementById("canonical-or-javascript").checked = toggle_displayMode();
