@@ -68,7 +68,6 @@ La formule qui donne la clé de chaque de table de vérité peut être exprimée
 * <kbd>Escape</kbd> 'Tue' une partie (i.e. sans afficher les résultats). 
 * <kbd>Q</kbd> &nbsp;&nbsp;&nbsp;<img src="svg/b-grid.svg" style="width: auto; height: 16px;"   >&nbsp;&nbsp;&nbsp; Affiche les bords des tables et des celulles.
 * <kbd>W</kbd> &nbsp;&nbsp;&nbsp;<img src="svg/b-axes.svg" style="width: auto; height: 16px;"   >&nbsp;&nbsp;&nbsp; Affiche les en-têtes des axes des tables.
-* <kbd>E</kbd> &nbsp;&nbsp;&nbsp;<img src="svg/b-group.svg" style="width: auto; height: 16px;"  >&nbsp;&nbsp;&nbsp; Groupe les tables par nombre de briques en ordre croissant.
 * <kbd>S</kbd> &nbsp;&nbsp;&nbsp;<img src="svg/b-shuffle.svg" style="width: auto; height: 16px;">&nbsp;&nbsp;&nbsp; Mélange les tables aléatoirement.
 * <kbd>C</kbd> Mélange les couleurs des briques aléatoirement.
 * <kbd>O</kbd> Retour à l'ordre initial des tables.
@@ -82,9 +81,8 @@ La formule qui donne la clé de chaque de table de vérité peut être exprimée
 
 * <img src="svg/b-grid.svg" style="width: auto; height: 16px;" >&nbsp; Affiche les bords des tables et des celulles.
 * <img src="svg/b-axes.svg" style="width: auto; height: 16px;" >&nbsp; Affiche les en-têtes des axes des tables.
-* <img src="svg/b-group.svg" style="width: auto; height: 16px;">&nbsp; Groupe les tables par nombre de briques en ordre croissant.
 * `𝖠` ou `α`&nbsp; Change la représentation des en-têtes des tableaux entre symboles logiques et javascript.
 
 --- 
 
-![ἀλήθεια](screenshots/2024-03-17_2400x1260.jpg)
+![ἀλήθεια](screenshots/2024-03-18_2330x1688.jpg)
