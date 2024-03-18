@@ -1343,9 +1343,17 @@
             })
             const captions = document.getElementsByTagName('caption')
             Array.from(captions).forEach((caption) => {
+                // bug on iPad, user-select=none ignored
+                // https://stackoverflow.com/a/16613634/1070215
+                caption.addEventListener('touchstart', (e) => {
+                    e.preventDefault();
+                })
+                
                 caption.addEventListener('pointerdown', (e) => {
 
                     if (!player.isPlaying) return
+
+                    e.preventDefault();
 
                     overlay.move(caption.parentNode)
                     overlay.show()
