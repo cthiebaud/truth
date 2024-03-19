@@ -916,6 +916,7 @@
 
                 function methodThatReturnsAPromise(tbody, veil) {
                     return new Promise((resolve) => {
+                        tbody.parentNode.classList.remove('completed')
                         const tds = tbody.querySelectorAll('td')
                         if (veil) {
                             tds.forEach(td => {
@@ -1306,12 +1307,22 @@
                             elem.classList.remove('concealed')
                             player.result.unconcealed.increment()
 
+                            // Helper function to find the nearest ancestor with a specific class
+                            function findAncestor(element, className) {
+                                while ((element = element.parentElement)) {
+                                    if (element.classList.contains(className)) {
+                                        return element
+                                    }
+                                }
+                                return null
+                            }
+
                             function checkDescendantsClasses(element, classA, classX, classY) {
                                 // Find the nearest ancestor with class A
                                 let ancestorWithClassA = findAncestor(element, classA)
 
                                 if (!ancestorWithClassA) {
-                                    return false
+                                    return {result:false, ancestor:undefined}
                                 }
 
                                 // Find all descendants of the ancestor with class X
@@ -1325,20 +1336,12 @@
                                     return !descendant.classList.contains(classY)
                                 })
 
-                                return allDescendantsHaveNotClassY
+                                return {result:allDescendantsHaveNotClassY, ancestor:ancestorWithClassA}
                             }
 
-                            // Helper function to find the nearest ancestor with a specific class
-                            function findAncestor(element, className) {
-                                while ((element = element.parentElement)) {
-                                    if (element.classList.contains(className)) {
-                                        return element
-                                    }
-                                }
-                                return null
-                            }
-
-                            if (checkDescendantsClasses(elem, 'table', 'true', 'concealed')) {
+                            const check = checkDescendantsClasses(elem, 'table', 'true', 'concealed')
+                            if (check.result) {
+                                check.ancestor.classList.add('completed')
                                 player.coin()
                             }
                         }
