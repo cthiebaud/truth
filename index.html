@@ -352,10 +352,32 @@
                 </label>
                 <input type="checkbox" class="btn-check" id="ab-axes" autocomplete="off" aria-label="axes toggle">
                 <label class="btn my-button" for="ab-axes">
-                    <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="16" height="16" viewBox="0 0 488 488">
-                        <path stroke="none"
-                            d="M487.9 40.927c-2.35 9.897-13.446 14.868-19.292 22.693-8.157 6.418-16.073 22.787-28.015 13.913-11.227-11.134 11.485-21.639 12.022-27.506H50.433v403.485c7.839-7.427 20.099-25.259 29.798-10.102 2.235 12.49-12.18 18.605-18.785 27.395-7.671 5.32-12.84 18.958-23.914 16.414-11.894-7.987-20.681-20.27-31.428-29.828-17.476-14.372 9.54-28.283 17.755-10.45 8.926 12.934 6.328-1.958 6.57-9.992V40.027c2.392-14.958 20.102-8.657 30.706-10.002h392.76C446.513 22.197 428.589 9.94 443.819.32c12.549-2.226 18.67 12.156 27.468 18.793 5.017 7.223 17.043 11.935 16.613 21.815z" />
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-1 -1 27 27" >
+                        <defs>
+                            <path id="a" fill="context-stroke" fill-rule="evenodd"
+                                d="M-.14780193-2.87390096 4.34780192-.62609903a.7.7 0 0 1 0 1.25219806L-.14780193 2.87390096A.8652476.8652476 0 0 1-1.4 2.1v-4.2a.8652476.8652476 0 0 1 1.25219807-.77390096z" />
+                        </defs>
+                        <defs>
+                            <marker id="b" markerHeight="1" markerWidth="1" orient="auto-start-reverse" overflow="visible" preserveAspectRatio="xMidYMid" refX="0" refY="0"
+                                viewBox="0 0 1 1">
+                                <use xlink:href="#a" fill-rule="evenodd" />
+                            </marker>
+                            <marker id="c" markerHeight="1" markerWidth="1" orient="auto-start-reverse" overflow="visible" preserveAspectRatio="xMidYMid" refX="0" refY="0"
+                                viewBox="0 0 1 1">
+                                <use xlink:href="#a" fill-rule="evenodd" />
+                            </marker>
+                        </defs>
+                        <path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="1.6" stroke-width=".765" marker-end="url(#b)"
+                            marker-start="url(#c)" d="M1290-489.99999h-20v20.00001" transform="translate(-1267.7316 492.2684)" />
                     </svg>
+
+                    <!-- 
+
+                        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="16" height="16" viewBox="0 0 488 488">
+                            <path stroke="none"
+                            d="M487.9 40.927c-2.35 9.897-13.446 14.868-19.292 22.693-8.157 6.418-16.073 22.787-28.015 13.913-11.227-11.134 11.485-21.639 12.022-27.506H50.433v403.485c7.839-7.427 20.099-25.259 29.798-10.102 2.235 12.49-12.18 18.605-18.785 27.395-7.671 5.32-12.84 18.958-23.914 16.414-11.894-7.987-20.681-20.27-31.428-29.828-17.476-14.372 9.54-28.283 17.755-10.45 8.926 12.934 6.328-1.958 6.57-9.992V40.027c2.392-14.958 20.102-8.657 30.706-10.002h392.76C446.513 22.197 428.589 9.94 443.819.32c12.549-2.226 18.67 12.156 27.468 18.793 5.017 7.223 17.043 11.935 16.613 21.815z" />
+                        </svg>
+                    -->
                 </label>
                 <input type="checkbox" class="btn-check" id="canonical-or-javascript" autocomplete="off" aria-label="canonical / javascript toggle">
                 <label id="canonical-or-javascript.label" class="btn btn-sm my-button" for="canonical-or-javascript">
@@ -1354,7 +1376,7 @@
                 caption.addEventListener('touchstart', (e) => {
                     e.preventDefault();
                 })
-                
+
                 caption.addEventListener('pointerdown', (e) => {
 
                     if (!player.isPlaying) return
