@@ -25,7 +25,7 @@ if [ -n "$(git status --porcelain)" ]; then
 fi
 
 # Get the latest commit hash on the main branch
-latest_commit_hash=$(git rev-parse --short main)
+latest_commit_hash=$(git rev-parse --short HEAD)
 
 # Inject the commit hash into the HOWTO
 scripts/inject_commit_hash.sh
