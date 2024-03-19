@@ -53,11 +53,11 @@ body:not(.javascript) .the-font-for-tables,
   background-color: #d8d7c9 !important;
 }
 
-.btn.my-button,
-.btn-check:not(checked) + .btn.my-button /*.btn.my-button.disabled */ {
+.btn.my-button:not(:disabled),
+.btn.my-button:not([disabled]),
+.btn-check:not(checked) + .btn.my-button {
   background-color: #f8f7ef !important;
   border-color: var(--bs-btn-border-color);
-  /* border-color: lightgrey !important; */
 }
 
 .btn.my-button svg {
