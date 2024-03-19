@@ -911,7 +911,7 @@
                 }
             }
 
-            #veilOrUnveilBricks(veilParam) {
+            async #veilOrUnveilBricks(veilParam) {
                 const veil = veilParam === 'veil';
 
                 function methodThatReturnsAPromise(tbody, veil) {
@@ -935,6 +935,7 @@
                             }
                         }
                         setTimeout(() => {
+                            console.log(veilParam, tbody.id, performance.now())
                             resolve(tbody)
                         }, 20);
                     })
@@ -950,7 +951,7 @@
                 // Iterate over the shuffled indexes and access the corresponding tbodies
                 for (const index of indexes) {
                     const tbody = tbodies[index]
-                    methodThatReturnsAPromise(tbody, veil);
+                    await methodThatReturnsAPromise(tbody, veil);
                 }
             }
 
