@@ -129,21 +129,6 @@ body.javascript #aletheia #logo:before {
   text-align: center;
 }
 
-.diagonal-line::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  border-bottom: 0.75px solid var(--border-color);
-  /* Same as line color */
-  transform: skewY(45deg);
-  /* Adjust the angle of the second diagonal line */
-  transform-origin: 100%;
-  /* Set the origin of the transformation to the top-right corner */
-}
-
 .negation {
   position: relative;
   display: inline-block;

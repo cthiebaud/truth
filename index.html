@@ -352,7 +352,7 @@
                 </label>
                 <input type="checkbox" class="btn-check" id="ab-axes" autocomplete="off" aria-label="axes toggle">
                 <label class="btn my-button" for="ab-axes">
-                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-1 -1 27 27" >
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-1 -1 27 27">
                         <defs>
                             <path id="a" fill="context-stroke" fill-rule="evenodd"
                                 d="M-.14780193-2.87390096 4.34780192-.62609903a.7.7 0 0 1 0 1.25219806L-.14780193 2.87390096A.8652476.8652476 0 0 1-1.4 2.1v-4.2a.8652476.8652476 0 0 1 1.25219807-.77390096z" />
@@ -570,6 +570,16 @@
         import { Timer } from './dist/js/TimerClass.min.js'
         import { SoundMachine } from './dist/js/SoundMachineClass.min.js'
         import { Result, ResultProperty } from './dist/js/GameClass.min.js'
+
+        // Function to check if the user is using an iPhone
+        function isiPhone() {
+            return /iPhone|iPod/i.test(navigator.userAgent);
+        }
+
+        // Function to check if the user is using an iPad
+        function isiPad() {
+            return /iPad/i.test(navigator.userAgent);
+        }
 
         function safeById(id, func) {
             if (!id) return
@@ -909,17 +919,18 @@
                         const tds = tbody.querySelectorAll('td')
                         if (veil) {
                             tds.forEach(td => {
-                                td.classList.add('translucent')
+                                if (td.classList.contains('true')) {
+                                    td.classList.add('concealed')
+                                }
                                 td.classList.remove('clicked')
                             })
                         } else {
                             if (player.isPlaying != true) {
                                 tds.forEach(td => {
                                     if (td.classList.contains('true')) {
-                                        td.classList.remove('translucent')
-                                    } else if (td.classList.contains('false')) {
-                                        td.classList.add('translucent')
+                                        td.classList.remove('concealed')
                                     }
+                                    td.classList.remove('clicked')
                                 })
                             }
                         }
@@ -1265,11 +1276,10 @@
                                 if (result) {
                                     col.style.backgroundColor = backgroundcolors.next()
                                     col.style.color = colors.bg2color(col.style.backgroundColor)
-                                    col.innerHTML = '●' // '○' // 
+                                    col.innerHTML = '' // ● 
                                 } else {
                                     col.style.backgroundColor = colors.colorFalse
-                                    col.innerHTML = '❌'
-                                    col.classList.add('translucent')
+                                    col.innerHTML = '' // ❌
                                 }
                             }
                         }
@@ -1289,9 +1299,10 @@
                     clickEvent.stopPropagation()
                     if (!player.isPlaying) return
 
-                    if (elem.classList.contains('translucent')) {
-                        elem.classList.remove('translucent')
-                        if (elem.classList.contains('true')) {
+                    if (elem.classList.contains('concealed')) {
+                        // lapalissien : only true can be concealed
+                        /* if (elem.classList.contains('true')) */ {
+                            elem.classList.remove('concealed')
                             player.result.unconcealed.increment()
 
                             function checkDescendantsClasses(element, classA, classX, classY) {
@@ -1308,12 +1319,12 @@
                                 // Convert the HTMLCollection to an array for easier iteration
                                 let elementsArray = Array.from(elementsWithClassX)
 
-                                // Check if all descendants with class X also have class Y
-                                let allDescendantsHaveClassY = elementsArray.every(function (descendant) {
+                                // Check if all descendants with class X *DO NOT HAVE* class Y
+                                let allDescendantsHaveNotClassY = elementsArray.every(function (descendant) {
                                     return !descendant.classList.contains(classY)
                                 })
 
-                                return allDescendantsHaveClassY
+                                return allDescendantsHaveNotClassY
                             }
 
                             // Helper function to find the nearest ancestor with a specific class
@@ -1326,18 +1337,19 @@
                                 return null
                             }
 
-                            if (checkDescendantsClasses(elem, 'table', 'true', 'translucent')) {
+                            if (checkDescendantsClasses(elem, 'table', 'true', 'concealed')) {
                                 player.coin()
                             }
-                        } else {
-                            player.laughs()
-                            elem.classList.add('clicked')
-                            setTimeout(() => {
-                                elem.classList.add('translucent')
-                            }, 1000)
                         }
+                    } else if (elem.classList.contains('false')) {
+                        player.laughs()
+                        elem.classList.add('red-cross')
+                        elem.classList.add('clicked')
+                        setTimeout(() => {
+                            elem.classList.remove('red-cross')
+                        }, 1000)
                     }
-                    let remainingTrue = document.querySelectorAll('#tables td.true.translucent').length
+                    let remainingTrue = document.querySelectorAll('#tables td.true.concealed').length
                     let falseClicked = document.querySelectorAll('#tables td.false.clicked').length
                     if ((remainingTrue === 0)
                         ||
@@ -1370,18 +1382,18 @@
                 clearHints()
             })
             const captions = document.getElementsByTagName('caption')
+            // bug on iPad, user-select=none ignored
+            // https://stackoverflow.com/a/16613634/1070215
+            const isApple = isiPhone() || isiPad()
             Array.from(captions).forEach((caption) => {
-                // bug on iPad, user-select=none ignored
-                // https://stackoverflow.com/a/16613634/1070215
-                caption.addEventListener('touchstart', (e) => {
-                    e.preventDefault();
-                })
-
+                if (true/*!isApple*/) {
+                    caption.addEventListener('touchstart', (e) => {
+                        e.preventDefault();
+                    })
+                }
                 caption.addEventListener('pointerdown', (e) => {
 
                     if (!player.isPlaying) return
-
-                    e.preventDefault();
 
                     overlay.move(caption.parentNode)
                     overlay.show()

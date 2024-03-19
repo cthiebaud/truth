@@ -1,38 +1,64 @@
 #tables {
-  /* border: 1px solid red; */
   margin: 0 auto;
 }
 
 #tables > div {
-  display: inline-block;
-  margin: 0.25rem;
-  padding: 0;
+  display: block;
   border: 0.75px solid var(--border-color);
+  margin: 0.25rem;
 }
 
 #tables.transparent-border > div {
   border: 0.75px solid transparent;
 }
 
-#tables:not(.transparent-border) tbody > tr:nth-child(1) > td:nth-child(2) {
+#tables table {
+  border-collapse: collapse;
+}
+
+#tables table.inline {
+  display: inline-block;
+  margin: 0;
+}
+
+#tables:not(.transparent-border) table > tbody > tr > td {
+  position: relative;
+}
+
+#tables:not(.transparent-border) table > tbody > tr > td::after {
+  position: absolute;
+  width: 67%;
+  height: 67%;
+  content: '';
+  visibility: visible;
+}
+
+#tables:not(.transparent-border) table tbody > tr:nth-child(1) > td:nth-child(2):is(:not(.true), .concealed)::after {
+  right: -0.5px;
+  bottom: -0.5px;
   border-right: 0.75px dashed var(--border-color);
   border-bottom: 0.75px dashed var(--border-color);
 }
-#tables:not(.transparent-border) tbody > tr:nth-child(1) > td:nth-child(3) {
+
+#tables:not(.transparent-border) table tbody > tr:nth-child(1) > td:nth-child(3):is(:not(.true), .concealed)::after {
+  left: -0.5px;
+  bottom: -0.5px;
   border-left: 0.75px dashed var(--border-color);
   border-bottom: 0.75px dashed var(--border-color);
 }
-#tables:not(.transparent-border) tbody > tr:nth-child(2) > td:nth-child(2) {
+
+#tables:not(.transparent-border) table tbody > tr:nth-child(2) > td:nth-child(2):is(:not(.true), .concealed)::after {
+  right: -0.5px;
+  top: -0.5px;
   border-right: 0.75px dashed var(--border-color);
-  border-top: 0.75px dashed var(--border-color);
-}
-#tables:not(.transparent-border) tbody > tr:nth-child(2) > td:nth-child(3) {
-  border-left: 0.75px dashed var(--border-color);
   border-top: 0.75px dashed var(--border-color);
 }
 
-#tables table {
-  border-collapse: collapse;
+#tables:not(.transparent-border) table tbody > tr:nth-child(2) > td:nth-child(3):is(:not(.true), .concealed)::after {
+  left: -0.5px;
+  top: -0.5px;
+  border-left: 0.75px dashed var(--border-color);
+  border-top: 0.75px dashed var(--border-color);
 }
 
 #tables table tbody {
@@ -44,16 +70,19 @@
     transform 0.3s ease-in-out;
 }
 
-#tables table.hint tbody tr:nth-child(1) > td:nth-child(2).translucent {
+#tables table.hint tbody tr:nth-child(1) > td:nth-child(2).concealed {
   transform: scale(0.5) translateY(50%) translateX(50%);
 }
-#tables table.hint tbody tr:nth-child(1) > td:nth-child(3).translucent {
+
+#tables table.hint tbody tr:nth-child(1) > td:nth-child(3).concealed {
   transform: scale(0.5) translateY(50%) translateX(-50%);
 }
-#tables table.hint tbody tr:nth-child(2) > td:nth-child(2).translucent {
+
+#tables table.hint tbody tr:nth-child(2) > td:nth-child(2).concealed {
   transform: scale(0.5) translateY(-50%) translateX(50%);
 }
-#tables table.hint tbody tr:nth-child(2) > td:nth-child(3).translucent {
+
+#tables table.hint tbody tr:nth-child(2) > td:nth-child(3).concealed {
   transform: scale(0.5) translateY(-50%) translateX(-50%);
 }
 
@@ -65,23 +94,29 @@
   backdrop-filter: blur(2px);
 }
 
-#tables table:not(.hint) td.true.translucent {
-  opacity: 0;
-}
-#tables table td.false.translucent {
-  opacity: 0;
-}
-#tables table.hint td.false:not(.translucent) {
-  opacity: 0.5;
+#tables table:not(.hint) td.true.concealed {
+  background-color: transparent !important;
 }
 
-#tables td.true:not(.translucent) {
-  border: none !important;
+#tables td.true {
+  z-index: 2;
 }
 
-#tables table.inline {
-  display: inline-block;
-  margin: 0;
+#tables table:not(.hint) td.true:not(.concealed)::before,
+#tables table.hint td.true::before {
+  content: '●';
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#tables td.false.red-cross::before {
+  content: '❌';
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 #tables table caption {
@@ -111,9 +146,11 @@
   font-family: 'Noto Sans Math', sans-serif;
   font-size: 11px;
 }
+
 body.javascript #tables table thead th:nth-child(2):after {
   content: 'β';
 }
+
 #tables table tbody tr:nth-child(1) th:after {
   content: '𝖠'; /* 'α' */
   height: 100%;
@@ -150,12 +187,27 @@ body.javascript #tables table tbody tr:nth-child(1) th:after {
   color: gray;
 }
 
-#tables table thead tr th:not(:first-child) {
+#tables:not(.transparent-border) table thead tr th:not(:first-child) {
   border-bottom: 0.75px solid var(--border-color);
 }
 
-#tables table tbody tr th:first-child {
+#tables:not(.transparent-border) table tbody tr th:first-child {
   border-right: 0.75px solid var(--border-color);
+}
+
+#tables:not(.transparent-border) .diagonal-line::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  border-bottom: 1px solid var(--border-color);
+  /* Same as line color */
+  transform: skewY(45deg);
+  /* Adjust the angle of the second diagonal line */
+  transform-origin: 100%;
+  /* Set the origin of the transformation to the top-right corner */
 }
 
 #tables table tr td {
