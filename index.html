@@ -1386,7 +1386,7 @@
             // https://stackoverflow.com/a/16613634/1070215
             const isApple = isiPhone() || isiPad()
             Array.from(captions).forEach((caption) => {
-                if (true/*!isApple*/) {
+                if (isApple) {
                     caption.addEventListener('touchstart', (e) => {
                         e.preventDefault();
                     })
