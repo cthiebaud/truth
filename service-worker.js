@@ -62,7 +62,7 @@ if (workbox) {
     { revision: '2f7e34960fd437beaa92f3b04c5c3050', url: 'favicons/README.md' },
     { revision: 'c9ce66f4033637c701aba2c5f3ca112c', url: 'favicons/safari-pinned-tab.svg' },
     { revision: '477297aa0ecbbbc693b351d5cf618ffe', url: 'HOWTO-example.jpg' },
-    { revision: '9fde375ec0e4f2b33d067d9969a834df', url: 'HOWTO.md' },
+    { revision: 'a2b3e82d7a36d5252c6273123370ee94', url: 'HOWTO.md' },
     { revision: 'f7ddc488d4159dce35a43548a8fb9dcc', url: 'index copy.html' },
     { revision: 'ffb8055ec4d8baf1018f5d90cb5d68d7', url: 'index.html' },
     { revision: '68ece7bd343cea86d3b2cf2d27212905', url: 'README.md' },

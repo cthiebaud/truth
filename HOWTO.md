@@ -26,7 +26,7 @@ The presence or absence of a brick within a cell is fully determined by the valu
                     <th style="display: table-cell;">
                         <div class="vertical-text">true</div>
                     </th>
-                    <td class="true" style="background-color: rgb(180, 0, 0); color: rgb(165, 0, 0);">●</td>
+                    <td class="true" style="background-color: rgb(180, 0, 0); color: rgb(165, 0, 0);"></td>
                     <td class="false translucent" style="background-color: transparent;"></td>
                 </tr>
                 <tr>
@@ -56,14 +56,14 @@ The presence or absence of a brick within a cell is fully determined by the valu
                     <th style="display: table-cell;">
                         <div class="vertical-text">true</div>
                     </th>
-                    <td class="true" style="background-color: rgb(0, 133, 43); color: rgb(0, 118, 38);">●</td>
-                    <td class="true" style="background-color: rgb(0, 133, 43); color: rgb(0, 118, 38);">●</td>
+                    <td class="true" style="background-color: rgb(0, 133, 43); color: rgb(0, 118, 38);"></td>
+                    <td class="true" style="background-color: rgb(0, 133, 43); color: rgb(0, 118, 38);"></td>
                 </tr>
                 <tr>
                     <th style="display: table-cell;">
                         <div class="vertical-text">false</div>
                     </th>
-                    <td class="true" style="background-color: rgb(0, 133, 43); color: rgb(0, 118, 38);">●</td>
+                    <td class="true" style="background-color: rgb(0, 133, 43); color: rgb(0, 118, 38);"></td>
                     <td class="false translucent" style="background-color: transparent;"></td>
                 </tr>
             </tbody>
@@ -87,14 +87,14 @@ The presence or absence of a brick within a cell is fully determined by the valu
                         <div class="vertical-text">true</div>
                     </th>
                     <td class="false translucent" style="background-color: transparent;"></td>
-                    <td class="true" style="background-color: rgb(30, 90, 168); color: rgb(28, 83, 155);">●</td>
+                    <td class="true" style="background-color: rgb(30, 90, 168); color: rgb(28, 83, 155);"></td>
                 </tr>
                 <tr>
                     <th style="display: table-cell;">
                         <div class="vertical-text">false</div>
                     </th>
-                    <td class="true" style="background-color: rgb(30, 90, 168); color: rgb(28, 83, 155);">●</td>
-                    <td class="true" style="background-color: rgb(30, 90, 168); color: rgb(28, 83, 155);">●</td>
+                    <td class="true" style="background-color: rgb(30, 90, 168); color: rgb(28, 83, 155);"></td>
+                    <td class="true" style="background-color: rgb(30, 90, 168); color: rgb(28, 83, 155);"></td>
                 </tr>
             </tbody>
         </table>
@@ -133,4 +133,4 @@ More at [Github&hellip;](https://github.com/cthiebaud/truth/blob/main/README.md)
 | ![Android App Store](assets/svg/android-svgrepo-com.svg) | [On Android Phones & Devices](https://play.google.com/store/apps/details?id=com.cthiebaud.aletheia.twa)         |
 | ![WWW](assets/svg/internet-svgrepo-com.svg)              | [On the Web](https://aletheia.cthiebaud.com/)                                                                   |
 | ![aletheia](assets/svg/Wikipedia's_W.svg)                | [Aletheia (Ancient Greek: ἀλήθεια) as Philosophical Term on Wikipedia ](https://en.wikipedia.org/wiki/Aletheia) |
-| ![Github](assets/svg/github.svg)                         | This version git commit: [8d94212](https://github.com/cthiebaud/truth/commit/8d94212a3813767da7164b2faa26e316df409c8f)     |
+| ![Github](assets/svg/github.svg)                         | This version git commit: [596fde7](https://github.com/cthiebaud/truth/commit/596fde7cb91ed9e78c850991578542f296085a0b)     |

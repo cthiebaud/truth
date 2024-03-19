@@ -26,7 +26,7 @@ The presence or absence of a brick within a cell is fully determined by the valu
                     <th style="display: table-cell;">
                         <div class="vertical-text">true</div>
                     </th>
-                    <td class="true" style="background-color: rgb(180, 0, 0); color: rgb(165, 0, 0);">●</td>
+                    <td class="true" style="background-color: rgb(180, 0, 0); color: rgb(165, 0, 0);"></td>
                     <td class="false translucent" style="background-color: transparent;"></td>
                 </tr>
                 <tr>
@@ -56,14 +56,14 @@ The presence or absence of a brick within a cell is fully determined by the valu
                     <th style="display: table-cell;">
                         <div class="vertical-text">true</div>
                     </th>
-                    <td class="true" style="background-color: rgb(0, 133, 43); color: rgb(0, 118, 38);">●</td>
-                    <td class="true" style="background-color: rgb(0, 133, 43); color: rgb(0, 118, 38);">●</td>
+                    <td class="true" style="background-color: rgb(0, 133, 43); color: rgb(0, 118, 38);"></td>
+                    <td class="true" style="background-color: rgb(0, 133, 43); color: rgb(0, 118, 38);"></td>
                 </tr>
                 <tr>
                     <th style="display: table-cell;">
                         <div class="vertical-text">false</div>
                     </th>
-                    <td class="true" style="background-color: rgb(0, 133, 43); color: rgb(0, 118, 38);">●</td>
+                    <td class="true" style="background-color: rgb(0, 133, 43); color: rgb(0, 118, 38);"></td>
                     <td class="false translucent" style="background-color: transparent;"></td>
                 </tr>
             </tbody>
@@ -87,14 +87,14 @@ The presence or absence of a brick within a cell is fully determined by the valu
                         <div class="vertical-text">true</div>
                     </th>
                     <td class="false translucent" style="background-color: transparent;"></td>
-                    <td class="true" style="background-color: rgb(30, 90, 168); color: rgb(28, 83, 155);">●</td>
+                    <td class="true" style="background-color: rgb(30, 90, 168); color: rgb(28, 83, 155);"></td>
                 </tr>
                 <tr>
                     <th style="display: table-cell;">
                         <div class="vertical-text">false</div>
                     </th>
-                    <td class="true" style="background-color: rgb(30, 90, 168); color: rgb(28, 83, 155);">●</td>
-                    <td class="true" style="background-color: rgb(30, 90, 168); color: rgb(28, 83, 155);">●</td>
+                    <td class="true" style="background-color: rgb(30, 90, 168); color: rgb(28, 83, 155);"></td>
+                    <td class="true" style="background-color: rgb(30, 90, 168); color: rgb(28, 83, 155);"></td>
                 </tr>
             </tbody>
         </table>
