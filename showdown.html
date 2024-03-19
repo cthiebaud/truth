@@ -25,7 +25,7 @@
             text-decoration: none;
         }
 
-        body div.container>p:first-child {
+        body div.container>:first-child {
             float: right;
             margin: .2rem 0;
         }
@@ -125,7 +125,7 @@
                     })
                 )
 
-                safeById ('javascript_expressions', elem => 
+                safeById('javascript_expressions', elem =>
                     elem.addEventListener('click', (clickEvent) => {
                         clickEvent.preventDefault()
                         safeById('qwe', qwe => qwe.classList.add('javascript'))
@@ -133,7 +133,13 @@
                         safeById('AouB', AouB => AouB.innerHTML = "α | β")
                         safeById('nonAounonB', nonAounonB => nonAounonB.innerHTML = "!α | !β")
                     })
-        )
+                )
+                safeById('close', elem =>
+                    elem.addEventListener('click', (clickEvent) => {
+                        clickEvent.preventDefault()
+                        window.close()
+                    })
+                )
             }
 
             const xhr = new XMLHttpRequest()

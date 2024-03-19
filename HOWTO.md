@@ -1,3 +1,5 @@
+<button id="close" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
 # Aletheia
 
 The objective of the game is to unconceal the 'truth' - inside a 'truth table'.
@@ -131,4 +133,4 @@ More at [Github&hellip;](https://github.com/cthiebaud/truth/blob/main/README.md)
 | ![Android App Store](assets/svg/android-svgrepo-com.svg) | [On Android Phones & Devices](https://play.google.com/store/apps/details?id=com.cthiebaud.aletheia.twa)                          |
 | ![WWW](assets/svg/internet-svgrepo-com.svg)              | [On the Web](https://aletheia.cthiebaud.com/)                                                                   |
 | ![aletheia](assets/svg/Wikipedia's_W.svg)                | [Aletheia (Ancient Greek: ἀλήθεια) as Philosophical Term on Wikipedia ](https://en.wikipedia.org/wiki/Aletheia) |
-| ![Github](assets/svg/github.svg)                         | [The Github Commit of this Version](https://github.com/cthiebaud/truth/commit/dba0fdc11f47697de3da745c46dea8b2043d906e)                  |
+| ![Github](assets/svg/github.svg)                         | [The Github Commit of this Version](https://github.com/cthiebaud/truth/commit/8baaa50c3934d31b5a3d8ca172fc688e3f15fb9e)                  |

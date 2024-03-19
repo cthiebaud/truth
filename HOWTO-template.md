@@ -1,3 +1,5 @@
+<button id="close" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
 # Aletheia
 
 The objective of the game is to unconceal the 'truth' - inside a 'truth table'.
