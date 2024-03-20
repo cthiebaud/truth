@@ -1,5 +1,7 @@
 # Alètheia
 
+<!-- ⁰¹²³⁴⁵⁶⁷⁸⁹ -->
+
 [![WWW](assets/svg/internet-svgrepo-com.svg)](https://aletheia.cthiebaud.com/) 
 [![Android App Store](assets/svg/android-svgrepo-com.svg)](https://play.google.com/store/apps/details?id=com.cthiebaud.aletheia.twa)
 [![Apple App Store](assets/svg/Apple_logo_grey.svg)](https://apps.apple.com/us/app/aletheia-by-%C3%A6quologica/id6476017817)
@@ -37,7 +39,6 @@ est sur [![SoundCloud](svg/soundcloud.svg)](https://soundcloud.com/christophe-th
 Chaque résultat est accompagné d'un son différent.
 
 --- 
-⁰¹²³⁴⁵⁶⁷⁸⁹
 
 ### Expressions
 
