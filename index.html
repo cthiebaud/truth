@@ -571,15 +571,20 @@
         import { SoundMachine } from './dist/js/SoundMachineClass.min.js'
         import { Result, ResultProperty } from './dist/js/GameClass.min.js'
 
-        // Function to check if the user is using an iPhone
-        function isiPhone() {
-            return /iPhone|iPod/i.test(navigator.userAgent);
-        }
-
-        // Function to check if the user is using an iPad
-        function isiPad() {
-            return /iPad/i.test(navigator.userAgent);
-        }
+        // https://stackoverflow.com/a/9039885/1070215
+        const isiOS = (() => {
+            return [
+                'iPad Simulator',
+                'iPhone Simulator',
+                'iPod Simulator',
+                'iPad',
+                'iPhone',
+                'iPod'
+            ].includes(navigator.platform)
+                // iPad on iOS 13 detection
+                || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+        })()
+        console.log(navigator.userAgent, "|", "iOS?", isiOS )
 
         function safeById(id, func) {
             if (!id) return
@@ -1387,11 +1392,10 @@
                 clearHints()
             })
             const captions = document.getElementsByTagName('caption')
-            // bug on iPad, user-select=none ignored
-            // https://stackoverflow.com/a/16613634/1070215
-            const isApple = isiPhone() || isiPad()
             Array.from(captions).forEach((caption) => {
-                if (isApple) {
+                // bug on iPad, user-select=none ignored
+                // https://stackoverflow.com/a/16613634/1070215
+                if (isiOS) {
                     caption.addEventListener('touchstart', (e) => {
                         e.preventDefault();
                     })
@@ -1627,6 +1631,7 @@
             // END CAROUSEL
 
         })
+
     </script>
 </body>
 
