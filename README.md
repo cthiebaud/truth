@@ -6,22 +6,22 @@
 
 La référence à Martin Heidegger est flagrante : « <i>En traduisant alètheia par Unverborgenheit, dévoilement ou plutôt non-voilement, et non plus simplement par “Vérité”, Heidegger s'efforce de faire entendre quelque chose du sens, de ce vers quoi alètheia faisait signe, même à l'insu des Grecs, et à partir duquel ils déployaient leur monde.</i> » [⁽¹⁾](https://fr.wikipedia.org/wiki/Al%C3%A8theia_dans_la_philosophie_de_Martin_Heidegger).
 
-Il s'agit donc de dévoiler les petites briques colorées pour faire apparaître ce que l'on appelle les tables de vérité [⁽²⁾](https://fr.wikipedia.org/wiki/Table_de_v%C3%A9rit%C3%A9) en jargon mathématique. Un peu plus de détails - tout en restant le plus succinct possible - dans le [fichier HOWTO.md](HOWTO.md) (en anglais).
+Il s'agit donc de dévoiler les petites briques colorées pour faire apparaître ce que l'on appelle les tables de vérité [⁽²⁾](https://fr.wikipedia.org/wiki/Table_de_v%C3%A9rit%C3%A9) en jargon mathématique. Un peu plus de détails - tout en restant le plus succinct possible - dans le fichier HOWTO.md [⁽³⁾](HOWTO.md) (en anglais).
 
 --- 
 
 ### Niveaux
 
-On a hardiment fusionné [Le Lièvre et la Tortue](https://fr.wikipedia.org/wiki/Le_Li%C3%A8vre_et_la_Tortue_(La_Fontaine)), fable bien connue de [La Fontaine](https://fr.wikipedia.org/wiki/Jean_de_La_Fontaine), avec le [Paradoxe d'Achille et de la tortue](https://fr.wikipedia.org/wiki/Paradoxe_d%27Achille_et_de_la_tortue) de [Zénon d'Élée](https://fr.wikipedia.org/wiki/Z%C3%A9non_d%27%C3%89l%C3%A9e).
+On a hardiment fusionné Le Lièvre et la Tortue [⁽⁴⁾](https://fr.wikipedia.org/wiki/Le_Li%C3%A8vre_et_la_Tortue_(La_Fontaine)), fable bien connue de La Fontaine [⁽⁵⁾](https://fr.wikipedia.org/wiki/Jean_de_La_Fontaine), avec le Paradoxe d'Achille et de la tortue [⁽⁶⁾](https://fr.wikipedia.org/wiki/Paradoxe_d%27Achille_et_de_la_tortue) de Zénon d'Élée [⁽⁷⁾](https://fr.wikipedia.org/wiki/Z%C3%A9non_d%27%C3%89l%C3%A9e).
 
 <img src="svg/tortoise-fill-svgrepo-com.svg" style="width: 24px;">&nbsp; `Tortue` Le joueur a 2 minutes pour dévoiler les briques.
 
 <img src="svg/hare-fill-svgrepo-com.svg" style="width: 24px;">&nbsp; `Lièvre` Le joueur a 1 minute pour dévoiler les briques.
 
-<img src="svg/ancient-greek-helmet-1-svgrepo-com.svg" style="width: 24px;">&nbsp; `Casque Corinthien` Ce pourrait être celui d'[Achille](https://fr.wikipedia.org/wiki/Achille), mais aussi celui d'[Hermès](https://fr.wikipedia.org/wiki/Herm%C3%A8s), le messager des dieux, réputé pour sa vitesse. On va en avoir besoin, car il ne reste plus que 30 secondes pour dévoiler les briques.
+<img src="svg/ancient-greek-helmet-1-svgrepo-com.svg" style="width: 24px;">&nbsp; `Casque Corinthien` Ce pourrait être celui d'Achille [⁽⁸⁾](https://fr.wikipedia.org/wiki/Achille), mais aussi celui d'Hermès [⁽⁹⁾](https://fr.wikipedia.org/wiki/Herm%C3%A8s), le messager des dieux, réputé pour sa vitesse. On va en avoir besoin, car il ne reste plus que 30 secondes pour dévoiler les briques.
 
-*La 🎵 musique 🎶 du niveau <img src="svg/ancient-greek-helmet-1-svgrepo-com.svg" alt="Achilles" style="width: 24px;">
-est sur [SoundCloud](https://soundcloud.com/christophe-thiebaud/aletheia?si=83569a3c774e4cdf84c684e74478af34&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing)*
+N. B. : La 🎵 de <img src="svg/ancient-greek-helmet-1-svgrepo-com.svg" alt="Achilles" style="width: 24px;">
+est sur [![SoundCloud](svg/soundcloud.svg)](https://soundcloud.com/christophe-thiebaud/aletheia?si=83569a3c774e4cdf84c684e74478af34&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing).
 
 --- 
 
@@ -37,10 +37,11 @@ est sur [SoundCloud](https://soundcloud.com/christophe-thiebaud/aletheia?si=8356
 Chaque résultat est accompagné d'un son différent.
 
 --- 
+⁰¹²³⁴⁵⁶⁷⁸⁹
 
 ### Expressions
 
-La formule qui donne la clé de chaque de table de vérité peut être exprimée, soit avec des [symboles logiques](https://fr.wikipedia.org/wiki/Liste_de_symboles_logiques), par exemple `𝖠 ∧ 𝖡`, soit par une expression javascript, comme `α & β`. Il est intéressant de noter que dans ce dernier cas, l'expression est factuellement interprétée dans une [fonction anonyme](https://fr.wikipedia.org/wiki/Fonction_anonyme) par le moteur javascript de l'application, par exemple `(α, β) => α & β`. (NB. `&`, `|` et `^` sont des [opérateurs binaires](https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Expressions_and_operators#op%C3%A9rateurs_binaires), `!` est un [opérateur logique](https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Expressions_and_operators#op%C3%A9rateurs_logiques))
+La formule qui donne la clé de chaque de table de vérité peut être exprimée, soit avec des symboles logiques [⁽¹⁰⁾](https://fr.wikipedia.org/wiki/Liste_de_symboles_logiques), par exemple `𝖠 ∧ 𝖡`, soit par une expression javascript, comme `α & β`. Il est intéressant de noter que dans ce dernier cas, l'expression est factuellement interprétée dans une fonction anonyme [⁽¹¹⁾](https://fr.wikipedia.org/wiki/Fonction_anonyme) par le moteur javascript de l'application, par exemple `(α, β) => α & β`. N. B. : `&`, `|` et `^` sont des opérateurs binaires [⁽¹²⁾](https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Expressions_and_operators#op%C3%A9rateurs_binaires), `!` est un opérateur logique [⁽¹³⁾](https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Expressions_and_operators#op%C3%A9rateurs_logiques).
 
 |  | symboles logiques | javascript | |
 |---|---|---|---|
