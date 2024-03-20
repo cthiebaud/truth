@@ -1,50 +1,72 @@
 import tinycolor2 from 'https://cdn.jsdelivr.net/npm/tinycolor2@1.6.0/+esm'
 
+function shuffleArrayWithNonConsecutive(colors, lengthOfNonConsecutiveColors) {
+    const n = colors.length;
+    let world = [...colors];
+    let exclusions = new Map();
+    let lastPicks = [];
 
-function rotateArray(arr, offset) {
-    if (offset == 0) return arr
-    const n = arr.length
-    const rotated = arr.slice()
-
-    for (let i = 0; i < n; i++) {
-        const newPosition = (i + offset) % n
-        rotated[newPosition] = arr[i]
-    }
-
-    return rotated
-}
-
-function shuffleNoAdjacentDuplicates(array) {
-    const n = array.length
-    const shuffledArray = array.slice()
-
-    let previousValue = null
-    for (let i = n - 1; i > 0; i--) {
-        const possibles = Array.from({ length: i + 1 }, (_, index) => index)
-        let world = possibles
-        if (previousValue !== null) {
-            world = possibles.filter(index => shuffledArray[index] !== previousValue)
-        }
-
-        let pos
-        if (world.length !== 0) {
-            // Pick a random element in the world of possibles
-            const p = Math.floor(Math.random() * world.length)
-            pos = world[p]
+    for (let i = 0; i < world.length; i++) {
+        if (!exclusions.has(world[i])) {
+            exclusions.set(world[i], 1);
         } else {
-            // Pick a random element in the array
-            pos = Math.floor(Math.random() * i)
+            exclusions.set(world[i], exclusions.get(world[i]) + 1);
         }
-
-        previousValue = shuffledArray[pos]
-
-            // Swap element at position pos with element at position i
-            ;[shuffledArray[i], shuffledArray[pos]] = [shuffledArray[pos], shuffledArray[i]]
+    }
+    if (!lengthOfNonConsecutiveColors || lengthOfNonConsecutiveColors < 0 || exclusions.size < lengthOfNonConsecutiveColors) {
+        throw new Error("Invalid parameters: lengthOfNonConsecutiveColors should be a number greater than zero and less than the length of possible colors array");
     }
 
-    const randomPosition = Math.floor(Math.random() * n)
-    return rotateArray(shuffledArray, randomPosition)
+    let shuffled = [];
+
+    while (true) {
+        let candidates = [];
+        exclusions.forEach((remain, value) => {
+            if (remain > 0 && !lastPicks.includes(value)) {
+                candidates.push({ value, remain });
+            }
+        });
+
+        if (candidates.length === 0) {
+            break; // No more candidates, exit loop
+        }
+
+        let randomIndex = Math.floor(Math.random() * candidates.length);
+        let chosenIndex = candidates[randomIndex];
+        shuffled.push(chosenIndex.value);
+        lastPicks.push(chosenIndex.value);
+
+        // Update lastPicks FIFO queue
+        if (lastPicks.length > lengthOfNonConsecutiveColors) {
+            lastPicks.shift(); // Remove oldest pick if queue exceeds lengthOfNonConsecutiveColors
+        }
+
+        exclusions.set(chosenIndex.value, chosenIndex.remain - 1);
+
+        // Check if all remaining exclusions have 0 remaining counts
+        let allZero = true;
+        exclusions.forEach((remain) => {
+            if (remain > 0) {
+                allZero = false;
+            }
+        });
+        if (allZero) {
+            break;
+        }
+    }
+
+    return shuffled;
 }
+
+// // Test the shuffleArrayWithNonConsecutive function
+// const colors = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7];
+// const lengthOfNonConsecutiveColors = 7;
+// try {
+//     const shuffledArray = shuffleArrayWithNonConsecutive(colors, lengthOfNonConsecutiveColors);
+//     console.log(shuffledArray, shuffledArray.length, lengthOfNonConsecutiveColors);
+// } catch (error) {
+//     console.error(error.message);
+// }
 
 export class Colors {
     // ########################
@@ -88,16 +110,15 @@ export class Colors {
         return resultColor.toHexString();
     }
 
-    // Test the function
-    /*
-    const numbers = [120, 90, 60, 45, 30, 15, 0];
-    numbers.forEach(function (number) {
-        console.log(number + " => " + Colors.mapNumberToColor(number));
-    });
-    */
-    // ########################
+    // // Test the mapNumberToColor function
+    // const numbers = [120, 90, 60, 45, 30, 15, 0];
+    // numbers.forEach(function (number) {
+    //     console.log(number + " => " + Colors.mapNumberToColor(number));
+    // });
+    // // ########################
 
     constructor() {
+        let colorTrue = '#545955'
         let colors = [
             '#F4F4F4',
             '#FAC80A',
@@ -107,24 +128,30 @@ export class Colors {
             '#8A928D',
             '#ABD9FF',
             '#91501C',
+            colorTrue,
         ]
-        this.colors = colors.concat(colors)
-        this.shuffleColors()
+        // Randomly pick a color from 'colors'
+        let randomIndex = Math.floor(Math.random() * colors.length);
+        this.colorTrue = colors[randomIndex];
+        this.colorFalse = 'transparent'
+
+        // Remove the randomly picked color from the 'colors' array
+        colors.splice(randomIndex, 1);
+        this.colors = [...colors, ...colors]
+
+        // will change this.colors and this.lengthOfNonConsecutiveColors
+        this.shuffleColors(4)
     }
 
-    colorFalse = 'transparent'
-    colorTrue = '#545955'
-    currentColorIndex = 0
+    #currentColorIndex = 0
     nextColor() {
-        const currentColor = this.colors[this.currentColorIndex++]
-        this.currentColorIndex %= this.colors.length
-        if (this.currentColorIndex === 0) {
-            this.shuffleColors()
-        }
+        const currentColor = this.colors[this.#currentColorIndex++]
+        this.#currentColorIndex %= this.colors.length
         return currentColor
     }
-    shuffleColors() {
-        this.colors = shuffleNoAdjacentDuplicates(this.colors)
+    shuffleColors(lengthOfNonConsecutiveColors = 4) {
+        this.colors = shuffleArrayWithNonConsecutive(this.colors, lengthOfNonConsecutiveColors)
+        return this.colors
     }
     bg2color(bg) {
         return tinycolor2(bg).darken(3).toString("hex6")

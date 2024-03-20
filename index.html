@@ -1322,7 +1322,7 @@
                                 let ancestorWithClassA = findAncestor(element, classA)
 
                                 if (!ancestorWithClassA) {
-                                    return {result:false, ancestor:undefined}
+                                    return { result: false, ancestor: undefined }
                                 }
 
                                 // Find all descendants of the ancestor with class X
@@ -1336,7 +1336,7 @@
                                     return !descendant.classList.contains(classY)
                                 })
 
-                                return {result:allDescendantsHaveNotClassY, ancestor:ancestorWithClassA}
+                                return { result: allDescendantsHaveNotClassY, ancestor: ancestorWithClassA }
                             }
 
                             const check = checkDescendantsClasses(elem, 'table', 'true', 'concealed')
@@ -1626,7 +1626,6 @@
             // END CAROUSEL
 
         })
-
     </script>
 </body>
 
