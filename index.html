@@ -584,7 +584,7 @@
                 // iPad on iOS 13 detection
                 || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
         })()
-        console.log(navigator.userAgent, "|", "iOS?", isiOS )
+        console.log(navigator.userAgent, "|", "iOS?", isiOS)
 
         function safeById(id, func) {
             if (!id) return
@@ -738,9 +738,11 @@
 
                 document.getElementById('result-msg').innerHTML = msg
 
-                Array.from(document.querySelectorAll('#cloche svg')).forEach(elem => {
-                    elem.style.display = 'none'
-                })
+                {
+                    [...document.querySelectorAll('#cloche svg')].forEach(elem => {
+                        elem.style.display = 'none'
+                    })
+                }
 
                 Utils.safeGetElementByIdThen('result-display-mode-symbol', (element, arg) => { element.innerHTML = arg }, result.displayModeSymbol);
 
@@ -947,7 +949,7 @@
                     })
                 }
 
-                const tbodies = Array.from(document.querySelectorAll('#tables tbody'))
+                const tbodies = [...document.querySelectorAll('#tables tbody')]
                 // Generate an array of indexes
                 const indexes = Array.from({ length: tbodies.length }, (_, index) => index);
 
@@ -1166,7 +1168,7 @@
         document.querySelector('#αβ > span').innerHTML = functions.displayMode.facade
 
         function screenshot() {
-            return Array.from(document.querySelectorAll('#tables>div')).map(element => {
+            return [...document.querySelectorAll('#tables>div')].map(element => {
                 return element.dataset.function;
             })
         }
@@ -1325,24 +1327,23 @@
 
                             function checkDescendantsClasses(element, classA, classX, classY) {
                                 // Find the nearest ancestor with class A
-                                let ancestorWithClassA = findAncestor(element, classA)
+                                const ancestorWithClassA = findAncestor(element, classA)
 
                                 if (!ancestorWithClassA) {
                                     return { result: false, ancestor: undefined }
                                 }
 
-                                // Find all descendants of the ancestor with class X
-                                let elementsWithClassX = ancestorWithClassA.getElementsByClassName(classX)
-
+                                // Find all descendants of the ancestor that have class X
                                 // Convert the HTMLCollection to an array for easier iteration
-                                let elementsArray = Array.from(elementsWithClassX)
+                                const classXDescendants = [...ancestorWithClassA.getElementsByClassName(classX)]
 
-                                // Check if all descendants with class X *DO NOT HAVE* class Y
-                                let allDescendantsHaveNotClassY = elementsArray.every(function (descendant) {
+                                // get all descendants with class X that *DO NOT HAVE* class Y
+                                // "The every() method of Array instances tests whether all elements in the array pass the test implemented by the provided function. It returns a Boolean value."
+                                const everyDescendantOfClassXHasNotClassY = classXDescendants.every(function (descendant) {
                                     return !descendant.classList.contains(classY)
                                 })
 
-                                return { result: allDescendantsHaveNotClassY, ancestor: ancestorWithClassA }
+                                return { result: everyDescendantOfClassXHasNotClassY, ancestor: ancestorWithClassA }
                             }
 
                             const check = checkDescendantsClasses(elem, 'table', 'true', 'concealed')
@@ -1378,21 +1379,21 @@
                     clearTimeout(timout)
                     timout = null
                 }
-                const hints = document.querySelectorAll('.hint')
-                Array.from(hints).forEach((hint) => {
+                [...document.querySelectorAll('.hint')].forEach((hint) => {
                     hint.classList.remove("hint")
                 })
                 overlay.hide()
                 player._soundMachine.underwater.fade(undefined, 0.001, 1500)
             }
-            window.addEventListener("scroll", function (e) {
-                clearHints()
-            })
-            window.addEventListener("touchmove", function (e) {
-                clearHints()
-            })
-            const captions = document.getElementsByTagName('caption')
-            Array.from(captions).forEach((caption) => {
+            {
+                window.addEventListener("scroll", function (e) {
+                    clearHints()
+                })
+                window.addEventListener("touchmove", function (e) {
+                    clearHints()
+                })
+            }
+            [...document.getElementsByTagName('caption')].forEach((caption) => {
                 // bug on iPad, user-select=none ignored
                 // https://stackoverflow.com/a/16613634/1070215
                 if (isiOS) {
@@ -1433,9 +1434,7 @@
             })
 
             // Get all elements with the selector '#tables>div'
-            const originalElementsArray = Array.from(document.querySelectorAll('#tables>div'))
-
-            return originalElementsArray
+            return [...document.querySelectorAll('#tables>div')]
 
         }
 
