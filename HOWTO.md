@@ -1,5 +1,3 @@
-<button id="close" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-
 # Aletheia
 
 The objective of the game is to unconceal the 'truth' - inside a 'truth table'.
@@ -102,7 +100,6 @@ The presence or absence of a brick within a cell is fully determined by the valu
 </div>
 
 <!--
-![example](/HOWTO-example.jpg)
 [logic symbols](https://en.wikipedia.org/wiki/List_of_logic_symbols)
 [javascript expressions](https://en.wikipedia.org/wiki/List_of_logic_symbols)
 -->
@@ -133,4 +130,4 @@ More at [Github&hellip;](https://github.com/cthiebaud/truth/blob/main/README.md)
 | ![Android App Store](assets/svg/android-svgrepo-com.svg) | [On Android Phones & Devices](https://play.google.com/store/apps/details?id=com.cthiebaud.aletheia.twa)         |
 | ![WWW](assets/svg/internet-svgrepo-com.svg)              | [On the Web](https://aletheia.cthiebaud.com/)                                                                   |
 | ![aletheia](assets/svg/Wikipedia's_W.svg)                | [Aletheia (Ancient Greek: ἀλήθεια) as Philosophical Term on Wikipedia ](https://en.wikipedia.org/wiki/Aletheia) |
-| ![Github](assets/svg/github.svg)                         | This version git commit: [596fde7](https://github.com/cthiebaud/truth/commit/596fde7cb91ed9e78c850991578542f296085a0b)     |
+| ![Github](assets/svg/github.svg)                         | This version git commit: [23dec1c](https://github.com/cthiebaud/truth/commit/23dec1c17eb0481bd65f36f5905cffed66a8e9f0)     |

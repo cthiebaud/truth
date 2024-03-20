@@ -1,5 +1,3 @@
-<button id="close" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-
 # Aletheia
 
 The objective of the game is to unconceal the 'truth' - inside a 'truth table'.
@@ -102,7 +100,6 @@ The presence or absence of a brick within a cell is fully determined by the valu
 </div>
 
 <!--
-![example](/HOWTO-example.jpg)
 [logic symbols](https://en.wikipedia.org/wiki/List_of_logic_symbols)
 [javascript expressions](https://en.wikipedia.org/wiki/List_of_logic_symbols)
 -->

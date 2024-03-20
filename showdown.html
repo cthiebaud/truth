@@ -34,7 +34,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100%;
+            width: 100%;
             margin: 1rem 0 1rem 0;
             padding-bottom: 1rem;
         }
@@ -58,14 +58,23 @@
             font-size: smaller;
             vertical-align: middle;
         }
+
+        /* */
+        .container {
+            overflow: hidden;
+            height: 0;
+            transition: height 1.2s ease-in;
+        }
     </style>
 </head>
 
 <body id="qwe">
-    <div class="container">
-        <div id="embellished-separator">
-            <img src="/assets/svg/greek_meander.svg" alt="the end">
-        </div>
+    <div id="container" class="container">
+        <button id="close" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div id="containedId" class="contained"></div>
+    </div>
+    <div id="embellished-separator">
+        <img src="/assets/svg/greek_meander.svg" alt="the end">
     </div>
 
     <script type="module">
@@ -89,7 +98,13 @@
             function displayResult(text) {
                 const converter = new showdown.Converter({ tables: true, strikethrough: true })
                 const html = converter.makeHtml(text)
-                document.querySelector(".container :first-child").insertAdjacentHTML('beforebegin', html);
+
+                /* */
+                var container = document.getElementById('container');
+                var contained = document.getElementById('containedId');
+
+                contained.innerHTML = html;
+
                 const h1 = document.querySelector("h1")
                 if (h1) {
                     const titleElement = document.createElement("title")
@@ -140,6 +155,13 @@
                         window.close()
                     })
                 )
+
+                // set height to trigger animation
+                void contained.offsetWidth; // Trigger reflow
+                container.addEventListener('animationend', function () {
+                    container.style.height = 'fit-content'
+                });
+                container.style.height = contained.offsetHeight + 'px'; 
             }
 
             const xhr = new XMLHttpRequest()
