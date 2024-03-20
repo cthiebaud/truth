@@ -21,11 +21,39 @@
   margin: 0;
 }
 
-#tables:not(.transparent-border) table > tbody > tr > td {
+#tables table tbody tr td {
+  width: var(--cell-width_and_height);
+  height: var(--cell-width_and_height);
+  text-align: center;
+  vertical-align: middle;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.67);
+  font-family: var(--bs-body-font-family);
+  font-size: 25px;
+  padding: 0;
+  transform: none;
+  user-select: none;
+  cursor: default;
   position: relative;
 }
 
-#tables:not(.transparent-border) table > tbody > tr > td::after {
+#tables table:not(.hint) td.true:not(.concealed)::before,
+#tables table.hint       td.true::before {
+  position: absolute;
+  content: '●';
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#tables td.false.red-cross::before {
+  position: absolute;
+  content: '❌';
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#tables:not(.transparent-border) table tbody tr td::after {
   position: absolute;
   width: 67%;
   height: 67%;
@@ -33,28 +61,28 @@
   visibility: visible;
 }
 
-#tables:not(.transparent-border) table tbody > tr:nth-child(1) > td:nth-child(2):is(:not(.true), .concealed)::after {
+#tables:not(.transparent-border) table tbody tr:nth-child(1) > td:nth-child(2):is(:not(.true), .concealed)::after {
   right: -0.5px;
   bottom: -0.5px;
   border-right: 0.75px dashed var(--border-color);
   border-bottom: 0.75px dashed var(--border-color);
 }
 
-#tables:not(.transparent-border) table tbody > tr:nth-child(1) > td:nth-child(3):is(:not(.true), .concealed)::after {
+#tables:not(.transparent-border) table tbody tr:nth-child(1) > td:nth-child(3):is(:not(.true), .concealed)::after {
   left: -0.5px;
   bottom: -0.5px;
   border-left: 0.75px dashed var(--border-color);
   border-bottom: 0.75px dashed var(--border-color);
 }
 
-#tables:not(.transparent-border) table tbody > tr:nth-child(2) > td:nth-child(2):is(:not(.true), .concealed)::after {
+#tables:not(.transparent-border) table tbody tr:nth-child(2) > td:nth-child(2):is(:not(.true), .concealed)::after {
   right: -0.5px;
   top: -0.5px;
   border-right: 0.75px dashed var(--border-color);
   border-top: 0.75px dashed var(--border-color);
 }
 
-#tables:not(.transparent-border) table tbody > tr:nth-child(2) > td:nth-child(3):is(:not(.true), .concealed)::after {
+#tables:not(.transparent-border) table tbody tr:nth-child(2) > td:nth-child(3):is(:not(.true), .concealed)::after {
   left: -0.5px;
   top: -0.5px;
   border-left: 0.75px dashed var(--border-color);
@@ -102,23 +130,6 @@
   z-index: 2;
 }
 
-#tables table:not(.hint) td.true:not(.concealed)::before,
-#tables table.hint td.true::before {
-  content: '●';
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-#tables td.false.red-cross::before {
-  content: '❌';
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
 #tables table caption {
   white-space: nowrap;
   font-size: 20px;
@@ -138,19 +149,24 @@
 }
 
 @keyframes shake {
-  10%, 90% {
+  10%,
+  90% {
     transform: translate3d(-1px, 0, 0);
   }
-  
-  20%, 80% {
+
+  20%,
+  80% {
     transform: translate3d(2px, 0, 0);
   }
 
-  30%, 50%, 70% {
+  30%,
+  50%,
+  70% {
     transform: translate3d(-4px, 0, 0);
   }
 
-  40%, 60% {
+  40%,
+  60% {
     transform: translate3d(4px, 0, 0);
   }
 }
@@ -236,19 +252,3 @@ body.javascript #tables table tbody tr:nth-child(1) th:after {
   /* Set the origin of the transformation to the top-right corner */
 }
 
-#tables table tr td {
-  width: var(--cell-width_and_height);
-  height: var(--cell-width_and_height);
-  text-align: center;
-  vertical-align: middle;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.67);
-  font-family: var(--bs-body-font-family);
-  font-size: 25px;
-  padding: 0;
-  transform: none;
-  user-select: none;
-}
-
-#tables table td {
-  cursor: default;
-}
