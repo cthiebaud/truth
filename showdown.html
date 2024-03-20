@@ -117,10 +117,10 @@
             safeById('close', elem =>
                 elem.addEventListener('click', (clickEvent) => {
                     clickEvent.preventDefault()
-                    container.style.height = 0; // should trigger the animation
                     setTimeout(function () {
                         window.close()
                     }, 1000); // Add a buffer to ensure the timeout occurs after the expected animation duration                         
+                    container.style.height = 0; // should trigger the animation
                 })
             )
 
