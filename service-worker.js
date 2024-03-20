@@ -90,7 +90,7 @@ if (workbox) {
     { revision: 'dbb750dfa7b4847ba284ed5e8a422ee7', url: 'dist/css/index.min.css' },
     { revision: '35df056d6538898a199152b3fd0b44e5', url: 'dist/css/tables.min.css' },
     { revision: '0373d0a2c49b253c3bd232129592df01', url: 'dist/css/timer.min.css' },
-    { revision: 'b6a30c4f14365f64d293be946d033dda', url: 'dist/js/ColorsClass.min.js' },
+    { revision: '7f19c74beea1d9c2aec62d237009e4aa', url: 'dist/js/ColorsClass.min.js' },
     { revision: '492e390793648c577be23449fba01786', url: 'dist/js/GameClass.min.js' },
     { revision: 'bb7eb51a4eec82646365d519b1b6a61d', url: 'dist/js/SoundMachineClass.min.js' },
     { revision: '5a062f58bdab5c6fd02876459accca95', url: 'dist/js/TimerClass.min.js' },

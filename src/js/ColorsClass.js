@@ -59,6 +59,20 @@ function shuffleArrayWithNonConsecutive(colors, lengthOfNonConsecutiveColors) {
     return shuffled;
 }
 
+// {
+//     // Test the shuffleArrayWithNonConsecutive function
+//     const colors = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7];
+//     const lengthOfNonConsecutiveColors = 0;
+//     try {
+//         const shuffledArray = shuffleArrayWithNonConsecutive(colors, lengthOfNonConsecutiveColors);
+//         console.log(shuffledArray, shuffledArray.length, lengthOfNonConsecutiveColors);
+//     } catch (error) {
+//         console.error(error.message);
+//     }
+// 
+// }
+
+
 export class Colors {
     // ########################
     // Function to map a number between 0 and 120 to a color
@@ -132,19 +146,6 @@ export class Colors {
 
         // will change this.colors and this.lengthOfNonConsecutiveColors
         this.shuffleColors(4)
-
-        {
-            // Test the shuffleArrayWithNonConsecutive function
-            const colors = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7];
-            const lengthOfNonConsecutiveColors = 0;
-            try {
-                const shuffledArray = shuffleArrayWithNonConsecutive(colors, lengthOfNonConsecutiveColors);
-                console.log(shuffledArray, shuffledArray.length, lengthOfNonConsecutiveColors);
-            } catch (error) {
-                console.error(error.message);
-            }
-
-        }
     }
 
     #lengthOfNonConsecutiveColors = 4
