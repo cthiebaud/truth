@@ -60,10 +60,10 @@
         }
 
         /* */
-        .container {
+        #container {
             overflow: hidden;
             height: 0;
-            transition: height 1.2s ease-in;
+            transition: height 0.750s ease-in-out;
         }
     </style>
 </head>
@@ -80,6 +80,13 @@
     <script type="module">
         import showdown from 'https://cdn.jsdelivr.net/npm/showdown@2.1.0/+esm'
 
+        const safeById = (id, func) => {
+            if (!id) return
+            const elem = document.getElementById(id)
+            if (!elem) return
+            return func(elem)
+        }
+
         function setCellWidth(cellWidth = '40px') {
             document.documentElement.style.setProperty('--cell-width_and_height', cellWidth)
             document.documentElement.style.setProperty('--header-width_and_height', '18px')
@@ -87,6 +94,35 @@
         }
 
         document.addEventListener("DOMContentLoaded", function () {
+
+            /* */
+            const container = document.getElementById('container');
+            const contained = document.getElementById('containedId');
+
+            // Create a new ResizeObserver instance
+            var resizeObserver = new ResizeObserver(function (entries) {
+                // Loop through the entries array
+                entries.forEach(function (entry) {
+                    // Check if the observed element's height has changed
+                    if (entry.contentRect.height !== entry.target.dataset.prevHeight) {
+                        // Your code to handle height change here
+                        console.log('Height changed:', entry.contentRect.height);
+                        container.style.height = Math.ceil(entry.contentRect.height) + 'px';
+                    }
+                });
+            });
+            // Start observing the target element for size changes
+            resizeObserver.observe(contained);
+
+            safeById('close', elem =>
+                elem.addEventListener('click', (clickEvent) => {
+                    clickEvent.preventDefault()
+                    container.style.height = 0; // should trigger the animation
+                    setTimeout(function () {
+                        window.close()
+                    }, 1000); // Add a buffer to ensure the timeout occurs after the expected animation duration                         
+                })
+            )
 
             setCellWidth()
 
@@ -98,10 +134,6 @@
             function displayResult(text) {
                 const converter = new showdown.Converter({ tables: true, strikethrough: true })
                 const html = converter.makeHtml(text)
-
-                /* */
-                var container = document.getElementById('container');
-                var contained = document.getElementById('containedId');
 
                 contained.innerHTML = html;
 
@@ -123,13 +155,6 @@
                     }
                 })
 
-                const safeById = (id, func) => {
-                    if (!id) return
-                    const elem = document.getElementById(id)
-                    if (!elem) return
-                    return func(elem)
-                }
-
                 safeById('logic_symbols', elem =>
                     elem.addEventListener('click', (clickEvent) => {
                         clickEvent.preventDefault()
@@ -149,19 +174,6 @@
                         safeById('nonAounonB', nonAounonB => nonAounonB.innerHTML = "!α | !β")
                     })
                 )
-                safeById('close', elem =>
-                    elem.addEventListener('click', (clickEvent) => {
-                        clickEvent.preventDefault()
-                        window.close()
-                    })
-                )
-
-                // set height to trigger animation
-                void contained.offsetWidth; // Trigger reflow
-                container.addEventListener('animationend', function () {
-                    container.style.height = 'fit-content'
-                });
-                container.style.height = contained.offsetHeight + 'px'; 
             }
 
             const xhr = new XMLHttpRequest()

@@ -69,7 +69,7 @@ if (workbox) {
     { revision: '76ca279aa321c3c55e9befd6914be4c9', url: 'screenshots/2024-03-20_2400x1260.jpg' },
     { revision: '7c1229607e3fc44c146b4a1d8df58365', url: 'screenshots/Screenshot 2024-03-20 (11.46.02).png' },
     { revision: 'aa0f9f1962c8f64740935e738ff24d6a', url: 'screenshots/Screenshot 2024-03-20 (11.47.11).png' },
-    { revision: 'd053fb11d2b7f5974cbc763ea33f400f', url: 'showdown.html' },
+    { revision: 'bccfc4b2455896b5161b3db4dda20435', url: 'showdown.html' },
     { revision: '019b845a9da3dcadd86389e20bdcc8d8', url: 'svg/ancient-greek-helmet-1-svgrepo-com.svg' },
     { revision: 'ccf85d24402460e330f3c894b420584a', url: 'svg/b-axes-inkscape.svg' },
     { revision: '281d4fe45ac9142d20a54e7e0510a66f', url: 'svg/b-axes.svg' },
