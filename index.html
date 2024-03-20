@@ -1204,6 +1204,7 @@
         }
 
         function shuffleBrickColors(originalElementsArray) {
+            colors.shuffleColors()
             originalElementsArray.forEach(elem => {
                 if (elem.dataset.function) {
                     let backgroundcolors = functions.getOneOrTwoColors(elem.dataset.function)

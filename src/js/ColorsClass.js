@@ -13,8 +13,9 @@ function shuffleArrayWithNonConsecutive(colors, lengthOfNonConsecutiveColors) {
             exclusions.set(world[i], exclusions.get(world[i]) + 1);
         }
     }
-    if (!lengthOfNonConsecutiveColors || lengthOfNonConsecutiveColors < 0 || exclusions.size < lengthOfNonConsecutiveColors) {
-        throw new Error("Invalid parameters: lengthOfNonConsecutiveColors should be a number greater than zero and less than the length of possible colors array");
+    if (!lengthOfNonConsecutiveColors) lengthOfNonConsecutiveColors = 0
+    if (lengthOfNonConsecutiveColors < 0 || exclusions.size < lengthOfNonConsecutiveColors) {
+        throw new Error("Invalid parameters: lengthOfNonConsecutiveColors should be a number greater or equal than zero and less than the length of possible colors array");
     }
 
     let shuffled = [];
@@ -57,16 +58,6 @@ function shuffleArrayWithNonConsecutive(colors, lengthOfNonConsecutiveColors) {
 
     return shuffled;
 }
-
-// // Test the shuffleArrayWithNonConsecutive function
-// const colors = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7];
-// const lengthOfNonConsecutiveColors = 7;
-// try {
-//     const shuffledArray = shuffleArrayWithNonConsecutive(colors, lengthOfNonConsecutiveColors);
-//     console.log(shuffledArray, shuffledArray.length, lengthOfNonConsecutiveColors);
-// } catch (error) {
-//     console.error(error.message);
-// }
 
 export class Colors {
     // ########################
@@ -141,15 +132,29 @@ export class Colors {
 
         // will change this.colors and this.lengthOfNonConsecutiveColors
         this.shuffleColors(4)
+
+        {
+            // Test the shuffleArrayWithNonConsecutive function
+            const colors = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7];
+            const lengthOfNonConsecutiveColors = 0;
+            try {
+                const shuffledArray = shuffleArrayWithNonConsecutive(colors, lengthOfNonConsecutiveColors);
+                console.log(shuffledArray, shuffledArray.length, lengthOfNonConsecutiveColors);
+            } catch (error) {
+                console.error(error.message);
+            }
+
+        }
     }
 
+    #lengthOfNonConsecutiveColors = 4
     #currentColorIndex = 0
     nextColor() {
         const currentColor = this.colors[this.#currentColorIndex++]
         this.#currentColorIndex %= this.colors.length
         return currentColor
     }
-    shuffleColors(lengthOfNonConsecutiveColors = 4) {
+    shuffleColors(lengthOfNonConsecutiveColors = this.#lengthOfNonConsecutiveColors) {
         this.colors = shuffleArrayWithNonConsecutive(this.colors, lengthOfNonConsecutiveColors)
         return this.colors
     }
