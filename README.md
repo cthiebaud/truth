@@ -87,12 +87,13 @@ On peut tricher en appuyant sur les entêtes des tables pendant une partie.
 ### Raccourcis clavier
 
 * <kbd>Space</kbd> &nbsp;&nbsp;&nbsp;<img src="svg/b-start.svg">/<img src="svg/b-stop.svg" >&nbsp;&nbsp;&nbsp; Démarre ou arrête une partie. Si la boite de dialogue qui affiche les résultats de la partie précédente est visible, mélange les tables aléatoirement avant de démarrer une nouvelle partie.
-* <kbd>Q</kbd> &nbsp;&nbsp;&nbsp;<img src="svg/b-grid.svg"   >&nbsp;&nbsp;&nbsp; Affiche les bords des tables et des celulles.
-* <kbd>W</kbd> &nbsp;&nbsp;&nbsp;<img src="svg/b-axes.svg"   >&nbsp;&nbsp;&nbsp; Affiche les en-têtes des axes des tables.
+* <kbd>Q</kbd> &nbsp;&nbsp;&nbsp;<img src="svg/b-grid.svg"   >&nbsp;&nbsp;&nbsp; Affiche ou non les bords des tables et des celulles.
+* <kbd>W</kbd> &nbsp;&nbsp;&nbsp;<img src="svg/b-axes.svg"   >&nbsp;&nbsp;&nbsp; Affiche ou non les en-têtes des axes des tables.
+* <kbd>A</kbd> &nbsp;&nbsp;&nbsp;`𝖠`/`α`&nbsp;&nbsp;&nbsp; Passe de symboles logiques à expression javascript et vice versa.
 * <kbd>S</kbd> &nbsp;&nbsp;&nbsp;<img src="svg/b-shuffle.svg">&nbsp;&nbsp;&nbsp; Mélange les tables aléatoirement.
-* <kbd>A</kbd> &nbsp;&nbsp;&nbsp;`𝖠`/`α`&nbsp;&nbsp;&nbsp; Change la représentation des en-têtes des tables entre symboles logiques et javascript.
-* <kbd>←</kbd> and <kbd>→</kbd> Change de niveau : <img src="svg/tortoise-fill-svgrepo-com.svg" style="width: 24px;"> ⇆ <img src="svg/hare-fill-svgrepo-com.svg" style="width: 24px;"> ⇆ <img src="svg/ancient-greek-helmet-1-svgrepo-com.svg" style="width: 24px;">
-* ------- *les raccourcis suivants sont sans équivalents graphiques, et de ce fait disponibles uniquement dans la version web* --------
+* <kbd>←</kbd> / <kbd>→</kbd> Change de niveau, <img src="svg/tortoise-fill-svgrepo-com.svg" style="width: 24px;"> ⇆ <img src="svg/hare-fill-svgrepo-com.svg" style="width: 24px;"> ⇆ <img src="svg/ancient-greek-helmet-1-svgrepo-com.svg" style="width: 24px;">.
+
+*Les raccourcis suivants sont sans équivalents graphiques, et de ce fait disponibles uniquement dans la version web :*
 * <kbd>Escape</kbd> 'Tue' une partie (i.e. sans afficher les résultats). 
 * <kbd>C</kbd> Mélange les couleurs des briques aléatoirement.
 * <kbd>O</kbd> Retour à l'ordre initial des tables.
@@ -103,9 +104,9 @@ On peut tricher en appuyant sur les entêtes des tables pendant une partie.
 
 *'Bascule' est le mot français officiellement utilisé pour traduire l'anglais 'Toggle'.*
 
-* <img src="svg/b-grid.svg" >&nbsp; Affiche les bords des tables et des celulles.
-* <img src="svg/b-axes.svg" >&nbsp; Affiche les en-têtes des axes des tables.
-* `𝖠`/`α`&nbsp; Change la représentation des en-têtes des tables entre symboles logiques et javascript.
+* <img src="svg/b-grid.svg" >&nbsp; Affiche ou non les bords des tables et des celulles.
+* <img src="svg/b-axes.svg" >&nbsp; Affiche ou non les en-têtes des axes des tables.
+* `𝖠`/`α`&nbsp; Passe de symboles logiques à expression javascript et vice versa.
 
 --- 
 
