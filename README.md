@@ -44,21 +44,21 @@ Chaque résultat est accompagné d'un son différent.
 
 La formule qui donne la clé de chaque de table de vérité peut être exprimée, soit avec des symboles logiques [⁽¹⁰⁾](https://fr.wikipedia.org/wiki/Liste_de_symboles_logiques), par exemple `𝖠 ∧ 𝖡`, soit par une expression javascript, soit `α & β` pour le même exemple. Il est intéressant de noter que l'expression javascript est factuellement interprétée par le moteur de l'application dans une fonction anonyme [⁽¹¹⁾](https://fr.wikipedia.org/wiki/Fonction_anonyme), par exemple `(α, β) => α & β`. 
 
-N. B. : `&`, `|` et `^` sont des opérateurs binaires [⁽¹²⁾](https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Expressions_and_operators#op%C3%A9rateurs_binaires), `!` est un opérateur logique [⁽¹³⁾](https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Expressions_and_operators#op%C3%A9rateurs_logiques).
-
 |  | symboles logiques | javascript |
 |---|---|---|
-| FAUX        | `⊥`  | ` `   |
 | NON         | `¬`  | `!`   |
 | ET          | `∧`  | `&`   |
 | OU          | `∨`  | `\|`  |
 | OU EXCLUSIF | `⊻`  | `^`   |
+| FAUX        | `⊥`  | ` `   |
 | VRAI        | `⊤`  | `true`|
 
+N. B. : Concernant javascript, `&`, `|` et `^` sont des opérateurs binaires [⁽¹²⁾](https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Expressions_and_operators#op%C3%A9rateurs_binaires), `!` est un opérateur logique [⁽¹³⁾](https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Expressions_and_operators#op%C3%A9rateurs_logiques).
 
-| expressions | symboles logiques | javascript | résultat |
+
+| expression | symboles logiques | javascript | résultat |
 |---|---|---|---|
-| TOUJOURS FAUX       | `⊥`       | ` `        | □ □<br>□ □ |
+| FAUX                | `⊥`       | ` `        | □ □<br>□ □ |
 | A ET B              | `𝖠 ∧ 𝖡`   | `α & β`    | ■ □<br>□ □ |
 | A ET NON B          | `𝖠 ∧ ¬𝖡`  | `α & !β`   | □ ■<br>□ □ |
 | NON A ET NON B      | `¬𝖠 ∧ ¬𝖡` | `!α & !β`  | □ □<br>□ ■ |
@@ -73,14 +73,13 @@ N. B. : `&`, `|` et `^` sont des opérateurs binaires [⁽¹²⁾](https://devel
 | A OU NON B          | `𝖠 ∨ ¬𝖡`  | `α \| !β`  | ■ ■<br>□ ■ |
 | NON A OU NON B      | `¬𝖠 ∨ ¬𝖡` | `!α \| !β` | □ ■<br>■ ■ |
 | NON A OU B          | `¬𝖠 ∨ 𝖡`  | `!α \| β`  | ■ □<br>■ ■ |
-| TOUJOURS VRAI       | `⊤`       | `true`     | ■ ■<br>■ ■ |
-
+| VRAI                | `⊤`       | `true`     | ■ ■<br>■ ■ |
 
 --- 
 
 ### Tricherie
 
-On peut tricher en appuyant sur les entêtes des tables pendant une partie.
+On peut tricher en appuyant sur les entêtes des tables pendant une partie 😉.
 
 --- 
 
