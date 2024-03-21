@@ -6,7 +6,7 @@
 [![Android App Store](assets/svg/android-svgrepo-com.svg)](https://play.google.com/store/apps/details?id=com.cthiebaud.aletheia.twa)
 [![Apple App Store](assets/svg/Apple_logo_grey.svg)](https://apps.apple.com/us/app/aletheia-by-%C3%A6quologica/id6476017817)
 
-La référence à Martin Heidegger est flagrante : « <i>En traduisant alètheia par Unverborgenheit, dévoilement ou plutôt non-voilement, et non plus simplement par “Vérité”, Heidegger s'efforce de faire entendre quelque chose du sens, de ce vers quoi alètheia faisait signe, même à l'insu des Grecs, et à partir duquel ils déployaient leur monde.</i> » [⁽¹⁾](https://fr.wikipedia.org/wiki/Al%C3%A8theia_dans_la_philosophie_de_Martin_Heidegger).
+La référence à Martin Heidegger est flagrante : « *En traduisant alètheia par Unverborgenheit, dévoilement ou plutôt non-voilement, et non plus simplement par “Vérité”, Heidegger s'efforce de faire entendre quelque chose du sens, de ce vers quoi alètheia faisait signe, même à l'insu des Grecs, et à partir duquel ils déployaient leur monde.* » [⁽¹⁾](https://fr.wikipedia.org/wiki/Al%C3%A8theia_dans_la_philosophie_de_Martin_Heidegger)
 
 Il s'agit donc de dévoiler les petites briques colorées pour faire apparaître ce que l'on appelle les tables de vérité [⁽²⁾](https://fr.wikipedia.org/wiki/Table_de_v%C3%A9rit%C3%A9) en jargon mathématique. Un peu plus de détails - tout en restant le plus succinct possible - dans le fichier QUICK-GUIDE.md [⁽³⁾](QUICK-GUIDE.md) (en anglais).
 
@@ -109,3 +109,5 @@ Durant une partie, en pressant un petit moment sur une expression en en-tête, l
 --- 
 
 ![ἀλήθεια](screenshots/2024-03-20_2330x1688.jpg)
+
+On a commencé avec Heidegger, on termine avec Wittgenstein : « *pour deux propositions élémentaires, il y aura donc 16 propositions complexes (celles-ci sont présentées au 5.101). On peut déterminer sur la base de ces combinaisons les fonctions de vérité et donc les tables de vérité, qui sont une des innovations techniques du livre. Wittgenstein n’a certes pas « inventé » les tables de vérité : on peut faire remonter celles-ci aux stoïciens et Wittgenstein lui-même reconnaissait que l’idée se trouvait déjà chez Frege.* » Ludwig Wittgenstein - Introduction au « Tractatus logico philosophicus », par Mathieu Marion[⁽¹⁵⁾](https://www.cairn.info/ludwig-wittgenstein--9782130533344-page-85.htm)
