@@ -7,7 +7,7 @@ module.exports = {
   globIgnores: [
     "*.js",
     "**/node_modules/**/*",
-    "HOWTO-template.md",
+    "QUICK-GUIDE-template.md",
     "material/**",
     "node_modules/**",
     "packages/**",

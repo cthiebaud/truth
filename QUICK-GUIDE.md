@@ -1,8 +1,8 @@
 # Aletheia
 
-The objective of the game is to unconceal the 'truth' within a 'truth table'.
+The goal of the game is to uncover the 'truth' in each and every of the sixteen 'truth tables'. Together, these tables represent every possible combination of two boolean entries.
 
-The header of each square box provides a clue that can be decoded into bricks filling none, some or all of the 4 cells within the box.
+The header of each table provides a clue that can be decoded into bricks filling none, some or all of the 4 cells within the box.
 
 The presence or absence of a brick within a cell is fully determined by the values of A and B as inferred from the clue, as illustrated below:
 
@@ -131,4 +131,4 @@ More at [Github&hellip;](https://github.com/cthiebaud/truth/blob/main/README.md)
 | ![Android App Store](assets/svg/android-svgrepo-com.svg) | [On Android Phones & Devices](https://play.google.com/store/apps/details?id=com.cthiebaud.aletheia.twa)                |
 | ![WWW](assets/svg/internet-svgrepo-com.svg)              | [On the Web](https://aletheia.cthiebaud.com/)                                                                          |
 | ![aletheia](assets/svg/Wikipedia's_W.svg)                | [Aletheia (Ancient Greek: ἀλήθεια) as Philosophical Term on Wikipedia ](https://en.wikipedia.org/wiki/Aletheia)        |
-| ![Github](assets/svg/github.svg)                         | This version git commit: [fe13e3f](https://github.com/cthiebaud/truth/commit/fe13e3f3ee06f84b76f1c5451a7bcc3d0c80ab9c)            |
+| ![Github](assets/svg/github.svg)                         | This version git commit: [3623a19](https://github.com/cthiebaud/truth/commit/3623a19b2f60f218df23106be8bd5d3bbcfc14e2)            |

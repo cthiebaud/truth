@@ -28,12 +28,12 @@ fi
 commit_hash=$(git rev-parse HEAD)
 short_commit_hash=$(git rev-parse --short HEAD)
 
-# Inject the commit hash into the HOWTO
-scripts/inject_commit_hash.sh -c $commit_hash -s $short_commit_hash -t HOWTO-template.md -o HOWTO.md
+# Inject the commit hash into the QUICK-GUIDE
+scripts/inject_commit_hash.sh -c $commit_hash -s $short_commit_hash -t QUICK-GUIDE-template.md -o QUICK-GUIDE.md
 
 # Commit changes
-git add HOWTO.md
-commit_message="Update commit hash to $short_commit_hash in HOWTO.md for production"
+git add QUICK-GUIDE.md
+commit_message="Update commit hash to $short_commit_hash in QUICK-GUIDE.md for production"
 git commit -m "$commit_message"
 
 # Push changes to the remote production branch

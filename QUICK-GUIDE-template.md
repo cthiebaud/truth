@@ -1,8 +1,8 @@
 # Aletheia
 
-The objective of the game is to unconceal the 'truth' within a 'truth table'.
+The goal of the game is to uncover the 'truth' in each and every of the sixteen 'truth tables'. Together, these tables represent every possible combination of two boolean entries.
 
-The header of each square box provides a clue that can be decoded into bricks filling none, some or all of the 4 cells within the box.
+The header of each table provides a clue that can be decoded into bricks filling none, some or all of the 4 cells within the box.
 
 The presence or absence of a brick within a cell is fully determined by the values of A and B as inferred from the clue, as illustrated below:
 

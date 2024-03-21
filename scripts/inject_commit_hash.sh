@@ -1,10 +1,10 @@
 #!/bin/bash
 # usage:
-# ./inject_commit_hash.sh -c $your_commit_hash -s $your_short_commit_hash -t HOWTO-template.md -o HOWTO.md
+# ./inject_commit_hash.sh -c $your_commit_hash -s $your_short_commit_hash -t "QUICK-GUIDE-template.md" -o "QUICK-GUIDE.md"
 
 # Default values
-template_file="HOWTO-template.md"
-output_file="HOWTO.md"
+template_file="QUICK-GUIDE-template.md"
+output_file="QUICK-GUIDE.md"
 
 # Parse arguments
 while getopts ":t:o:c:s:" opt; do
