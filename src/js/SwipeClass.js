@@ -12,9 +12,9 @@ export class Swipe {
         this.startY = 0;
         this.currentX = 0;
         this.currentY = 0;
+        this.touchThresholdX = 120; // Minimum distanceX threshold for swipe gesture
+        this.touchThresholdY = 50; // Maximum distanceY threshold for swipe left or right
         this.swipeHandler = swipeHandler;
-        this.touchThresholdX = 50; // Minimum distanceX threshold for swipe gesture
-        this.touchThresholdY = 30; // Maximum distanceY threshold for swipe left or right
 
         // Set touch event listeners as non-passive
         this.swipeArea.addEventListener('touchstart', this.handleTouchStart.bind(this), { passive: false });
