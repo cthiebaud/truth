@@ -1,6 +1,6 @@
 # Aletheia
 
-The objective of the game is to unconceal the 'truth' - inside a 'truth table'.
+The objective of the game is to unconceal the 'truth' within a 'truth table'.
 
 The header of each square box provides a clue that can be decoded into bricks filling none, some or all of the 4 cells within the box.
 
@@ -131,4 +131,4 @@ More at [Github&hellip;](https://github.com/cthiebaud/truth/blob/main/README.md)
 | ![Android App Store](assets/svg/android-svgrepo-com.svg) | [On Android Phones & Devices](https://play.google.com/store/apps/details?id=com.cthiebaud.aletheia.twa)                |
 | ![WWW](assets/svg/internet-svgrepo-com.svg)              | [On the Web](https://aletheia.cthiebaud.com/)                                                                          |
 | ![aletheia](assets/svg/Wikipedia's_W.svg)                | [Aletheia (Ancient Greek: ἀλήθεια) as Philosophical Term on Wikipedia ](https://en.wikipedia.org/wiki/Aletheia)        |
-| ![Github](assets/svg/github.svg)                         | This version git commit: [ebde2e1](https://github.com/cthiebaud/truth/commit/ebde2e1d445156822b03c33e37bc3fd86e21bcca)            |
+| ![Github](assets/svg/github.svg)                         | This version git commit: [fe13e3f](https://github.com/cthiebaud/truth/commit/fe13e3f3ee06f84b76f1c5451a7bcc3d0c80ab9c)            |

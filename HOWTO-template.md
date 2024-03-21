@@ -1,6 +1,6 @@
 # Aletheia
 
-The objective of the game is to unconceal the 'truth' - inside a 'truth table'.
+The objective of the game is to unconceal the 'truth' within a 'truth table'.
 
 The header of each square box provides a clue that can be decoded into bricks filling none, some or all of the 4 cells within the box.
 
