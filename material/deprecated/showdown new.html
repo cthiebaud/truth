@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="dist/css/index.min.css">
+    <link rel="stylesheet" href="dist/css/tables.min.css">
+    <style>
+        html {
+            height: 100vh;
+        }
+
+        body {
+            height: 100vh;
+            padding-top: 1rem;
+            background-color: white !important;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        body div.container>:first-child {
+            float: right;
+            margin: .2rem 0;
+        }
+
+        #embellished-separator {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin: 1rem 0 1rem 0;
+            padding-bottom: 1rem;
+        }
+
+        #embellished-separator img {
+            width: 150px;
+            height: auto;
+        }
+
+        #aletheia {
+            visibility: visible;
+            margin-bottom: 1rem !important;
+        }
+
+        #tables table.table {
+            background-color: #f1efe0;
+        }
+
+        table.table.table-light.table-sm.table-borderless>:not(caption)>*>* {
+            background-color: transparent;
+            font-size: smaller;
+            vertical-align: middle;
+        }
+
+        /* */
+        #container {
+            overflow: hidden;
+            height: 0;
+            transition: height 0.750s ease-in-out;
+        }
+
+        #close {
+            position: relative;
+            z-index: 12;
+        }
+    </style>
+</head>
+
+<body id="body-id">
+    <div id="container-id" class="container">
+        <button id="close" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div id="contained-id" class="contained"></div>
+    </div>
+    <div id="embellished-separator">
+        <img src="/assets/svg/greek_meander.svg" alt="the end">
+    </div>
+
+    <script type="module">
+        import showdown from 'https://cdn.jsdelivr.net/npm/showdown@2.1.0/+esm'
+        import { Swipe } from '/dist/js/SwipeClass.min.js';
+
+        const safeById = (id, func) => {
+            if (!id) return
+            const elem = document.getElementById(id)
+            if (!elem) return
+            return func(elem)
+        }
+
+        function setCellWidth(cellWidth = '40px') {
+            document.documentElement.style.setProperty('--cell-width_and_height', cellWidth)
+            document.documentElement.style.setProperty('--header-width_and_height', '18px')
+            document.documentElement.style.setProperty('--border-color', '#215c4d40')
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            /* */
+            const container = document.getElementById('container-id');
+            const contained = document.getElementById('contained-id');
+
+            // Create a new ResizeObserver instance
+            var resizeObserver = new ResizeObserver(function (entries) {
+                // Loop through the entries array
+                entries.forEach(function (entry) {
+                    // Check if the observed element's height has changed
+                    if (entry.contentRect.height !== entry.target.dataset.prevHeight) {
+                        // handle height change 
+                        console.log('Height changed:', entry.contentRect.height);
+                        container.style.height = Math.ceil(entry.contentRect.height) + 'px';
+                    }
+                });
+            });
+            // Start observing the target element for size changes
+            resizeObserver.observe(contained);
+
+            /* BEGIN close */
+            function repliePuisFerme(elem) {
+                setTimeout(function () {
+                    console.log('about to close ...')
+                    window.close()
+                }, 1000); // Add a buffer to ensure the timeout occurs after the expected animation duration                         
+                elem.style.height = 0; // should trigger the animation
+            }
+            const swipe = new Swipe('body-id', function (direction) {
+                if (direction === 'swiperight') {
+                    console.log('Swiped right!');
+                    // Perform actions for swipe right
+                    repliePuisFerme(container)
+                } else if (direction === 'swipeleft') {
+                    console.log('Swiped left!');
+                    // Perform actions for swipe left
+                    window.open("/showdown.html?/QUICK-GUIDE.md", "_QUICK-GUIDE")
+                }
+            });
+            safeById('close', elem =>
+                elem.addEventListener('click', (clickEvent) => {
+                    clickEvent.preventDefault()
+                    clickEvent.stopPropagation();
+                    repliePuisFerme(contained)
+                })
+            )
+            /* END close */
+
+            setCellWidth()
+
+            if (!(location.search && location.search.substring(1))) {
+                contained.innerHTML += '<div class="alert alert-primary mt-2">Try the same URL with a \'?\' followed with a link to a markdown file.</div>'
+                return
+            }
+
+            function displayResult(text) {
+                const converter = new showdown.Converter({ tables: true, strikethrough: true })
+                const html = converter.makeHtml(text)
+
+                contained.innerHTML = html;
+
+                const h1 = document.querySelector("h1")
+                if (h1) {
+                    const titleElement = document.createElement("title")
+                    titleElement.textContent = h1.textContent
+                    document.head.prepend(titleElement)
+                }
+
+                document.querySelectorAll('table').forEach(table => {
+                    table.classList.add('table', 'table-light', 'table-sm', 'table-borderless');
+                });
+
+                const images = document.querySelectorAll("img")
+                images.forEach(function (img) {
+                    if (img.alt && !(img.alt.includes('Android') || img.alt.includes('Apple') || img.alt.includes('example') || img.alt.includes('github'))) {
+                        img.classList.add("img-fluid")
+                    }
+                })
+
+                function feedback(elem) {
+
+                    [...document.getElementsByClassName('logic_symbols_OR_javascript_expressions')].forEach(e => e.style.fontWeight = 'normal')
+                    elem.style.fontWeight = 'bold'
+                }
+
+                safeById('logic_symbols', elem =>
+                    elem.addEventListener('click', (clickEvent) => {
+                        clickEvent.preventDefault()
+                        safeById('body-id', body => body.classList.remove('javascript'))
+                        safeById('AetB', AetB => AetB.innerHTML = "𝖠 ∧ 𝖡")
+                        safeById('AouB', AouB => AouB.innerHTML = "𝖠 ∨ 𝖡")
+                        safeById('nonAounonB', nonAounonB => nonAounonB.innerHTML = "¬𝖠 ∨ ¬𝖡")
+                        feedback(elem)
+                    })
+                )
+
+                safeById('javascript_expressions', elem =>
+                    elem.addEventListener('click', (clickEvent) => {
+                        clickEvent.preventDefault()
+                        safeById('body-id', body => body.classList.add('javascript'))
+                        safeById('AetB', AetB => AetB.innerHTML = "α & β")
+                        safeById('AouB', AouB => AouB.innerHTML = "α | β")
+                        safeById('nonAounonB', nonAounonB => nonAounonB.innerHTML = "!α | !β")
+                        feedback(elem)
+                    })
+                )
+            }
+
+            const xhr = new XMLHttpRequest()
+            xhr.open("GET", location.search.substring(1) + "?_=" + Date.now(), true)
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        displayResult(xhr.responseText)
+                    } else {
+                        contained.innerHTML += '<div class="alert alert-warning mt-2"><span class="italic">' + location.search.substring(1) + '</span> not found 🙁 </div>'
+                    }
+                }
+            }
+
+            xhr.send()
+
+        })
+    </script>
+
+</body>
