@@ -42,9 +42,21 @@ Chaque résultat est accompagné d'un son différent.
 
 ### Expressions
 
-La formule qui donne la clé de chaque de table de vérité peut être exprimée, soit avec des symboles logiques [⁽¹⁰⁾](https://fr.wikipedia.org/wiki/Liste_de_symboles_logiques), par exemple `𝖠 ∧ 𝖡`, soit par une expression javascript, comme `α & β`. Il est intéressant de noter que dans ce dernier cas, l'expression est factuellement interprétée dans une fonction anonyme [⁽¹¹⁾](https://fr.wikipedia.org/wiki/Fonction_anonyme) par le moteur javascript de l'application, par exemple `(α, β) => α & β`. N. B. : `&`, `|` et `^` sont des opérateurs binaires [⁽¹²⁾](https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Expressions_and_operators#op%C3%A9rateurs_binaires), `!` est un opérateur logique [⁽¹³⁾](https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Expressions_and_operators#op%C3%A9rateurs_logiques).
+La formule qui donne la clé de chaque de table de vérité peut être exprimée, soit avec des symboles logiques [⁽¹⁰⁾](https://fr.wikipedia.org/wiki/Liste_de_symboles_logiques), par exemple `𝖠 ∧ 𝖡`, soit par une expression javascript, soit `α & β` pour le même exemple. Il est intéressant de noter que l'expression javascript est factuellement interprétée par le moteur de l'application dans une fonction anonyme [⁽¹¹⁾](https://fr.wikipedia.org/wiki/Fonction_anonyme), par exemple `(α, β) => α & β`. 
 
-|  | symboles logiques | javascript | |
+N. B. : `&`, `|` et `^` sont des opérateurs binaires [⁽¹²⁾](https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Expressions_and_operators#op%C3%A9rateurs_binaires), `!` est un opérateur logique [⁽¹³⁾](https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Expressions_and_operators#op%C3%A9rateurs_logiques).
+
+|  | symboles logiques | javascript |
+|---|---|---|
+| FAUX        | `⊥`  | ` `   |
+| NON         | `¬`  | `!`   |
+| ET          | `∧`  | `&`   |
+| OU          | `∨`  | `\|`  |
+| OU EXCLUSIF | `⊻`  | `^`   |
+| VRAI        | `⊤`  | `true`|
+
+
+| expressions | symboles logiques | javascript | résultat |
 |---|---|---|---|
 | TOUJOURS FAUX       | `⊥`       | ` `        | □ □<br>□ □ |
 | A ET B              | `𝖠 ∧ 𝖡`   | `α & β`    | ■ □<br>□ □ |
