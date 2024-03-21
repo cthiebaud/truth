@@ -60,7 +60,7 @@
         }
 
         /* */
-        #container {
+        #container-id {
             overflow: hidden;
             height: 0;
             transition: height 0.750s ease-in-out;
@@ -69,9 +69,9 @@
 </head>
 
 <body id="body-id">
-    <div id="container" class="container">
-        <button id="close" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        <div id="containedId" class="contained"></div>
+    <div id="container-id" class="container">
+        <button id="close" type="button" class="btn-close float-end" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div id="contained-id" class="contained"></div>
     </div>
     <div id="embellished-separator">
         <img src="/assets/svg/greek_meander.svg" alt="the end">
@@ -79,7 +79,7 @@
 
     <script type="module">
         import showdown from 'https://cdn.jsdelivr.net/npm/showdown@2.1.0/+esm'
-        import { Swipe } from '/dist/js/SwipeClass.js';
+        import { Swipe } from './dist/js/SwipeClass.min.js';
 
         const safeById = (id, func) => {
             if (!id) return
@@ -97,8 +97,8 @@
         document.addEventListener("DOMContentLoaded", function () {
 
             /* */
-            const container = document.getElementById('container');
-            const contained = document.getElementById('containedId');
+            const container = document.getElementById('container-id');
+            const contained = document.getElementById('contained-id');
 
             // Create a new ResizeObserver instance
             var resizeObserver = new ResizeObserver(function (entries) {
@@ -118,6 +118,7 @@
             /* BEGIN close */
             function repliePuisFerme() {
                 setTimeout(function () {
+                    console.log('about to close ...')
                     window.close()
                 }, 1000); // Add a buffer to ensure the timeout occurs after the expected animation duration                         
                 container.style.height = 0; // should trigger the animation
@@ -139,12 +140,11 @@
                     repliePuisFerme()
                 })
             )
-            /* END close */
 
             setCellWidth()
 
             if (!(location.search && location.search.substring(1))) {
-                document.querySelector(".container").innerHTML += '<div class="alert alert-primary mt-2">Try the same URL with a \'?\' followed with a link to a markdown file.</div>'
+                contained.innerHTML += '<div class="alert alert-primary mt-2">Try the same URL with a \'?\' followed with a link to a markdown file.</div>'
                 return
             }
 
@@ -208,7 +208,7 @@
                     if (xhr.status === 200) {
                         displayResult(xhr.responseText)
                     } else {
-                        document.querySelector(".container").innerHTML += '<div class="alert alert-warning mt-2"><span class="italic">' + location.search.substring(1) + '</span> not found 🙁 </div>'
+                        contained.innerHTML += '<div class="alert alert-warning mt-2"><span class="italic">' + location.search.substring(1) + '</span> not found � </div>'
                     }
                 }
             }

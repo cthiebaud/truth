@@ -11,6 +11,7 @@ export class Swipe {
         this.startX = 0;
         this.currentX = 0;
         this.swipeHandler = swipeHandler;
+        this.touchThreshold = 50; // Minimum distance threshold for swipe gesture
 
         // Set touch event listeners as non-passive
         this.swipeArea.addEventListener('touchstart', this.handleTouchStart.bind(this), { passive: false });
@@ -25,23 +26,24 @@ export class Swipe {
     }
 
     handleTouchStart(event) {
-        this.startX = event.touches[0].clientX;
+        this.startX = this.currentX = event.touches[0].clientX;
     }
 
     handleTouchMove(event) {
-        event.preventDefault();
         this.currentX = event.touches[0].clientX;
     }
 
     handleTouchEnd(event) {
+        if (!this.startX || !this.currentX) return
         const distance = this.currentX - this.startX;
-        if (Math.abs(distance) > 50) {
+        if (Math.abs(distance) > this.touchThreshold) {
             if (distance > 0) {
                 this.fireSwipeEvent('swiperight');
             } else {
                 this.fireSwipeEvent('swipeleft');
             }
         }
+        this.startX = this.currentX = undefined
     }
 
     fireSwipeEvent(direction) {

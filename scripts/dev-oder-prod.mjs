@@ -50,22 +50,36 @@ if (productionPaths.length !== developmentPaths.length) {
     process.exit(1); // Exit with an error code
 }
 
-// Read the original HTML content from index.html
-let originalHTMLContent = readFileSync('index.html', 'utf8');
+// Function to process HTML content and update paths
+function processHTMLContent(filePath, developmentPaths, productionPaths, toProduction) {
+    // Read the original HTML content from the file
+    let originalHTMLContent = readFileSync(filePath, 'utf8');
 
-for (let i = 0; i < productionPaths.length; i++) {
-    const productionPath = productionPaths[i]
-    const developmentPath = developmentPaths[i]
-    // Replace the development file path with the production file path and vice versa
-    if (toProduction) {
-        originalHTMLContent = originalHTMLContent.replace(developmentPath, productionPath);
-    } else {
-        originalHTMLContent = originalHTMLContent.replace(productionPath, developmentPath);
+    // Iterate through paths and replace them accordingly
+    for (let i = 0; i < productionPaths.length; i++) {
+        const productionPath = productionPaths[i];
+        const developmentPath = developmentPaths[i];
+        
+        // Replace the development file path with the production file path and vice versa
+        if (toProduction) {
+            originalHTMLContent = originalHTMLContent.replace(new RegExp(developmentPath, 'g'), productionPath);
+        } else {
+            originalHTMLContent = originalHTMLContent.replace(new RegExp(productionPath, 'g'), developmentPath);
+        }
     }
+
+    // Write the updated HTML content back to the file
+    writeFileSync(filePath, originalHTMLContent);
 }
 
-// Write the updated HTML content back to index.html
-writeFileSync('index.html', originalHTMLContent);
+// Loop through each filename in the array and process it
+const fileNames = ['index.html', 'showdown.html']; // Files to process
+for (const fileName of fileNames) {
+    const filePath = fileName; // Assuming files are in the same directory
+    processHTMLContent(filePath, developmentPaths, productionPaths, toProduction); // Process the file
+}
+
+// Write the current environment to a file
 writeFileSync('.node_env', process.env.NODE_ENV);
 
 console.log(`My build successful for environment: ${process.env.NODE_ENV}`);
