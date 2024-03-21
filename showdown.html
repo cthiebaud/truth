@@ -68,7 +68,7 @@
     </style>
 </head>
 
-<body id="qwe">
+<body id="body-id">
     <div id="container" class="container">
         <button id="close" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         <div id="containedId" class="contained"></div>
@@ -155,23 +155,31 @@
                     }
                 })
 
+                function feedback(elem) {
+                    
+                    [... document.getElementsByClassName('logic_symbols_OR_javascript_expressions')].forEach(e => e.style.fontWeight = 'normal')
+                    elem.style.fontWeight = 'bold'
+                }
+
                 safeById('logic_symbols', elem =>
                     elem.addEventListener('click', (clickEvent) => {
                         clickEvent.preventDefault()
-                        safeById('qwe', qwe => qwe.classList.remove('javascript'))
+                        safeById('body-id', body => body.classList.remove('javascript'))
                         safeById('AetB', AetB => AetB.innerHTML = "𝖠 ∧ 𝖡")
                         safeById('AouB', AouB => AouB.innerHTML = "𝖠 ∨ 𝖡")
                         safeById('nonAounonB', nonAounonB => nonAounonB.innerHTML = "¬𝖠 ∨ ¬𝖡")
+                        feedback(elem)
                     })
                 )
 
                 safeById('javascript_expressions', elem =>
                     elem.addEventListener('click', (clickEvent) => {
                         clickEvent.preventDefault()
-                        safeById('qwe', qwe => qwe.classList.add('javascript'))
+                        safeById('body-id', body => body.classList.add('javascript'))
                         safeById('AetB', AetB => AetB.innerHTML = "α & β")
                         safeById('AouB', AouB => AouB.innerHTML = "α | β")
                         safeById('nonAounonB', nonAounonB => nonAounonB.innerHTML = "!α | !β")
+                        feedback(elem)
                     })
                 )
             }
