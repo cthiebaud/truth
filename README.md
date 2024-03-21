@@ -42,19 +42,18 @@ Chaque résultat est accompagné d'un son différent.
 
 ### Expressions
 
-La formule qui donne la clé de chaque de table de vérité peut être exprimée, soit avec des symboles logiques [⁽¹⁰⁾](https://fr.wikipedia.org/wiki/Liste_de_symboles_logiques), par exemple `𝖠 ∧ 𝖡`, soit par une expression javascript, soit `α & β` pour le même exemple. Il est intéressant de noter que l'expression javascript est factuellement interprétée par le moteur de l'application dans une fonction anonyme [⁽¹¹⁾](https://fr.wikipedia.org/wiki/Fonction_anonyme), par exemple `(α, β) => α & β`. 
+La formule qui donne la clé de chaque de table de vérité peut être exprimée, soit avec des symboles logiques [⁽¹⁰⁾](https://fr.wikipedia.org/wiki/Liste_de_symboles_logiques), par exemple `𝖠 ∧ 𝖡`, soit par une expression javascript, soit `α & β` pour le même exemple. Il est intéressant de noter que l'expression javascript est factuellement interprétée par le moteur de l'application dans une fonction anonyme [⁽¹¹⁾](https://fr.wikipedia.org/wiki/Fonction_anonyme), `(α, β) => α & β` dans notre cas. 
 
-|  | symboles logiques | javascript |
+| nom | symbole logique | opérateur javascript |
 |---|---|---|
-| NON         | `¬`  | `!`   |
-| ET          | `∧`  | `&`   |
-| OU          | `∨`  | `\|`  |
-| OU EXCLUSIF | `⊻`  | `^`   |
-| FAUX        | `⊥`  | ` `   |
-| VRAI        | `⊤`  | `true`|
+| Négation              | `¬`  | `!`   |
+| Conjonction           | `∧`  | `&`   |
+| Disjonction inclusive | `∨`  | `\|`  |
+| Disjonction exclusive | `⊻`  | `^`   |
+| Contradiction         | `⊥`  | ` `   |
+| Tautologie            | `⊤`  | `true`|
 
-N. B. : Concernant javascript, `&`, `|` et `^` sont des opérateurs binaires [⁽¹²⁾](https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Expressions_and_operators#op%C3%A9rateurs_binaires), `!` est un opérateur logique [⁽¹³⁾](https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Expressions_and_operators#op%C3%A9rateurs_logiques).
-
+N. B. : Concernant javascript, `&`, `|` et `^` sont des opérateurs binaires [⁽¹²⁾](https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Expressions_and_operators#op%C3%A9rateurs_binaires), `!` est un opérateur logique [⁽¹³⁾](https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Expressions_and_operators#op%C3%A9rateurs_logiques), ` ` est une chaine de caractères vide, évaluée à "falsy", et `true` est une valeur primitive booléenne.
 
 | expression | symboles logiques | javascript | résultat |
 |---|---|---|---|
