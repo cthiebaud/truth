@@ -53,7 +53,7 @@ La formule qui donne la clé de chaque de table de vérité peut être exprimée
 | Contradiction         | `⊥`  | ` `   |
 | Tautologie            | `⊤`  | `true`|
 
-N. B. : Concernant javascript, `&`, `|` et `^` sont des opérateurs binaires [⁽¹²⁾](https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Expressions_and_operators#op%C3%A9rateurs_binaires), `!` est un opérateur logique [⁽¹³⁾](https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Expressions_and_operators#op%C3%A9rateurs_logiques), ` ` est une chaine de caractères vide, évaluée à "falsy", et `true` est une valeur primitive booléenne.
+N. B. : Concernant javascript, `!` est un opérateur logique [⁽¹³⁾](https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Expressions_and_operators#op%C3%A9rateurs_logiques), `&`, `|` et `^` sont des opérateurs binaires [⁽¹²⁾](https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Expressions_and_operators#op%C3%A9rateurs_binaires), ` ` est une chaine de caractères vide, évaluée à "falsy", et `true` est une valeur primitive booléenne.
 
 | expression | symboles logiques | javascript | résultat |
 |---|---|---|---|
