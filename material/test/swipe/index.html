@@ -2,19 +2,40 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index Page</title>
-    <link rel="stylesheet" href="swipe.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Swipe Example</title>
+  <style>
+    /* Your CSS styles */
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      overflow: hidden;
+    }
+  </style>
 </head>
 
-<body>
+<body id="swipeArea">
+  Swipe left or right
 
-    <h1>Index Page</h1>
-    <div id="swipeContent" data-direction="RIGHT">Swipe me to the&nbsp;<p>right</p></div>
+  <script type="module">
+    import Swipe from './SwipeClass.js';
 
-    <script type="module" src="swipe.js"></script>
+    const swipe = new Swipe('swipeArea');
 
+    // Listen for swipe events
+    document.body.addEventListener('swipe', function (event) {
+      if (event.detail === 'swiperight') {
+        alert('Swiped right!');
+      } else if (event.detail === 'swipeleft') {
+        alert('Swiped left!');
+      }
+    });
+  </script>
 </body>
 
 </html>

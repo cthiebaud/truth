@@ -6,6 +6,7 @@ const toProduction = process.env.NODE_ENV === 'production';
 const productionPaths = [
     "'./dist/js/UtilsClass.min.js'",
     "'./dist/js/ColorsClass.min.js'",
+    "'./dist/js/SwipeClass.min.js'",
     "'./dist/js/TimerClass.min.js'",
     "'./dist/js/SoundMachineClass.min.js'",
     "'./dist/js/GameClass.min.js'",
@@ -25,6 +26,7 @@ const productionPaths = [
 const developmentPaths = [
     "'./src/js/UtilsClass.js'",
     "'./src/js/ColorsClass.js'",
+    "'./src/js/SwipeClass.js'",
     "'./src/js/TimerClass.js'",
     "'./src/js/SoundMachineClass.js'",
     "'./src/js/GameClass.js'",
