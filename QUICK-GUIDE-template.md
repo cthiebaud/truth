@@ -1,6 +1,6 @@
 # Aletheia
 
-The goal of the game is to uncover the 'truth' in each and every of the sixteen 'truth tables'. Together, these tables represent every possible combination of two boolean entries.
+The goal of the game is to uncover the 'truth' in each and every of sixteen 'truth tables'.
 
 The header of each table provides a clue that can be decoded into bricks filling none, some or all of the 4 cells within the box.
 
