@@ -9,9 +9,12 @@ export class Swipe {
         }
 
         this.startX = 0;
+        this.startY = 0;
         this.currentX = 0;
+        this.currentY = 0;
         this.swipeHandler = swipeHandler;
-        this.touchThreshold = 50; // Minimum distance threshold for swipe gesture
+        this.touchThresholdX = 50; // Minimum distanceX threshold for swipe gesture
+        this.touchThresholdY = 30; // Maximum distanceY threshold for swipe left or right
 
         // Set touch event listeners as non-passive
         this.swipeArea.addEventListener('touchstart', this.handleTouchStart.bind(this), { passive: false });
@@ -27,17 +30,21 @@ export class Swipe {
 
     handleTouchStart(event) {
         this.startX = this.currentX = event.touches[0].clientX;
+        this.startY = this.currentY = event.touches[0].clientY;
     }
 
     handleTouchMove(event) {
         this.currentX = event.touches[0].clientX;
+        this.currentY = event.touches[0].clientY;
     }
 
     handleTouchEnd(event) {
-        if (!this.startX || !this.currentX) return
-        const distance = this.currentX - this.startX;
-        if (Math.abs(distance) > this.touchThreshold) {
-            if (distance > 0) {
+        if (!this.startX || !this.currentX || !this.startY || !this.currentY) return
+        const distanceX = this.currentX - this.startX;
+        const distanceY = this.currentY - this.startY;
+        if (Math.abs(distanceX) > this.touchThresholdX &&
+            Math.abs(distanceY) < this.touchThresholdY ) {
+            if (distanceX > 0) {
                 this.fireSwipeEvent('swiperight');
             } else {
                 this.fireSwipeEvent('swipeleft');

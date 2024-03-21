@@ -63,7 +63,7 @@ if (workbox) {
     { revision: 'c9ce66f4033637c701aba2c5f3ca112c', url: 'favicons/safari-pinned-tab.svg' },
     { revision: '5524d0e00a5240060e7848d92ecda681', url: 'index.html' },
     { revision: '7f397863563978a4330744d2b6c35824', url: 'QUICK-GUIDE.md' },
-    { revision: '9cccc18da4bea2986d3e5d7fc5505662', url: 'README.md' },
+    { revision: 'fd32c11d11d3e28d9e90f1e06d9892fa', url: 'README.md' },
     { revision: '3098ad3e3ced50997679ccd061dd468e', url: 'screenshots/2024-03-18_2400x1260.jpg' },
     { revision: 'f6aa81eda71fc3a4dad8bc47caf64d53', url: 'screenshots/2024-03-20_2330x1688.jpg' },
     { revision: '76ca279aa321c3c55e9befd6914be4c9', url: 'screenshots/2024-03-20_2400x1260.jpg' },
@@ -94,7 +94,7 @@ if (workbox) {
     { revision: '7f19c74beea1d9c2aec62d237009e4aa', url: 'dist/js/ColorsClass.min.js' },
     { revision: '492e390793648c577be23449fba01786', url: 'dist/js/GameClass.min.js' },
     { revision: 'bb7eb51a4eec82646365d519b1b6a61d', url: 'dist/js/SoundMachineClass.min.js' },
-    { revision: '764ec9e2380806e99c7d096a6484f7fd', url: 'dist/js/SwipeClass.min.js' },
+    { revision: '3e90be3614cc82c6f2729f54f73b9246', url: 'dist/js/SwipeClass.min.js' },
     { revision: '5a062f58bdab5c6fd02876459accca95', url: 'dist/js/TimerClass.min.js' },
     { revision: 'b162abaf7871ba19a471a1630615af82', url: 'dist/js/UtilsClass.min.js' },
   ])
