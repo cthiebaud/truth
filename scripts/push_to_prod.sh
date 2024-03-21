@@ -25,14 +25,15 @@ if [ -n "$(git status --porcelain)" ]; then
 fi
 
 # Get the latest commit hash on the main branch
-latest_commit_hash=$(git rev-parse --short HEAD)
+commit_hash=$(git rev-parse HEAD)
+short_commit_hash=$(git rev-parse --short HEAD)
 
 # Inject the commit hash into the HOWTO
-scripts/inject_commit_hash.sh
+scripts/inject_commit_hash.sh -c $commit_hash -s $short_commit_hash -t HOWTO-template.md -o HOWTO.md
 
 # Commit changes
 git add HOWTO.md
-commit_message="Update commit hash to $latest_commit_hash in HOWTO.md for production"
+commit_message="Update commit hash to $short_commit_hash in HOWTO.md for production"
 git commit -m "$commit_message"
 
 # Push changes to the remote production branch

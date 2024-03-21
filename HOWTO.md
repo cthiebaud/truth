@@ -122,12 +122,13 @@ More at [Github&hellip;](https://github.com/cthiebaud/truth/blob/main/README.md)
 [Christophe Thiebaud](https://cthiebaud.com/)
 
 ---
+
 ### Links
 
-|                                                          |                                                                                                                 |
-| :------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------- |
-| ![Apple App Store](assets/svg/Apple_logo_grey.svg)       | [On iPhone and iPad](https://apps.apple.com/us/app/aletheia-by-%C3%A6quologica/id6476017817)                    |
-| ![Android App Store](assets/svg/android-svgrepo-com.svg) | [On Android Phones & Devices](https://play.google.com/store/apps/details?id=com.cthiebaud.aletheia.twa)         |
-| ![WWW](assets/svg/internet-svgrepo-com.svg)              | [On the Web](https://aletheia.cthiebaud.com/)                                                                   |
-| ![aletheia](assets/svg/Wikipedia's_W.svg)                | [Aletheia (Ancient Greek: ἀλήθεια) as Philosophical Term on Wikipedia ](https://en.wikipedia.org/wiki/Aletheia) |
-| ![Github](assets/svg/github.svg)                         | This version git commit: [23dec1c](https://github.com/cthiebaud/truth/commit/23dec1c17eb0481bd65f36f5905cffed66a8e9f0)     |
+|                                                          |                                                                                                                        |
+| :------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------- |
+| ![Apple App Store](assets/svg/Apple_logo_grey.svg)       | [On iPhone and iPad](https://apps.apple.com/us/app/aletheia-by-%C3%A6quologica/id6476017817)                           |
+| ![Android App Store](assets/svg/android-svgrepo-com.svg) | [On Android Phones & Devices](https://play.google.com/store/apps/details?id=com.cthiebaud.aletheia.twa)                |
+| ![WWW](assets/svg/internet-svgrepo-com.svg)              | [On the Web](https://aletheia.cthiebaud.com/)                                                                          |
+| ![aletheia](assets/svg/Wikipedia's_W.svg)                | [Aletheia (Ancient Greek: ἀλήθεια) as Philosophical Term on Wikipedia ](https://en.wikipedia.org/wiki/Aletheia)        |
+| ![Github](assets/svg/github.svg)                         | This version git commit: [73c8ad3](https://github.com/cthiebaud/truth/commit/73c8ad320f99bbd91ab27c67977dc12facf148ef)            |

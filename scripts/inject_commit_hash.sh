@@ -1,16 +1,44 @@
 #!/bin/bash
+# usage:
+# ./inject_commit_hash.sh -c $your_commit_hash -s $your_short_commit_hash -t HOWTO-template.md -o HOWTO.md
 
-#### # Get the commit hash
-#### commit_hash=$(git rev-parse HEAD)
-#### short_commit_hash=$(git rev-parse --short HEAD)
-#### 
-#### 
-#### # Replace the placeholder with the actual commit hash
-#### sed "s/{{commit_hash}}/$commit_hash/g" HOWTO-template.md > HOWTO.md
+# Default values
+template_file="HOWTO-template.md"
+output_file="HOWTO.md"
 
-# Get the commit hash
-commit_hash=$(git rev-parse HEAD)
-short_commit_hash=$(git rev-parse --short HEAD)
+# Parse arguments
+while getopts ":t:o:c:s:" opt; do
+  case $opt in
+    t | --template)
+      template_file="$OPTARG"
+      ;;
+    o | --output)
+      output_file="$OPTARG"
+      ;;
+    c | --commit_hash)
+      commit_hash="$OPTARG"
+      ;;
+    s | --short_commit_hash)
+      short_commit_hash="$OPTARG"
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      exit 1
+      ;;
+    :)
+      echo "Option -$OPTARG requires an argument." >&2
+      exit 1
+      ;;
+  esac
+done
+
+# If commit hash and short commit hash are not provided, get them from git
+if [[ -z "$commit_hash" ]]; then
+  commit_hash=$(git rev-parse HEAD)
+fi
+if [[ -z "$short_commit_hash" ]]; then
+  short_commit_hash=$(git rev-parse --short HEAD)
+fi
 
 # Replace the placeholders with the actual commit hashes
-sed -e "s/{{commit_hash}}/$commit_hash/g" -e "s/{{short_commit_hash}}/$short_commit_hash/g" HOWTO-template.md > HOWTO.md
+sed -e "s/{{commit_hash}}/$commit_hash/g" -e "s/{{short_commit_hash}}/$short_commit_hash/g" "$template_file" > "$output_file"

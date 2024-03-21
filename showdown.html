@@ -105,7 +105,7 @@
                 entries.forEach(function (entry) {
                     // Check if the observed element's height has changed
                     if (entry.contentRect.height !== entry.target.dataset.prevHeight) {
-                        // Your code to handle height change here
+                        // handle height change 
                         console.log('Height changed:', entry.contentRect.height);
                         container.style.height = Math.ceil(entry.contentRect.height) + 'px';
                     }
