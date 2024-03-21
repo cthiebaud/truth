@@ -22,8 +22,8 @@ On a hardiment fusionné Le Lièvre et la Tortue [⁽⁴⁾](https://fr.wikipedi
 
 <img src="svg/ancient-greek-helmet-1-svgrepo-com.svg" style="width: 24px;">&nbsp; `Casque Corinthien` Ce pourrait être celui d'Achille [⁽⁸⁾](https://fr.wikipedia.org/wiki/Achille), mais aussi celui d'Hermès [⁽⁹⁾](https://fr.wikipedia.org/wiki/Herm%C3%A8s), le messager des dieux, réputé pour sa vitesse. On va en avoir besoin, car il ne reste plus que 30 secondes pour dévoiler les briques.
 
-N. B. : La 🎵 de <img src="svg/ancient-greek-helmet-1-svgrepo-com.svg" alt="Achilles" style="width: 24px;">
-est sur [![SoundCloud](svg/soundcloud.svg)](https://soundcloud.com/christophe-thiebaud/aletheia?si=83569a3c774e4cdf84c684e74478af34&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing).
+*N. B. : La 🎵 de <img src="svg/ancient-greek-helmet-1-svgrepo-com.svg" alt="Achilles" style="width: 24px;">
+est sur [![SoundCloud](svg/soundcloud.svg)](https://soundcloud.com/christophe-thiebaud/aletheia?si=83569a3c774e4cdf84c684e74478af34&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing).*
 
 --- 
 
@@ -35,8 +35,6 @@ est sur [![SoundCloud](svg/soundcloud.svg)](https://soundcloud.com/christophe-th
 4. `Rather quiet today, isn't it?` Le temps imparti est écoulé et le joueur s'est endormi sans cliquer nulle part.
 5. `You cheated?!` Le joueur a cliqué sur toutes les cases sans distinction. Bien que toutes les briques ont été dévoilées dans le temps imparti, ce qui pourrait être considéré comme une victoire, le nombre d'erreurs est énorme (>=28), il a triché! C'est mal.
 6. `Ooooh… Subtle!` Le joueur a joué au qui-perd-gagne. Toutes les erreurs possibles (32) ont été faites, tout en évitant soigneusement de dévoiler la moindre brique. Très fort.
-
-Chaque résultat est accompagné d'un son différent.
 
 --- 
 
@@ -53,7 +51,7 @@ La formule qui donne la clé de chaque de table de vérité peut être exprimée
 | contradiction         | `⊥`  | ` `   |
 | tautologie            | `⊤`  | `true`|
 
-N. B. : Concernant javascript, `!` est un opérateur logique [⁽¹²⁾](https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Expressions_and_operators#op%C3%A9rateurs_logiques), `&`, `|` et `^` sont des opérateurs binaires [⁽¹³⁾](https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Expressions_and_operators#op%C3%A9rateurs_binaires), ` ` est une chaine de caractères vide, dite "falsy" [⁽¹⁴⁾](https://fr.wiktionary.org/wiki/falsy), et `true` est une valeur primitive booléenne.
+*N. B. : Concernant javascript, `!` est un opérateur logique [⁽¹²⁾](https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Expressions_and_operators#op%C3%A9rateurs_logiques), `&`, `|` et `^` sont des opérateurs binaires [⁽¹³⁾](https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Expressions_and_operators#op%C3%A9rateurs_binaires), ` ` est une chaine de caractères vide, dite "falsy" [⁽¹⁴⁾](https://fr.wiktionary.org/wiki/falsy), et `true` est une valeur primitive booléenne.*
 
 <!-- https://fr.wikipedia.org/wiki/Liste_de_symboles_logiques -->
 
