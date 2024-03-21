@@ -44,37 +44,37 @@ Chaque résultat est accompagné d'un son différent.
 
 La formule qui donne la clé de chaque de table de vérité peut être exprimée, soit en algèbre de Boole [⁽¹⁰⁾](https://fr.wikipedia.org/wiki/Alg%C3%A8bre_de_Boole_(logique)), par exemple `𝖠 ∧ 𝖡`, soit par une expression javascript, `α & β`. Pour ce dernier cas, il est intéressant de noter que le moteur de l'application évalue factuellement l'expression javascript dans le contexte d'une fonction anonyme [⁽¹¹⁾](https://fr.wikipedia.org/wiki/Fonction_anonyme) : `(α, β) => α & β`.
 
-| opération | symbole logique | javascript |
+|  | symbole logique | javascript |
 |---|---|---|
-| Négation              | `¬`  | `!`   |
-| Conjonction           | `∧`  | `&`   |
-| Disjonction inclusive | `∨`  | `\|`  |
-| Disjonction exclusive | `⊻`  | `^`   |
-| Contradiction         | `⊥`  | ` `   |
-| Tautologie            | `⊤`  | `true`|
+| négation              | `¬`  | `!`   |
+| conjonction           | `∧`  | `&`   |
+| disjonction inclusive | `∨`  | `\|`  |
+| disjonction exclusive | `⊻`  | `^`   |
+| contradiction         | `⊥`  | ` `   |
+| tautologie            | `⊤`  | `true`|
 
 N. B. : Concernant javascript, `!` est un opérateur logique [⁽¹²⁾](https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Expressions_and_operators#op%C3%A9rateurs_logiques), `&`, `|` et `^` sont des opérateurs binaires [⁽¹³⁾](https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Expressions_and_operators#op%C3%A9rateurs_binaires), ` ` est une chaine de caractères vide, dite "falsy" [⁽¹⁴⁾](https://fr.wiktionary.org/wiki/falsy), et `true` est une valeur primitive booléenne.
 
 <!-- https://fr.wikipedia.org/wiki/Liste_de_symboles_logiques -->
 
-| expression | algèbre de Boole | javascript |  |
+| expression | algèbre | javascript |  |
 |---|---|---|---|
-| TOUJOURS FAUX       | `⊥`       | ` `        | □ □<br>□ □ |
-| A ET B              | `𝖠 ∧ 𝖡`   | `α & β`    | ■ □<br>□ □ |
-| A ET NON B          | `𝖠 ∧ ¬𝖡`  | `α & !β`   | □ ■<br>□ □ |
-| NON A ET NON B      | `¬𝖠 ∧ ¬𝖡` | `!α & !β`  | □ □<br>□ ■ |
-| NON A ET B          | `¬𝖠 ∧ 𝖡`  | `!α & β`   | □ □<br>■ □ |
-| A                   | `𝖠`       | `α`        | ■ ■<br>□ □ |
-| B                   | `𝖡`       | `β`        | ■ □<br>■ □ |
-| NON A               | `¬𝖠`      | `!α`       | □ □<br>■ ■ |
-| NON B               | `¬𝖡`      | `!β`       | □ ■<br>□ ■ |
-| A OU EXCLUSIF B     | `𝖠 ⊻ 𝖡`   | `α ^ β`    | □ ■<br>■ □ | 
-| A OU EXCLUSIF NON B | `𝖠 ⊻ ¬𝖡`  | `α ^ !β`   | ■ □<br>□ ■ |
-| A OU B              | `𝖠 ∨ 𝖡`   | `α \| β`   | ■ ■<br>■ □ |
-| A OU NON B          | `𝖠 ∨ ¬𝖡`  | `α \| !β`  | ■ ■<br>□ ■ |
-| NON A OU NON B      | `¬𝖠 ∨ ¬𝖡` | `!α \| !β` | □ ■<br>■ ■ |
-| NON A OU B          | `¬𝖠 ∨ 𝖡`  | `!α \| β`  | ■ □<br>■ ■ |
-| TOUJOURS VRAI       | `⊤`       | `true`     | ■ ■<br>■ ■ |
+| toujours faux       | `⊥`       | ` `        | □ □<br>□ □ |
+| a et b              | `𝖠 ∧ 𝖡`   | `α & β`    | ■ □<br>□ □ |
+| a et non b          | `𝖠 ∧ ¬𝖡`  | `α & !β`   | □ ■<br>□ □ |
+| non a et non b      | `¬𝖠 ∧ ¬𝖡` | `!α & !β`  | □ □<br>□ ■ |
+| non a et b          | `¬𝖠 ∧ 𝖡`  | `!α & β`   | □ □<br>■ □ |
+| a                   | `𝖠`       | `α`        | ■ ■<br>□ □ |
+| b                   | `𝖡`       | `β`        | ■ □<br>■ □ |
+| non a               | `¬𝖠`      | `!α`       | □ □<br>■ ■ |
+| non b               | `¬𝖡`      | `!β`       | □ ■<br>□ ■ |
+| a ou exclusif b     | `𝖠 ⊻ 𝖡`   | `α ^ β`    | □ ■<br>■ □ | 
+| a ou exclusif non b | `𝖠 ⊻ ¬𝖡`  | `α ^ !β`   | ■ □<br>□ ■ |
+| a ou b              | `𝖠 ∨ 𝖡`   | `α \| β`   | ■ ■<br>■ □ |
+| a ou non b          | `𝖠 ∨ ¬𝖡`  | `α \| !β`  | ■ ■<br>□ ■ |
+| non a ou non b      | `¬𝖠 ∨ ¬𝖡` | `!α \| !β` | □ ■<br>■ ■ |
+| non a ou b          | `¬𝖠 ∨ 𝖡`  | `!α \| β`  | ■ □<br>■ ■ |
+| toujours vrai       | `⊤`       | `true`     | ■ ■<br>■ ■ |
 
 --- 
 
