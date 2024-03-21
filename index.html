@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <!-- BEGIN Google tag (gtag.js) - - >
+    <!-- BEGIN Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-TPVM6DVS53"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -11,7 +11,7 @@
 
         gtag('config', 'G-TPVM6DVS53');
     </script>
-    < ! - - END Google tag (gtag.js) -->
+    <!-- END Google tag (gtag.js) -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Unconcealing of Truths</title>
@@ -56,20 +56,20 @@
     <meta name="theme-color" content="#f8f7ef">
 
     <!-- /* changed by "NODE_ENV=<development|production> node dev-oder-prod.mjs" or "npm run <dev\prod>" */ -->
-    <link rel="stylesheet" href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css'>
-    <link rel="stylesheet" href='/src/css/index.css'>
-    <link rel="stylesheet" href='/src/css/tables.css'>
-    <link rel="stylesheet" href='/src/css/timer.css'>
+    <link rel="stylesheet" href='/dist/css/bootstrap.min.css'>
+    <link rel="stylesheet" href='/dist/css/index.min.css'>
+    <link rel="stylesheet" href='/dist/css/tables.min.css'>
+    <link rel="stylesheet" href='/dist/css/timer.min.css'>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Noto+Sans+Math&family=Victor+Mono&display=swap" rel="stylesheet">
-    <!-- BEGIN livejs for test -->
+    <!-- BEGIN livejs for test - - >
     <script type="text/javascript" src="https://livejs.com/live.js"></script>
-    <!-- END livejs for test -->
+    < ! - - END livejs for test -->
 </head>
 
-<body class="">
+<body id="body-id" class="">
 
     <!-- Define the play, stop, tortoise, hare, achilles, etc. SVGs as symbols -->
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -331,11 +331,11 @@
             </div>
             <div id="buttons" class="btn-group btn-group-sm shadow" role="group">
 
-                <!-- BEGIN Button trigger modal for test -->
+                <!-- BEGIN Button trigger modal for test - - >
                 <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#result-modal">
                     result
                 </button>
-                <!-- END Button trigger modal for test -->
+                < ! - - END Button trigger modal for test -->
 
                 <style>
                     #buttons label.my-button {
@@ -545,7 +545,7 @@
     </div>
 
     <script>
-        /* BEGIN comment for dev * /
+        /* BEGIN comment for dev */
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('/service-worker.js')
                 .then((registration) => {
@@ -555,7 +555,7 @@
                     console.error('Service Worker registration failed:', error)
                 })
         }
-        / * END comment for dev */
+        /* END comment for dev */
     </script>
 
     <script type="module">
@@ -565,12 +565,12 @@
         import isotopeLayout from 'https://cdn.jsdelivr.net/npm/isotope-layout@3.0.6/+esm' // ISOTOPE 
 
         /* changed by "NODE_ENV=<development|production> node dev-oder-prod.mjs" or "npm run <dev|prod>" */
-        import { Utils } from './src/js/UtilsClass.js'
+        import { Utils } from './dist/js/UtilsClass.min.js'
         import { Colors, BlurOverlay } from './dist/js/ColorsClass.min.js'
-        import { Swipe } from './src/js/SwipeClass.js'
-        import { Timer } from './src/js/TimerClass.js'
-        import { SoundMachine } from './src/js/SoundMachineClass.js'
-        import { Result, ResultProperty } from './src/js/GameClass.js'
+        import { Swipe } from './dist/js/SwipeClass.min.js'
+        import { Timer } from './dist/js/TimerClass.min.js'
+        import { SoundMachine } from './dist/js/SoundMachineClass.min.js'
+        import { Result, ResultProperty } from './dist/js/GameClass.min.js'
 
         // https://stackoverflow.com/a/9039885/1070215
         const isiOS = (() => {
@@ -1499,6 +1499,18 @@
                 clickEvent.stopPropagation()
                 toggle_displayMode()
             })
+            /* infos */
+            // Listen for swipe events
+            const swipe = new Swipe('body-id', function (direction) {
+                if (direction === 'swiperight') {
+                    console.log('Swiped right!');
+                    // Perform actions for swipe right
+                } else if (direction === 'swipeleft') {
+                    console.log('Swiped left!');
+                    // Perform actions for swipe left
+                    window.open("/showdown.html?/QUICK-GUIDE.md", "_QUICK-GUIDE")
+                }
+            });
 
             document.getElementById("infos").addEventListener('click', clickEvent => {
                 clickEvent.preventDefault()

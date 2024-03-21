@@ -79,6 +79,7 @@
 
     <script type="module">
         import showdown from 'https://cdn.jsdelivr.net/npm/showdown@2.1.0/+esm'
+        import { Swipe } from '/dist/js/SwipeClass.js';
 
         const safeById = (id, func) => {
             if (!id) return
@@ -114,15 +115,31 @@
             // Start observing the target element for size changes
             resizeObserver.observe(contained);
 
+            /* BEGIN close */
+            function repliePuisFerme() {
+                setTimeout(function () {
+                    window.close()
+                }, 1000); // Add a buffer to ensure the timeout occurs after the expected animation duration                         
+                container.style.height = 0; // should trigger the animation
+            }
+            const swipe = new Swipe('body-id', function (direction) {
+                if (direction === 'swiperight') {
+                    console.log('Swiped right!');
+                    // Perform actions for swipe right
+                    repliePuisFerme()
+                } else if (direction === 'swipeleft') {
+                    console.log('Swiped left!');
+                    // Perform actions for swipe left
+                    window.open("/showdown.html?/QUICK-GUIDE.md", "_QUICK-GUIDE")
+                }
+            });
             safeById('close', elem =>
                 elem.addEventListener('click', (clickEvent) => {
                     clickEvent.preventDefault()
-                    setTimeout(function () {
-                        window.close()
-                    }, 1000); // Add a buffer to ensure the timeout occurs after the expected animation duration                         
-                    container.style.height = 0; // should trigger the animation
+                    repliePuisFerme()
                 })
             )
+            /* END close */
 
             setCellWidth()
 
@@ -156,8 +173,8 @@
                 })
 
                 function feedback(elem) {
-                    
-                    [... document.getElementsByClassName('logic_symbols_OR_javascript_expressions')].forEach(e => e.style.fontWeight = 'normal')
+
+                    [...document.getElementsByClassName('logic_symbols_OR_javascript_expressions')].forEach(e => e.style.fontWeight = 'normal')
                     elem.style.fontWeight = 'bold'
                 }
 

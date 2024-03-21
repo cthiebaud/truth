@@ -23,19 +23,20 @@
   Swipe left or right
 
   <script type="module">
-    import Swipe from './SwipeClass.js';
+    import { Swipe } from '/src/js/SwipeClass.js';
 
-    const swipe = new Swipe('swipeArea');
-
-    // Listen for swipe events
-    document.body.addEventListener('swipe', function (event) {
-      if (event.detail === 'swiperight') {
-        alert('Swiped right!');
-      } else if (event.detail === 'swipeleft') {
-        alert('Swiped left!');
+    // Create an instance of the Swipe class with the element ID and swipe event handler function
+    const swipe = new Swipe('swipeArea', function (direction) {
+      if (direction === 'swiperight') {
+        console.log('Swiped right!');
+        // Perform actions for swipe right
+      } else if (direction === 'swipeleft') {
+        console.log('Swiped left!');
+        // Perform actions for swipe left
       }
     });
   </script>
+
 </body>
 
 </html>
