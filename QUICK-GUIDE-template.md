@@ -117,10 +117,6 @@ Making mistakes doesn't hurt, but striving for accuracy enhances the overall enj
 
 More at [Github&hellip;](https://github.com/cthiebaud/truth/blob/main/README.md)
 
-&copy; 2024 [Christophe Thiebaud](https://cthiebaud.com/) *No Rights Reserved*
-
----
-
 | Links                                                    |                                                                                                                        |
 | :------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------- |
 | ![Apple App Store](assets/svg/Apple_logo_grey.svg)       | [On iPhone and iPad](https://apps.apple.com/us/app/aletheia-by-%C3%A6quologica/id6476017817)                           |
@@ -128,3 +124,28 @@ More at [Github&hellip;](https://github.com/cthiebaud/truth/blob/main/README.md)
 | ![WWW](assets/svg/internet-svgrepo-com.svg)              | [On the Web](https://aletheia.cthiebaud.com/)                                                                          |
 | ![aletheia](assets/svg/Wikipedia's_W.svg)                | [Aletheia (Ancient Greek: ἀλήθεια) as Philosophical Term on Wikipedia ](https://en.wikipedia.org/wiki/Aletheia)        |
 | ![Github](assets/svg/github.svg)                         | This version git commit: [{{short_commit_hash}}](https://github.com/cthiebaud/truth/commit/{{commit_hash}})            |
+
+
+
+
+<style>
+#embellished-separator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 1rem 0 1rem 0;
+    padding-bottom: 0;
+}
+
+#embellished-separator img {
+    width: 150px;
+    height: auto;
+}
+</style>
+
+&copy; 2024 [Christophe Thiebaud](https://cthiebaud.com/) _No Rights Reserved_
+
+<div id="embellished-separator">
+    <img src="/assets/svg/greek_meander.svg" alt="the end">
+</div>

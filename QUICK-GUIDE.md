@@ -117,14 +117,35 @@ Making mistakes doesn't hurt, but striving for accuracy enhances the overall enj
 
 More at [Github&hellip;](https://github.com/cthiebaud/truth/blob/main/README.md)
 
-&copy; 2024 [Christophe Thiebaud](https://cthiebaud.com/) *No Rights Reserved*
-
----
-
 | Links                                                    |                                                                                                                        |
 | :------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------- |
 | ![Apple App Store](assets/svg/Apple_logo_grey.svg)       | [On iPhone and iPad](https://apps.apple.com/us/app/aletheia-by-%C3%A6quologica/id6476017817)                           |
 | ![Android App Store](assets/svg/android-svgrepo-com.svg) | [On Android Phones & Devices](https://play.google.com/store/apps/details?id=com.cthiebaud.aletheia.twa)                |
 | ![WWW](assets/svg/internet-svgrepo-com.svg)              | [On the Web](https://aletheia.cthiebaud.com/)                                                                          |
 | ![aletheia](assets/svg/Wikipedia's_W.svg)                | [Aletheia (Ancient Greek: ἀλήθεια) as Philosophical Term on Wikipedia ](https://en.wikipedia.org/wiki/Aletheia)        |
-| ![Github](assets/svg/github.svg)                         | This version git commit: [690c664](https://github.com/cthiebaud/truth/commit/690c664c9cc228dcb354453c216954c58f3b81b3)            |
+| ![Github](assets/svg/github.svg)                         | This version git commit: [c67fea6](https://github.com/cthiebaud/truth/commit/c67fea6edf90d066724107b0d53edaf6964edc0e)            |
+
+
+
+
+<style>
+#embellished-separator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 1rem 0 1rem 0;
+    padding-bottom: 0;
+}
+
+#embellished-separator img {
+    width: 150px;
+    height: auto;
+}
+</style>
+
+&copy; 2024 [Christophe Thiebaud](https://cthiebaud.com/) _No Rights Reserved_
+
+<div id="embellished-separator">
+    <img src="/assets/svg/greek_meander.svg" alt="the end">
+</div>
