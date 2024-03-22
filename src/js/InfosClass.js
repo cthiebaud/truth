@@ -2,35 +2,28 @@ import showdown from 'https://cdn.jsdelivr.net/npm/showdown@2.1.0/+esm'
 
 export class Infos {
     #bsOffcanvas
-    #id
     #url
     #element
     #converter
     constructor(bsOffcanvas, id, url) {
         this.#bsOffcanvas = bsOffcanvas
-        this.#id = id
         this.#element = document.getElementById(id)
         this.#url = url
         this.#converter = new showdown.Converter({ tables: true, strikethrough: true })
     }
 
     safeById = (id, func) => {
-        if (!id) return
+        if (!id || !this.#element) return
         const elem = this.#element.querySelector('#' + id)
         if (!elem) return
         return func(elem)
     }
 
-    feedback(elem) {
-        [...this.#element.getElementsByClassName('logic_symbols_OR_javascript_expressions')].forEach(e => e.style.fontWeight = 'normal')
-        elem.style.fontWeight = 'bold'
-    }
-
     display(responseText) {
         this.#element.querySelector('.offcanvas-body').innerHTML = this.#converter.makeHtml(responseText);
 
-        this.#element.querySelectorAll('table').forEach(table => {
-            table.classList.add('table', 'table-light', 'table-sm', 'table-borderless');
+        this.#element.querySelectorAll('table:not(.table)').forEach(table => {
+            table.classList.add('table', 'table-light', 'table-sm', 'table-borderless', 'table-striped');
         });
 
         this.#element.querySelectorAll("img").forEach(img => {
@@ -42,25 +35,22 @@ export class Infos {
         this.safeById('logic_symbols', elem => {
             elem.addEventListener('click', (clickEvent) => {
                 clickEvent.preventDefault()
-                this.safeById('body-id', body => body.classList.remove('javascript'))
+                this.#element.classList.remove('javascript')
                 this.safeById('AetB', AetB => AetB.innerHTML = "𝖠 ∧ 𝖡")
                 this.safeById('AouB', AouB => AouB.innerHTML = "𝖠 ∨ 𝖡")
                 this.safeById('nonAounonB', nonAounonB => nonAounonB.innerHTML = "¬𝖠 ∨ ¬𝖡")
-                this.feedback(elem)
             })
         })
 
         this.safeById('javascript_expressions', elem => {
             elem.addEventListener('click', (clickEvent) => {
                 clickEvent.preventDefault()
-                this.safeById('body-id', body => body.classList.add('javascript'))
+                this.#element.classList.add('javascript')
                 this.safeById('AetB', AetB => AetB.innerHTML = "α & β")
                 this.safeById('AouB', AouB => AouB.innerHTML = "α | β")
                 this.safeById('nonAounonB', nonAounonB => nonAounonB.innerHTML = "!α | !β")
-                this.feedback(elem)
             })
         })
-
     }
 
     fetch(callback) {
@@ -72,8 +62,6 @@ export class Infos {
                 if (xhr.status === 200) {
                     infos.display(xhr.responseText);
                     if (callback) callback()
-                } else {
-                    console.log('nope')
                 }
             }
         }

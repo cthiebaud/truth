@@ -1,27 +1,28 @@
-#tables {
+.tables {
   margin: 0 auto;
 }
 
-#tables > div {
+.tables > div {
   display: block;
   border: 0.75px solid var(--border-color);
   margin: 0.25rem;
 }
 
-#tables.transparent-border > div {
+.tables.transparent-border > div {
   border: 0.75px solid transparent;
 }
 
-#tables table {
+.tables table {
   border-collapse: collapse;
+  background-color: #f1efe0;
 }
 
-#tables table.inline {
+.tables table.inline {
   display: inline-block;
   margin: 0;
 }
 
-#tables table tbody tr td {
+.tables table tbody tr td {
   width: var(--cell-width_and_height);
   height: var(--cell-width_and_height);
   text-align: center;
@@ -36,8 +37,8 @@
   position: relative;
 }
 
-#tables table:not(.hint) td.true:not(.concealed)::before,
-#tables table.hint       td.true::before {
+.tables table:not(.hint) td.true:not(.concealed)::before,
+.tables table.hint       td.true::before {
   position: absolute;
   content: '●';
   top: 50%;
@@ -45,7 +46,7 @@
   transform: translate(-50%, -50%);
 }
 
-#tables td.false.red-cross::before {
+.tables td.false.red-cross::before {
   position: absolute;
   content: '❌';
   top: 50%;
@@ -53,7 +54,7 @@
   transform: translate(-50%, -50%);
 }
 
-#tables:not(.transparent-border) table tbody tr td::after {
+.tables:not(.transparent-border) table tbody tr td::after {
   position: absolute;
   width: 67%;
   height: 67%;
@@ -61,35 +62,35 @@
   visibility: visible;
 }
 
-#tables:not(.transparent-border) table tbody tr:nth-child(1) > td:nth-child(2):is(:not(.true), .concealed)::after {
+.tables:not(.transparent-border) table tbody tr:nth-child(1) > td:nth-child(2):is(:not(.true), .concealed)::after {
   right: -0.5px;
   bottom: -0.5px;
   border-right: 0.75px dashed var(--border-color);
   border-bottom: 0.75px dashed var(--border-color);
 }
 
-#tables:not(.transparent-border) table tbody tr:nth-child(1) > td:nth-child(3):is(:not(.true), .concealed)::after {
+.tables:not(.transparent-border) table tbody tr:nth-child(1) > td:nth-child(3):is(:not(.true), .concealed)::after {
   left: -0.5px;
   bottom: -0.5px;
   border-left: 0.75px dashed var(--border-color);
   border-bottom: 0.75px dashed var(--border-color);
 }
 
-#tables:not(.transparent-border) table tbody tr:nth-child(2) > td:nth-child(2):is(:not(.true), .concealed)::after {
+.tables:not(.transparent-border) table tbody tr:nth-child(2) > td:nth-child(2):is(:not(.true), .concealed)::after {
   right: -0.5px;
   top: -0.5px;
   border-right: 0.75px dashed var(--border-color);
   border-top: 0.75px dashed var(--border-color);
 }
 
-#tables:not(.transparent-border) table tbody tr:nth-child(2) > td:nth-child(3):is(:not(.true), .concealed)::after {
+.tables:not(.transparent-border) table tbody tr:nth-child(2) > td:nth-child(3):is(:not(.true), .concealed)::after {
   left: -0.5px;
   top: -0.5px;
   border-left: 0.75px dashed var(--border-color);
   border-top: 0.75px dashed var(--border-color);
 }
 
-#tables table tbody {
+.tables table tbody {
   opacity: 1;
   filter: blur(0);
   transition:
@@ -98,19 +99,19 @@
     transform 0.3s ease-in-out;
 }
 
-#tables table.hint tbody tr:nth-child(1) > td:nth-child(2).concealed {
+.tables table.hint tbody tr:nth-child(1) > td:nth-child(2).concealed {
   transform: scale(0.5) translateY(50%) translateX(50%);
 }
 
-#tables table.hint tbody tr:nth-child(1) > td:nth-child(3).concealed {
+.tables table.hint tbody tr:nth-child(1) > td:nth-child(3).concealed {
   transform: scale(0.5) translateY(50%) translateX(-50%);
 }
 
-#tables table.hint tbody tr:nth-child(2) > td:nth-child(2).concealed {
+.tables table.hint tbody tr:nth-child(2) > td:nth-child(2).concealed {
   transform: scale(0.5) translateY(-50%) translateX(50%);
 }
 
-#tables table.hint tbody tr:nth-child(2) > td:nth-child(3).concealed {
+.tables table.hint tbody tr:nth-child(2) > td:nth-child(3).concealed {
   transform: scale(0.5) translateY(-50%) translateX(-50%);
 }
 
@@ -122,15 +123,15 @@
   backdrop-filter: blur(2px);
 }
 
-#tables table:not(.hint) td.true.concealed {
+.tables table:not(.hint) td.true.concealed {
   background-color: transparent !important;
 }
 
-#tables td.true {
+.tables td.true {
   z-index: 2;
 }
 
-#tables table caption {
+.tables table caption {
   white-space: nowrap;
   font-size: 20px;
   background-color: #fdfdfb;
@@ -141,7 +142,7 @@
   position: relative;
 }
 
-#tables table.completed caption {
+.tables table.completed caption {
   animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
@@ -171,11 +172,11 @@
   }
 }
 
-#tables table th {
+.tables table th {
   user-select: none;
 }
 
-#tables table thead th:nth-child(2):after {
+.tables table thead th:nth-child(2):after {
   content: '𝖡'; /* 'β' */
   width: 100%;
   overflow: visible;
@@ -189,11 +190,11 @@
   font-size: 11px;
 }
 
-body.javascript #tables table thead th:nth-child(2):after {
+.javascript .tables table thead th:nth-child(2):after {
   content: 'β';
 }
 
-#tables table tbody tr:nth-child(1) th:after {
+.tables table tbody tr:nth-child(1) th:after {
   content: '𝖠'; /* 'α' */
   height: 100%;
   overflow: visible;
@@ -209,11 +210,11 @@ body.javascript #tables table thead th:nth-child(2):after {
   font-size: 11px;
 }
 
-body.javascript #tables table tbody tr:nth-child(1) th:after {
+.javascript .tables table tbody tr:nth-child(1) th:after {
   content: 'α';
 }
 
-#tables table th {
+.tables table th {
   display: none;
   text-align: center;
   vertical-align: middle;
@@ -229,15 +230,15 @@ body.javascript #tables table tbody tr:nth-child(1) th:after {
   color: gray;
 }
 
-#tables:not(.transparent-border) table thead tr th:not(:first-child) {
+.tables:not(.transparent-border) table thead tr th:not(:first-child) {
   border-bottom: 0.75px solid var(--border-color);
 }
 
-#tables:not(.transparent-border) table tbody tr th:first-child {
+.tables:not(.transparent-border) table tbody tr th:first-child {
   border-right: 0.75px solid var(--border-color);
 }
 
-#tables:not(.transparent-border) .diagonal-line::before {
+.tables:not(.transparent-border) .diagonal-line::before {
   content: '';
   position: absolute;
   top: 0;

@@ -12,7 +12,7 @@ body {
   font-family: Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
-body:not(.javascript) .the-font-for-tables,
+:not(.javascript) .the-font-for-tables,
 .noto-sans math-regular {
   font-family: 'Noto Sans Math', sans-serif;
 }
@@ -102,11 +102,11 @@ body:not(.javascript) .the-font-for-tables,
   border-radius: 2rem;
 }
 
-body:not(.javascript) #aletheia #logo:before {
+:not(.javascript) #aletheia #logo:before {
   content: 'Aletheia';
 }
 
-body.javascript #aletheia #logo:before {
+.javascript #aletheia #logo:before {
   content: 'ἀλήθεια';
 }
 

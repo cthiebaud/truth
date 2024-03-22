@@ -4,7 +4,7 @@ The header of each table provides a clue that can be decoded into bricks filling
 
 The presence or absence of a brick within a cell is fully determined by the values of A and B as inferred from the clue, as illustrated below:
 
-<div id="tables" class="center-children the-font-for-tables d-flex justify-content-around">
+<div id="tables-infos" class="tables center-children the-font-for-tables d-flex justify-content-around">
     <div id="element3" data-function="α &amp; β">
         <table class="table inline table-sm caption-top table-borderless">
             <caption id="AetB" class="text-center">𝖠 ∧ 𝖡</caption>
@@ -103,7 +103,7 @@ The presence or absence of a brick within a cell is fully determined by the valu
 -->
 
 <sub><i>NB. The clue can be stated as 
-<a id="logic_symbols" class="logic_symbols_OR_javascript_expressions" href="#" style="font-weight: bold;">logic symbols</a>
+<a id="logic_symbols" class="logic_symbols_OR_javascript_expressions" href="#" >logic symbols</a>
 or 
 <a id="javascript_expressions" class="logic_symbols_OR_javascript_expressions" href="#">javascript expressions</a>
 </i>
@@ -121,9 +121,7 @@ More at [Github&hellip;](https://github.com/cthiebaud/truth/blob/main/README.md)
 
 ---
 
-### Links
-
-|                                                          |                                                                                                                        |
+| Links                                                    |                                                                                                                        |
 | :------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------- |
 | ![Apple App Store](assets/svg/Apple_logo_grey.svg)       | [On iPhone and iPad](https://apps.apple.com/us/app/aletheia-by-%C3%A6quologica/id6476017817)                           |
 | ![Android App Store](assets/svg/android-svgrepo-com.svg) | [On Android Phones & Devices](https://play.google.com/store/apps/details?id=com.cthiebaud.aletheia.twa)                |
