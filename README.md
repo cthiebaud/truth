@@ -2,11 +2,11 @@
 
 <!-- ⁰¹²³⁴⁵⁶⁷⁸⁹ -->
 
-| Links                                                    |                                                                                                                        |
-| :------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------- |
-| ![Apple App Store](assets/svg/Apple_logo_grey.svg)       | [On iPhone and iPad](https://apps.apple.com/us/app/aletheia-by-%C3%A6quologica/id6476017817)                           |
-| ![Android App Store](assets/svg/android-svgrepo-com.svg) | [On Android Phones & Devices](https://play.google.com/store/apps/details?id=com.cthiebaud.aletheia.twa)                |
-| ![WWW](assets/svg/internet-svgrepo-com.svg)              | [On the Web](https://aletheia.cthiebaud.com/)                                                                          |
+| Links                                                    |                                                                                              |
+| :------------------------------------------------------- | :------------------------------------------------------------------------------------------- |
+| ![Apple App Store](assets/svg/Apple_logo_grey.svg)       | [on iPhone and iPad](https://apps.apple.com/us/app/aletheia-by-%C3%A6quologica/id6476017817) |
+| ![Android App Store](assets/svg/android-svgrepo-com.svg) | [on Android](https://play.google.com/store/apps/details?id=com.cthiebaud.aletheia.twa)       |
+| ![WWW](assets/svg/internet-svgrepo-com.svg)              | [on the Web](https://aletheia.cthiebaud.com/)                                                |
 
 La référence à Martin Heidegger est flagrante : « *En traduisant alètheia par Unverborgenheit, dévoilement ou plutôt non-voilement, et non plus simplement par “Vérité”, Heidegger s'efforce de faire entendre quelque chose du sens, de ce vers quoi alètheia faisait signe, même à l'insu des Grecs, et à partir duquel ils déployaient leur monde.* » [⁽¹⁾](https://fr.wikipedia.org/wiki/Al%C3%A8theia_dans_la_philosophie_de_Martin_Heidegger)
 
