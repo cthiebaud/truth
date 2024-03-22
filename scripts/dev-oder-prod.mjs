@@ -4,44 +4,44 @@ const toProduction = process.env.NODE_ENV === 'production';
 
 // Define the paths for production and development
 const productionPaths = [
-    "'./dist/js/UtilsClass.min.js'",
-    "'./dist/js/ColorsClass.min.js'",
-    "'./dist/js/SwipeClass.min.js'",
-    "'./dist/js/TimerClass.min.js'",
-    "'./dist/js/SoundMachineClass.min.js'",
-    "'./dist/js/GameClass.min.js'",
+    "'/dist/js/ColorsClass.min.js'",
+    "'/dist/js/GameClass.min.js'",
+    "'/dist/js/InfosClass.min.js'",
+    "'/dist/js/SoundMachineClass.min.js'",
+    "'/dist/js/SwipeClass.min.js'",
+    "'/dist/js/TimerClass.min.js'",
+    "'/dist/js/UtilsClass.min.js'",
     "'/dist/css/bootstrap.min.css'",
     "'/dist/css/index.min.css'",
     "'/dist/css/tables.min.css'",
     "'/dist/css/timer.min.css'",
-    "/* BEGIN comment for dev */",
-    "/* END comment for dev */",
+    "= 'serviceWorker' in navigator // false //",
     "<!-- BEGIN Button trigger modal for test - - >",
     "< ! - - END Button trigger modal for test -->",
     "<!-- BEGIN livejs for test - - >",
     "< ! - - END livejs for test -->",
-    "<!-- BEGIN Google tag (gtag.js) -->",
-    "<!-- END Google tag (gtag.js) -->",
+    "<!-- BEGIN Google tag -->",
+    "<!-- END Google tag -->",
 ];
 const developmentPaths = [
-    "'./src/js/UtilsClass.js'",
-    "'./src/js/ColorsClass.js'",
-    "'./src/js/SwipeClass.js'",
-    "'./src/js/TimerClass.js'",
-    "'./src/js/SoundMachineClass.js'",
-    "'./src/js/GameClass.js'",
+    "'/src/js/ColorsClass.js'",
+    "'/src/js/GameClass.js'",
+    "'/src/js/InfosClass.js'",
+    "'/src/js/SoundMachineClass.js'",
+    "'/src/js/SwipeClass.js'",
+    "'/src/js/TimerClass.js'",
+    "'/src/js/UtilsClass.js'",
     "'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css'",
     "'/src/css/index.css'",
     "'/src/css/tables.css'",
     "'/src/css/timer.css'",
-    "/* BEGIN comment for dev * /",
-    "/ * END comment for dev */",
+    "= false // 'serviceWorker' in navigator //",
     "<!-- BEGIN Button trigger modal for test -->",
     "<!-- END Button trigger modal for test -->",
     "<!-- BEGIN livejs for test -->",
     "<!-- END livejs for test -->",
-    "<!-- BEGIN Google tag (gtag.js) - - >",
-    "< ! - - END Google tag (gtag.js) -->",
+    "<!-- BEGIN Google tag - - >",
+    "< ! - - END Google tag -->",
 ];
 
 // Check if the arrays have the same length
@@ -55,25 +55,53 @@ function processHTMLContent(filePath, developmentPaths, productionPaths, toProdu
     // Read the original HTML content from the file
     let originalHTMLContent = readFileSync(filePath, 'utf8');
 
+    let replaced = 0
+    let not_changed = 0
+    let not_found = 0
+
     // Iterate through paths and replace them accordingly
     for (let i = 0; i < productionPaths.length; i++) {
         const productionPath = productionPaths[i];
         const developmentPath = developmentPaths[i];
-        
-        // Replace the development file path with the production file path and vice versa
+
+        const regexDev2Prod = new RegExp(developmentPath, 'g')
+        const regexProd2Dev = new RegExp(productionPath, 'g')
+
+        let from
+        let reverse
+        let to
         if (toProduction) {
-            originalHTMLContent = originalHTMLContent.replace(new RegExp(developmentPath, 'g'), productionPath);
+            from = regexDev2Prod
+            reverse = regexProd2Dev
+            to = productionPath
         } else {
-            originalHTMLContent = originalHTMLContent.replace(new RegExp(productionPath, 'g'), developmentPath);
+            from = regexProd2Dev
+            reverse = regexDev2Prod
+            to = developmentPath
+        }
+
+        // Replace the development file path with the production file path or vice versa
+        if (from.test(originalHTMLContent)) {
+            originalHTMLContent = originalHTMLContent.replace(from, to);
+            replaced++
+        } else {
+            if (reverse.test(originalHTMLContent)) {
+                not_changed++
+            } else {
+                console.log(from, reverse, "NO MATCH?!");
+                not_found++
+            }
         }
     }
+
+    console.log(filePath, "#", productionPaths.length, "|", replaced, "replaced |", not_changed, "not changed |", not_found, "not found")
 
     // Write the updated HTML content back to the file
     writeFileSync(filePath, originalHTMLContent);
 }
 
 // Loop through each filename in the array and process it
-const fileNames = ['index.html', 'showdown.html']; // Files to process
+const fileNames = ['index.html']; // Files to process
 for (const fileName of fileNames) {
     const filePath = fileName; // Assuming files are in the same directory
     processHTMLContent(filePath, developmentPaths, productionPaths, toProduction); // Process the file
