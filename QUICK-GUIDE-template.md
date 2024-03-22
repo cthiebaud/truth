@@ -10,27 +10,27 @@ The presence or absence of a brick within a cell is fully determined by the valu
             <caption id="AetB" class="text-center">𝖠 ∧ 𝖡</caption>
             <thead id="thead3">
                 <tr>
-                    <th style="display: table-cell;">
+                    <th>
                         <div class="diagonal-line">&nbsp;</div>
                     </th>
-                    <th style="display: table-cell;">true</th>
-                    <th style="display: table-cell;">false</th>
+                    <th>true</th>
+                    <th>false</th>
                 </tr>
             </thead>
             <tbody id="tbody3">
                 <tr>
-                    <th style="display: table-cell;">
+                    <th>
                         <div class="vertical-text">true</div>
                     </th>
                     <td class="true" style="background-color: rgb(180, 0, 0); color: rgb(165, 0, 0);"></td>
-                    <td class="false translucent" style="background-color: transparent;"></td>
+                    <td class="false"></td>
                 </tr>
                 <tr>
-                    <th style="display: table-cell;">
+                    <th>
                         <div class="vertical-text">false</div>
                     </th>
-                    <td class="false translucent" style="background-color: transparent;"></td>
-                    <td class="false translucent" style="background-color: transparent;"></td>
+                    <td class="false"></td>
+                    <td class="false"></td>
                 </tr>
             </tbody>
         </table>
@@ -40,27 +40,27 @@ The presence or absence of a brick within a cell is fully determined by the valu
             <caption id="AouB" class="text-center">𝖠 ∨ 𝖡</caption>
             <thead id="thead15">
                 <tr>
-                    <th style="display: table-cell;">
+                    <th>
                         <div class="diagonal-line">&nbsp;</div>
                     </th>
-                    <th style="display: table-cell;">true</th>
-                    <th style="display: table-cell;">false</th>
+                    <th>true</th>
+                    <th>false</th>
                 </tr>
             </thead>
             <tbody id="tbody15">
                 <tr>
-                    <th style="display: table-cell;">
+                    <th>
                         <div class="vertical-text">true</div>
                     </th>
                     <td class="true" style="background-color: rgb(0, 133, 43); color: rgb(0, 118, 38);"></td>
                     <td class="true" style="background-color: rgb(0, 133, 43); color: rgb(0, 118, 38);"></td>
                 </tr>
                 <tr>
-                    <th style="display: table-cell;">
+                    <th>
                         <div class="vertical-text">false</div>
                     </th>
                     <td class="true" style="background-color: rgb(0, 133, 43); color: rgb(0, 118, 38);"></td>
-                    <td class="false translucent" style="background-color: transparent;"></td>
+                    <td class="false"></td>
                 </tr>
             </tbody>
         </table>
@@ -70,23 +70,23 @@ The presence or absence of a brick within a cell is fully determined by the valu
             <caption id="nonAounonB" class="text-center"><span class="negation canonical">𝖠</span> ∨ <span class="negation canonical">𝖡</span></caption>
             <thead id="thead17">
                 <tr>
-                    <th style="display: table-cell;">
+                    <th>
                         <div class="diagonal-line">&nbsp;</div>
                     </th>
-                    <th style="display: table-cell;">true</th>
-                    <th style="display: table-cell;">false</th>
+                    <th>true</th>
+                    <th>false</th>
                 </tr>
             </thead>
             <tbody id="tbody17">
                 <tr>
-                    <th style="display: table-cell;">
+                    <th>
                         <div class="vertical-text">true</div>
                     </th>
-                    <td class="false translucent" style="background-color: transparent;"></td>
+                    <td class="false"></td>
                     <td class="true" style="background-color: rgb(30, 90, 168); color: rgb(28, 83, 155);"></td>
                 </tr>
                 <tr>
-                    <th style="display: table-cell;">
+                    <th>
                         <div class="vertical-text">false</div>
                     </th>
                     <td class="true" style="background-color: rgb(30, 90, 168); color: rgb(28, 83, 155);"></td>
@@ -117,6 +117,7 @@ Making mistakes doesn't hurt, but striving for accuracy enhances the overall enj
 
 More at [Github&hellip;](https://github.com/cthiebaud/truth/blob/main/README.md)
 
+<!-- 
 | Links                                                    |                                                                                                                        |
 | :------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------- |
 | ![Apple App Store](assets/svg/Apple_logo_grey.svg)       | [On iPhone and iPad](https://apps.apple.com/us/app/aletheia-by-%C3%A6quologica/id6476017817)                           |
@@ -124,9 +125,9 @@ More at [Github&hellip;](https://github.com/cthiebaud/truth/blob/main/README.md)
 | ![WWW](assets/svg/internet-svgrepo-com.svg)              | [On the Web](https://aletheia.cthiebaud.com/)                                                                          |
 | ![aletheia](assets/svg/Wikipedia's_W.svg)                | [Aletheia (Ancient Greek: ἀλήθεια) as Philosophical Term on Wikipedia ](https://en.wikipedia.org/wiki/Aletheia)        |
 | ![Github](assets/svg/github.svg)                         | This version git commit: [{{short_commit_hash}}](https://github.com/cthiebaud/truth/commit/{{commit_hash}})            |
+-->
 
-
-
+&copy; 2024 [Christophe Thiebaud](https://cthiebaud.com/) _No Rights Reserved_
 
 <style>
 #embellished-separator {
@@ -143,8 +144,6 @@ More at [Github&hellip;](https://github.com/cthiebaud/truth/blob/main/README.md)
     height: auto;
 }
 </style>
-
-&copy; 2024 [Christophe Thiebaud](https://cthiebaud.com/) _No Rights Reserved_
 
 <div id="embellished-separator">
     <img src="/assets/svg/greek_meander.svg" alt="the end">

@@ -323,8 +323,7 @@
             padding-bottom: 0;
         }
 
-        #offcanvas-right .offcanvas-body th,
-        #offcanvas-right .offcanvas-body td {
+        #offcanvas-right .offcanvas-body>table td {
             font-size: smaller;
         }
     </style>
@@ -1033,6 +1032,12 @@
         player = new Player()
 
         class Axes {
+            constructor() {
+                this.axesArray = [null, true, false]
+                this.visible = false
+                this.setCellWidth()
+            }
+
             setCellWidth() {
                 /* 2*52 + 18 == 2*61 == 122 */
                 let cellWidth = '61px'
@@ -1044,23 +1049,20 @@
                 document.documentElement.style.setProperty('--border-color', '#215c4d40')
             }
 
-            constructor() {
-                this.axesArray = [null, true, false]
-                this.visible = false
-                this.setCellWidth()
-            }
             iterate(iterator) {
                 this.axesArray.forEach(iterator)
             }
+
             applyVisibility() {
                 ((thElements) => {
                     for (let thElement of thElements) {
                         thElement.style.display = this.visible ? "table-cell" : "none"
                     }
-                })(document.getElementsByTagName('th'))
+                })(document.querySelectorAll('#tables th'))
             }
+
             toggleVisibility() {
-                const displayStyle = Utils.toggleElementsVisibility(document.getElementsByTagName('th'), 'table-cell')
+                const displayStyle = Utils.toggleElementsVisibility(document.querySelectorAll('#tables th'), 'table-cell')
                 this.visible = displayStyle !== 'none'
                 this.setCellWidth()
                 return this.visible
@@ -1487,13 +1489,13 @@
             function toggle_displayMode() {
                 functions.toggleDisplayMode()
                 if (functions.displayMode.key === 'canonical') {
-                    document.getElementsByTagName('body')[0].classList.remove('javascript')
+                    document.getElementById('main-id').classList.remove('javascript')
                 } else {
-                    document.getElementsByTagName('body')[0].classList.add('javascript')
+                    document.getElementById('main-id').classList.add('javascript')
                 }
                 document.getElementById('canonical-or-javascript.label').innerHTML = functions.displayMode.symbol
                 document.querySelector('#αβ > span').innerHTML = functions.displayMode.facade
-                document.querySelectorAll('[data-function] caption').forEach((c) => {
+                document.querySelectorAll('#tables [data-function] caption').forEach((c) => {
                     c.innerHTML = functions.displayMode[c.parentNode.parentNode.dataset.function]
                 })
                 return functions.displayMode.key !== 'canonical'

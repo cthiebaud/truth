@@ -46,6 +46,10 @@
   transform: translate(-50%, -50%);
 }
 
+.tables td.false {
+  background-color: transparent;
+}
+
 .tables td.false.red-cross::before {
   position: absolute;
   content: '❌';
@@ -172,9 +176,6 @@
   }
 }
 
-.tables table th {
-  user-select: none;
-}
 
 .tables table thead th:nth-child(2):after {
   content: '𝖡'; /* 'β' */
@@ -215,7 +216,6 @@
 }
 
 .tables table th {
-  display: none;
   text-align: center;
   vertical-align: middle;
   padding: 1px !important;
@@ -228,6 +228,11 @@
   /* https://stackoverflow.com/a/11275916/1070215 !!! */
   height: var(--header-width_and_height);
   color: gray;
+  user-select: none;
+}
+
+#tables.tables table th {
+  display: none;
 }
 
 .tables:not(.transparent-border) table thead tr th:not(:first-child) {

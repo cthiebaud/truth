@@ -23,7 +23,7 @@ export class Infos {
         this.#element.querySelector('.offcanvas-body').innerHTML = this.#converter.makeHtml(responseText);
 
         this.#element.querySelectorAll('table:not(.table)').forEach(table => {
-            table.classList.add('table', 'table-light', 'table-sm', 'table-borderless', 'table-striped');
+            table.classList.add('table', 'table-sm', 'table-borderless');
         });
 
         this.#element.querySelectorAll("img").forEach(img => {
