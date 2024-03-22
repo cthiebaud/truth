@@ -95,7 +95,7 @@ if (workbox) {
     { revision: '492e390793648c577be23449fba01786', url: 'dist/js/GameClass.min.js' },
     { revision: '01fa8afaba5b1248a738edf6c3952519', url: 'dist/js/InfosClass.min.js' },
     { revision: 'bb7eb51a4eec82646365d519b1b6a61d', url: 'dist/js/SoundMachineClass.min.js' },
-    { revision: 'e9d5dcfa1f7beea51fde84d2de97062f', url: 'dist/js/SwipeClass.min.js' },
+    { revision: 'd10056fbcde6b9f4f40ca225f6157d8b', url: 'dist/js/SwipeClass.min.js' },
     { revision: '5a062f58bdab5c6fd02876459accca95', url: 'dist/js/TimerClass.min.js' },
     { revision: 'b162abaf7871ba19a471a1630615af82', url: 'dist/js/UtilsClass.min.js' },
   ])
