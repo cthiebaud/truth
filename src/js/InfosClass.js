@@ -56,7 +56,7 @@ export class Infos {
     fetch(callback) {
         const infos = this
         const xhr = new XMLHttpRequest()
-        xhr.open("GET", this.#url + "?_=" + Date.now(), true)
+        xhr.open("GET", this.#url, true)
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {

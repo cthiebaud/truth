@@ -1,7 +1,7 @@
 module.exports = {
   globDirectory: './',
   globPatterns: [
-    '**/*.{html,md,ico,png,jpg,jpeg,svg,mp3}',
+    '**/*.{html,md,ico,png,jpg,jpeg,svg,mp3,json}',
     'dist/**/*.{css,js}'
   ],
   globIgnores: [
@@ -13,6 +13,7 @@ module.exports = {
     "packages/**",
     "service-worker-src.js",
     "service-worker.js",
+    "package*.*",
   ],
   swSrc: 'service-worker-src.js',
   swDest: 'service-worker.js',
