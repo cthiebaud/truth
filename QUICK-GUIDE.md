@@ -1,5 +1,3 @@
-# Aletheia
-
 The goal of the game is to uncover the 'truth' in each and every of sixteen 'truth tables'.
 
 The header of each table provides a clue that can be decoded into bricks filling none, some or all of the 4 cells within the box.
@@ -131,4 +129,4 @@ More at [Github&hellip;](https://github.com/cthiebaud/truth/blob/main/README.md)
 | ![Android App Store](assets/svg/android-svgrepo-com.svg) | [On Android Phones & Devices](https://play.google.com/store/apps/details?id=com.cthiebaud.aletheia.twa)                |
 | ![WWW](assets/svg/internet-svgrepo-com.svg)              | [On the Web](https://aletheia.cthiebaud.com/)                                                                          |
 | ![aletheia](assets/svg/Wikipedia's_W.svg)                | [Aletheia (Ancient Greek: ἀλήθεια) as Philosophical Term on Wikipedia ](https://en.wikipedia.org/wiki/Aletheia)        |
-| ![Github](assets/svg/github.svg)                         | This version git commit: [1b91524](https://github.com/cthiebaud/truth/commit/1b91524b8b2d89a7545d478945a27556115569df)            |
+| ![Github](assets/svg/github.svg)                         | This version git commit: [7298aeb](https://github.com/cthiebaud/truth/commit/7298aeb004c1cc46fba4e6194ed8ebdd1413ab6e)            |

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <!-- BEGIN Google tag (gtag.js) - - >
+    <!-- BEGIN Google tag -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-TPVM6DVS53"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -11,7 +11,7 @@
 
         gtag('config', 'G-TPVM6DVS53');
     </script>
-    < ! - - END Google tag (gtag.js) -->
+    <!-- END Google tag -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Unconcealing of Truths</title>
@@ -317,7 +317,19 @@
         </div>
     </div>
 
-    <div id="con" class="container">
+    <!-- offcanvas -->
+
+    <div id="offcanvas-right" class="offcanvas offcanvas-end" tabindex="-1" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header">
+            <h2  id="offcanvasRightLabel" class="offcanvas-title the-font-for-logo" style="font-size: 48px;">Aletheia</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+        </div>
+    </div>
+
+    <!-- main -->
+    <main id="main-id" class="container">
         <div id="alpha-beta" class="p-2 d-flex justify-content-between align-items-start">
             <div style="display: flex; align-items: end;">
                 <div id="αβ" style="display: flex; align-items: end; height: 48px; user-select: none;">
@@ -372,7 +384,6 @@
                     </svg>
 
                     <!-- 
-
                         <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="16" height="16" viewBox="0 0 488 488">
                             <path stroke="none"
                             d="M487.9 40.927c-2.35 9.897-13.446 14.868-19.292 22.693-8.157 6.418-16.073 22.787-28.015 13.913-11.227-11.134 11.485-21.639 12.022-27.506H50.433v403.485c7.839-7.427 20.099-25.259 29.798-10.102 2.235 12.49-12.18 18.605-18.785 27.395-7.671 5.32-12.84 18.958-23.914 16.414-11.894-7.987-20.681-20.27-31.428-29.828-17.476-14.372 9.54-28.283 17.755-10.45 8.926 12.934 6.328-1.958 6.57-9.992V40.027c2.392-14.958 20.102-8.657 30.706-10.002h392.76C446.513 22.197 428.589 9.94 443.819.32c12.549-2.226 18.67 12.156 27.468 18.793 5.017 7.223 17.043 11.935 16.613 21.815z" />
@@ -386,8 +397,6 @@
             </div>
         </div>
 
-        <!-- 
-        -->
         <div id="tables" class="transparent-border center-children the-font-for-tables" data-scrambled="false"></div>
 
         <div id="aletheia" class="text-center p-2 mb-0 d-flex justify-content-between align-items-end">
@@ -395,158 +404,154 @@
                 ©
             </div>
             <div id="logo" class="the-font-for-logo"></div>
-            <button id="infos" type="button" class="btn my-button btn-sm btn-outline-secondary the-font-monospaced" aria-label="infos">
+            <button id="infos" type="button" class="btn my-button btn-sm btn-outline-secondary the-font-monospaced" aria-label="infos" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvas-right" aria-controls="offcanvas-right">
                 i
             </button>
         </div>
+    </main>
 
-        <style>
-            nav#nav.navbar {
-                border-top: 0.75px solid var(--border-color);
-                background-color: #f1efe0;
-                height: 3rem;
-                padding: 0;
-            }
+    <style>
+        nav#nav.navbar {
+            border-top: 0.75px solid var(--border-color);
+            background-color: #f1efe0;
+            height: 3rem;
+            padding: 0;
+        }
 
-            nav#nav.navbar #controls {
-                display: flex;
-                justify-content: space-around;
-                align-items: center;
-                white-space: nowrap;
-            }
+        nav#nav.navbar #controls {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            white-space: nowrap;
+        }
 
-            nav#nav.navbar #controls #tortoise-hare-achilles {
-                min-width: 80px;
-                max-width: 100px;
-                flex-grow: 1;
-            }
+        nav#nav.navbar #controls #tortoise-hare-achilles {
+            min-width: 80px;
+            max-width: 100px;
+            flex-grow: 1;
+        }
 
-            /*
-            nav#nav.navbar #controls .compte-à-rebours {
-                flex-grow: 1;
-            }
-            */
+        nav#nav.navbar #controls>* {
+            text-align: center;
+            background-color: transparent;
+        }
 
-            nav#nav.navbar #controls>* {
-                text-align: center;
-                background-color: transparent;
-            }
+        nav#nav.navbar #controls #tortoise-hare-achilles_and_compte-à-rebours {
+            display: flex;
+            justify-content: space-evenly;
+            flex-grow: 1;
+            white-space: nowrap;
+            max-width: 300px;
+        }
 
-            nav#nav.navbar #controls #tortoise-hare-achilles_and_compte-à-rebours {
-                display: flex;
-                justify-content: space-evenly;
-                flex-grow: 1;
-                white-space: nowrap;
-                max-width: 300px;
-            }
+        nav#nav.navbar #controls>*:not(:first-child):not(:last-child) {
+            width: 80px;
+        }
 
-            nav#nav.navbar #controls>*:not(:first-child):not(:last-child) {
-                width: 80px;
-            }
+        nav#nav.navbar #controls #tortoise-hare-achilles.carousel {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-            nav#nav.navbar #controls #tortoise-hare-achilles.carousel {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
+        nav#nav.navbar #controls #tortoise-hare-achilles.carousel .carousel-item>div {
+            display: flex;
+            justify-content: center;
+        }
 
-            nav#nav.navbar #controls #tortoise-hare-achilles.carousel .carousel-item>div {
-                display: flex;
-                justify-content: center;
-            }
+        nav#nav.navbar #controls #tortoise-hare-achilles.carousel .carousel-item img {
+            width: auto;
+            height: 30px;
+        }
 
-            nav#nav.navbar #controls #tortoise-hare-achilles.carousel .carousel-item img {
-                width: auto;
-                height: 30px;
-            }
+        nav#nav.navbar #controls #tortoise-hare-achilles.carousel button:disabled {
+            filter: opacity(0.5);
+        }
 
-            nav#nav.navbar #controls #tortoise-hare-achilles.carousel button:disabled {
-                filter: opacity(0.5);
-            }
+        nav#nav.navbar #controls #tortoise-hare-achilles.carousel .carousel-control-next-icon,
+        nav#nav.navbar #controls #tortoise-hare-achilles.carousel .carousel-control-prev-icon {
+            filter: invert(1);
+        }
+    </style>
 
-            nav#nav.navbar #controls #tortoise-hare-achilles.carousel .carousel-control-next-icon,
-            nav#nav.navbar #controls #tortoise-hare-achilles.carousel .carousel-control-prev-icon {
-                filter: invert(1);
-            }
-        </style>
-
-        <nav id="nav" class="navbar fixed-bottom align-item-center">
-            <div id="controls" class="container" style="visibility: hidden">
-                <!-- scramble -->
-                <div>
-                    <button id="shuffle-all" type="button" class="btn my-button btn-outline-secondary" aria-label="shuffle-all"
-                        style="width: 32px; height:32px; position: relative;">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 49.7 49.7"
-                            style="width: 16px; height: 16px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-                            <use xlink:href="#svg-scrambled-true"></use>
-                        </svg>
-                    </button>
-                </div>
-                <!-- carousel -->
-                <div id="tortoise-hare-achilles_and_compte-à-rebours">
-                    <div id="tortoise-hare-achilles" class="left carousel slide" data-bs-wrap="false">
-                        <div class="carousel-inner">
-                            <div id="tortoise" data-time="120" class="carousel-item active" data-sound="tortoise"><!-- data-bs-interval="0" -->
-                                <div>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30">
-                                        <use xlink:href="#svg-tortoise"></use>
-                                    </svg>
-                                </div>
-                            </div>
-                            <div id="hare" data-time="60" class="carousel-item" data-sound="hare"><!-- data-bs-interval="0" -->
-                                <div>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30">
-                                        <use xlink:href="#svg-hare"></use>
-                                    </svg>
-                                </div>
-                            </div>
-                            <div id="achilles" data-time="30" class="carousel-item" data-sound="achilles"><!-- data-bs-interval="0" -->
-                                <div>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30">
-                                        <use xlink:href="#svg-achilles"></use>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#tortoise-hare-achilles" data-bs-slide="prev" disabled>
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#tortoise-hare-achilles" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                    </div>
-                    <!-- compte à rebours -->
-                    <div class="compte-à-rebours the-font-monospaced"></div>
-                </div>
-                <!-- action! -->
-                <div>
-                    <button id="play" type="button" class="btn btn-outline-secondary timer-container" aria-label="play"
-                        style="width:36px; height: 36px; margin: auto; background-color: white !important;">
-                        <svg class="timer-not-playing" xmlns="http://www.w3.org/2000/svg">
-                            <use xlink:href="#svg-play"></use>
-                        </svg>
-                        <div class="timer-playing">
-                            <svg viewBox="4 4 92 92" xmlns="http://www.w3.org/2000/svg">
-                                <g transform="rotate(-90 50 50)">
-                                    <circle id="innerCircle1" cx="50" cy="50" r="55" stroke="rgba(23, 63, 53, .25)" stroke-width="46" fill="none" />
-                                    <circle id="innerCircle2" cx="50" cy="50" r="40" stroke="rgba(23, 63, 53, .666)" stroke-width="0" fill="none" />
-                                </g>
-                                <!-- Black square with rounded corners centered -->
-                                <rect x="34" y="34" width="32" height="32" rx="5" ry="5" fill="black" />
-                            </svg>
-                        </div>
-                    </button>
-                </div>
+    <nav id="nav" class="navbar fixed-bottom align-item-center">
+        <div id="controls" class="container" style="visibility: hidden">
+            <!-- scramble -->
+            <div>
+                <button id="shuffle-all" type="button" class="btn my-button btn-outline-secondary" aria-label="shuffle-all" style="width: 32px; height:32px; position: relative;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 49.7 49.7"
+                        style="width: 16px; height: 16px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                        <use xlink:href="#svg-scrambled-true"></use>
+                    </svg>
+                </button>
             </div>
-        </nav>
+            <!-- carousel -->
+            <div id="tortoise-hare-achilles_and_compte-à-rebours">
+                <div id="tortoise-hare-achilles" class="left carousel slide" data-bs-wrap="false">
+                    <div class="carousel-inner">
+                        <div id="tortoise" data-time="120" class="carousel-item active" data-sound="tortoise"><!-- data-bs-interval="0" -->
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30">
+                                    <use xlink:href="#svg-tortoise"></use>
+                                </svg>
+                            </div>
+                        </div>
+                        <div id="hare" data-time="60" class="carousel-item" data-sound="hare"><!-- data-bs-interval="0" -->
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30">
+                                    <use xlink:href="#svg-hare"></use>
+                                </svg>
+                            </div>
+                        </div>
+                        <div id="achilles" data-time="30" class="carousel-item" data-sound="achilles"><!-- data-bs-interval="0" -->
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30">
+                                    <use xlink:href="#svg-achilles"></use>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#tortoise-hare-achilles" data-bs-slide="prev" disabled>
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#tortoise-hare-achilles" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+                <!-- compte à rebours -->
+                <div class="compte-à-rebours the-font-monospaced"></div>
+            </div>
+            <!-- action! -->
+            <div>
+                <button id="play" type="button" class="btn btn-outline-secondary timer-container" aria-label="play"
+                    style="width:36px; height: 36px; margin: auto; background-color: white !important;">
+                    <svg class="timer-not-playing" xmlns="http://www.w3.org/2000/svg">
+                        <use xlink:href="#svg-play"></use>
+                    </svg>
+                    <div class="timer-playing">
+                        <svg viewBox="4 4 92 92" xmlns="http://www.w3.org/2000/svg">
+                            <g transform="rotate(-90 50 50)">
+                                <circle id="innerCircle1" cx="50" cy="50" r="55" stroke="rgba(23, 63, 53, .25)" stroke-width="46" fill="none" />
+                                <circle id="innerCircle2" cx="50" cy="50" r="40" stroke="rgba(23, 63, 53, .666)" stroke-width="0" fill="none" />
+                            </g>
+                            <!-- Black square with rounded corners centered -->
+                            <rect x="34" y="34" width="32" height="32" rx="5" ry="5" fill="black" />
+                        </svg>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </nav>
 
-    </div>
+
 
     <script>
-        /* BEGIN comment for dev * /
-        if ('serviceWorker' in navigator) {
+        /* BEGIN serviceWorker */
+        const serviceWorkerInNavigator = 'serviceWorker' in navigator // false //
+        if (serviceWorkerInNavigator) {
             navigator.serviceWorker.register('/service-worker.js')
                 .then((registration) => {
                     console.log('Service Worker registered with scope:', registration.scope)
@@ -555,22 +560,22 @@
                     console.error('Service Worker registration failed:', error)
                 })
         }
-        / * END comment for dev */
+        /* END serviceWorker */
     </script>
 
     <script type="module">
-        import { Modal as bsModal, Carousel as bsCarousel } from 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/+esm'
-        // import hammerjs from 'https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/+esm'
+        import { Modal as bsModal, Carousel as bsCarousel, Offcanvas as bsOffcanvas } from 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/+esm'
         import bezierEasing from 'https://cdn.jsdelivr.net/npm/bezier-easing@2.1.0/+esm'
         import isotopeLayout from 'https://cdn.jsdelivr.net/npm/isotope-layout@3.0.6/+esm' // ISOTOPE 
 
         /* changed by "NODE_ENV=<development|production> node dev-oder-prod.mjs" or "npm run <dev|prod>" */
-        import { Utils } from './dist/js/UtilsClass.min.js'
-        import { Colors, BlurOverlay } from './dist/js/ColorsClass.min.js'
-        import { Swipe } from './dist/js/SwipeClass.min.js'
-        import { Timer } from './dist/js/TimerClass.min.js'
-        import { SoundMachine } from './dist/js/SoundMachineClass.min.js'
-        import { Result, ResultProperty } from './dist/js/GameClass.min.js'
+        import { Infos } from '/dist/js/InfosClass.min.js'
+        import { Utils } from '/dist/js/UtilsClass.min.js'
+        import { Colors, BlurOverlay } from '/dist/js/ColorsClass.min.js'
+        import { Swipe } from '/dist/js/SwipeClass.min.js'
+        import { Timer } from '/dist/js/TimerClass.min.js'
+        import { SoundMachine } from '/dist/js/SoundMachineClass.min.js'
+        import { Result, ResultProperty } from '/dist/js/GameClass.min.js'
 
         // https://stackoverflow.com/a/9039885/1070215
         const isiOS = (() => {
@@ -1499,24 +1504,22 @@
                 clickEvent.stopPropagation()
                 toggle_displayMode()
             })
-            /* infos */
+
+            /* BEGIN infos */
+            const infos = new Infos(bsOffcanvas, 'offcanvas-right', "/QUICK-GUIDE.md").fetch(() => {
+                console.log('infos fetched')
+            })
             // Listen for swipe events
             const swipe = new Swipe('body-id', function (direction) {
                 if (direction === 'swiperight') {
-                    console.log('Swiped right!');
-                    // Perform actions for swipe right
+                    // console.log('Swiped right!');
+                    infos.hide()
                 } else if (direction === 'swipeleft') {
-                    console.log('Swiped left!');
-                    // Perform actions for swipe left
-                    window.open("/showdown.html?/QUICK-GUIDE.md", "_QUICK-GUIDE")
+                    // console.log('Swiped left!');
+                    infos.show()
                 }
             });
-
-            document.getElementById("infos").addEventListener('click', clickEvent => {
-                clickEvent.preventDefault()
-                clickEvent.stopPropagation()
-                window.open("/showdown.html?/QUICK-GUIDE.md", "_QUICK-GUIDE")
-            })
+            /* END infos */
 
             document.getElementById("shuffle-all").addEventListener('click', clickEvent => {
                 clickEvent.preventDefault()

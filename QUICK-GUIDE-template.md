@@ -1,5 +1,3 @@
-# Aletheia
-
 The goal of the game is to uncover the 'truth' in each and every of sixteen 'truth tables'.
 
 The header of each table provides a clue that can be decoded into bricks filling none, some or all of the 4 cells within the box.
