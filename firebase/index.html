@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Hello World</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #container {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <h1>Welcome to Firebase Hello World!</h1>
+        <div id="user-info"></div>
+        <div id="user-info2"></div>
+    </div>
+
+    <!-- Firebase JavaScript SDK -->
+        <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-database.js"></script>
+
+    <script type="module">
+        import { Store } from './StoreClass.js'
+
+        const store = new Store()
+
+        // Get elements
+        var userInfo = document.getElementById('user-info');
+        var userInfo2 = document.getElementById('user-info2');
+
+        // Add data to realtime database
+        store.push({
+            username: "christophe",
+            when: new Date().toISOString()
+        }).then(function () {
+            userInfo2.innerHTML = '<p>Data added to Realtime Database!</p>';
+        }).catch(function (error) {
+            console.error("Error adding data: ", error);
+        });
+
+        // Read data from realtime database
+        store.readAll().then(function (snapshot) {
+            snapshot.forEach(function (childSnapshot) {
+                var username = childSnapshot.val().username;
+                var userElement = document.createElement('p');
+                userElement.textContent = 'Username: ' + username;
+                document.getElementById('user-info').appendChild(userElement);
+            });
+        }).catch(function (error) {
+            console.error("Error getting data: ", error);
+        });
+
+    </script>
+</body>
+
+</html>
