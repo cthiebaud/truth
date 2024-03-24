@@ -294,7 +294,7 @@
                         </div>
                         <div id="play-again" class="ms-auto">
                             <label for="playAgainButton">Start another game</label>
-                            <button id="playAgainButton" type="button" class="btn btn-outline-secondary timer-container" aria-label="play-again">
+                            <button id="playAgainButton" type="button" class="btn my-button btn-outline-secondary timer-container" aria-label="play-again" title="Start another game">
                                 <svg class="timer-not-playing" xmlns="http://www.w3.org/2000/svg">
                                     <use xlink:href="#svg-play"></use>
                                 </svg>
@@ -352,7 +352,7 @@
             <div id="buttons" class="btn-group btn-group-sm shadow" role="group">
 
                 <!-- BEGIN Button trigger modal for test - - >
-                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#result-modal">
+                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#result-modal" title="Show Result Modal Dialog Box">
                     result
                 </button>
                 < ! - - END Button trigger modal for test -->
@@ -364,14 +364,14 @@
                 </style>
 
                 <input type="checkbox" class="btn-check" id="table-borders" autocomplete="off" aria-label="table-borders toggle">
-                <label class="btn my-button" for="table-borders">
+                <label class="btn my-button" for="table-borders" title="Toggle Borders Display">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="2 2 20 20">
                         <path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M3 3h.01M3 12h.01M3 21h.01M3 16.5h.01M3 7.5h.01M7.5 3h.01m-.01 9h.01m-.01 9h.01M16.5 3h.01m-.01 9h.01m-.01 9h.01M12 3h.01M12 12h.01M12 21h.01M12 16.5h.01m-.01-9h.01M21 3h.01M21 12h.01M21 21h.01M21 16.5h.01m-.01-9h.01" />
                     </svg>
                 </label>
                 <input type="checkbox" class="btn-check" id="ab-axes" autocomplete="off" aria-label="axes toggle">
-                <label class="btn my-button" for="ab-axes">
+                <label class="btn my-button" for="ab-axes" title="Toggle Axes Display">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-1 -1 27 27">
                         <defs>
                             <path id="a" fill="context-stroke" fill-rule="evenodd"
@@ -399,7 +399,7 @@
                     -->
                 </label>
                 <input type="checkbox" class="btn-check" id="canonical-or-javascript" autocomplete="off" aria-label="canonical / javascript toggle">
-                <label id="canonical-or-javascript.label" class="btn btn-sm my-button" for="canonical-or-javascript">
+                <label id="canonical-or-javascript.label" class="btn btn-sm my-button" for="canonical-or-javascript" title="Toggle Expressions Display">
                     𝖠
                 </label>
             </div>
@@ -413,7 +413,7 @@
             </div>
             <div id="logo" class="the-font-for-logo"></div>
             <button id="infos" type="button" class="btn my-button btn-sm btn-outline-secondary the-font-monospaced" aria-label="infos" data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvas-right" aria-controls="offcanvas-right">
+                data-bs-target="#offcanvas-right" aria-controls="offcanvas-right" title="Show Quick Guide">
                 i
             </button>
         </div>
@@ -487,7 +487,8 @@
         <div id="controls" class="container" style="visibility: hidden">
             <!-- scramble -->
             <div>
-                <button id="shuffle-all" type="button" class="btn my-button btn-outline-secondary" aria-label="shuffle-all" style="width: 32px; height:32px; position: relative;">
+                <button id="shuffle-all" type="button" class="btn my-button btn-outline-secondary" aria-label="shuffle-all" title="Scramble Tables"
+                    style="width: 32px; height:32px; position: relative;">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 49.7 49.7"
                         style="width: 16px; height: 16px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
                         <use xlink:href="#svg-scrambled-true"></use>
@@ -520,11 +521,11 @@
                             </div>
                         </div>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#tortoise-hare-achilles" data-bs-slide="prev" disabled>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#tortoise-hare-achilles" data-bs-slide="prev" disabled title="Previous Level">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                     </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#tortoise-hare-achilles" data-bs-slide="next">
+                    <button class="carousel-control-next" type="button" data-bs-target="#tortoise-hare-achilles" data-bs-slide="next" title="Next Level">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                     </button>
@@ -534,8 +535,9 @@
             </div>
             <!-- action! -->
             <div>
-                <button id="play" type="button" class="btn btn-outline-secondary timer-container" aria-label="play"
-                    style="width:36px; height: 36px; margin: auto; background-color: white !important;">
+                <button id="play" type="button" class="btn my-button btn-outline-secondary timer-container" aria-label="play"
+                    style="width:36px; height: 36px; margin: auto;"
+                    title="Play Game">
                     <svg class="timer-not-playing" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="#svg-play"></use>
                     </svg>
