@@ -26,7 +26,7 @@ On a hardiment fusionné Le Lièvre et la Tortue [⁽⁴⁾](https://fr.wikipedi
 <img src="svg/ancient-greek-helmet-1-svgrepo-com.svg" style="width: 24px;">&nbsp; `Casque Corinthien` Ce pourrait être celui d'Achille [⁽⁸⁾](https://fr.wikipedia.org/wiki/Achille), mais aussi celui d'Hermès [⁽⁹⁾](https://fr.wikipedia.org/wiki/Herm%C3%A8s), le messager des dieux, réputé pour sa vitesse. On va en avoir besoin, car il ne reste plus que 30 secondes pour dévoiler les briques.
 
 ⓘ *la 🎵 de <img src="svg/ancient-greek-helmet-1-svgrepo-com.svg" alt="Achilles" style="width: 24px;">
-est sur [![SoundCloud](svg/soundcloud.svg)](https://soundcloud.com/christophe-thiebaud/aletheia?si=83569a3c774e4cdf84c684e74478af34&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing).*
+est sur [![SoundCloud](svg/soundcloud.svg)](https://soundcloud.com/christophe-thiebaud/aletheia?si=83569a3c774e4cdf84c684e74478af34).*
 
 --- 
 

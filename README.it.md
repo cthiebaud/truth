@@ -23,10 +23,10 @@ Abbiamo audacemente fuso **La lepre e la tartaruga** [⁽⁴⁾](https://it.wiki
 
 <img src="svg/hare-fill-svgrepo-com.svg" style="width: 24px;">&nbsp; `Lepre`  Il giocatore ha 1 minuto per rivelare i mattoni.
 
-<img src="svg/ancient-greek-helmet-1-svgrepo-com.svg" style="width: 24px;">&nbsp; `Elmo Corinzio` Potrebbe essere quello di Achille [⁽⁸⁾](https://fr.wikipedia.org/wiki/Achille, ma anche quello di Hermes [⁽⁹⁾](https://fr.wikipedia.org/wiki/Herm%C3%A8s), il messaggero degli dei, noto per la sua velocità. Ne avremo bisogno, perché rimangono solo 30 secondi per rivelare i mattoni.
+<img src="svg/ancient-greek-helmet-1-svgrepo-com.svg" style="width: 24px;">&nbsp; `Elmo Corinzio` Potrebbe essere quello di Achille [⁽⁸⁾](https://it.wikipedia.org/wiki/Achille), ma anche quello di Hermes [⁽⁹⁾](https://it.wikipedia.org/wiki/Ermes), il messaggero degli dei, noto per la sua velocità. Ne avremo bisogno, perché rimangono solo 30 secondi per rivelare i mattoni.
 
 ⓘ *la 🎵 di <img src="svg/ancient-greek-helmet-1-svgrepo-com.svg" alt="Achilles" style="width: 24px;">
-è su [![SoundCloud](svg/soundcloud.svg)](https://soundcloud.com/christophe-thiebaud/aletheia?si=83569a3c774e4cdf84c684e74478af34&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing).*
+è su [![SoundCloud](svg/soundcloud.svg)](https://soundcloud.com/christophe-thiebaud/aletheia?si=83569a3c774e4cdf84c684e74478af34).*
 
 --- 
 
@@ -43,7 +43,7 @@ Abbiamo audacemente fuso **La lepre e la tartaruga** [⁽⁴⁾](https://it.wiki
 
 ### Espressioni
 
-La formula che fornisce la chiave di ogni tabella di verità può essere espressa, sia in algebra di Boole [⁽¹⁰⁾](https://fr.wikipedia.org/wiki/Alg%C3%A8bre_de_Boole_(logique)), ad esempio `𝖠 ∧ 𝖡`, sia mediante un'espressione javascript, `α & β`. Per quest'ultimo caso, è interessante notare che il motore dell'applicazione valuta effettivamente l'espressione javascript nel contesto di una funzione anonima [⁽¹¹⁾](https://fr.wikipedia.org/wiki/Fonction_anonyme) : `(α, β) => α & β`.
+La formula che fornisce la chiave di ogni tabella di verità può essere espressa, sia in algebra di Boole [⁽¹⁰⁾](https://it.wikipedia.org/wiki/Algebra_di_Boole), ad esempio `𝖠 ∧ 𝖡`, sia mediante un'espressione javascript, `α & β`. Per quest'ultimo caso, è interessante notare che il motore dell'applicazione valuta effettivamente l'espressione javascript nel contesto di una funzione anonima [⁽¹¹⁾](https://it.wikipedia.org/wiki/Funzione_anonima) : `(α, β) => α & β`.
 
 |  | simbolo logico | javascript |
 |---|---|---|
@@ -54,9 +54,7 @@ La formula che fornisce la chiave di ogni tabella di verità può essere espress
 | contraddizione         | `⊥`  | ` `   |
 | tautologia            | `⊤`  | `true`|
 
-*N. B. : Riguardo a javascript, `!` è un operatore logico [⁽¹²⁾](https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Expressions_and_operators#op%C3%A9rateurs_logiques), `&`, `|` et `^` sono operatori binari [⁽¹³⁾](https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Expressions_and_operators#op%C3%A9rateurs_binaires), ` ` è una stringa vuota, detta "falsy" [⁽¹⁴⁾](https://fr.wiktionary.org/wiki/falsy), e `true` è un valore booleano primitivo.*
-
-<!-- https://fr.wikipedia.org/wiki/Liste_de_symboles_logiques -->
+*N. B. : Riguardo a javascript, `!` è un operatore logico [⁽¹²⁾](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_operators#logical_operators), `&`, `|` et `^` sono operatori binari [⁽¹³⁾](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_operators#bitwise_operators), ` ` è una stringa vuota, detta "falsy" [⁽¹⁴⁾](https://en.wiktionary.org/wiki/falsy), e `true` è un valore booleano primitivo.*
 
 | expression | algèbre | javascript |  |
 |---|---|---|---|
@@ -113,4 +111,4 @@ Durante una partita, tenendo premuto per un breve periodo su un'espressione nell
 
 --- 
 
-Abbiamo iniziato con Heidegger, terminiamo con Wittgenstein: "*per due proposizioni elementari, ci saranno quindi 16 proposizioni complesse (queste sono presentate al 5.101). Si possono determinare, basandosi su queste combinazioni, le funzioni di verità e quindi le tabelle di verità, che sono una delle innovazioni tecniche del libro. Wittgenstein non ha certo "inventato" le tabelle di verità: si può far risalire queste ultime agli stoici e Wittgenstein stesso riconosceva che l'idea si trovava già in Frege.*" Ludwig Wittgenstein - Introduzione al "Tractatus logico-philosophicus", di Mathieu Marion [⁽¹⁵⁾](https://www.cairn.info/ludwig-wittgenstein--9782130533344-page-85.htm)
+Abbiamo iniziato con Heidegger, terminiamo con Wittgenstein: "*per due proposizioni elementari, ci saranno quindi 16 proposizioni complesse (queste sono presentate al 5.101). Si possono determinare, basandosi su queste combinazioni, le funzioni di verità e quindi le tabelle di verità, che sono una delle innovazioni tecniche del libro. Wittgenstein non ha certo "inventato" le tabelle di verità: si può far risalire queste ultime agli stoici e Wittgenstein stesso riconosceva che l'idea si trovava già in Frege.*" Ludwig Wittgenstein - Introduzione al "Tractatus logico-philosophicus", di Mathieu Marion [⁽¹⁵⁾](https://www.cairn.info/ludwig-wittgenstein--9782130533344-page-85.htm) (in francese).
