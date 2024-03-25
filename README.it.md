@@ -9,15 +9,15 @@
 | ![WWW](assets/svg/internet-svgrepo-com.svg)              | [in rete](https://aletheia.cthiebaud.com/)                                                   |
 |                                                          | [su YouTube](https://youtu.be/ayb2metdNAI)                                                   |
 
-Il riferimento a Martin Heidegger è evidente: "Traducendo alètheia con Unverborgenheit, svelamento o meglio non-velamento, e non più semplicemente con "Verità", Heidegger si sforza di far comprendere qualcosa del significato, di ciò a cui alètheia faceva riferimento, anche a insaputa dei Greci, e da cui essi sviluppavano il loro mondo." [⁽¹⁾](https://fr.wikipedia.org/wiki/Al%C3%A8theia_dans_la_philosophie_de_Martin_Heidegger)
+Il riferimento a Martin Heidegger è evidente: "*Traducendo alètheia con Unverborgenheit, svelamento o meglio non-velamento, e non più semplicemente con "Verità", Heidegger si sforza di far comprendere qualcosa del significato, di ciò a cui alètheia faceva riferimento, anche a insaputa dei Greci, e da cui essi sviluppavano il loro mondo.*" [⁽¹⁾](https://fr.wikipedia.org/wiki/Al%C3%A8theia_dans_la_philosophie_de_Martin_Heidegger) (in francese).
 
-Si tratta quindi di rivelare i piccoli mattoni colorati per far apparire ciò che viene chiamato tabelle di verità [⁽²⁾](https://fr.wikipedia.org/wiki/Table_de_v%C3%A9rit%C3%A9) nel gergo matematico. Un po' più di dettagli - pur restando il più concisi possibile - nel file QUICK-GUIDE.md [⁽³⁾](QUICK-GUIDE.md) (in inglese).
+Si tratta quindi di rivelare i piccoli mattoni colorati per far apparire ciò che viene chiamato tabelle di verità [⁽²⁾](https://it.wikipedia.org/wiki/Tabella_della_verit%C3%A0) nel gergo matematico. Un po' più di dettagli - pur restando il più concisi possibile - nel file QUICK-GUIDE.md [⁽³⁾](QUICK-GUIDE.md) (in inglese).
 
 --- 
 
 ### Livelli
 
-Abbiamo audacemente fuso La lepre e la tartaruga [⁽⁴⁾](https://fr.wikipedia.org/wiki/Le_Li%C3%A8vre_et_la_Tortue_(La_Fontaine)), favola ben nota di La Fontaine [⁽⁵⁾](https://fr.wikipedia.org/wiki/Jean_de_La_Fontaine), con il Paradosso di Achille e la tartaruga [⁽⁶⁾](https://fr.wikipedia.org/wiki/Paradoxe_d%27Achille_et_de_la_tortue) di Zenone di Elea [⁽⁷⁾](https://fr.wikipedia.org/wiki/Z%C3%A9non_d%27%C3%89l%C3%A9e).
+Abbiamo audacemente fuso **La lepre e la tartaruga** [⁽⁴⁾](https://it.wikipedia.org/wiki/La_lepre_e_la_tartaruga), favola ben nota attribuita a Esopo [⁽⁵⁾](https://it.wikipedia.org/wiki/Esopo), con il **Paradosso di Achille e la tartaruga** [⁽⁶⁾](https://it.wikipedia.org/wiki/Paradosso_di_Achille_e_la_tartaruga) di Zenone di Elea [⁽⁷⁾](https://it.wikipedia.org/wiki/Zenone_di_Elea).
 
 <img src="svg/tortoise-fill-svgrepo-com.svg" style="width: 24px;">&nbsp; `Tartaruga` Il giocatore ha 2 minuti per rivelare i mattoni.
 
