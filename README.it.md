@@ -1,4 +1,4 @@
-# Alètheia
+# Aletheia
 
 <!-- ⁰¹²³⁴⁵⁶⁷⁸⁹ -->
 
@@ -83,7 +83,7 @@ Durante una partita, tenendo premuto per un breve periodo su un'espressione nell
 
 --- 
 
-### Raccourcis clavier
+### Scorciatoie da tastiera
 
 * <kbd>Spazio</kbd> &nbsp;&nbsp;&nbsp;<img src="svg/b-start.svg">/<img src="svg/b-stop.svg" >&nbsp;&nbsp;&nbsp; Avvia o interrompe una partita. Se la finestra di dialogo che mostra i risultati della partita precedente è visibile, mescola casualmente le tabelle prima di avviare una nuova partita.
 * <kbd>Q</kbd> &nbsp;&nbsp;&nbsp;<img src="svg/b-grid.svg"   >&nbsp;&nbsp;&nbsp; Mostra o nasconde i bordi delle tabelle e delle celle.
