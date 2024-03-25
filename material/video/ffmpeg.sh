@@ -17,3 +17,10 @@ ffmpeg -i Aletheia_demo.mp4 -vf "scale=trunc(iw/4)*2:trunc(ih/4)*2" -c:v libx264
 
 
 ffmpeg -i Aletheia_demo.mp4 -c:v libx264 -crf 20 Aletheia_demo_smaller2.mp4
+
+magick convert +append "82hLsn67V9TjgrLOZCFL7247pJd.jpg" "434379832_429858486203916_7875946161791517745_n.jpg" concatenated_image.jpg
+
+magick convert \( "82hLsn67V9TjgrLOZCFL7247pJd.jpg" -gravity center -extent "$(magick identify -format "%[fx:max(w, W)]x%[fx:max(h, H)]" "82hLsn67V9TjgrLOZCFL7247pJd.jpg")" \) \
+             \( "434379832_429858486203916_7875946161791517745_n.jpg" -gravity center -extent "$(magick identify -format "%[fx:max(w, W)]x%[fx:max(h, H)]" "434379832_429858486203916_7875946161791517745_n.jpg")" \) \
+             +append \
+             concatenated_image_centered.jpg
