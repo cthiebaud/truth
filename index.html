@@ -294,7 +294,8 @@
                         </div>
                         <div id="play-again" class="ms-auto">
                             <label for="playAgainButton">Start another game</label>
-                            <button id="playAgainButton" type="button" class="btn my-button btn-outline-secondary timer-container" aria-label="play-again" title="Start another game">
+                            <button id="playAgainButton" type="button" class="btn my-button btn-outline-secondary timer-container" aria-label="play-again"
+                                title="Start another game">
                                 <svg class="timer-not-playing" xmlns="http://www.w3.org/2000/svg">
                                     <use xlink:href="#svg-play"></use>
                                 </svg>
@@ -328,11 +329,14 @@
         }
     </style>
     <div id="offcanvas-right" class="offcanvas offcanvas-end" tabindex="-1" aria-labelledby="offcanvasRightLabel">
-        <div class="offcanvas-header">
-            <h2 id="offcanvasRightLabel" class="offcanvas-title the-font-for-logo" style="font-size: 48px;">Aletheia</h2>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
+        <!-- div class="offcanvas-header">
+        </!-->
         <div class="offcanvas-body">
+            <div class="d-flex justify-content-between align-items-start">
+                <h2 id="offcanvasRightLabel" class="offcanvas-title the-font-for-logo" style="display: inline-block; font-size: 48px;">Aletheia</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div id="where-to-insert-text"></div>
         </div>
     </div>
 
@@ -535,8 +539,7 @@
             </div>
             <!-- action! -->
             <div>
-                <button id="play" type="button" class="btn my-button btn-outline-secondary timer-container" aria-label="play"
-                    style="width:36px; height: 36px; margin: auto;"
+                <button id="play" type="button" class="btn my-button btn-outline-secondary timer-container" aria-label="play" style="width:36px; height: 36px; margin: auto;"
                     title="Play Game">
                     <svg class="timer-not-playing" xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="#svg-play"></use>
@@ -569,6 +572,17 @@
                 .catch((error) => {
                     console.error('Service Worker registration failed:', error)
                 })
+        } else {
+            if ('serviceWorker' in navigator) {
+                // Get all registrations
+                navigator.serviceWorker.getRegistrations().then(function (registrations) {
+                    // Unregister each service worker
+                    registrations.forEach(function (registration) {
+                        registration.unregister();
+                    });
+                });
+            }
+            console.log('no Service Worker')
         }
         /* END serviceWorker */
     </script>

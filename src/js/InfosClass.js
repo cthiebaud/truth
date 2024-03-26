@@ -19,8 +19,18 @@ export class Infos {
         return func(elem)
     }
 
-    display(responseText) {
-        this.#element.querySelector('.offcanvas-body').innerHTML = this.#converter.makeHtml(responseText);
+    display(responseText) {        
+        const offCanvasBody = this.#element.querySelector('.offcanvas-body')
+        if (!offCanvasBody) {
+            throw new Exception("no element where to insert response text")
+        }
+        const lastChild = offCanvasBody.lastElementChild;
+        const responseHTML = this.#converter.makeHtml(responseText)
+        if (lastChild) {
+            lastChild.innerHTML = responseHTML
+        } else {
+            offCanvasBody.innerHTML = responseHTML
+        }
 
         this.#element.querySelectorAll('table:not(.table)').forEach(table => {
             table.classList.add('table', 'table-sm', 'table-borderless');
