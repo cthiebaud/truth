@@ -19,7 +19,7 @@ export class Infos {
         return func(elem)
     }
 
-    display(responseText) {        
+    display(responseText) {
         const offCanvasBody = this.#element.querySelector('.offcanvas-body')
         if (!offCanvasBody) {
             throw new Exception("no element where to insert response text")
@@ -64,18 +64,20 @@ export class Infos {
     }
 
     fetch(callback) {
-        const infos = this
-        const xhr = new XMLHttpRequest()
-        xhr.open("GET", this.#url, true)
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4) {
-                if (xhr.status === 200) {
-                    infos.display(xhr.responseText);
-                    if (callback) callback()
+        if (this.#url) {
+            const infos = this
+            const xhr = new XMLHttpRequest()
+            xhr.open("GET", this.#url, true)
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        infos.display(xhr.responseText);
+                        if (callback) callback()
+                    }
                 }
             }
+            xhr.send()
         }
-        xhr.send()
 
         return new this.#bsOffcanvas(this.#element)
     }

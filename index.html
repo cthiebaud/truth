@@ -320,14 +320,38 @@
 
     <!-- offcanvas -->
     <style>
-        #offcanvas-right .offcanvas-body {
+        .offcanvas .offcanvas-body {
             padding-bottom: 0;
         }
 
-        #offcanvas-right .offcanvas-body>table td {
+        .offcanvas .offcanvas-body>table td {
             font-size: smaller;
         }
+
+        .offcanvas #embellished-separator {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin: 1rem 0 1rem 0;
+            padding-bottom: 0;
+        }
+
+        .offcanvas #embellished-separator img {
+            width: 150px;
+            height: auto;
+        }
     </style>
+    <div id="offcanvas-left" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="offcanvasLeftLabel" data-bs-theme="dark">
+        <div class="offcanvas-header">
+            <h2 id="offcanvasLeftLabel" class="offcanvas-title the-font-for-logo" style="display: inline-block; font-size: 48px;">WIP</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="d-flex justify-content-between align-items-start">
+            </div>
+        </div>
+    </div>
     <div id="offcanvas-right" class="offcanvas offcanvas-end" tabindex="-1" aria-labelledby="offcanvasRightLabel">
         <!-- div class="offcanvas-header">
         </!-->
@@ -1536,14 +1560,29 @@
             const infos = new Infos(bsOffcanvas, 'offcanvas-right', "/QUICK-GUIDE.md").fetch(() => {
                 console.log('infos fetched')
             })
+            const wip = new Infos(bsOffcanvas, 'offcanvas-left', "/WIP.md").fetch(() => {
+                console.log('WIP fetched')
+            })
             // Listen for swipe events
             const swipe = new Swipe('body-id', function (direction) {
                 if (direction === 'swiperight') {
                     // console.log('Swiped right!');
-                    infos.hide()
+                    if (infos._element.classList.contains('show')) {
+                        infos.hide()
+                    } else {
+                        if (!wip._element.classList.contains('show')) {
+                            wip.show()
+                        }
+                    }
                 } else if (direction === 'swipeleft') {
                     // console.log('Swiped left!');
-                    infos.show()
+                    if (wip._element.classList.contains('show')) {
+                        wip.hide()
+                    } else {
+                        if (!infos._element.classList.contains('show')) {
+                            infos.show()
+                        }
+                    }
                 }
             });
             /* END infos */
