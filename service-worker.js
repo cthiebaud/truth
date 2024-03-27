@@ -69,10 +69,10 @@ if (workbox) {
     { revision: '4e17b79097923ec70e01a75e09cb53f6', url: 'README.md' },
     { revision: 'ae1b870871b82fba524840c851c11c7f', url: 'WIP.md' },
     { revision: '6235428fc4f442fd8aadaaba3f6e26d3', url: 'dist/css/bootstrap.min.css' },
-    { revision: '53667d6a0e23fe7269b868077f56a049', url: 'dist/css/index.min.css' },
+    { revision: '582e14fa66bca79654498647b2fcc39b', url: 'dist/css/index.min.css' },
     { revision: 'd91dfe761f83a530a060dc9e639c91c6', url: 'dist/css/tables.min.css' },
     { revision: '0373d0a2c49b253c3bd232129592df01', url: 'dist/css/timer.min.css' },
-    { revision: '9dad579a2451e2647e894d6a3040c10b', url: 'dist/js/bundle.min.js' },
+    { revision: '8b4faacc31de969406d535835e5b2917', url: 'dist/js/bundle.min.js' },
   ])
 
   // Cache Google Fonts with a stale-while-revalidate strategy

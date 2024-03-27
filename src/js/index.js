@@ -41,14 +41,17 @@ function safeById(id, func) {
 }
 
 class CompteARebours {
+    #element
     #bezierEasing = bezierEasing(0.50, 0.20, 0.50, 1.00)
     #duration
     #animationFrameId
     #animationTimeInMilliseconds
 
     constructor() {
+        this.#element = document.querySelector(".compte-à-rebours");
         this.#duration = 120
         this.#animationTimeInMilliseconds = 600
+
     }
 
     get animationTimeInMilliseconds() {
@@ -92,9 +95,8 @@ class CompteARebours {
     set _duration_(durationParam) {
         if (!Utils.isFiniteNumber(durationParam)) throw new Error(`not a finite number: ${durationParam} !`)
         this.#duration = durationParam;
-        const gradientizedColor = Colors.mapNumberToColor(this.#duration);
-        const element = document.querySelector(".compte-à-rebours");
-        element.innerHTML = `<span style="color: ${gradientizedColor}">${Utils.formatDuration(this.#duration)}</span>`;
+        this.#element.style.color = Colors.mapNumberToColor(this.#duration)
+        this.#element.textContent = Utils.formatDuration(this.#duration)
     };
 }
 
