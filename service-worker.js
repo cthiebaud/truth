@@ -62,7 +62,7 @@ if (workbox) {
     { revision: '2f7e34960fd437beaa92f3b04c5c3050', url: 'favicons/README.md' },
     { revision: 'c9ce66f4033637c701aba2c5f3ca112c', url: 'favicons/safari-pinned-tab.svg' },
     { revision: 'b8f8ea5cb7778e2b963dec157f08ca53', url: 'firebase/index.html' },
-    { revision: 'c6770346cb2d8395f81c7ce453ea3e33', url: 'index.html' },
+    { revision: '9d834783c616d53318002655109ca6a0', url: 'index.html' },
     { revision: '07aa5b31afa0d30e1f8e35d882383875', url: 'manifest.json' },
     { revision: '11a451a19e548568d0ab65a75624bf26', url: 'QUICK-GUIDE.md' },
     { revision: '51c2ded05c36695f5d3cf35a4bc2e155', url: 'README.it.md' },
