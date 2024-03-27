@@ -1,0 +1,19 @@
+.the-font-for-logo,
+.cochin-regular {
+  font-family: Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.the-font-for-tables,
+.noto-sans-math-regular {
+  font-family: 'Noto Sans Math', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.the-font-monospaced,
+.victor-mono-regular {
+  font-family: 'Spot Mono', 'Victor Mono', 'Courier New', Courier, monospace;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}

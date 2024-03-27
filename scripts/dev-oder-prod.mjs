@@ -6,6 +6,7 @@ const toProduction = process.env.NODE_ENV === 'production';
 const productionPaths = [
     "<script type=\"module\" src=\"./dist/js/bundle.min.js\">",
     "'/dist/css/bootstrap.min.css'",
+    "'/dist/css/fonts.min.css'",
     "'/dist/css/index.min.css'",
     "'/dist/css/tables.min.css'",
     "'/dist/css/timer.min.css'",
@@ -20,6 +21,7 @@ const productionPaths = [
 const developmentPaths = [
     "<script type=\"module\" src=\"./src/js/index.js\">",
     "'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css'",
+    "'/src/css/fonts.css'",
     "'/src/css/index.css'",
     "'/src/css/tables.css'",
     "'/src/css/timer.css'",
