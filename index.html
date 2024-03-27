@@ -449,6 +449,7 @@
         </div>
     </main>
 
+    <!-- navbar -->
     <style>
         nav#nav.navbar {
             border-top: 0.75px solid var(--border-color);
@@ -512,7 +513,6 @@
             filter: invert(1);
         }
     </style>
-
     <nav id="nav" class="navbar fixed-bottom align-item-center">
         <div id="controls" class="container" style="visibility: hidden">
             <!-- scramble -->
@@ -584,9 +584,8 @@
             </div>
         </div>
     </nav>
-
-
-
+    
+    <!-- scripts -->
     <script>
         /* BEGIN serviceWorker */
         const serviceWorkerInNavigator = 'serviceWorker' in navigator // false //
@@ -612,10 +611,7 @@
         }
         /* END serviceWorker */
     </script>
-
-    <script type="module" src="./dist/js/bundle.min.js">
-
-    </script>
+    <script type="module" src="./dist/js/bundle.min.js"></script>
 </body>
 
 </html>
