@@ -69,7 +69,7 @@ if (workbox) {
     { revision: '4e17b79097923ec70e01a75e09cb53f6', url: 'README.md' },
     { revision: 'ae1b870871b82fba524840c851c11c7f', url: 'WIP.md' },
     { revision: '6235428fc4f442fd8aadaaba3f6e26d3', url: 'dist/css/bootstrap.min.css' },
-    { revision: '183292777f461ba6ed941ba6178af030', url: 'dist/css/fonts.min.css' },
+    { revision: '619c4e2bf005756bcec49fb8d08cd4a6', url: 'dist/css/fonts.min.css' },
     { revision: 'f44c94b7ffb001f058112e63361ea674', url: 'dist/css/index.min.css' },
     { revision: '21c3634974fbe2e4953c24d5eccda717', url: 'dist/css/tables.min.css' },
     { revision: '0373d0a2c49b253c3bd232129592df01', url: 'dist/css/timer.min.css' },
