@@ -476,11 +476,13 @@ class Axes {
 
     setCellWidth() {
         /* 2*52 + 18 == 2*61 == 122 */
-        let cellWidth = '61px'
+        let cellWidth = 61
         if (this.visible) {
-            cellWidth = '52px'
+            cellWidth = 52
         }
-        document.documentElement.style.setProperty('--cell-width_and_height', cellWidth)
+        let cellWidthSmaller = Math.round(cellWidth * .8)
+        document.documentElement.style.setProperty('--cell-width_and_height', `${cellWidth}px`)
+        document.documentElement.style.setProperty('--cell-width_and_height-smaller', `${cellWidthSmaller}px`)
         document.documentElement.style.setProperty('--header-width_and_height', '18px')
         document.documentElement.style.setProperty('--border-color', '#215c4d40')
     }

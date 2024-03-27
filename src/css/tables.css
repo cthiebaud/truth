@@ -25,12 +25,14 @@
 .tables table tbody tr td {
   width: var(--cell-width_and_height);
   height: var(--cell-width_and_height);
+  min-width: var(--cell-width_and_height);
+  min-height: var(--cell-width_and_height);
   text-align: center;
   vertical-align: middle;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.67);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   /* font-family: var(--bs-body-font-family); */
   font-family: unset;
-  font-size: 25px;
+  font-size: 24px;
   padding: 0;
   transform: none;
   user-select: none;
@@ -39,9 +41,9 @@
 }
 
 .tables table:not(.hint) td.true:not(.concealed)::before,
-.tables table.hint       td.true::before {
+.tables table.hint td.true::before {
   position: absolute;
-  content: '●';
+  content: '⬤'; /* U+2B24 */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -177,7 +179,6 @@
   }
 }
 
-
 .tables table thead th:nth-child(2):after {
   content: '𝖡'; /* 'β' */
   width: 100%;
@@ -262,3 +263,13 @@
   /* Set the origin of the transformation to the top-right corner */
 }
 
+#tables-infos.tables table tbody tr td {
+  width: var(--cell-width_and_height-smaller);
+  height: var(--cell-width_and_height-smaller);
+  min-width: var(--cell-width_and_height-smaller);
+  min-height: var(--cell-width_and_height-smaller);
+}
+
+#tables-infos.tables table tbody tr td:before {
+  font-size: 18px;
+}
