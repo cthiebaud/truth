@@ -124,26 +124,10 @@ More at [Github&hellip;](https://github.com/cthiebaud/truth/blob/main/README.md)
 | ![Android App Store](assets/svg/android-svgrepo-com.svg) | [On Android Phones & Devices](https://play.google.com/store/apps/details?id=com.cthiebaud.aletheia.twa)                |
 | ![WWW](assets/svg/internet-svgrepo-com.svg)              | [On the Web](https://aletheia.cthiebaud.com/)                                                                          |
 | ![aletheia](assets/svg/Wikipedia's_W.svg)                | [Aletheia (Ancient Greek: ἀλήθεια) as Philosophical Term on Wikipedia ](https://en.wikipedia.org/wiki/Aletheia)        |
-| ![Github](assets/svg/github.svg)                         | This version git commit: [{{short_commit_hash}}](https://github.com/cthiebaud/truth/commit/{{commit_hash}})            |
+| ![Github](assets/svg/github.svg)                         | This version git commit: [{{short_commit_hash}}](https://github.com/cthiebaud/truth/commit/{{commit_hash}})  |
 -->
 
 &copy; 2024 [Christophe Thiebaud](https://cthiebaud.com/) _No Rights Reserved_
-
-<style>
-#embellished-separator {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    margin: 1rem 0 1rem 0;
-    padding-bottom: 0;
-}
-
-#embellished-separator img {
-    width: 150px;
-    height: auto;
-}
-</style>
 
 <div id="embellished-separator">
     <img src="/assets/svg/greek_meander.svg" alt="the end">

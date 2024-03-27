@@ -64,7 +64,7 @@ if (workbox) {
     { revision: 'c9ce66f4033637c701aba2c5f3ca112c', url: 'favicons/safari-pinned-tab.svg' },
     { revision: 'a4698ee0e629c4842362a61e70f362e2', url: 'index.html' },
     { revision: '07aa5b31afa0d30e1f8e35d882383875', url: 'manifest.json' },
-    { revision: '11a451a19e548568d0ab65a75624bf26', url: 'QUICK-GUIDE.md' },
+    { revision: '46c92500b69223f40c9d0f200eda1ea5', url: 'QUICK-GUIDE.md' },
     { revision: '51c2ded05c36695f5d3cf35a4bc2e155', url: 'README.it.md' },
     { revision: '4e17b79097923ec70e01a75e09cb53f6', url: 'README.md' },
     { revision: 'ae1b870871b82fba524840c851c11c7f', url: 'WIP.md' },
