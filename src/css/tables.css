@@ -270,6 +270,10 @@
   min-height: var(--cell-width_and_height-smaller);
 }
 
+#tables-infos.tables table tbody tr td:after {
+  content: none;
+}
+
 #tables-infos.tables table tbody tr td:before {
   font-size: 18px;
 }
