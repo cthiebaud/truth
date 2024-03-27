@@ -4,13 +4,12 @@
     "prod": "NODE_ENV=production node scripts/dev-oder-prod.mjs",
     "build": "npm run prod && npm-run-all -s build:*",
     "build:minify-css": "postcss src/css/*.css --ext .min.css --dir dist/css",
-    "build:terser": "npm-run-all -s build:terser:*",
-    "build:terser:clean": "rimraf dist/js && mkdirp dist/js",
-    "build:terser:terse": "foreach -g \"src/js/*.js\" --concurrent -x \"terser #{path} -o dist/js/#{name}.min#{ext} -c \"ecma=6,toplevel\" -m \"toplevel,eval\"\"",
+    "build:minify-and-bundle-js": "rollup --config",
     "build:inject": "npx workbox injectManifest workbox-config.js && npx prettier --write service-worker.js",
     "push2prod": "scripts/push_to_prod.sh"
   },
   "devDependencies": {
+    "@rollup/plugin-terser": "^0.4.4",
     "cssnano": "^6.0.5",
     "foreach-cli": "^1.8.1",
     "mkdirp": "^3.0.1",
@@ -19,7 +18,7 @@
     "postcss-cli": "^11.0.0",
     "prettier": "^3.2.5",
     "rimraf": "^5.0.5",
-    "terser": "^5.28.1",
+    "rollup": "^2.79.1",
     "workbox-cli": "^7.0.0"
   }
 }

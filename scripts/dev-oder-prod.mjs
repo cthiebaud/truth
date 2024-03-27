@@ -4,13 +4,7 @@ const toProduction = process.env.NODE_ENV === 'production';
 
 // Define the paths for production and development
 const productionPaths = [
-    "'/dist/js/ColorsClass.min.js'",
-    "'/dist/js/GameClass.min.js'",
-    "'/dist/js/InfosClass.min.js'",
-    "'/dist/js/SoundMachineClass.min.js'",
-    "'/dist/js/SwipeClass.min.js'",
-    "'/dist/js/TimerClass.min.js'",
-    "'/dist/js/UtilsClass.min.js'",
+    "<script type=\"module\" src=\"./dist/js/bundle.min.js\">",
     "'/dist/css/bootstrap.min.css'",
     "'/dist/css/index.min.css'",
     "'/dist/css/tables.min.css'",
@@ -24,13 +18,7 @@ const productionPaths = [
     "<!-- END Google tag -->",
 ];
 const developmentPaths = [
-    "'/src/js/ColorsClass.js'",
-    "'/src/js/GameClass.js'",
-    "'/src/js/InfosClass.js'",
-    "'/src/js/SoundMachineClass.js'",
-    "'/src/js/SwipeClass.js'",
-    "'/src/js/TimerClass.js'",
-    "'/src/js/UtilsClass.js'",
+    "<script type=\"module\" src=\"./src/js/index.js\">",
     "'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css'",
     "'/src/css/index.css'",
     "'/src/css/tables.css'",

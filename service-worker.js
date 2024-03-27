@@ -62,7 +62,7 @@ if (workbox) {
     { revision: 'e7e93808bde4ceead0f0bb8727c817fa', url: 'favicons/mstile-150x150.png' },
     { revision: '2f7e34960fd437beaa92f3b04c5c3050', url: 'favicons/README.md' },
     { revision: 'c9ce66f4033637c701aba2c5f3ca112c', url: 'favicons/safari-pinned-tab.svg' },
-    { revision: 'dce764d4c202d51e1da2d6dfb227e35a', url: 'index.html' },
+    { revision: 'edeba61c4fe20717cbfd18d5ad5c285c', url: 'index.html' },
     { revision: '07aa5b31afa0d30e1f8e35d882383875', url: 'manifest.json' },
     { revision: '11a451a19e548568d0ab65a75624bf26', url: 'QUICK-GUIDE.md' },
     { revision: '51c2ded05c36695f5d3cf35a4bc2e155', url: 'README.it.md' },
@@ -72,13 +72,7 @@ if (workbox) {
     { revision: '53667d6a0e23fe7269b868077f56a049', url: 'dist/css/index.min.css' },
     { revision: 'd91dfe761f83a530a060dc9e639c91c6', url: 'dist/css/tables.min.css' },
     { revision: '0373d0a2c49b253c3bd232129592df01', url: 'dist/css/timer.min.css' },
-    { revision: '7f19c74beea1d9c2aec62d237009e4aa', url: 'dist/js/ColorsClass.min.js' },
-    { revision: '492e390793648c577be23449fba01786', url: 'dist/js/GameClass.min.js' },
-    { revision: '7055fa34950246f1f99e060b84e33be1', url: 'dist/js/InfosClass.min.js' },
-    { revision: 'bb7eb51a4eec82646365d519b1b6a61d', url: 'dist/js/SoundMachineClass.min.js' },
-    { revision: 'd10056fbcde6b9f4f40ca225f6157d8b', url: 'dist/js/SwipeClass.min.js' },
-    { revision: '5a062f58bdab5c6fd02876459accca95', url: 'dist/js/TimerClass.min.js' },
-    { revision: 'b162abaf7871ba19a471a1630615af82', url: 'dist/js/UtilsClass.min.js' },
+    { revision: '9dad579a2451e2647e894d6a3040c10b', url: 'dist/js/bundle.min.js' },
   ])
 
   // Cache Google Fonts with a stale-while-revalidate strategy
