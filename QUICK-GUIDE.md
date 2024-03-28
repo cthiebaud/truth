@@ -4,7 +4,7 @@ The header of each table provides a clue that can be decoded into bricks filling
 
 The presence or absence of a brick within a cell is fully determined by the values of A and B as inferred from the clue, as illustrated below:
 
-<div id="tables-infos" class="tables center-children the-font-for-tables d-flex justify-content-around">
+<div id="tables-infos" class="tables center-children the-font-for-tables d-flex justify-content-center">
     <div id="element3" data-function="α &amp; β">
         <table class="table inline table-sm caption-top table-borderless">
             <caption id="AetB" class="text-center">𝖠 ∧ 𝖡</caption>
@@ -124,7 +124,7 @@ More at [Github&hellip;](https://github.com/cthiebaud/truth/blob/main/README.md)
 | ![Android App Store](assets/svg/android-svgrepo-com.svg) | [On Android Phones & Devices](https://play.google.com/store/apps/details?id=com.cthiebaud.aletheia.twa)                |
 | ![WWW](assets/svg/internet-svgrepo-com.svg)              | [On the Web](https://aletheia.cthiebaud.com/)                                                                          |
 | ![aletheia](assets/svg/Wikipedia's_W.svg)                | [Aletheia (Ancient Greek: ἀλήθεια) as Philosophical Term on Wikipedia ](https://en.wikipedia.org/wiki/Aletheia)        |
-| ![Github](assets/svg/github.svg)                         | This version git commit: [36a5a90](https://github.com/cthiebaud/truth/commit/36a5a907564ee22caf7e26d1109360c45cf7caf4)  |
+| ![Github](assets/svg/github.svg)                         | This version git commit: [9747e94](https://github.com/cthiebaud/truth/commit/9747e9411e11624274c88836dfca118d3cbd4673)  |
 -->
 
 &copy; 2024 [Christophe Thiebaud](https://cthiebaud.com/) _No Rights Reserved_
