@@ -31,7 +31,7 @@ const isiOS = (() => {
         // iPad on iOS 13 detection
         || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
 })()
-console.log(navigator.userAgent, `[${isiOS?"":"NOT "}a iOS device]`)
+console.log(navigator.userAgent, `[${isiOS ? "" : "NOT "}a iOS device]`)
 
 function safeById(id, func) {
     if (!id) return
@@ -393,7 +393,7 @@ class Player {
                     }
                 }
                 setTimeout(() => {
-                    console.log(veilParam, tbody.id, performance.now())
+                    // console.log(veilParam, tbody.id, performance.now())
                     resolve(tbody)
                 }, 20);
             })
@@ -832,6 +832,7 @@ function doIt() {
     // BEGIN HINTS 
     let timout = null
     let overlay = new BlurOverlay('td')
+    let targetElem = null
     function clearHints() {
         if (timout) {
             clearTimeout(timout)
@@ -839,6 +840,7 @@ function doIt() {
         }
         [...document.querySelectorAll('.hint')].forEach((hint) => {
             hint.classList.remove("hint")
+            targetElem = null
         })
         overlay.hide()
         player._soundMachine.underwater.fade(undefined, 0.001, 1500)
@@ -848,17 +850,25 @@ function doIt() {
             clearHints()
         })
         window.addEventListener("touchmove", function (e) {
-            clearHints()
+            console.log(targetElem, e.target)
+            if (targetElem && !(targetElem == e.target || (e.target instanceof Node && targetElem.contains(e.target)))) {
+                clearHints()
+            }
         })
+        window.addEventListener("touchend", (event) => {
+            clearHints()
+        });
     }
     [...document.getElementsByTagName('caption')].forEach((caption) => {
         // bug on iPad, user-select=none ignored
         // https://stackoverflow.com/a/16613634/1070215
-        if (isiOS) {
-            caption.addEventListener('touchstart', (e) => {
+        caption.addEventListener('touchstart', (e) => {
+            if (!player.isPlaying) return
+            targetElem = caption
+            /* if (isiOS) */ {
                 e.preventDefault();
-            })
-        }
+            }
+        })
         caption.addEventListener('pointerdown', (e) => {
 
             if (!player.isPlaying) return
