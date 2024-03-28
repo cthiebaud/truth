@@ -480,7 +480,7 @@ class Axes {
         if (this.visible) {
             cellWidth = 52
         }
-        let cellWidthSmaller = Math.round(cellWidth * .8)
+        let cellWidthSmaller = Math.round(cellWidth * .7)
         document.documentElement.style.setProperty('--cell-width_and_height', `${cellWidth}px`)
         document.documentElement.style.setProperty('--cell-width_and_height-smaller', `${cellWidthSmaller}px`)
         document.documentElement.style.setProperty('--header-width_and_height', '18px')
