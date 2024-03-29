@@ -17,7 +17,21 @@ const reservoirDogsMeta = document.querySelector("head meta[name='truth-reservoi
 const reservoirDogs = reservoirDogsMeta ? reservoirDogsMeta.getAttribute("content") || "http://192.168.1.53:5000" : "http://192.168.1.53:5000"
 console.log(reservoirDogs)
 const reservoir = new Reservoir(reservoirDogs)
+try {
+    reservoir.read({ pseudo: 'christophet60' })
+        .then(data => {
+            console.log('GET response:', data)
+            document.getElementById('console').innerHTML += JSON.stringify(data)
+        })
+        .catch(error => {
+            console.error('GET error:', error)
+            document.getElementById('console').innerHTML += JSON.stringify(error)
+        });
+} catch (error) {
+    console.error('GET error:', error)
+    document.getElementById('console').innerHTML += JSON.stringify(error)
 
+}
 /*
 import index_sheet from '../css/index.css' assert { type: 'css' };
 import tables_sheet from '../css/tables.css' assert { type: 'css' };
@@ -262,12 +276,12 @@ class Player {
         reservoir.write(postData)
             .then(data => {
                 console.log('POST response:', data)
-                document.getElementById('console').innerHTML +=  JSON.stringify(data)
+                document.getElementById('console').innerHTML += JSON.stringify(data)
 
             })
             .catch(error => {
                 console.error('POST error:', error)
-                document.getElementById('console').innerHTML +=  JSON.stringify(error)
+                document.getElementById('console').innerHTML += JSON.stringify(error)
             });
 
         // show result
