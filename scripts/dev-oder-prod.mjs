@@ -33,7 +33,7 @@ const developmentPaths = [
     "<!-- END livejs for test -->",
     "<!-- BEGIN Google tag - - >",
     "< ! - - END Google tag -->",
-    "http://localhost:5000",
+    "http://192.168.1.53:5000",
 ];
 
 // Check if the arrays have the same length

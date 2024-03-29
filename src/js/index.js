@@ -14,7 +14,7 @@ import { Reservoir } from './ReservoirClass.js'
 
 
 const reservoirDogsMeta = document.querySelector("head meta[name='truth-reservoir']")
-const reservoirDogs = reservoirDogsMeta ? reservoirDogsMeta.getAttribute("content") || "http://localhost:5000" : "http://localhost:5000"
+const reservoirDogs = reservoirDogsMeta ? reservoirDogsMeta.getAttribute("content") || "http://192.168.1.53:5000" : "http://192.168.1.53:5000"
 console.log(reservoirDogs)
 const reservoir = new Reservoir(reservoirDogs)
 

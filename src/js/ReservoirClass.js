@@ -32,7 +32,7 @@ export class Reservoir {
 }
 /*
 // Example usage:
-const reservoir = new Reservoir('http://localhost:5000');
+const reservoir = new Reservoir('http://192.168.1.53:5000');
 
 // POST example
 const postData = {
