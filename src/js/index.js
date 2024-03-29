@@ -10,6 +10,11 @@ import { Swipe } from './SwipeClass.js'
 import { Timer } from './TimerClass.js'
 import { SoundMachine } from './SoundMachineClass.js'
 import { Result } from './GameClass.js'
+import { Reservoir } from './ReservoirClass.js'
+
+const reservoirDogsMeta = document.querySelector("head meta[name='truth-reservoir']");
+const reservoirDogs = reservoirDogsMeta ? reservoirDogsMeta.getAttribute("content") || "http://localhost:5000" : "http://localhost:5000";
+const reservoir = new Reservoir(reservoirDogs);
 
 /*
 import index_sheet from '../css/index.css' assert { type: 'css' };
@@ -194,7 +199,7 @@ class Player {
             })
         }
 
-        Utils.safeGetElementByIdThen('result-display-mode-symbol', (element, arg) => { element.innerHTML = arg }, result.displayModeSymbol);
+        Utils.safeGetElementByIdThen('result-display-mode', (element, arg) => { element.innerHTML = arg }, result.displayMode);
 
         document.getElementById(`result-level-${result.level}`).style.display = 'block'
         document.getElementById(`result-scrambled-${result.scrambled}`).style.display = 'block'
@@ -211,6 +216,24 @@ class Player {
         }
 
         const currentDate = new Date()
+
+        function getCurrentDateTimeISO() {
+            const now = new Date();
+
+            const year = now.getUTCFullYear();
+            const month = String(now.getUTCMonth() + 1).padStart(2, '0');
+            const day = String(now.getUTCDate()).padStart(2, '0');
+
+            const hours = String(now.getUTCHours()).padStart(2, '0');
+            const minutes = String(now.getUTCMinutes()).padStart(2, '0');
+            const seconds = String(now.getUTCSeconds()).padStart(2, '0');
+
+            const isoDateTime = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}Z`;
+
+            return isoDateTime;
+        }
+        const currentDateTimeISO = getCurrentDateTimeISO();
+
         const options = {
             weekday: 'long',
             year: 'numeric',
@@ -223,6 +246,24 @@ class Player {
         }
 
         Utils.safeGetElementByIdThen('result-timestamp', (element, arg) => { element.innerHTML = arg }, currentDate.toLocaleString('en-US', options));
+
+        const postData = {
+            pseudo: 'christophet60',
+            level: result.level,
+            elapsed: Math.round(result.timerDuration),
+            erred: result.erred.value,
+            revealed: result.unconcealed.value,
+            symbol: result.displayMode,
+            scrambled: result.scrambled,
+            when: currentDateTimeISO,
+        }
+        reservoir.write(postData)
+            .then(data => {
+                console.log('POST response:', data)
+            })
+            .catch(error => {
+                console.error('POST error:', error)
+            });
 
         // show result
         let resultModal = new bsModal(document.getElementById("result-modal"))

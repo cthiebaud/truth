@@ -33,13 +33,13 @@ export class Result {
     #erred
     #revealed
     #level
-    #displayModeSymbol
+    #displayMode
     #scrambled
 
     constructor(level, scrambled, displayModeSymbol) {
         this.#level = level
-        this.#scrambled = scrambled
-        this.#displayModeSymbol = displayModeSymbol
+        this.scrambled = scrambled // NB. using set as it provides conversion to boolean
+        this.displayMode = displayModeSymbol // idem, see conversion below
         this.reset()
     }
 
@@ -60,9 +60,42 @@ export class Result {
         return this.#scrambled
     }
 
+    set scrambled(value) {
+        if (typeof value === "undefined") {
+            return; // Ignore undefined values
+        }        
+        if (value === null || typeof value === 'boolean') {
+            this.#scrambled = value; // Assign the value directly if it's null or a boolean
+        } else if (typeof value === 'string') {
+            // Convert strings "true" and "false" (case-insensitive) to boolean
+            const lowerCaseValue = value.toLowerCase();
+            if (lowerCaseValue === 'true') {
+                this.#scrambled = true;
+            } else if (lowerCaseValue === 'false') {
+                this.#scrambled = false;
+            } else {
+                // For any other string input, attempt to convert it to a boolean
+                this.#scrambled = !!value;
+            }
+        } else {
+            // For any other type of input, attempt to convert it to a boolean
+            this.#scrambled = !!value;
+        }
+    }
+
     // Getter for displayModeSymbol
-    get displayModeSymbol() {
-        return this.#displayModeSymbol
+    get displayMode() {
+        return this.#displayMode
+    }
+
+    set displayMode(value) {
+        if (value === '𝖠') {
+            this.#displayMode = "canonical"
+        } else if (value === 'α') {
+            this.#displayMode = "javascript"
+        } else {
+            this.#displayMode = null
+        }
     }
 
     // Getter for elapsed
