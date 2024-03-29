@@ -25,11 +25,11 @@ try {
         })
         .catch(error => {
             console.error('GET error:', error)
-            document.getElementById('console').innerHTML += JSON.stringify(error)
+            document.getElementById('console').innerHTML += error
         });
 } catch (error) {
     console.error('GET error:', error)
-    document.getElementById('console').innerHTML += JSON.stringify(error)
+    document.getElementById('console').innerHTML += error
 
 }
 /*
@@ -281,7 +281,7 @@ class Player {
             })
             .catch(error => {
                 console.error('POST error:', error)
-                document.getElementById('console').innerHTML += JSON.stringify(error)
+                document.getElementById('console').innerHTML += error
             });
 
         // show result
