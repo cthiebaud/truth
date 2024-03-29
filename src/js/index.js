@@ -21,11 +21,11 @@ try {
     reservoir.read({ pseudo: 'christophet60' })
         .then(data => {
             console.log('GET response:', data)
-            document.getElementById('console').innerHTML += JSON.stringify(data)
+            document.getElementById('console').innerHTML += JSON.stringify(data) + "<br>"
         })
         .catch(error => {
             console.error('GET error:', error)
-            document.getElementById('console').innerHTML += error
+            document.getElementById('console').innerHTML += JSON.stringify(error) + "<br>"
         });
 } catch (error) {
     console.error('GET error:', error)
@@ -276,12 +276,11 @@ class Player {
         reservoir.write(postData)
             .then(data => {
                 console.log('POST response:', data)
-                document.getElementById('console').innerHTML += JSON.stringify(data)
-
-            })
+                document.getElementById('console').innerHTML += JSON.stringify(data) + "<br>"
+                })
             .catch(error => {
                 console.error('POST error:', error)
-                document.getElementById('console').innerHTML += error
+                document.getElementById('console').innerHTML += JSON.stringify(error) + "<br>"
             });
 
         // show result
