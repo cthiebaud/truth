@@ -12,9 +12,11 @@ import { SoundMachine } from './SoundMachineClass.js'
 import { Result } from './GameClass.js'
 import { Reservoir } from './ReservoirClass.js'
 
-const reservoirDogsMeta = document.querySelector("head meta[name='truth-reservoir']");
-const reservoirDogs = reservoirDogsMeta ? reservoirDogsMeta.getAttribute("content") || "http://localhost:5000" : "http://localhost:5000";
-const reservoir = new Reservoir(reservoirDogs);
+
+const reservoirDogsMeta = document.querySelector("head meta[name='truth-reservoir']")
+const reservoirDogs = reservoirDogsMeta ? reservoirDogsMeta.getAttribute("content") || "http://localhost:5000" : "http://localhost:5000"
+console.log(reservoirDogs)
+const reservoir = new Reservoir(reservoirDogs)
 
 /*
 import index_sheet from '../css/index.css' assert { type: 'css' };
