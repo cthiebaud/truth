@@ -12,7 +12,7 @@ import { SoundMachine } from './SoundMachineClass.js'
 import { Result } from './GameClass.js'
 import { Reservoir } from './ReservoirClass.js'
 
-
+/*
 const reservoirDogsMeta = document.querySelector("head meta[name='truth-reservoir']")
 const reservoirDogs = reservoirDogsMeta ? reservoirDogsMeta.getAttribute("content") || "http://192.168.1.53:5000" : "http://192.168.1.53:5000"
 console.log(reservoirDogs)
@@ -32,6 +32,8 @@ try {
     document.glogetElementById('console').innerHTML += error + "\\n"
 
 }
+*/
+
 /*
 import index_sheet from '../css/index.css' assert { type: 'css' };
 import tables_sheet from '../css/tables.css' assert { type: 'css' };
@@ -273,6 +275,8 @@ class Player {
             scrambled: result.scrambled,
             when: currentDateTimeISO,
         }
+        
+        /*
         reservoir.write(postData)
             .then(data => {
                 console.log('POST response:', data)
@@ -282,6 +286,7 @@ class Player {
                 console.log('POST error:', error)
                 document.getElementById('console').innerHTML += error + "\\n"
             });
+        */
 
         // show result
         let resultModal = new bsModal(document.getElementById("result-modal"))
