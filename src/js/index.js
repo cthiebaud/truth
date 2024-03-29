@@ -262,9 +262,12 @@ class Player {
         reservoir.write(postData)
             .then(data => {
                 console.log('POST response:', data)
+                document.getElementById('console').innerHTML +=  JSON.stringify(data)
+
             })
             .catch(error => {
                 console.error('POST error:', error)
+                document.getElementById('console').innerHTML +=  JSON.stringify(error)
             });
 
         // show result
@@ -893,7 +896,7 @@ function doIt() {
             clearHints()
         })
         window.addEventListener("touchmove", function (e) {
-            console.log(targetElem, e.target)
+            // console.log(targetElem, e.target)
             if (targetElem && !(targetElem == e.target || (e.target instanceof Node && targetElem.contains(e.target)))) {
                 clearHints()
             }
