@@ -34,7 +34,7 @@ export class Utils {
         }
 
         if (600000 <= duration) { // 10 minutes
-            throw new Error(`Duration ${duration} must be under 9′59″9999`);
+            throw new Error(`Duration ${duration} must be under 9′59″999`);
         }
 
         const minutes = Math.floor(duration / 60000); // Calculate minutes
@@ -45,7 +45,7 @@ export class Utils {
 
         if (type === 'milliseconds') {
             const milliseconds = Math.floor(duration % 1000); // Round milliseconds
-            formattedTime += String(milliseconds).padStart(4, '0'); // Ensure 4-digit representation
+            formattedTime += String(milliseconds).padStart(3, '0'); // Ensure 4-digit representation
         }
 
         return formattedTime;

@@ -18,22 +18,28 @@ const reservoirDogsMeta = document.querySelector("head meta[name='truth-reservoi
 const reservoirDogs = reservoirDogsMeta ? reservoirDogsMeta.getAttribute("content") || "http://192.168.1.53:8080" : "http://192.168.1.53:8080"
 console.log(reservoirDogs)
 const reservoir = new Reservoir(reservoirDogs)
-try {
-    reservoir.read({ pseudo: 'christophet60' })
-        .then(data => {
-            console.log('GET response:', data)
-            document.getElementById('console').innerHTML += JSON.stringify(data) + "&#13;&#10;"
-        })
-        .catch(error => {
-            console.log('GET error:', error)
-            document.getElementById('console').innerHTML += error + "&#13;&#10;"
-        });
-} catch (error) {
-    console.error('GET error:', error)
-    document.glogetElementById('console').innerHTML += error + "&#13;&#10;"
-
+function reservoirShowBest() {
+    try {
+        reservoir.best()
+            .then(data => {
+                console.log('GET response:', data)
+                {
+                    [...document.querySelectorAll('#cloche2 svg')].forEach(elem => {
+                        elem.style.display = 'none'
+                    })
+                }
+                document.getElementById(`result-level-${data.level}2`).style.display = 'block'
+                document.getElementById(`result-scrambled-${data.scrambled}2`).style.display = 'block'
+                document.getElementById('result-elapsed2').innerHTML = Utils.formatDuration(data.elapsed, 'milliseconds')
+            })
+            .catch(error => {
+                console.log('GET error:', error)
+            });
+    } catch (error) {
+        console.error('GET error:', error)
+    }
 }
-
+reservoirShowBest()
 /*
 import index_sheet from '../css/index.css' assert { type: 'css' };
 import tables_sheet from '../css/tables.css' assert { type: 'css' };
@@ -217,8 +223,6 @@ class Player {
             })
         }
 
-        Utils.safeGetElementByIdThen('result-display-mode', (element, arg) => { element.innerHTML = arg }, result.displayMode);
-
         document.getElementById(`result-level-${result.level}`).style.display = 'block'
         document.getElementById(`result-scrambled-${result.scrambled}`).style.display = 'block'
 
@@ -279,11 +283,10 @@ class Player {
         reservoir.write(postData)
             .then(data => {
                 console.log('POST response:', data)
-                document.getElementById('console').innerHTML += JSON.stringify(data) + "&#13;&#10;"
+                reservoirShowBest()
             })
             .catch(error => {
                 console.log('POST error:', error)
-                document.getElementById('console').innerHTML += error + "&#13;&#10;"
             });
 
         // show result
@@ -1033,7 +1036,7 @@ window.addEventListener("load", loadEvent => {
     const infos = new Infos(bsOffcanvas, 'offcanvas-right', "/QUICK-GUIDE.md").fetch(() => {
         console.log('/QUICK-GUIDE.md fetched')
     })
-    const wip = new Infos(bsOffcanvas, 'offcanvas-left', "/WIP.md").fetch(() => {
+    const wip = new Infos(bsOffcanvas, 'offcanvas-left').fetch(() => {
         console.log('/WIP.md fetched')
     })
     // Listen for swipe events
