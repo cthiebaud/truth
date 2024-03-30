@@ -13,26 +13,26 @@ import { Result } from './GameClass.js'
 import { Reservoir } from './ReservoirClass.js'
 
 /*
+*/
 const reservoirDogsMeta = document.querySelector("head meta[name='truth-reservoir']")
-const reservoirDogs = reservoirDogsMeta ? reservoirDogsMeta.getAttribute("content") || "http://192.168.1.53:5000" : "http://192.168.1.53:5000"
+const reservoirDogs = reservoirDogsMeta ? reservoirDogsMeta.getAttribute("content") || "http://192.168.1.53:8080" : "http://192.168.1.53:8080"
 console.log(reservoirDogs)
 const reservoir = new Reservoir(reservoirDogs)
 try {
     reservoir.read({ pseudo: 'christophet60' })
         .then(data => {
             console.log('GET response:', data)
-            document.getElementById('console').innerHTML += JSON.stringify(data) + "\\n"
+            document.getElementById('console').innerHTML += JSON.stringify(data) + "&#13;&#10;"
         })
         .catch(error => {
             console.log('GET error:', error)
-            document.getElementById('console').innerHTML += error + "\\n"
+            document.getElementById('console').innerHTML += error + "&#13;&#10;"
         });
 } catch (error) {
     console.error('GET error:', error)
-    document.glogetElementById('console').innerHTML += error + "\\n"
+    document.glogetElementById('console').innerHTML += error + "&#13;&#10;"
 
 }
-*/
 
 /*
 import index_sheet from '../css/index.css' assert { type: 'css' };
@@ -275,18 +275,16 @@ class Player {
             scrambled: result.scrambled,
             when: currentDateTimeISO,
         }
-        
-        /*
+
         reservoir.write(postData)
             .then(data => {
                 console.log('POST response:', data)
-                document.getElementById('console').innerHTML += JSON.stringify(data) + "\\n"
-                })
+                document.getElementById('console').innerHTML += JSON.stringify(data) + "&#13;&#10;"
+            })
             .catch(error => {
                 console.log('POST error:', error)
-                document.getElementById('console').innerHTML += error + "\\n"
+                document.getElementById('console').innerHTML += error + "&#13;&#10;"
             });
-        */
 
         // show result
         let resultModal = new bsModal(document.getElementById("result-modal"))

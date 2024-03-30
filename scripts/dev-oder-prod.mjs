@@ -17,7 +17,7 @@ const productionPaths = [
     "< ! - - END livejs for test -->",
     "<!-- BEGIN Google tag -->",
     "<!-- END Google tag -->",
-    "http://truth-reservoir-env.eba-3iuiqiva.eu-north-1.elasticbeanstalk.com/",
+    "https://aletheia-8c78f.oa.r.appspot.com/",
 ];
 const developmentPaths = [
     "<script type=\"module\" src=\"./src/js/index.js\">",
@@ -33,7 +33,7 @@ const developmentPaths = [
     "<!-- END livejs for test -->",
     "<!-- BEGIN Google tag - - >",
     "< ! - - END Google tag -->",
-    "http://192.168.1.53:5000",
+    "http://192.168.1.53:8080",
 ];
 
 // Check if the arrays have the same length
