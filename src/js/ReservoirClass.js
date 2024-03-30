@@ -29,12 +29,16 @@ export class Reservoir {
 
             fetch(url)
                 .then(response => {
-                    if (!response.ok) {
+                    if (response.status === 204) {
+                        resolve(); // Resolve with no data if status is 204
+                    } else if (!response.ok) {
                         throw new Error('Network response was not ok');
                     }
                     return response.json();
                 })
-                .then(json => resolve(json))
+                .then(json => {
+                    resolve(json)
+                })
                 .catch(error => reject(error));
         });
     }

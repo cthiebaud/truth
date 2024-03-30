@@ -22,6 +22,10 @@ function reservoirShowBest() {
     try {
         reservoir.best()
             .then(data => {
+                if (typeof data === "undefined") {
+                    console.log("GET response ok, but with no data (204)")
+                    return
+                }
                 console.log('GET response:', data)
                 {
                     [...document.querySelectorAll('#cloche2 svg')].forEach(elem => {
@@ -31,6 +35,7 @@ function reservoirShowBest() {
                 document.getElementById(`result-level-${data.level}2`).style.display = 'block'
                 document.getElementById(`result-scrambled-${data.scrambled}2`).style.display = 'block'
                 document.getElementById('result-elapsed2').innerHTML = Utils.formatDuration(data.elapsed, 'milliseconds')
+                document.getElementById('result-pseudo2').innerHTML = data.pseudo
             })
             .catch(error => {
                 console.log('GET error:', error)
