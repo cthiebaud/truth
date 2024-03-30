@@ -1,6 +1,6 @@
 export class Store {
     #database
-    #ref = 'users'
+    #ref = 'scores'
 
     constructor() {
         /*

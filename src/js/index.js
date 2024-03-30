@@ -254,8 +254,9 @@ class Player {
             const hours = String(now.getUTCHours()).padStart(2, '0');
             const minutes = String(now.getUTCMinutes()).padStart(2, '0');
             const seconds = String(now.getUTCSeconds()).padStart(2, '0');
+            const milliseconds = String(now.getUTCMilliseconds()).padStart(3, '0'); // Pad to ensure 3 digits
 
-            const isoDateTime = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}Z`;
+            const isoDateTime = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}.${milliseconds}Z`;
 
             return isoDateTime;
         }
@@ -275,7 +276,7 @@ class Player {
         Utils.safeGetElementByIdThen('result-timestamp', (element, arg) => { element.innerHTML = arg }, currentDate.toLocaleString('en-US', options));
 
         const postData = {
-            pseudo: 'christophet60',
+            pseudo: 'christophe',
             level: result.level,
             elapsed: Math.round(result.timerDuration),
             erred: result.erred.value,
