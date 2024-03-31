@@ -24,6 +24,28 @@ export class Utils {
         return isFinite(num) && !isNaN(num);
     }
 
+    static formatReadableDateLong(isoDateString) {
+        const date = new Date(isoDateString);
+        const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+        return date.toLocaleDateString('en-US', options);
+    }
+
+    static formatReadableDate(isoDateString) {
+        const date = new Date(isoDateString);
+        
+        const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: false };
+        const dateFormatter = new Intl.DateTimeFormat('en-US', timeOptions);
+        const time = dateFormatter.format(date);
+    
+        // Format day, month, and year manually
+        const day = ('0' + date.getDate()).slice(-2);
+        const monthAbbrev = date.toLocaleString('en-US', { month: 'short' });
+        const year = date.getFullYear();
+    
+        // Format the date string as desired
+        return `${day} ${monthAbbrev} ${year} · ${time}`;
+    }
+
     static formatDuration(duration, type = 'seconds') {
         if (type !== 'seconds' && type !== 'milliseconds') {
             throw new Error("Invalid 'type' parameter. 'type' must be either 'seconds' or 'milliseconds'.");
