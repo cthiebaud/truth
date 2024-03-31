@@ -62,7 +62,7 @@ if (workbox) {
     { revision: 'e7e93808bde4ceead0f0bb8727c817fa', url: 'favicons/mstile-150x150.png' },
     { revision: '2f7e34960fd437beaa92f3b04c5c3050', url: 'favicons/README.md' },
     { revision: 'c9ce66f4033637c701aba2c5f3ca112c', url: 'favicons/safari-pinned-tab.svg' },
-    { revision: 'd28969fb07da6b16dd58d98876f03705', url: 'index.html' },
+    { revision: 'ad0b97a01b218fe599347ddc241395d7', url: 'index.html' },
     { revision: '07aa5b31afa0d30e1f8e35d882383875', url: 'manifest.json' },
     { revision: '65f500c080e0bcafbf3df76ec06b18d1', url: 'QUICK-GUIDE.md' },
     { revision: '51c2ded05c36695f5d3cf35a4bc2e155', url: 'README.it.md' },
@@ -73,7 +73,7 @@ if (workbox) {
     { revision: 'f44c94b7ffb001f058112e63361ea674', url: 'dist/css/index.min.css' },
     { revision: '4394f7fd34e06a8fb6d1882afffe7069', url: 'dist/css/tables.min.css' },
     { revision: '0373d0a2c49b253c3bd232129592df01', url: 'dist/css/timer.min.css' },
-    { revision: 'eff59e45fad4ffa1bd5c5bf8cf4b138e', url: 'dist/js/bundle.min.js' },
+    { revision: '730854cffa18eb6edb640166099b76c0', url: 'dist/js/bundle.min.js' },
   ])
 
   // Cache Google Fonts with a stale-while-revalidate strategy

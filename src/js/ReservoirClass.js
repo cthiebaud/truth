@@ -1,26 +1,69 @@
+// Function to fetch or retrieve the session identifier
+
+// Function to retrieve the session identifier from cookies
+function getCachedSessionIdFromCookie() {
+    const cookies = document.cookie.split('; ');
+    for (const cookie of cookies) {
+        const [name, value] = cookie.split('=');
+        if (name === 'sessionId') {
+            return value;
+        }
+    }
+    return null;
+}
+
+// Function to cache the session identifier as a cookie
+function cacheSessionIdToCookie(sessionId) {
+    document.cookie = `sessionId=${sessionId}; path=/`;
+}
+
 export class Reservoir {
     constructor(baseUrl) {
         this.baseUrl = baseUrl;
     }
 
+    getSessionId() {
+        return new Promise((resolve, reject) => {
+            let sessionId = getCachedSessionIdFromCookie();
+            if (sessionId) {
+                resolve(sessionId);
+            } else {
+                const url = new URL(this.baseUrl + "/sessionId");
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        const newSessionId = data.sessionId;
+                        cacheSessionIdToCookie(newSessionId);
+                        resolve(newSessionId);
+                    })
+                    .catch(error => reject(error));
+            }
+        });
+    }
+
     write(data) {
         return new Promise((resolve, reject) => {
-            fetch(this.baseUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
+            this.getSessionId().then(sessionId => {
+                fetch(this.baseUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Session-Id': sessionId
                 },
-                body: JSON.stringify(data)
-            })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
+                    body: JSON.stringify(data)
                 })
-                .then(json => resolve(json))
-                .catch(error => reject(error));
-        });
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(json => {
+                        resolve(json)
+                    })
+                    .catch(error => reject(error));
+            });
+        })
     }
 
     best() {

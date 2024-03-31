@@ -35,7 +35,7 @@ function reservoirShowBest() {
                 document.getElementById(`result-level-${data.level}2`).style.display = 'block'
                 document.getElementById(`result-scrambled-${data.scrambled}2`).style.display = 'block'
                 document.getElementById('result-elapsed2').innerHTML = Utils.formatDuration(data.elapsed, 'milliseconds')
-                document.getElementById('result-pseudo2').innerHTML = data.pseudo
+                document.getElementById('result-pseudo2').innerHTML = data.sessionId
             })
             .catch(error => {
                 console.log('GET error:', error)
@@ -276,6 +276,7 @@ class Player {
         Utils.safeGetElementByIdThen('result-timestamp', (element, arg) => { element.innerHTML = arg }, currentDate.toLocaleString('en-US', options));
 
         const postData = {
+            sessionId: undefined, // will be set by server using cookie
             pseudo: 'christophe',
             level: result.level,
             elapsed: Math.round(result.timerDuration),
