@@ -18,6 +18,11 @@ const reservoirDogsMeta = document.querySelector("head meta[name='truth-reservoi
 const reservoirDogs = reservoirDogsMeta ? reservoirDogsMeta.getAttribute("content") || "http://192.168.1.53:8080" : "http://192.168.1.53:8080"
 console.log(reservoirDogs)
 const reservoir = new Reservoir(reservoirDogs)
+function formatReadableDate(isoDateString) {
+    const date = new Date(isoDateString);
+    const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+    return date.toLocaleDateString('en-US', options);
+}
 function reservoirShowBest() {
     try {
         reservoir.best()
@@ -36,7 +41,7 @@ function reservoirShowBest() {
                 document.getElementById(`result-scrambled-${data.scrambled}2`).style.display = 'block'
                 document.getElementById('result-elapsed2').innerHTML = Utils.formatDuration(data.elapsed, 'milliseconds')
                 document.getElementById('result-pseudo2').innerHTML = data.sessionId
-                document.getElementById('result-when2').innerHTML = data.when
+                document.getElementById('result-when2').innerHTML = formatReadableDate(data.when) 
             })
             .catch(error => {
                 console.log('GET error:', error)

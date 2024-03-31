@@ -17,7 +17,7 @@ const productionPaths = [
     "< ! - - END livejs for test -->",
     "<!-- BEGIN Google tag -->",
     "<!-- END Google tag -->",
-    "https://aletheia-8c78f.oa.r.appspot.com/",
+    "https://reservoir2.cthiebaud.com",
 ];
 const developmentPaths = [
     "<script type=\"module\" src=\"./src/js/index.js\">",
