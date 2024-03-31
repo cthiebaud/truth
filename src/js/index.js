@@ -12,6 +12,13 @@ import { SoundMachine } from './SoundMachineClass.js'
 import { Result } from './GameClass.js'
 import { Reservoir } from './ReservoirClass.js'
 
+function safeById(id, func) {
+    if (!id) return
+    const elem = document.getElementById(id)
+    if (!elem) return
+    return func(elem)
+}
+
 /*
 */
 const reservoirDogsMeta = document.querySelector("head meta[name='truth-reservoir']")
@@ -26,19 +33,20 @@ function reservoirShowBest() {
                     console.log("GET response ok, but with no data (204)")
                     return
                 }
-                console.log('GET response:', data)
-                /*
-                {
-                    [...document.querySelectorAll('#cloche2 svg')].forEach(elem => {
-                        elem.style.display = 'none'
+                data.forEach(d => {
+                    console.log(d)
+
+                    const suffix = `${d.scrambled ? "scrambled-true" : "scrambled-false"}-${d.level}`
+                    safeById(`result-elapsed-${suffix}`, e => {
+                        e.innerHTML = Utils.formatDuration(d.elapsed, 'milliseconds')
                     })
-                }
-                document.getElementById(`result-level-${data.level}2`).style.display = 'block'
-                document.getElementById(`result-scrambled-${data.scrambled}2`).style.display = 'block'
-                document.getElementById('result-elapsed2').innerHTML = Utils.formatDuration(data.elapsed, 'milliseconds')
-                document.getElementById('result-pseudo2').innerHTML = data.sessionId
-                document.getElementById('result-when2').innerHTML = Utils.formatReadableDate(data.when) 
-                */
+                    safeById(`result-pseudo-${suffix}`, e => {
+                        e.innerHTML = d.sessionId
+                    })
+                    safeById(`result-when-${suffix}`, e => {
+                        e.innerHTML = Utils.formatReadableDate(d.when)
+                    })
+                });
             })
             .catch(error => {
                 console.log('GET error:', error)
@@ -69,13 +77,6 @@ const isiOS = (() => {
         || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
 })()
 console.log(navigator.userAgent, `[${isiOS ? "" : "NOT "}a iOS device]`)
-
-function safeById(id, func) {
-    if (!id) return
-    const elem = document.getElementById(id)
-    if (!elem) return
-    return func(elem)
-}
 
 class CompteARebours {
     #element

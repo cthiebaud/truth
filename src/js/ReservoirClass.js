@@ -72,7 +72,7 @@ export class Reservoir {
 
     best() {
         return new Promise((resolve, reject) => {
-            const url = new URL(this.baseUrl + "/best")
+            const url = new URL(this.baseUrl + "/bests")
 
             fetch(url)
                 .then(response => {
