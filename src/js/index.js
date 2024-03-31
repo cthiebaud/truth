@@ -36,6 +36,7 @@ function reservoirShowBest() {
                 document.getElementById(`result-scrambled-${data.scrambled}2`).style.display = 'block'
                 document.getElementById('result-elapsed2').innerHTML = Utils.formatDuration(data.elapsed, 'milliseconds')
                 document.getElementById('result-pseudo2').innerHTML = data.sessionId
+                document.getElementById('result-when2').innerHTML = data.when
             })
             .catch(error => {
                 console.log('GET error:', error)
@@ -276,7 +277,6 @@ class Player {
         Utils.safeGetElementByIdThen('result-timestamp', (element, arg) => { element.innerHTML = arg }, currentDate.toLocaleString('en-US', options));
 
         const postData = {
-            sessionId: undefined, // will be set by server using cookie
             pseudo: 'christophe',
             level: result.level,
             elapsed: Math.round(result.timerDuration),
@@ -1115,7 +1115,7 @@ window.addEventListener("load", loadEvent => {
             const displayValue = computedStyle.getPropertyValue("display");
             if (displayValue !== 'none') {
                 // edge case when space is pushed
-                if (event.code === 'Space') {
+                if (keyboardEvent.code === 'Space') {
                     playAgain()
                 }
                 return // mute every other keypress when modal is visible
