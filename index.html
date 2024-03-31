@@ -356,48 +356,108 @@
             height: auto;
         }
 
-        .offcanvas #cloche2 {
+        .offcanvas .container {
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             position: absolute;
         }
     </style>
+
+
+
     <div id="offcanvas-left" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="offcanvasLeftLabel">
         <div class="offcanvas-body" style="background-color: #f8f7ef; position: relative;">
             <button type="button" class="btn-close my-absolute-top-right" data-bs-dismiss="offcanvas" aria-label="Close" style="left: unset; margin: 1rem;"></button>
-            <div id="cloche2" class="cloche d-flex flex-column justify-content-evenly align-items-center">
+            <div id="cloche-x-y" class="cloche d-flex flex-column justify-content-evenly align-items-center">
                 <div class="d-flex justify-content-around" style="width: 80%;">
-                    <div id="result-level2" class="result-level">
-                        <svg id="result-level-tortoise2" xmlns="http://www.w3.org/2000/svg">
-                            <use xlink:href="#svg-tortoise"></use>
-                        </svg>
-                        <svg id="result-level-hare2" xmlns="http://www.w3.org/2000/svg">
-                            <use xlink:href="#svg-hare"></use>
-                        </svg>
-                        <svg id="result-level-achilles2" xmlns="http://www.w3.org/2000/svg">
-                            <use xlink:href="#svg-achilles"></use>
+                    <div id="result-level-x-y" class="result-level">
+                        <svg xmlns="http://www.w3.org/2000/svg">
+                            <use xlink:href="#svg-y"></use>
                         </svg>
                     </div>
-                    <div id="result-others2" class="result-others d-flex justify-content-center align-items-center"> <!-- -->
-                        <div id="result-scrambled2">
-                            <svg id="result-scrambled-false2" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
-                                <use xlink:href="#svg-scrambled-false"></use>
-                            </svg>
-                            <svg id="result-scrambled-true2" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
-                                <use xlink:href="#svg-scrambled-true"></use>
+                    <div id="result-order-x-y" class="result-others d-flex justify-content-center align-items-center"> <!-- -->
+                        <div id="result-scrambled" class="result-scrambled">
+                            <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+                                <use xlink:href="#svg-x"></use>
                             </svg>
                         </div>
                     </div>
                 </div>
-                <div class="nowrap-overflow the-font-monospaced" id="result-elapsed2" style="font-size: larger;">0′00″000</div>
-                <div class="nowrap-overflow" id="result-pseudo2">&nbsp;</div>
-                <div class="nowrap-overflow" id="result-when2" style="white-space: nowrap;">&nbsp;</div>
+                <div class="nowrap-overflow the-font-monospaced" id="result-elapsed-x-y" style="font-size: larger;">0′00″000</div>
+                <div class="nowrap-overflow" id="result-pseudo-x-y">christophe</div>
+                <div class="nowrap-overflow" id="result-when-x-y" style="white-space: nowrap;">aujourd'hui</div>
             </div>
             <div class="d-flex flex-column justify-content-center" style="height:100%; margin:0; padding: 0;">
             </div>
         </div>
     </div>
+    <script>
+        // Get the original element to clone
+        const originalElement = document.getElementById("cloche-x-y");
+
+        // Define the possible values for x and y
+        const xValues = ["scrambled-false", "scrambled-true"];
+        const yValues = ["tortoise", "hare", "achilles"];
+
+        // Create a container div for the cloned elements
+        const container = document.createElement("div");
+        container.classList.add("container");
+
+        // Set CSS styles for the container
+        container.style.display = "flex";
+        container.style.flexWrap = "wrap";
+        container.style.justifyContent = "center";
+
+        // Loop through x and y values to create combinations
+        yValues.forEach(y => {
+            xValues.forEach(x => {
+                // Clone the original element
+                const clonedElement = originalElement.cloneNode(true);
+
+                // Update the id and class of the cloned element
+                clonedElement.id = `cloche-${x}-${y}`;
+
+                // Update the ids and xlink:href attributes inside the cloned element
+                updateIdsAndHref(clonedElement, x, y);
+
+                // Apply margin to the cloned element
+                clonedElement.style.margin = "1rem";
+
+                // Append the cloned element to the container
+                container.appendChild(clonedElement);
+            });
+        });
+
+        // Replace the original element with the container
+        originalElement.parentNode.replaceChild(container, originalElement);
+
+        // Function to update ids and xlink:href attributes inside the cloned element
+        function updateIdsAndHref(element, x, y) {
+            // Get all elements with an id attribute inside the cloned element
+            const elementsWithId = element.querySelectorAll("[id]");
+
+            // Loop through each element and update the id
+            elementsWithId.forEach(el => {
+                el.id = el.id.replace("-x-y", `-${x}-${y}`);
+            });
+
+            // Get all <use> elements inside the cloned element
+            const useElements = element.querySelectorAll("svg > use");
+
+            // Loop through each <use> element and update the xlink:href attribute
+            useElements.forEach(use => {
+                let href = use.getAttribute("xlink:href");
+                if (href.includes("-y")) {
+                    href = href.replace("-y", `-${y}`);
+                }
+                if (href.includes("-x")) {
+                    href = href.replace("-x", `-${x}`);
+                }
+                use.setAttribute("xlink:href", href);
+            });
+        }
+    </script>
     <div id="offcanvas-right" class="offcanvas offcanvas-end" tabindex="-1" aria-labelledby="offcanvasRightLabel">
         <!-- div class="offcanvas-header">
         </!-->

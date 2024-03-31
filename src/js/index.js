@@ -27,6 +27,7 @@ function reservoirShowBest() {
                     return
                 }
                 console.log('GET response:', data)
+                /*
                 {
                     [...document.querySelectorAll('#cloche2 svg')].forEach(elem => {
                         elem.style.display = 'none'
@@ -37,6 +38,7 @@ function reservoirShowBest() {
                 document.getElementById('result-elapsed2').innerHTML = Utils.formatDuration(data.elapsed, 'milliseconds')
                 document.getElementById('result-pseudo2').innerHTML = data.sessionId
                 document.getElementById('result-when2').innerHTML = Utils.formatReadableDate(data.when) 
+                */
             })
             .catch(error => {
                 console.log('GET error:', error)
