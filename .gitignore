@@ -5,5 +5,7 @@ packages/
 .ssh/
 *.csv
 .node_env
+.env
+.env.js
 material/firebase/
 index copy.html

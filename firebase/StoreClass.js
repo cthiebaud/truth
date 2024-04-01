@@ -1,8 +1,8 @@
 export class Store {
     #database
-    #ref = 'scores'
+    #ref = 'users'
 
-    constructor() {
+    constructor(apiKey) {
         /*
         // Initialize Firebase
         var firebaseConfig = {
@@ -18,7 +18,7 @@ export class Store {
         // Your web app's Firebase configuration
         // For Firebase JS SDK v7.20.0 and later, measurementId is optional
         const firebaseConfig = {
-            apiKey: "AIzaSyA0uVtggHOM_MN4O_AUTRmVtjXTUIdoJEE",
+            apiKey: apiKey,
             authDomain: "aletheia-8c78f.firebaseapp.com",
             projectId: "aletheia-8c78f",
             storageBucket: "aletheia-8c78f.appspot.com",

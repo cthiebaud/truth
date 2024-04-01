@@ -29,13 +29,23 @@
     </div>
 
     <!-- Firebase JavaScript SDK -->
-        <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-database.js"></script>
+
+    <!--
+        sample .env.js :
+            window.env = {
+                FIREBASE_API_KEY: 'you_firebase_api_key',
+            }
+        MUST BE .gitignored!!!
+    -->
+    <script src=".env.js"></script>
 
     <script type="module">
         import { Store } from './StoreClass.js'
 
-        const store = new Store()
+        const apiKey = window.env.FIREBASE_API_KEY; // Retrieve API key from environment variable
+        const store = new Store(apiKey);
 
         // Get elements
         var userInfo = document.getElementById('user-info');
