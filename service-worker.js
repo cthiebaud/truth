@@ -50,6 +50,7 @@ if (workbox) {
     { revision: '2272b2d03f9c93b5ea2de376922d4f09', url: 'assets/svg/greek_meander.svg' },
     { revision: '17bb52edd4aa8d620e56daf91f7b3063', url: 'assets/svg/internet-svgrepo-com.svg' },
     { revision: '9541a4c8b4b3a1139c939f9702c2e872', url: 'assets/svg/laurel-removebg-preview-inkscape-normalized.svg' },
+    { revision: 'c6db2025cb36349c7d8098baf030d732', url: 'assets/svg/laurel.svg' },
     { revision: 'be67bfff0c1a385130a0e3c01f6b9e75', url: 'assets/svg/shuffle.svg' },
     { revision: '8b8aa3dabe5a8d2aeaa74a3fc1cefd4c', url: "assets/svg/Wikipedia's_W.svg" },
     { revision: '5ff5f5c1ecf6b29ba270ddbd45ff3438', url: 'favicon.ico' },
