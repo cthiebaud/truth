@@ -283,11 +283,12 @@ class Player {
 
         if (!isAdmin) {
             const postData = {
-                pseudo: 'anonymous',
+                pseudo: isAdmin ? 'christophe' : 'anonymous',
                 level: result.level,
                 elapsed: Math.round(result.timerDuration),
                 erred: result.erred.value,
                 unconcealed: result.unconcealed.value,
+                victory: (result.erred.value === 0 && result.unconcealed.value === 32),
                 symbol: result.displayMode,
                 scrambled: result.scrambled,
                 when: currentDateTimeISO,
