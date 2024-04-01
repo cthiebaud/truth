@@ -135,7 +135,7 @@ const postData = {
     level: 'achilles',
     elapsed: 20000,
     erred: 0,
-    revealed: 32,
+    unconcealed: 32,
     symbol: 'canonical',
     scrambled: true
 }

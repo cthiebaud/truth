@@ -31,7 +31,7 @@ export class Result {
     #timerDuration
     #elapsed
     #erred
-    #revealed
+    #unconcealed
     #level
     #displayMode
     #scrambled
@@ -47,7 +47,7 @@ export class Result {
         this.#timerDuration = undefined
         this.#elapsed = new ResultProperty(1)
         this.#erred = new ResultProperty(0)
-        this.#revealed = new ResultProperty(0)
+        this.#unconcealed = new ResultProperty(0)
     }
 
     // Getter for level
@@ -110,7 +110,7 @@ export class Result {
 
     // Getter for unconcealed
     get unconcealed() {
-        return this.#revealed
+        return this.#unconcealed
     }
 
     get timerDuration() {

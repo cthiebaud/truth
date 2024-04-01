@@ -19,6 +19,8 @@ function safeById(id, func) {
     return func(elem)
 }
 
+let isAdmin = false
+
 /*
 */
 const reservoirDogsMeta = document.querySelector("head meta[name='truth-reservoir']")
@@ -279,25 +281,27 @@ class Player {
 
         Utils.safeGetElementByIdThen('result-timestamp', (element, arg) => { element.innerHTML = arg }, currentDate.toLocaleString('en-US', options));
 
-        const postData = {
-            pseudo: 'christophe',
-            level: result.level,
-            elapsed: Math.round(result.timerDuration),
-            erred: result.erred.value,
-            revealed: result.unconcealed.value,
-            symbol: result.displayMode,
-            scrambled: result.scrambled,
-            when: currentDateTimeISO,
-        }
+        if (!isAdmin) {
+            const postData = {
+                pseudo: 'anonymous',
+                level: result.level,
+                elapsed: Math.round(result.timerDuration),
+                erred: result.erred.value,
+                unconcealed: result.unconcealed.value,
+                symbol: result.displayMode,
+                scrambled: result.scrambled,
+                when: currentDateTimeISO,
+            }
 
-        reservoir.write(postData)
-            .then(data => {
-                console.log('POST response:', data)
-                reservoirShowBest()
-            })
-            .catch(error => {
-                console.log('POST error:', error)
-            });
+            reservoir.write(postData)
+                .then(data => {
+                    console.log('POST response:', data)
+                    reservoirShowBest()
+                })
+                .catch(error => {
+                    console.log('POST error:', error)
+                });
+        }
 
         // show result
         let resultModal = new bsModal(document.getElementById("result-modal"))
@@ -1196,6 +1200,37 @@ window.addEventListener("load", loadEvent => {
         })
     }
     // END CAROUSEL
+
+    // BEGIN ADMIN
+    let clickCount = 0;
+    const consecutiveClicksNeeded = 7;
+    let clickTimeout;
+
+    document.getElementById('αβ').addEventListener('click', function () {
+        if (clickTimeout) {
+            clearTimeout(clickTimeout); // Clear previous timeout if exists
+        }
+
+        clickCount++;
+
+        if (clickCount === consecutiveClicksNeeded) {
+            grantAdminRole();
+            clickCount = 0; // Reset click count after granting admin role
+        } else {
+            // Set a timeout for the next click
+            clickTimeout = setTimeout(() => {
+                clickCount = 0; // Reset click count if timeout reached
+            }, 10000); // 10 seconds timeout
+        }
+    });
+
+    function grantAdminRole() {
+        // Grant admin role logic here
+        isAdmin = true;
+        alert('Admin role granted! Your scores will not be saved.');
+    }
+    // END ADMIN
+
 
 })
 
