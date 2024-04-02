@@ -64,7 +64,7 @@ if (workbox) {
     { revision: 'e7e93808bde4ceead0f0bb8727c817fa', url: 'favicons/mstile-150x150.png' },
     { revision: '2f7e34960fd437beaa92f3b04c5c3050', url: 'favicons/README.md' },
     { revision: 'c9ce66f4033637c701aba2c5f3ca112c', url: 'favicons/safari-pinned-tab.svg' },
-    { revision: '70898dfe69d6c87f8d7b75828c14ead8', url: 'index.html' },
+    { revision: 'e2ed684fa4458ac55936af3d6040a403', url: 'index.html' },
     { revision: '07aa5b31afa0d30e1f8e35d882383875', url: 'manifest.json' },
     { revision: '65f500c080e0bcafbf3df76ec06b18d1', url: 'QUICK-GUIDE.md' },
     { revision: '51c2ded05c36695f5d3cf35a4bc2e155', url: 'README.it.md' },
