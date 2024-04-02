@@ -67,7 +67,8 @@
     <link rel="stylesheet" href='/dist/css/tables.min.css'>
     <link rel="stylesheet" href='/dist/css/timer.min.css'>
 
-    <meta name="truth-reservoir" content="https://reservoir2.cthiebaud.com">
+    <!-- -->
+    <meta name="truth-reservoir-url" content="https://reservoir2.cthiebaud.com">
 
     <!-- BEGIN livejs for test - - >
     <script type="text/javascript" src="https://livejs.com/live.js"></script>
@@ -375,20 +376,29 @@
             overflow-x: hidden;
             text-overflow: ellipsis;
         }
+
+        #offcanvas-left .offcanvas-body {
+            background-color: #f8f7ef;
+        }
+
+        #session-id {
+            display: inline-block;
+            text-transform: lowercase;
+            
+        }
     </style>
 
     <div id="offcanvas-left" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="offcanvasLeftLabel" data-bs-keyboard="false">
-        <div class="offcanvas-body" style="background-color: #f8f7ef; position: relative;">
+        <div class="offcanvas-body">
             <button type="button" class="btn-close my-absolute-top-right" data-bs-dismiss="offcanvas" aria-label="Close" style="left: unset; margin: 1rem;"></button>
 
             <div id="session-id-container" class="my-absolute-bottom-left">
-                <div id="session-id" class="p-2 the-font-monospaced text-secondary" contenteditable="false" style="display: inline-block">
+                <div id="session-id" class="p-2 the-font-monospaced text-secondary" contenteditable="false">
                     Your Session ID Here
                 </div>
                 <img src="/assets/svg/edit-1-svgrepo-com.svg" alt="edit session-id">
             </div>
-            
-            <div id="session-id" class="p-2 the-font-monospaced my-absolute-bottom-left text-secondary"></div>
+
             <div id="cloche-x-y" class="cloche d-flex flex-column justify-content-evenly align-items-center">
                 <div class="d-flex justify-content-around" style="width: 80%;">
                     <div id="result-level-x-y" class="result-level">
@@ -408,8 +418,7 @@
                 <div class="nowrap-overflow" id="result-pseudo-x-y">&nbsp;</div>
                 <div class="nowrap-overflow" id="result-when-x-y" style="font-size: smaller;">&nbsp;</div>
             </div>
-            <div class="d-flex flex-column justify-content-center" style="height:100%; margin:0; padding: 0;">
-            </div>
+
         </div>
     </div>
     <script>

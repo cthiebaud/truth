@@ -11,6 +11,7 @@ import { Timer } from './TimerClass.js'
 import { SoundMachine } from './SoundMachineClass.js'
 import { Result } from './GameClass.js'
 import { Reservoir } from './ReservoirClass.js'
+import { SessionId } from './SessionIdClass.js'
 
 function safeById(id, func) {
     if (!id) return
@@ -20,6 +21,8 @@ function safeById(id, func) {
 }
 
 let isAdmin = false
+
+// BEGIN RESERVOIR
 let reservoir = null
 function reservoirShowBest() {
     try {
@@ -51,6 +54,7 @@ function reservoirShowBest() {
         console.error('GET error:', error)
     }
 }
+    // END RESERVOIR
 
 /*
 import index_sheet from '../css/index.css' assert { type: 'css' };
@@ -984,6 +988,15 @@ window.addEventListener("load", loadEvent => {
 
     const originalElementsArray = doIt()
 
+    // BEGIN RESERVOIR
+    const reservoirMetaContent = document.querySelector("head meta[name='truth-reservoir-url']")?.getAttribute("content") || "http://localhost:8080";
+
+    console.log(reservoirMetaContent)
+    reservoir = new Reservoir(reservoirMetaContent)
+    reservoirShowBest()
+    const sessionIdHandler = new SessionId(reservoir);
+    // END RESERVOIR
+
     function safe_shuffle() {
         if (player.isPlaying) return
         scrambleIt(originalElementsArray)
@@ -1225,79 +1238,6 @@ window.addEventListener("load", loadEvent => {
         alert('Admin role granted! Your scores will not be saved.');
     }
     // END ADMIN
-
-    // BEGIN RESERVOIR
-    const reservoirDogsMeta = document.querySelector("head meta[name='truth-reservoir']")
-    const reservoirDogs = reservoirDogsMeta ? reservoirDogsMeta.getAttribute("content") || "http://192.168.1.53:8080" : "http://192.168.1.53:8080"
-    console.log(reservoirDogs)
-    reservoir = new Reservoir(reservoirDogs)
-    reservoirShowBest()
-    // END RESERVOIR
-
-    // BEGIN EDIT SESSION-ID
-    const sessionIdContainer = document.getElementById("session-id-container");
-    const sessionIdDiv = document.getElementById("session-id");
-    let originalValue = sessionIdDiv.textContent.trim();
-
-    // Enter edit mode
-    function enterEditMode() {
-        sessionIdDiv.contentEditable = true;
-        sessionIdDiv.focus();
-        originalValue = sessionIdDiv.textContent.trim();
-    }
-
-    // Abort edit mode
-    function abortEditMode() {
-        sessionIdDiv.textContent = originalValue;
-        sessionIdDiv.contentEditable = false;
-    }
-
-    // Validate edit mode
-    function validateEditMode() {
-        const sessionId = sessionIdDiv.textContent.trim();
-        if (/^[a-zA-Z0-9\-]+$/.test(sessionId)) {
-            sessionIdDiv.contentEditable = false;
-            console.log("Valid session ID:", sessionId);
-            reservoir.changeSessionId(sessionId)
-        } else {
-            alert("Invalid session ID! User-defined session ID must not be null and must contain only alphanumeric characters or the hyphen ('-').");
-            abortEditMode();
-        }
-    }
-
-    // Event listener to start edit session by clicking on the container
-    sessionIdContainer.addEventListener("click", function (event) {
-        if (!sessionIdDiv.isContentEditable) {
-            event.preventDefault();
-            event.stopPropagation();
-            enterEditMode();
-        }
-    });
-
-    // Event listener to handle keydown events
-    document.addEventListener("keydown", function (event) {
-        if (sessionIdDiv.isContentEditable) {
-            if (event.key === "Enter") {
-                event.preventDefault();
-                event.stopPropagation();
-                validateEditMode();
-            } else if (event.key === "Escape") {
-                event.preventDefault();
-                event.stopPropagation();
-                abortEditMode();
-            }
-        }
-    });
-
-    // Event listener to validate edit mode when clicking outside the container
-    document.addEventListener("click", function (event) {
-        if (sessionIdDiv.isContentEditable && event.target !== sessionIdDiv) {
-            event.preventDefault();
-            event.stopPropagation();
-            validateEditMode();
-        }
-    });
-    // END EDIT SESSION-ID
 
 
 })
