@@ -1,7 +1,5 @@
-// Function to fetch or retrieve the session identifier
-
 // Function to retrieve the session identifier from cookies
-function getCachedSessionIdFromCookie() {
+function cachedSessionIdFromCookie() {
     const cookies = document.cookie.split('; ')
     for (const cookie of cookies) {
         const [name, value] = cookie.split('=')
@@ -22,17 +20,32 @@ function cacheSessionIdToCookie(sessionId) {
 
 
 export class Reservoir {
+    #baseUrl
+    #sessionId
     constructor(baseUrl) {
-        this.baseUrl = baseUrl
+        this.#baseUrl = baseUrl
+        this.fetchSessionId().then(sessionId => {
+            this.setSessionId(sessionId)
+        })
     }
 
-    getSessionId() {
+    changeSessionId(newSessionId) {
+        cacheSessionIdToCookie(newSessionId)
+        this.setSessionId(newSessionId)
+    }
+
+    setSessionId(sessionId) {
+        this.#sessionId = sessionId
+        document.getElementById("session-id").innerText = this.#sessionId
+    }
+
+    fetchSessionId() {
         return new Promise((resolve, reject) => {
-            let sessionId = getCachedSessionIdFromCookie()
-            if (sessionId) {
-                resolve(sessionId)
+            const oldSessionId = cachedSessionIdFromCookie()
+            if (oldSessionId) {
+                resolve(oldSessionId)
             } else {
-                const url = new URL(this.baseUrl + "/sessionId")
+                const url = new URL(this.#baseUrl + "/sessionId")
                 fetch(url)
                     .then(response => response.json())
                     .then(data => {
@@ -40,39 +53,38 @@ export class Reservoir {
                         cacheSessionIdToCookie(newSessionId)
                         resolve(newSessionId)
                     })
-                    .catch(error => reject(error))
+                    .catch(error => {
+                        reject(error + " - at url " + url)
+                    })
             }
         })
     }
 
     write(data) {
         return new Promise((resolve, reject) => {
-            this.getSessionId().then(sessionId => {
-                fetch(this.baseUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Session-Id': sessionId
-                    },
-                    body: JSON.stringify(data)
-                })
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Network response was not ok')
-                        }
-                        return response.json()
-                    })
-                    .then(json => {
-                        resolve(json)
-                    })
-                    .catch(error => reject(error))
+            fetch(this.#baseUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Session-Id': this.#sessionId
+                },
+                body: JSON.stringify(data)
+            }).then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok')
+                }
+                return response.json()
+            }).then(json => {
+                resolve(json)
+            }).catch(error => {
+                reject(error)
             })
         })
     }
 
     best() {
         return new Promise((resolve, reject) => {
-            const url = new URL(this.baseUrl + "/bests")
+            const url = new URL(this.#baseUrl + "/bests")
 
             fetch(url)
                 .then(response => {
@@ -86,13 +98,15 @@ export class Reservoir {
                 .then(json => {
                     resolve(json)
                 })
-                .catch(error => reject(error))
+                .catch(error => {
+                    reject(error)
+                })
         })
     }
 
     read(params = {}) {
         return new Promise((resolve, reject) => {
-            const url = new URL(this.baseUrl)
+            const url = new URL(this.#baseUrl)
             Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
 
             fetch(url)
@@ -102,14 +116,18 @@ export class Reservoir {
                     }
                     return response.json()
                 })
-                .then(json => resolve(json))
-                .catch(error => reject(error))
+                .then(json => {
+                    resolve(json)
+                })
+                .catch(error => {
+                    reject(error)
+                })
         })
     }
 
     erase(params = {}) {
         return new Promise((resolve, reject) => {
-            const url = new URL(this.baseUrl)
+            const url = new URL(this.#baseUrl)
             Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
 
             fetch(url, { method: 'DELETE' })
@@ -119,37 +137,12 @@ export class Reservoir {
                     }
                     return response.text()
                 })
-                .then(text => resolve(text))
-                .catch(error => reject(error))
+                .then(text => {
+                    resolve(text)
+                })
+                .catch(error => {
+                    reject(error)
+                })
         })
     }
 }
-
-/*
-// Example usage:
-const reservoir = new Reservoir('http://192.168.1.53:8080')
-
-// POST example
-const postData = {
-    pseudo: 'christophet60',
-    level: 'achilles',
-    elapsed: 20000,
-    erred: 0,
-    unconcealed: 32,
-    symbol: 'canonical',
-    scrambled: true
-}
-reservoir.write(postData)
-    .then(data => console.log('POST response:', data))
-    .catch(error => console.error('POST error:', error))
-
-// GET example
-reservoir.read({ pseudo: 'christophet60' })
-    .then(data => console.log('GET response:', data))
-    .catch(error => console.error('GET error:', error))
-
-// DELETE example
-reservoir.erase({ pseudo: 'christophet60' })
-    .then(data => console.log('DELETE response:', data))
-    .catch(error => console.error('DELETE error:', error))
-*/

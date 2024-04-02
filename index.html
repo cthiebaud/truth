@@ -342,6 +342,12 @@
             z-index: 1030;
         }
 
+        .offcanvas .my-absolute-bottom-left {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+
         .offcanvas #embellished-separator {
             display: flex;
             justify-content: center;
@@ -371,9 +377,18 @@
         }
     </style>
 
-    <div id="offcanvas-left" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="offcanvasLeftLabel">
+    <div id="offcanvas-left" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="offcanvasLeftLabel" data-bs-keyboard="false">
         <div class="offcanvas-body" style="background-color: #f8f7ef; position: relative;">
             <button type="button" class="btn-close my-absolute-top-right" data-bs-dismiss="offcanvas" aria-label="Close" style="left: unset; margin: 1rem;"></button>
+
+            <div id="session-id-container" class="my-absolute-bottom-left">
+                <div id="session-id" class="p-2 the-font-monospaced text-secondary" contenteditable="false" style="display: inline-block">
+                    Your Session ID Here
+                </div>
+                <img src="/assets/svg/edit-1-svgrepo-com.svg" alt="edit session-id">
+            </div>
+            
+            <div id="session-id" class="p-2 the-font-monospaced my-absolute-bottom-left text-secondary"></div>
             <div id="cloche-x-y" class="cloche d-flex flex-column justify-content-evenly align-items-center">
                 <div class="d-flex justify-content-around" style="width: 80%;">
                     <div id="result-level-x-y" class="result-level">
@@ -463,7 +478,7 @@
             });
         }
     </script>
-    <div id="offcanvas-right" class="offcanvas offcanvas-end" tabindex="-1" aria-labelledby="offcanvasRightLabel">
+    <div id="offcanvas-right" class="offcanvas offcanvas-end" tabindex="-1" aria-labelledby="offcanvasRightLabel" data-bs-keyboard="false">
         <!-- div class="offcanvas-header">
         </!-->
         <div class="offcanvas-body">
@@ -554,8 +569,8 @@
                         data-bs-target="#offcanvas-left" aria-controls="offcanvas-left" title="Show Quick Guide">
                         <img src="/assets/svg/laurel-removebg-preview-inkscape-normalized.svg" alt="laurel" style="width: 24px; height:24px;">
                     </button>
-                    <button id="infos" type="button" class="align-self-end shadow btn my-button btn-sm btn-outline-secondary the-font-monospaced" aria-label="infos" data-bs-toggle="offcanvas"
-                        data-bs-target="#offcanvas-right" aria-controls="offcanvas-right" title="Show Quick Guide">
+                    <button id="infos" type="button" class="align-self-end shadow btn my-button btn-sm btn-outline-secondary the-font-monospaced" aria-label="infos"
+                        data-bs-toggle="offcanvas" data-bs-target="#offcanvas-right" aria-controls="offcanvas-right" title="Show Quick Guide">
                         i
                     </button>
                 </div>
