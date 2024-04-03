@@ -61,7 +61,7 @@ export class SessionId {
 
     // Validate edit mode
     validateEditMode() {
-        const sessionId = this.#sessionIdDiv.textContent.trim();
+        const sessionId = this.#sessionIdDiv.textContent.trim().toLowerCase()
         if (sessionId.length === 0 || /^[a-z0-9\-]+$/.test(sessionId)) {
             this.#sessionIdDiv.contentEditable = false;
             console.log("Valid session ID:", sessionId);
