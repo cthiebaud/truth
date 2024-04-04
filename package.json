@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "unused": "node scripts/unused-svgs.mjs",
     "dev": "NODE_ENV=development node scripts/dev-oder-prod.mjs",
     "prod": "NODE_ENV=production node scripts/dev-oder-prod.mjs",
     "build": "npm run prod && npm-run-all -s build:*",
