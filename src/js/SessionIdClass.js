@@ -57,7 +57,7 @@ export class SessionId {
         selection.addRange(range);
         this.#originalValue = this.#sessionIdDiv.textContent.trim();
     }
-    
+
     // Abort edit mode
     abortEditMode() {
         this.#sessionIdDiv.textContent = this.#originalValue;
@@ -70,7 +70,12 @@ export class SessionId {
         if (sessionId.length === 0 || /^[a-z0-9\-]+$/.test(sessionId)) {
             this.#sessionIdDiv.contentEditable = false;
             console.log("Valid session ID:", sessionId);
-            this.#reservoir.changeUserSession(sessionId)
+            this.#reservoir.changeUserSession({
+                sessionId: sessionId,
+                name: null,
+                didascalia: null,
+                description: null
+            })
         } else {
             alert("Invalid session ID! User-defined session ID must contain only lowercase alphanumeric characters or the hyphen ('-'), or be empty.");
             this.abortEditMode();

@@ -1,9 +1,9 @@
 // Function to retrieve the session identifier from cookies
-function cachedSessionIdFromCookie() {
+function cachedUserSessionFromCookie() {
     const cookies = document.cookie.split('; ')
     for (const cookie of cookies) {
         const [name, value] = cookie.split('=')
-        if (name === 'sessionId') {
+        if (name === 'user-session') {
             return JSON.parse(value)
         }
     }
@@ -11,11 +11,11 @@ function cachedSessionIdFromCookie() {
 }
 
 // Function to cache the session identifier as a cookie
-function cacheSessionIdToCookie(sessionId) {
+function cacheUserSessionToCookie(userSession) {
     var expirationDate = new Date();
     expirationDate.setDate(expirationDate.getDate() + 365); // Set expiration date to 365 days from now
 
-    document.cookie = `sessionId=${JSON.stringify(sessionId)}; expires=${expirationDate.toUTCString()}; path=/`;
+    document.cookie = `user-session=${JSON.stringify(userSession)}; expires=${expirationDate.toUTCString()}; path=/`;
 }
 
 
@@ -24,30 +24,32 @@ export class Reservoir {
     #userSession
     constructor(baseUrl) {
         this.#baseUrl = baseUrl
-        this.fetchSessionId().then(([sessionId, isNew]) => {
+        this.fetchUserSession().then(([userSession, isNew]) => {
             if (isNew) {
-                this.changeUserSession(sessionId)                
+                this.changeUserSession(userSession)
             } else {
-                this.setSessionId(sessionId)
+                this.setUserSession(userSession)
             }
         })
     }
 
     changeUserSession(newUserSession) {
-        cacheSessionIdToCookie(newUserSession)
-        this.setSessionId(newUserSession)
+        if (this.#userSession?.sessionId !== newUserSession?.sessionId) {
+            cacheUserSessionToCookie(newUserSession)
+            this.setUserSession(newUserSession)
+        }
     }
 
-    setSessionId(sessionId) {
-        this.#userSession = sessionId
+    setUserSession(userSession) {
+        this.#userSession = userSession
         document.getElementById("session-id").innerText = this.#userSession.sessionId
     }
 
-    fetchSessionId() {
+    fetchUserSession() {
         return new Promise((resolve, reject) => {
-            const oldSessionId = cachedSessionIdFromCookie()
-            if (oldSessionId) {
-                resolve([oldSessionId, false])
+            const oldUserSession = cachedUserSessionFromCookie()
+            if (oldUserSession) {
+                resolve([oldUserSession, false])
             } else {
                 const url = new URL(this.#baseUrl + "/user-session")
                 fetch(url)
