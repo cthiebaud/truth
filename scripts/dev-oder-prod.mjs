@@ -21,7 +21,7 @@ const productionPaths = [
 ];
 const developmentPaths = [
     "<script type=\"module\" src=\"./src/js/index.js\">",
-    "'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css'",
+    "'/src/css/bootstrap.css'",
     "'/src/css/fonts.css'",
     "'/src/css/index.css'",
     "'/src/css/tables.css'",
