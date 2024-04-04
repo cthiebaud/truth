@@ -44,6 +44,7 @@ if (workbox) {
     { revision: '7feeedb3b21958e682727c240324fe4c', url: 'assets/png/manifest-icon-512.maskable.png' },
     { revision: '1cbc611d4088068fbc581ea4f8513ea4', url: 'assets/svg/android-svgrepo-com.svg' },
     { revision: '9467c2d0e30f439cd3724b9e7f46df50', url: 'assets/svg/Apple_logo_grey.svg' },
+    { revision: 'f95ee8d9afa6305360334da00f701b56', url: 'assets/svg/book-open-svgrepo-com.svg' },
     { revision: '5e11139f341f0814dcafae58c6c0270e', url: 'assets/svg/construction-cone.svg' },
     { revision: '098276776a93eb7b8cb86441e14a0f2b', url: 'assets/svg/edit-2-svgrepo-com.svg' },
     { revision: 'fd7de01faf72d128e25a0e49c4d53c4d', url: 'assets/svg/github.svg' },
@@ -62,7 +63,7 @@ if (workbox) {
     { revision: 'e7e93808bde4ceead0f0bb8727c817fa', url: 'favicons/mstile-150x150.png' },
     { revision: '2f7e34960fd437beaa92f3b04c5c3050', url: 'favicons/README.md' },
     { revision: 'c9ce66f4033637c701aba2c5f3ca112c', url: 'favicons/safari-pinned-tab.svg' },
-    { revision: '6b97d8c733303f1ff3156b423bd22ccc', url: 'index.html' },
+    { revision: 'ba771e08862b50c2ab9756f32d1730af', url: 'index.html' },
     { revision: '07aa5b31afa0d30e1f8e35d882383875', url: 'manifest.json' },
     { revision: '31d59a76c98b496892348d866474bfb8', url: 'QUICK-GUIDE.md' },
     { revision: '51c2ded05c36695f5d3cf35a4bc2e155', url: 'README.it.md' },
@@ -73,7 +74,7 @@ if (workbox) {
     { revision: '6768e4a8abe3cb2ee8e24488ecd89d94', url: 'dist/css/index.min.css' },
     { revision: '4394f7fd34e06a8fb6d1882afffe7069', url: 'dist/css/tables.min.css' },
     { revision: '0373d0a2c49b253c3bd232129592df01', url: 'dist/css/timer.min.css' },
-    { revision: '3b296fe725d713f1231fbcb7dca3197c', url: 'dist/js/bundle.min.js' },
+    { revision: 'b6e8642870416d9b803ff4b2051d7593', url: 'dist/js/bundle.min.js' },
   ])
 
   // Cache Google Fonts with a stale-while-revalidate strategy

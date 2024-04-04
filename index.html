@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <!-- BEGIN Google tag - - >
+    <!-- BEGIN Google tag -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-TPVM6DVS53"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -11,7 +11,7 @@
 
         gtag('config', 'G-TPVM6DVS53');
     </script>
-    < ! - - END Google tag -->
+    <!-- END Google tag -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Unconcealing of Truths</title>
@@ -60,19 +60,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Math&family=Victor+Mono&display=swap" rel="stylesheet">
 
     <!-- /* changed by "NODE_ENV=<development|production> node dev-oder-prod.mjs" or "npm run <dev\prod>" */ -->
-    <!-- link rel="stylesheet" href='/src/css/bootstrap.css' -->
-    <link rel="stylesheet" href='/src/css/bootstrap.css'>
-    <link rel="stylesheet" href='/src/css/fonts.css'>
-    <link rel="stylesheet" href='/src/css/index.css'>
-    <link rel="stylesheet" href='/src/css/tables.css'>
-    <link rel="stylesheet" href='/src/css/timer.css'>
+    <!-- link rel="stylesheet" href='/dist/css/bootstrap.min.css' -->
+    <link rel="stylesheet" href='/dist/css/bootstrap.min.css'>
+    <link rel="stylesheet" href='/dist/css/fonts.min.css'>
+    <link rel="stylesheet" href='/dist/css/index.min.css'>
+    <link rel="stylesheet" href='/dist/css/tables.min.css'>
+    <link rel="stylesheet" href='/dist/css/timer.min.css'>
 
     <!-- -->
-    <meta name="truth-reservoir-url" content="http://localhost:8080">
+    <meta name="truth-reservoir-url" content="https://reservoir2.cthiebaud.com">
 
-    <!-- BEGIN livejs for test -->
+    <!-- BEGIN livejs for test - - >
     <script type="text/javascript" src="https://livejs.com/live.js"></script>
-    <!-- END livejs for test -->
+    < ! - - END livejs for test -->
 </head>
 
 <body id="body-id" class="">
@@ -541,11 +541,11 @@
             </div>
             <div id="buttons" class="btn-group btn-group-sm shadow" role="group">
 
-                <!-- BEGIN Button trigger modal for test -->
+                <!-- BEGIN Button trigger modal for test - - >
                 <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#result-modal" title="Show Result Modal Dialog Box">
                     result
                 </button>
-                <!-- END Button trigger modal for test -->
+                < ! - - END Button trigger modal for test -->
 
                 <style>
                     #buttons label.my-button {
@@ -753,7 +753,7 @@
     <!-- scripts -->
     <script>
         /* BEGIN serviceWorker */
-        const serviceWorkerInNavigator = false // 'serviceWorker' in navigator //
+        const serviceWorkerInNavigator = 'serviceWorker' in navigator // false //
         if (serviceWorkerInNavigator) {
             navigator.serviceWorker.register('/service-worker.js')
                 .then((registration) => {
@@ -776,7 +776,7 @@
         }
         /* END serviceWorker */
     </script>
-    <script type="module" src="./src/js/index.js"></script>
+    <script type="module" src="./dist/js/bundle.min.js"></script>
 </body>
 
 </html>
