@@ -50,9 +50,14 @@ export class SessionId {
     enterEditMode() {
         this.#sessionIdDiv.contentEditable = true;
         this.#sessionIdDiv.focus();
+        const selection = window.getSelection();
+        const range = document.createRange();
+        range.selectNodeContents(this.#sessionIdDiv);
+        selection.removeAllRanges();
+        selection.addRange(range);
         this.#originalValue = this.#sessionIdDiv.textContent.trim();
     }
-
+    
     // Abort edit mode
     abortEditMode() {
         this.#sessionIdDiv.textContent = this.#originalValue;
