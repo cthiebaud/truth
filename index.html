@@ -387,10 +387,16 @@
             display: inline-block;
             text-transform: lowercase;
         }
-        
+
         #edit-session-id {
             background-color: #fdfdfb;
-            padding: 0 .3rem;
+            margin: 0 .3rem;
+            padding: 0;
+            border-radius: 1rem;
+            border: 1px solid gray;
+            cursor: pointer;
+            height: 30px;
+            width: 30px;
         }
     </style>
 
@@ -399,7 +405,7 @@
             <button type="button" class="btn-close my-absolute-top-right" data-bs-dismiss="offcanvas" aria-label="Close" style="left: unset; margin: 1rem;"></button>
 
             <div id="session-id-container" class="my-absolute-bottom d-flex">
-                <img id="edit-session-id" src="/assets/svg/edit-user-left-5-svgrepo-com.svg" alt="edit session-id">
+                <img id="edit-session-id" class="align-self-center" src="/assets/svg/edit-user-left-5-svgrepo-com.svg" alt="edit session-id">
                 <div id="session-id" class="p-2 flex-grow-1 the-font-monospaced text-secondary" contenteditable="false">
                     Your Session ID Here
                 </div>
