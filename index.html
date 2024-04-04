@@ -343,10 +343,12 @@
             z-index: 1030;
         }
 
-        .offcanvas .my-absolute-bottom-left {
+        .offcanvas .my-absolute-bottom {
             position: absolute;
             bottom: 0;
             left: 0;
+            right: 0;
+            padding: 0 0.5rem;
         }
 
         .offcanvas #embellished-separator {
@@ -384,7 +386,11 @@
         #session-id {
             display: inline-block;
             text-transform: lowercase;
-            
+        }
+        
+        #edit-session-id {
+            background-color: #fdfdfb;
+            padding: 0 .3rem;
         }
     </style>
 
@@ -392,11 +398,11 @@
         <div class="offcanvas-body">
             <button type="button" class="btn-close my-absolute-top-right" data-bs-dismiss="offcanvas" aria-label="Close" style="left: unset; margin: 1rem;"></button>
 
-            <div id="session-id-container" class="my-absolute-bottom-left">
-                <div id="session-id" class="p-2 the-font-monospaced text-secondary" contenteditable="false">
+            <div id="session-id-container" class="my-absolute-bottom d-flex">
+                <img id="edit-session-id" src="/assets/svg/edit-user-left-5-svgrepo-com.svg" alt="edit session-id">
+                <div id="session-id" class="p-2 flex-grow-1 the-font-monospaced text-secondary" contenteditable="false">
                     Your Session ID Here
                 </div>
-                <img src="/assets/svg/edit-1-svgrepo-com.svg" alt="edit session-id">
             </div>
 
             <div id="cloche-x-y" class="cloche d-flex flex-column justify-content-evenly align-items-center">
