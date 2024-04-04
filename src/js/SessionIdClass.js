@@ -1,6 +1,7 @@
 export class SessionId {
     #sessionIdContainer
     #sessionIdDiv
+    #collapseUserStory
     #originalValue
     #reservoir
 
@@ -9,6 +10,8 @@ export class SessionId {
         this.#sessionIdContainer = document.getElementById("session-id-container");
         this.#sessionIdDiv = document.getElementById("session-id");
         this.#originalValue = this.#sessionIdDiv.textContent.trim();
+
+        const us = this.#reservoir.userSession
 
         // Event listener to start edit session by clicking on the container
         this.#sessionIdContainer.addEventListener("click", (event) => {
@@ -32,7 +35,6 @@ export class SessionId {
             }
         });
 
-        // Event listener to validate edit mode when clicking outside the container
         document.addEventListener("click", (event) => {
             if (this.isEditing() && event.target !== this.#sessionIdDiv) {
                 event.preventDefault();
@@ -66,7 +68,7 @@ export class SessionId {
 
     // Validate edit mode
     validateEditMode() {
-        const sessionId = this.#sessionIdDiv.textContent.trim().toLowerCase()
+        const sessionId = this.#sessionIdDiv.textContent.trim().replaceAll(/\n/g, "").toLowerCase()
         if (sessionId.length === 0 || /^[a-z0-9\-]+$/.test(sessionId)) {
             this.#sessionIdDiv.contentEditable = false;
             console.log("Valid session ID:", sessionId);

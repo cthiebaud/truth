@@ -4,7 +4,8 @@ function cachedUserSessionFromCookie() {
     for (const cookie of cookies) {
         const [name, value] = cookie.split('=')
         if (name === 'user-session') {
-            return JSON.parse(value)
+            const userSession = JSON.parse(value)
+            return userSession.sessionID || null
         }
     }
     return null
@@ -18,17 +19,18 @@ function cacheUserSessionToCookie(userSession) {
     document.cookie = `user-session=${JSON.stringify(userSession)}; expires=${expirationDate.toUTCString()}; path=/`;
 }
 
-
 export class Reservoir {
     #baseUrl
     #userSession
+    #collapseUserStory = document.querySelector("#collapseUserStory .card-body");
+
     constructor(baseUrl) {
         this.#baseUrl = baseUrl
         this.fetchUserSession().then(([userSession, isNew]) => {
             if (isNew) {
                 this.changeUserSession(userSession)
             } else {
-                this.setUserSession(userSession)
+                this.userSession = userSession
             }
         })
     }
@@ -36,13 +38,25 @@ export class Reservoir {
     changeUserSession(newUserSession) {
         if (this.#userSession?.sessionId !== newUserSession?.sessionId) {
             cacheUserSessionToCookie(newUserSession)
-            this.setUserSession(newUserSession)
+            this.userSession = newUserSession
         }
     }
 
-    setUserSession(userSession) {
+    get userSession() {
+        return this.#userSession
+    }
+
+    set userSession(userSession) {
         this.#userSession = userSession
         document.getElementById("session-id").innerText = this.#userSession.sessionId
+        const _ = (_) => _ ? _ : "&nbsp;"
+        this.#collapseUserStory.innerHTML = 
+        `<div>
+            <b>${_(userSession.name)}</b>
+            <span style="float: right;">${userSession.sessionId}</span>
+        </div>
+        <i>${_(userSession.didascalia)}</i>
+        <p>${_(userSession.description)}</p>`
     }
 
     fetchUserSession() {
