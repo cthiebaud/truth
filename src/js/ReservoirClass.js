@@ -57,12 +57,12 @@ export class Reservoir {
         document.getElementById("session-id").innerText = this.#userSession.sessionId
         const _ = (_) => _ ? _ : "&nbsp;"
         this.#collapseUserStory.innerHTML =
-            `<div>
-            <b>${_(userSession.name)}</b>
-            <span class="the-font-monospaced" style="float: right;">${userSession.sessionId}</span>
-        </div>
-        <i>${_(userSession.didascalia)}</i>
-        <p>${_(userSession.description)}</p>`
+`<p>
+    <span class="the-font-monospaced float-end">${userSession.sessionId}</span>
+    <span class="text-nowrap fw-bold">${_(userSession.name)}</span>
+</p>
+<p class="fst-italic">${_(userSession.didascalia)}</p>
+<p>${_(userSession.description)}</p>`
     }
 
     getOrFetchUserSession() {
