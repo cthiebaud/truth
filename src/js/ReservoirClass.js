@@ -59,7 +59,7 @@ export class Reservoir {
         this.#collapseUserStory.innerHTML =
             `<div>
             <b>${_(userSession.name)}</b>
-            <span style="float: right;">${userSession.sessionId}</span>
+            <span class="the-font-monospaced" style="float: right;">${userSession.sessionId}</span>
         </div>
         <i>${_(userSession.didascalia)}</i>
         <p>${_(userSession.description)}</p>`

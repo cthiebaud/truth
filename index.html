@@ -229,6 +229,7 @@
                         .cloche {
                             max-width: 8rem;
                             padding: .5rem;
+                            margin: .5rem;
                             border-top-left-radius: 4rem;
                             border-top-right-radius: 4rem;
                             background-color: #e0e2f1;
@@ -390,20 +391,19 @@
             max-width: calc(100vw - 126px);
             display: inline-block;
             text-transform: lowercase;
-            overflow-x:hidden;
+            overflow-x: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
         }
 
         #read-user-story,
-        #renew-user-session, 
+        #renew-user-session,
         #edit-session-id {
             padding: 0;
             cursor: pointer;
             height: 24px;
             width: 24px;
         }
-
     </style>
 
     <div id="offcanvas-left" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="offcanvasLeftLabel" data-bs-keyboard="false">
@@ -412,8 +412,8 @@
 
             <div class="my-absolute-bottom">
 
-                <div id="collapseUserStory" class="collapse" style="width: 100%;">
-                    <div class="card card-body" style="margin-bottom:3rem;">
+                <div id="collapseUserStory" class="collapse overflow-scroll" style="width: 100%; max-height: 100vh; padding: 0 .5rem;">
+                    <div class="card card-body overflow-scroll" style="margin-bottom:3rem;">
                         &nbsp;
                     </div>
                 </div>
@@ -428,15 +428,18 @@
                     </div>
                     <div id="buttons-offcanvas-left" class="btn-group btn-group-sm" role="group" style="width:84px; max-width:84">
                         <button class="btn my-button btn-sm" type="button" aria-expanded="false" alt="renew user session">
-                            <img id="renew-user-session" class="align-self-center" src="/assets/svg/renew-svgrepo-com.svg" >
+                            <img id="renew-user-session" class="align-self-center" src="/assets/svg/renew-svgrepo-com.svg">
                         </button>
-                        <button class="btn my-button btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseUserStory" aria-expanded="false" aria-controls="collapseUserStory">
+                        <button class="btn my-button btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseUserStory" aria-expanded="false"
+                            aria-controls="collapseUserStory">
                             <img id="read-user-story" class="align-self-center" class="align-self-center" src="/assets/svg/border-bottom-svgrepo-com.svg" alt="read user story">
                         </button>
                     </div>
                 </div>
             </div>
-                
+            <!-- 
+            <div class="card" style="margin:0; padding:0; border:none;">
+                <div class="card-body" style="margin:0; padding:0; border:none;"> -->
             <div id="cloche-x-y" class="cloche d-flex flex-column justify-content-evenly align-items-center">
                 <div class="d-flex justify-content-around" style="width: 80%;">
                     <div id="result-level-x-y" class="result-level">
@@ -456,6 +459,9 @@
                 <div class="nowrap-overflow" id="result-pseudo-x-y">&nbsp;</div>
                 <div class="nowrap-overflow" id="result-when-x-y" style="font-size: smaller;">&nbsp;</div>
             </div>
+            <!--
+                </div>
+            </div> -->
 
         </div>
     </div>
@@ -469,7 +475,7 @@
 
         // Create a container div for the cloned elements
         const container = document.createElement("div");
-        container.classList.add("container");
+        /* container.classList.add("container"); */
 
         // Set CSS styles for the container
         container.style.display = "flex";

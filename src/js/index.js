@@ -1,4 +1,4 @@
-import { Modal as bsModal, Carousel as bsCarousel, Offcanvas as bsOffcanvas } from 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/+esm'
+import { Modal as bsModal, Carousel as bsCarousel, Offcanvas as bsOffcanvas, Collapse as bsCollapse} from 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/+esm'
 import bezierEasing from 'https://cdn.jsdelivr.net/npm/bezier-easing@2.1.0/+esm'
 import isotopeLayout from 'https://cdn.jsdelivr.net/npm/isotope-layout@3.0.6/+esm' // ISOTOPE 
 
@@ -1238,6 +1238,14 @@ window.addEventListener("load", loadEvent => {
         alert('Admin role granted! Your scores will not be saved.');
     }
     // END ADMIN
+
+    //
+    const myOffcanvas = document.getElementById('offcanvas-left')
+    const collapseElement = new bsCollapse(myOffcanvas.querySelector('.collapse'))
+    myOffcanvas.addEventListener('hidden.bs.offcanvas', event => {
+        collapseElement.hide()
+    })
+    //
 
 
 })
