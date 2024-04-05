@@ -1,4 +1,4 @@
-import { Modal as bsModal, Carousel as bsCarousel, Offcanvas as bsOffcanvas, Collapse as bsCollapse} from 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/+esm'
+import { Modal as bsModal, Carousel as bsCarousel, Offcanvas as bsOffcanvas, Collapse as bsCollapse } from 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/+esm'
 import bezierEasing from 'https://cdn.jsdelivr.net/npm/bezier-easing@2.1.0/+esm'
 import isotopeLayout from 'https://cdn.jsdelivr.net/npm/isotope-layout@3.0.6/+esm' // ISOTOPE 
 
@@ -54,7 +54,7 @@ function reservoirShowBest() {
         console.error('GET error:', error)
     }
 }
-    // END RESERVOIR
+// END RESERVOIR
 
 /*
 import index_sheet from '../css/index.css' assert { type: 'css' };
@@ -1239,13 +1239,16 @@ window.addEventListener("load", loadEvent => {
     }
     // END ADMIN
 
-    //
-    const myOffcanvas = document.getElementById('offcanvas-left')
-    const collapseElement = new bsCollapse(myOffcanvas.querySelector('.collapse'))
-    myOffcanvas.addEventListener('hidden.bs.offcanvas', event => {
-        collapseElement.hide()
-    })
-    //
+    // BEGIN OFF-CANVAS LEFT
+    {
+        const myOffcanvasLeftElement = document.getElementById('offcanvas-left')
+        const userStoryCollapseElement = myOffcanvasLeftElement.querySelector('.collapse')
+        const userStoryCollapse = new bsCollapse(userStoryCollapseElement, { toggle: false })
+        myOffcanvasLeftElement.addEventListener('hidden.bs.offcanvas', () => {
+            userStoryCollapse.hide()
+        })
+    }
+    // END OFF-CANVAS LEFT
 
 
 })
