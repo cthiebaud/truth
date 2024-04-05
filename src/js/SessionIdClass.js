@@ -1,7 +1,7 @@
 export class SessionId {
     #sessionIdContainer
     #sessionIdDiv
-    #collapseUserStory
+    #sessionRenewButton
     #originalValue
     #reservoir
 
@@ -9,9 +9,8 @@ export class SessionId {
         this.#reservoir = reservoir
         this.#sessionIdContainer = document.getElementById("session-id-container");
         this.#sessionIdDiv = document.getElementById("session-id");
+        this.#sessionRenewButton = document.getElementById("renew-user-session");
         this.#originalValue = this.#sessionIdDiv.textContent.trim();
-
-        const us = this.#reservoir.userSession
 
         // Event listener to start edit session by clicking on the container
         this.#sessionIdContainer.addEventListener("click", (event) => {
@@ -32,6 +31,14 @@ export class SessionId {
                 } else if (event.key === "Escape") {
                     this.abortEditMode();
                 }
+            }
+        });
+
+        this.#sessionRenewButton.addEventListener("click", (event) => {
+            if (!this.isEditing()) {
+                event.preventDefault();
+                event.stopPropagation();
+                this.#reservoir.renewUserSession()
             }
         });
 
@@ -71,16 +78,20 @@ export class SessionId {
         const sessionId = this.#sessionIdDiv.textContent.trim().replaceAll(/\n/g, "").toLowerCase()
         if (sessionId.length === 0 || /^[a-z0-9\-]+$/.test(sessionId)) {
             this.#sessionIdDiv.contentEditable = false;
-            console.log("Valid session ID:", sessionId);
-            this.#reservoir.changeUserSession({
-                sessionId: sessionId,
-                name: null,
-                didascalia: null,
-                description: null
-            })
+            if (sessionId !== this.#originalValue) {
+                console.log("Valid session ID:", sessionId);
+                this.#reservoir.changeUserSession({
+                    sessionId: sessionId,
+                    name: null,
+                    didascalia: null,
+                    description: null
+                })
+            } else {
+                this.abortEditMode()
+            }
         } else {
-            alert("Invalid session ID! User-defined session ID must contain only lowercase alphanumeric characters or the hyphen ('-'), or be empty.");
-            this.abortEditMode();
+            alert("Invalid session ID! User-defined session ID must contain only lowercase alphanumeric characters or the hyphen ('-'), or be empty.")
+            this.abortEditMode()
         }
     }
 }

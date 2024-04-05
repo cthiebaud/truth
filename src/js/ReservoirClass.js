@@ -5,7 +5,7 @@ function cachedUserSessionFromCookie() {
         const [name, value] = cookie.split('=')
         if (name === 'user-session') {
             const userSession = JSON.parse(value)
-            return userSession.sessionID || null
+            return userSession || null
         }
     }
     return null
@@ -26,7 +26,7 @@ export class Reservoir {
 
     constructor(baseUrl) {
         this.#baseUrl = baseUrl
-        this.fetchUserSession().then(([userSession, isNew]) => {
+        this.getOrFetchUserSession().then(([userSession, isNew]) => {
             if (isNew) {
                 this.changeUserSession(userSession)
             } else {
@@ -42,6 +42,12 @@ export class Reservoir {
         }
     }
 
+    renewUserSession() {
+        this.fetchUserSession().then((userSession) => {
+            this.changeUserSession(userSession)
+        })
+    }
+
     get userSession() {
         return this.#userSession
     }
@@ -50,8 +56,8 @@ export class Reservoir {
         this.#userSession = userSession
         document.getElementById("session-id").innerText = this.#userSession.sessionId
         const _ = (_) => _ ? _ : "&nbsp;"
-        this.#collapseUserStory.innerHTML = 
-        `<div>
+        this.#collapseUserStory.innerHTML =
+            `<div>
             <b>${_(userSession.name)}</b>
             <span style="float: right;">${userSession.sessionId}</span>
         </div>
@@ -59,22 +65,30 @@ export class Reservoir {
         <p>${_(userSession.description)}</p>`
     }
 
-    fetchUserSession() {
+    getOrFetchUserSession() {
         return new Promise((resolve, reject) => {
             const oldUserSession = cachedUserSessionFromCookie()
-            if (oldUserSession) {
+            if (oldUserSession && oldUserSession.sessionId) {
                 resolve([oldUserSession, false])
             } else {
-                const url = new URL(this.#baseUrl + "/user-session")
-                fetch(url)
-                    .then(response => response.json())
-                    .then(newUserSession => {
-                        resolve([newUserSession, true])
-                    })
-                    .catch(error => {
-                        reject(error + " - at url " + url)
-                    })
+                this.fetchUserSession().then(newUserSession => {
+                    resolve([newUserSession, true])
+                })
             }
+        })
+    }
+
+    fetchUserSession() {
+        return new Promise((resolve, reject) => {
+            const url = new URL(this.#baseUrl + "/user-session")
+            fetch(url)
+                .then(response => response.json())
+                .then(newUserSession => {
+                    resolve(newUserSession)
+                })
+                .catch(error => {
+                    reject(error + " - at url " + url)
+                })
         })
     }
 

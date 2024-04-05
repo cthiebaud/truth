@@ -9,6 +9,10 @@ body {
 
 /* BEGIN prise de tête */
 
+#my-button {
+  padding: 4px !important;
+}
+
 /* Apply styles for touch devices */
 @media (pointer: coarse) {
   /* Your touch device specific styles here */

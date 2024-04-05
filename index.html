@@ -342,8 +342,8 @@
             bottom: 0;
             left: 0;
             right: 0;
-            padding: 0 0.5rem;
             z-index: 1020;
+            max-width: 100vw;
         }
 
         .offcanvas #embellished-separator {
@@ -387,18 +387,23 @@
         }
 
         #session-id {
+            max-width: calc(100vw - 126px);
             display: inline-block;
             text-transform: lowercase;
+            overflow-x:hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
 
         #read-user-story,
+        #renew-user-session, 
         #edit-session-id {
-            margin: 0 .3rem;
             padding: 0;
             cursor: pointer;
             height: 24px;
             width: 24px;
         }
+
     </style>
 
     <div id="offcanvas-left" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="offcanvasLeftLabel" data-bs-keyboard="false">
@@ -409,20 +414,26 @@
 
                 <div id="collapseUserStory" class="collapse" style="width: 100%;">
                     <div class="card card-body" style="margin-bottom:3rem;">
-                        
+                        &nbsp;
                     </div>
                 </div>
-                <div class="my-absolute-bottom d-flex justify-content-between">
-                    <div id="session-id-container" class="d-flex flex-grow-1">
-                        
-                        <img id="edit-session-id" class="align-self-center" src="/assets/svg/edit-2-svgrepo-com.svg" alt="edit session-id">
+                <div class="my-absolute-bottom d-flex">
+                    <div id="session-id-container" class="d-flex flex-grow-1 flex-nowrap">
+                        <button class="btn my-button btn-sm" type="button" aria-expanded="false">
+                            <img id="edit-session-id" class="align-self-center" src="/assets/svg/edit-2-svgrepo-com.svg" alt="edit session-id">
+                        </button>
                         <div id="session-id" class="p-2 flex-grow-1 the-font-monospaced text-secondary" contenteditable="false">
                             Your Session ID Here
                         </div>
                     </div>
-                    <button class="btn my-button btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseUserStory" aria-expanded="false" aria-controls="collapseUserStory">
-                        <img id="read-user-story" class="align-self-center" src="/assets/svg/book-open-svgrepo-com.svg" alt="read user story">
-                    </button>
+                    <div id="buttons-offcanvas-left" class="btn-group btn-group-sm" role="group" style="width:84px; max-width:84">
+                        <button class="btn my-button btn-sm" type="button" aria-expanded="false" alt="renew user session">
+                            <img id="renew-user-session" class="align-self-center" src="/assets/svg/renew-svgrepo-com.svg" >
+                        </button>
+                        <button class="btn my-button btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseUserStory" aria-expanded="false" aria-controls="collapseUserStory">
+                            <img id="read-user-story" class="align-self-center" class="align-self-center" src="/assets/svg/border-bottom-svgrepo-com.svg" alt="read user story">
+                        </button>
+                    </div>
                 </div>
             </div>
                 
