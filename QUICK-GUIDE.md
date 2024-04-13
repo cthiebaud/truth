@@ -124,7 +124,7 @@ More at [Github&hellip;](https://github.com/cthiebaud/truth/blob/main/README.md)
 | ![Android App Store](assets/svg/android-svgrepo-com.svg) | [On Android Phones & Devices](https://play.google.com/store/apps/details?id=com.cthiebaud.aletheia.twa)                |
 | ![WWW](assets/svg/internet-svgrepo-com.svg)              | [On the Web](https://aletheia.cthiebaud.com/)                                                                          |
 | ![aletheia](assets/svg/wikipedia.svg)                    | [Aletheia (Ancient Greek: ἀλήθεια) as Philosophical Term on Wikipedia ](https://en.wikipedia.org/wiki/Aletheia)        |
-| ![Github](assets/svg/github.svg)                         | This version git commit: [9747e94](https://github.com/cthiebaud/truth/commit/9747e9411e11624274c88836dfca118d3cbd4673)  |
+| ![Github](assets/svg/github.svg)                         | This version git commit: [42c8693](https://github.com/cthiebaud/truth/commit/42c86939901e8a30c78f00ec925bd2c0def0ec47)  |
 -->
 
 &copy; 2024 [Christophe Thiebaud](https://cthiebaud.com/) _No Rights Reserved_
