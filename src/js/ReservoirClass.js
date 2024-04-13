@@ -3,8 +3,8 @@ function cachedUserSessionFromCookie() {
     const cookies = document.cookie.split('; ')
     for (const cookie of cookies) {
         const [name, value] = cookie.split('=')
-        if (name === 'user-session') {
-            const userSession = JSON.parse(value)
+        if (name === 'user-session2') {
+            const userSession = JSON.parse(decodeURIComponent(value))
             return userSession || null
         }
     }
@@ -16,7 +16,7 @@ function cacheUserSessionToCookie(userSession) {
     var expirationDate = new Date();
     expirationDate.setDate(expirationDate.getDate() + 365); // Set expiration date to 365 days from now
 
-    document.cookie = `user-session=${JSON.stringify(userSession)}; expires=${expirationDate.toUTCString()}; path=/`;
+    document.cookie = `user-session2=${encodeURIComponent(JSON.stringify(userSession))}; expires=${expirationDate.toUTCString()}; path=/`;
 }
 
 export class Reservoir {
@@ -63,6 +63,14 @@ export class Reservoir {
 </p>
 <p class="fst-italic">${_(userSession.didascalia)}</p>
 <p>${_(userSession.description)}</p>`
+
+        this.#collapseUserStory.querySelectorAll('a').forEach(a => {
+            let title = a.getAttribute('title') ?? ""
+            if (title.length > 0) {
+                title = title.substring(1); // Remove the first character
+            }
+            a.setAttribute('href', `javascript:alert('${title}')`)
+        })
     }
 
     getOrFetchUserSession() {
