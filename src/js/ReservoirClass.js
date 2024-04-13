@@ -42,8 +42,8 @@ export class Reservoir {
         }
     }
 
-    renewUserSession() {
-        this.fetchUserSession().then((userSession) => {
+    renewUserSession(name) {
+        this.fetchUserSession(name).then((userSession) => {
             this.changeUserSession(userSession)
         })
     }
@@ -57,19 +57,25 @@ export class Reservoir {
         document.getElementById("session-id").innerText = this.#userSession.sessionId
         const _ = (_) => _ ? _ : "&nbsp;"
         this.#collapseUserStory.innerHTML =
-`<p>
+            `<p>
     <span class="the-font-monospaced float-end">${userSession.sessionId}</span>
     <span class="text-nowrap fw-bold">${_(userSession.name)}</span>
 </p>
 <p class="fst-italic">${_(userSession.didascalia)}</p>
 <p>${_(userSession.description)}</p>`
 
+        const _this = this
         this.#collapseUserStory.querySelectorAll('a').forEach(a => {
             let title = a.getAttribute('title') ?? ""
             if (title.length > 0) {
                 title = title.substring(1); // Remove the first character
             }
-            a.setAttribute('href', `javascript:alert('${title}')`)
+            a.setAttribute('href', '#')
+            a.addEventListener('click', clickEvent => {
+                clickEvent.preventDefault()
+                clickEvent.stopPropagation()
+                _this.renewUserSession(title)
+            })
         })
     }
 
@@ -86,9 +92,9 @@ export class Reservoir {
         })
     }
 
-    fetchUserSession() {
+    fetchUserSession(name) {
         return new Promise((resolve, reject) => {
-            const url = new URL(this.#baseUrl + "/user-session")
+            const url = new URL(this.#baseUrl + "/user-session" + (name ? "?name=" + name : ""))
             fetch(url)
                 .then(response => response.json())
                 .then(newUserSession => {
